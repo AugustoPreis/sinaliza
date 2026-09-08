@@ -20,6 +20,9 @@ coverage/
 npm-debug.log*
 pnpm-debug.log*
 
+# Local tooling state
+.claude/
+
 # Editor/OS
 .DS_Store
 .vscode/*

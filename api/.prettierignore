@@ -1,0 +1,7 @@
+# Prettier's built-in Handlebars parser (glimmer) doesn't support partial
+# blocks ({{#> base}}...{{/base}}), which core/mail/templates/*.hbs relies
+# on (see docs/mailing.md). Format these by hand instead.
+*.hbs
+
+## pnpm lockfile
+pnpm-lock.yaml

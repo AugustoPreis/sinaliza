@@ -129,6 +129,9 @@ importers:
       orval:
         specifier: ^8.23.0
         version: 8.30.0(prettier@3.9.6)(typescript@6.0.3)
+      prettier:
+        specifier: 3.9.6
+        version: 3.9.6
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
