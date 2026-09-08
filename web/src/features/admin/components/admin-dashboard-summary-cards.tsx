@@ -1,0 +1,45 @@
+import type { ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import type { AdminDashboardSummaryDTO } from '@core/api/generated/sinalizaAPI.schemas';
+import { Grid, Stack } from '@shared/ui/layout';
+import { Heading, Text } from '@shared/ui/typography';
+
+export interface AdminDashboardSummaryCardsProps {
+  summary: AdminDashboardSummaryDTO;
+}
+
+export function AdminDashboardSummaryCards({
+  summary,
+}: AdminDashboardSummaryCardsProps): ReactElement {
+  const { t } = useTranslation('admin');
+
+  const cards = [
+    { key: 'volume', label: t('dashboard.summary.volume'), value: summary.volume.toString() },
+    {
+      key: 'resolvedPercentage',
+      label: t('dashboard.summary.resolvedPercentage'),
+      value: `${summary.resolved_percentage.toFixed(1)}%`,
+    },
+    {
+      key: 'averageTime',
+      label: t('dashboard.summary.averageTime'),
+      value: t('dashboard.summary.minutes', { count: Math.round(summary.average_time_to_correct_sector_minutes) }),
+    },
+  ];
+
+  return (
+    <Grid columns={3} gap={4} className="grid-cols-1 sm:grid-cols-3">
+      {cards.map((card) => (
+        <Stack key={card.key} gap={1} className="rounded-lg border border-border p-4">
+          <Text size="sm" tone="muted">
+            {card.label}
+          </Text>
+          <Heading level={2} size="lg">
+            {card.value}
+          </Heading>
+        </Stack>
+      ))}
+    </Grid>
+  );
+}

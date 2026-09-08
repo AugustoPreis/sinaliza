@@ -1,0 +1,185 @@
+{
+  "dashboard": {
+    "title": "Painel geral",
+    "loading": "Carregando indicadores...",
+    "filters": {
+      "sectorLabel": "Setor",
+      "sectorPlaceholder": "Todos os setores",
+      "sectorEmpty": "Nenhum setor encontrado.",
+      "statusLabel": "Status",
+      "statusPlaceholder": "Todos os status",
+      "statusEmpty": "Nenhum status encontrado.",
+      "buildingLabel": "Prédio",
+      "buildingPlaceholder": "Todos os prédios",
+      "buildingEmpty": "Nenhum prédio encontrado.",
+      "periodLabel": "Período",
+      "searchLabel": "Buscar",
+      "searchPlaceholder": "Protocolo, local ou descrição"
+    },
+    "summary": {
+      "volume": "Volume de chamados",
+      "resolvedPercentage": "% resolvidos",
+      "averageTime": "Tempo médio até setor correto",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minutos"
+    },
+    "bySector": {
+      "title": "Consolidado por setor",
+      "sector": "Setor",
+      "forwarded": "Encaminhados",
+      "inProgress": "Em andamento",
+      "resolved": "Resolvidos",
+      "empty": "Nenhum dado encontrado para o período selecionado."
+    },
+    "table": {
+      "title": "Todos os chamados",
+      "loading": "Carregando chamados...",
+      "protocol": "Protocolo",
+      "description": "Descrição",
+      "sector": "Setor atual",
+      "status": "Status",
+      "createdAt": "Criado em",
+      "empty": "Nenhum chamado encontrado."
+    }
+  },
+  "sectors": {
+    "title": "Setores e categorias",
+    "loading": "Carregando setores...",
+    "createButton": "Novo setor",
+    "searchPlaceholder": "Buscar por nome do setor",
+    "table": {
+      "name": "Nome",
+      "categories": "Categorias",
+      "responsibleUsers": "Responsáveis",
+      "noResponsibleUsers": "Nenhum responsável definido",
+      "edit": "Editar",
+      "empty": "Nenhum setor encontrado."
+    },
+    "form": {
+      "createTitle": "Novo setor",
+      "editTitle": "Editar setor",
+      "nameLabel": "Nome do setor",
+      "categoriesLabel": "Categorias (usadas pelo classificador automático)",
+      "categoriesPlaceholder": "Digite e pressione Enter para adicionar",
+      "responsibleUsersLabel": "Responsáveis",
+      "responsibleUsersPlaceholder": "Selecione os responsáveis",
+      "responsibleUsersSearchPlaceholder": "Buscar por nome ou e-mail",
+      "responsibleUsersEmpty": "Nenhum usuário encontrado.",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "createSuccess": "Setor criado com sucesso.",
+      "updateSuccess": "Setor atualizado com sucesso."
+    }
+  },
+  "usersImport": {
+    "title": "Importar usuários",
+    "description": "Importação em lote de usuários a partir de uma planilha. A importação é atômica: se qualquer linha divergir do modelo, o arquivo inteiro é rejeitado e nenhum usuário é criado ou atualizado.",
+    "templateStep": {
+      "title": "1. Baixe o modelo",
+      "description": "Baixe a planilha modelo e preencha com os dados dos usuários a importar.",
+      "button": "Baixar modelo"
+    },
+    "uploadStep": {
+      "title": "2. Envie o arquivo preenchido",
+      "description": "Selecione o arquivo .xlsx preenchido e clique em importar.",
+      "button": "Importar"
+    },
+    "result": {
+      "successBadge": "Importação concluída",
+      "summary": "{{created}} usuário(s) criado(s) e {{updated}} atualizado(s).",
+      "errorBadge": "Importação rejeitada",
+      "genericError": "O arquivo enviado não corresponde ao modelo esperado.",
+      "atomicNote": "Nenhum usuário foi criado ou atualizado — a importação é atômica e o arquivo inteiro foi rejeitado."
+    }
+  },
+  "usersPermissions": {
+    "title": "Usuários e permissões",
+    "loading": "Carregando usuários...",
+    "roles": {
+      "REQUESTER": "Solicitante",
+      "SECTOR": "Setor",
+      "ADMIN": "Administrador"
+    },
+    "status": {
+      "ACTIVE": "Ativo",
+      "INACTIVE": "Acesso revogado",
+      "PENDING": "Pendente"
+    },
+    "filters": {
+      "searchLabel": "Buscar",
+      "searchPlaceholder": "Nome ou e-mail",
+      "roleLabel": "Papel",
+      "rolePlaceholder": "Todos os papéis",
+      "roleEmpty": "Nenhum papel encontrado.",
+      "statusLabel": "Status de acesso",
+      "statusPlaceholder": "Todos os status",
+      "statusEmpty": "Nenhum status encontrado."
+    },
+    "table": {
+      "name": "Nome",
+      "email": "E-mail",
+      "roles": "Papéis",
+      "status": "Status",
+      "editPermissions": "Editar permissões",
+      "revoke": "Revogar acesso",
+      "restore": "Restaurar acesso",
+      "empty": "Nenhum usuário encontrado."
+    },
+    "dialog": {
+      "title": "Permissões de {{name}}",
+      "rolesLabel": "Papéis",
+      "rolesPlaceholder": "Selecione os papéis",
+      "rolesEmpty": "Nenhum papel encontrado.",
+      "sectorsLabel": "Setores responsáveis",
+      "sectorsPlaceholder": "Selecione os setores",
+      "sectorsEmpty": "Nenhum setor encontrado.",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "success": "Permissões atualizadas com sucesso."
+    },
+    "access": {
+      "revokeTitle": "Revogar acesso",
+      "revokeDescription": "O acesso de {{name}} será revogado. Isso não exclui o usuário nem seu histórico — o acesso pode ser restaurado a qualquer momento.",
+      "revokeConfirm": "Revogar acesso",
+      "revokeSuccess": "Acesso revogado com sucesso.",
+      "restoreTitle": "Restaurar acesso",
+      "restoreDescription": "O acesso de {{name}} será restaurado.",
+      "restoreConfirm": "Restaurar acesso",
+      "restoreSuccess": "Acesso restaurado com sucesso.",
+      "cancel": "Cancelar"
+    }
+  },
+  "research": {
+    "title": "Indicadores da pesquisa",
+    "loading": "Carregando indicadores...",
+    "exportButton": "Exportar dados",
+    "filters": {
+      "sectorLabel": "Setor",
+      "sectorPlaceholder": "Todos os setores",
+      "sectorEmpty": "Nenhum setor encontrado.",
+      "buildingLabel": "Prédio",
+      "buildingPlaceholder": "Todos os prédios",
+      "buildingEmpty": "Nenhum prédio encontrado.",
+      "periodLabel": "Período"
+    },
+    "summary": {
+      "automaticAccuracy": "Acerto automático",
+      "correctionsByRequester": "Correções pelo solicitante",
+      "correctionsBySector": "Correções pelo setor",
+      "averageTime": "Tempo médio até setor correto",
+      "medianTime": "Tempo mediano até setor correto",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minutos"
+    },
+    "volume": {
+      "bySector": "Volume por setor",
+      "byCategory": "Volume por categoria",
+      "byLocation": "Volume por local",
+      "sector": "Setor",
+      "category": "Categoria",
+      "building": "Prédio",
+      "count": "Quantidade",
+      "empty": "Nenhum dado encontrado para o período selecionado."
+    }
+  }
+}
