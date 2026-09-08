@@ -1,0 +1,14 @@
+FROM node:24-alpine AS dev
+
+RUN corepack enable
+WORKDIR /app
+
+COPY --chown=node:node . .
+RUN chown node:node /app
+
+USER node
+
+RUN corepack prepare --activate $(node -p "require('./package.json').packageManager || 'pnpm@11.5.3'")
+RUN pnpm install
+
+CMD ["pnpm", "start:dev"]

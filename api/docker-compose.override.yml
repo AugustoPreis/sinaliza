@@ -1,0 +1,34 @@
+# Applied automatically by Docker Compose when present; this is the default
+# for those who clone the repo to develop. `docker compose up` (without
+# flags) already brings everything up in dev mode with hot-reload via bind mount of the code.
+services:
+  # SMTP test server for local development: catches every outgoing e-mail
+  # instead of delivering it. Web UI at http://localhost:8025.
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    container_name: ${APP_NAME:-sinaliza}_mailhog
+    ports:
+      - '8025:8025'
+    networks:
+      - sinaliza_network
+
+  migrate:
+    build:
+      dockerfile: Dockerfile.dev
+      target: dev
+    environment:
+      CI: 'true'
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+    environment:
+      CI: 'true'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - '${API_HOST_PORT:-3000}:${PORT:-3000}'

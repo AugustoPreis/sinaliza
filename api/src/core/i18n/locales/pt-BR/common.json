@@ -1,0 +1,10 @@
+{
+  "appName": "Boilerplate",
+  "welcome": "Bem-vindo(a).",
+  "yes": "Sim",
+  "no": "Não",
+
+  "mail": {
+    "disclaimer": "Este e-mail foi enviado automaticamente. Não responda."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "errors": {
+    "notFound": "Usuário não encontrado.",
+    "passwordsMustBeDifferent": "A nova senha deve ser diferente da senha atual.",
+    "passwordsMustMatch": "As senhas não coincidem.",
+    "invalidCurrentPassword": "A senha atual está incorreta.",
+    "emailTaken": "O e-mail \"{email}\" já está em uso.",
+    "identifierNotFound": "Matrícula ou e-mail não encontrado na base institucional.",
+    "invalidImportTemplate": "A planilha não corresponde ao modelo oficial de importação.",
+    "importMissingColumn": "Coluna obrigatória ausente: \"{column}\".",
+    "importColumnOrderMismatch": "Coluna fora de ordem ou com nome diferente do modelo.",
+    "importInvalidRow": "Linha {row} da planilha é inválida."
+  },
+
+  "audit": {
+    "entities": {
+      "user": {
+        "label": "Usuário",
+        "fields": {
+          "name": "Nome",
+          "email": "E-mail",
+          "institutionalId": "Matrícula",
+          "institutionalLink": "Vínculo",
+          "status": "Status",
+          "currentPassword": "Senha atual",
+          "newPassword": "Nova senha",
+          "confirmNewPassword": "Confirmar nova senha"
+        },
+        "enums": {
+          "status": {
+            "ACTIVE": "Ativo",
+            "INACTIVE": "Acesso revogado",
+            "PENDING": "Pendente"
+          },
+          "institutionalLink": {
+            "ALUNO": "Aluno",
+            "PROFESSOR": "Professor",
+            "SERVIDOR": "Servidor"
+          }
+        }
+      }
+    }
+  }
+}

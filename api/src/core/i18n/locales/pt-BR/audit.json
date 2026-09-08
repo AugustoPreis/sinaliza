@@ -1,0 +1,7 @@
+{
+  "errors": {
+    "notFound": "Log de auditoria não encontrado.",
+    "metadataNotFound": "Nenhum metadado de auditoria registrado para a entidade \"{entityName}\".",
+    "pipelineMisuse": "O pipeline de auditoria foi chamado fora de ordem."
+  }
+}

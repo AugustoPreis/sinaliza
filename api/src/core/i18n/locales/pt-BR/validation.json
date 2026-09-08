@@ -1,0 +1,22 @@
+{
+  "isNotEmpty": "O campo \"{field}\" é obrigatório.",
+  "isString": "O campo \"{field}\" deve ser um texto.",
+  "isEmail": "O campo \"{field}\" deve ser um e-mail válido.",
+  "isInt": "O campo \"{field}\" deve ser um número inteiro.",
+  "isNumber": "O campo \"{field}\" deve ser um número.",
+  "isLength": "O campo \"{field}\" deve ter entre {min} e {max} caracteres.",
+  "minLength": "O campo \"{field}\" deve ter no mínimo {min} caracteres.",
+  "maxLength": "O campo \"{field}\" deve ter no máximo {max} caracteres.",
+  "min": "O campo \"{field}\" deve ser maior ou igual a {min}.",
+  "max": "O campo \"{field}\" deve ser menor ou igual a {max}.",
+  "isUrl": "O campo \"{field}\" deve ser uma URL válida.",
+  "isUuid": "O campo \"{field}\" deve ser um UUID válido.",
+  "isEnum": "O campo \"{field}\" possui um valor inválido.",
+  "isArray": "O campo \"{field}\" deve ser uma lista.",
+  "isBoolean": "O campo \"{field}\" deve ser um valor booleano.",
+  "matches": "O campo \"{field}\" possui um formato inválido.",
+  "resourceFormat": "O campo \"{field}\" deve conter apenas letras minúsculas e sublinhado.",
+  "actionFormat": "O campo \"{field}\" deve conter apenas letras minúsculas e sublinhado.",
+  "passwordTooWeak": "O campo \"{field}\" deve ter ao menos 8 caracteres, incluindo maiúscula, minúscula, número e caractere especial.",
+  "cpfInvalid": "O campo \"{field}\" não é um CPF válido."
+}

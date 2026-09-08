@@ -1,0 +1,6 @@
+{
+  "errors": {
+    "buildingNotFound": "Prédio não encontrado.",
+    "environmentNotFound": "Ambiente não encontrado neste prédio."
+  }
+}

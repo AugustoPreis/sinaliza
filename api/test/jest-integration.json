@@ -1,0 +1,15 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".integration-spec.ts$",
+  "testTimeout": 60000,
+  "setupFiles": ["<rootDir>/support/jest.setup.ts"],
+  "transform": { "^.+\\.(t|j)s$": "ts-jest" },
+  "transformIgnorePatterns": ["node_modules/(?!.*(uuid|@faker-js))"],
+  "moduleNameMapper": {
+    "^@shared/(.*)$": "<rootDir>/../src/shared/$1",
+    "^@core/(.*)$": "<rootDir>/../src/core/$1",
+    "^@modules/(.*)$": "<rootDir>/../src/modules/$1"
+  }
+}
