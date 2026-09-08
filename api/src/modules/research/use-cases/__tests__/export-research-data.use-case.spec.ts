@@ -158,6 +158,13 @@ describe('ExportResearchDataUseCase', () => {
 
     expect(worksheet.rowCount).toBe(2); // header + 1 REASSIGNED event
     const row = worksheet.getRow(2).values as unknown[];
-    expect(row.slice(1)).toEqual(['tkt_123', 'SIN-1042', 'TI', 'Manutenção Predial', 'O defeito é elétrico', correctSectorReachedAt]);
+    expect(row.slice(1)).toEqual([
+      'tkt_123',
+      'SIN-1042',
+      'TI',
+      'Manutenção Predial',
+      'O defeito é elétrico',
+      correctSectorReachedAt,
+    ]);
   });
 });

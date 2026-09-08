@@ -7,11 +7,8 @@ import { IsArray, IsEnum } from '@shared/validators';
 
 import { ETicketStatus } from '../enums/ticket-status.enum';
 
-// `GET /tickets` filters (endpoints-sinaliza.md §8.2). Pagination itself
-// stays on this project's own `page`/`perPage` query convention
-// (`PaginationQueryDTO`) rather than the doc's `page`/`page_size`, but the
-// response body still uses `page`/`page_size` to match the documented
-// contract — see `TicketListResponseDTO`.
+// Pagination uses this project's own `page`/`perPage` query convention, but
+// the response body uses `page`/`page_size` — see `TicketListResponseDTO`.
 export class TicketQueryDTO extends PaginationQueryDTO {
   @ApiPropertyOptional({
     enum: ETicketStatus,

@@ -19,20 +19,14 @@ const NON_RESERVED_ROLES = [
 ];
 
 // Minimal default permission each ordinary role needs to use its own core
-// flow out of the box (§19 matrix: "Classificar relato"/"Criar chamado" are
-// REQUESTER-only). Granted once, additively — never removed here — so an
-// admin's later changes from the RBAC screens aren't fought on every seed
-// run.
+// flow out of the box. Granted once, additively — never removed here — so
+// an admin's later changes from the RBAC screens aren't fought on every
+// seed run.
 //
-// SECTOR's defaults, added in Phase 4: `tickets:read-sector` backs
-// `GET /sector/tickets` (§10.1); `update-status`/`reassign`/`internal-note`
-// back the three ticket mutations a sector performs from Tela B.3
-// (§10.2-10.4). `sectors:read` is granted per this phase's spec even though
-// the picker the reassign flow actually uses (`GET /sectors`, §6.1) is
-// already unguarded for any authenticated user (see `SectorsController`) —
-// this only additionally lets SECTOR read `GET /admin/sectors`' fuller view
-// (categories + responsible users), which is harmless and matches what was
-// asked for explicitly.
+// SECTOR also gets `sectors:read` even though the picker the reassign flow
+// actually uses (`GET /sectors`) is already unguarded for any authenticated
+// user (see `SectorsController`) — this additionally lets SECTOR read
+// `GET /admin/sectors`' fuller view (categories + responsible users).
 const DEFAULT_ROLE_PERMISSIONS: Record<string, Array<{ resource: string; action: string }>> = {
   [ROLE_REQUESTER]: [
     { resource: 'classification', action: 'preview' },

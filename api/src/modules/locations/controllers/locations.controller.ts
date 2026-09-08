@@ -5,9 +5,7 @@ import { LocationQueryDTO } from '../dtos/location-query.dto';
 import { BuildingResponseDTO } from '../dtos/location-response.dto';
 import { ListLocationsUseCase } from '../use-cases/list-locations.use-case';
 
-// `GET /locations` (endpoints-sinaliza.md §5.1). Deliberately no
-// `@RequirePermission`: any authenticated user picks a location, same
-// reasoning as `SectorsController`.
+// No `@RequirePermission`: any authenticated user picks a location.
 @ApiTags('Locations')
 @ApiBearerAuth()
 @Controller({ path: 'locations', version: '1' })

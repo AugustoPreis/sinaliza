@@ -347,5 +347,4 @@ describe('Users (e2e)', () => {
       await loginAs(app, { email: ownerEmail, password: 'NewPassword@123' });
     });
   });
-
 });

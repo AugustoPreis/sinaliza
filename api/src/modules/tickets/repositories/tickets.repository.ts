@@ -30,8 +30,8 @@ export interface ITicketListFilters {
   resolved?: boolean;
 }
 
-// Shared by `findManyForQueue` (`/sector/tickets` §10.1 and `/admin/tickets`
-// §11.1 — same shape, different DTO mapping and `sectorIds` scoping).
+// Shared by `findManyForQueue`'s two callers (sector queue and admin
+// listing) — same shape, different DTO mapping and `sectorIds` scoping.
 export interface ITicketQueueFilters {
   statuses?: ETicketStatus[];
   from?: Date;
@@ -74,8 +74,7 @@ export class TicketsRepository {
     @InjectDataSource() private readonly dataSource: DataSource,
   ) {}
 
-  // `SIN-<n>` — `n` comes from a dedicated Postgres sequence (see the
-  // `Tickets` migration) so protocol numbers are gap-free-ish and never
+  // `n` comes from a dedicated Postgres sequence so protocol numbers never
   // collide, even under concurrent ticket creation.
   async nextProtocol(): Promise<string> {
     const [{ nextval }] = await this.dataSource.query<[{ nextval: string }]>(
@@ -85,8 +84,8 @@ export class TicketsRepository {
     return `SIN-${nextval}`;
   }
 
-  // Creates the ticket + its photos + its initial timeline events in one
-  // transaction — either all three are persisted, or none are.
+  // Ticket + photos + initial timeline events in one transaction — either
+  // all three are persisted, or none are.
   async createWithInitialEvents(
     ticketData: Partial<TicketEntity>,
     photosData: Array<Partial<TicketPhotoEntity>>,
@@ -153,11 +152,8 @@ export class TicketsRepository {
     return buildPaginatedResult(data, total, page, perPage);
   }
 
-  // Simple, in-memory version of "has this ticket ever touched one of these
-  // sectors": true when it's currently assigned to one of them, or a
-  // timeline event once forwarded it to one of them. Good enough for this
-  // phase's detail-access check; Phase 4's sector queue listing may want a
-  // SQL-level equivalent for filtering instead of loading full entities.
+  // True when the ticket is currently assigned to one of these sectors, or a
+  // timeline event once forwarded it to one of them.
   ticketBelongsToSectors(ticket: TicketEntity, sectorIds: number[]): boolean {
     if (!sectorIds.length) return false;
 
@@ -172,11 +168,9 @@ export class TicketsRepository {
     );
   }
 
-  // Backs both `/sector/tickets` (§10.1) and `/admin/tickets` (§11.1) — the
-  // filter set and ordering are identical, only the sector scoping and the
-  // response DTO differ per caller. `sectorIds === null` means "no sector
-  // restriction" (admin browsing every queue); `[]` means "the caller has no
-  // sectors at all", which must return zero rows rather than "no filter".
+  // `sectorIds === null` means "no sector restriction" (admin browsing every
+  // queue); `[]` means "the caller has no sectors at all", which must return
+  // zero rows rather than "no filter".
   async findManyForQueue(
     sectorIds: number[] | null,
     filters: ITicketQueueFilters,
@@ -217,9 +211,8 @@ export class TicketsRepository {
       qb.andWhere('ticket.buildingId = :buildingId', { buildingId: filters.buildingId });
     }
 
-    // "por protocolo, local ou palavra da descrição" (§10.1) — a plain
-    // ILIKE OR across those three columns; no full-text search infra exists
-    // in this project, and the doc doesn't ask for one.
+    // Plain ILIKE OR across protocol/description/location — no full-text
+    // search infra in this project.
     if (filters.search) {
       qb.andWhere(
         '(ticket.protocol ILIKE :search OR ticket.description ILIKE :search OR building.name ILIKE :search OR environment.name ILIKE :search)',
@@ -227,19 +220,16 @@ export class TicketsRepository {
       );
     }
 
-    qb.orderBy('ticket.createdAt', order)
-      .skip(buildSkip(page, perPage))
-      .take(perPage);
+    qb.orderBy('ticket.createdAt', order).skip(buildSkip(page, perPage)).take(perPage);
 
     const [data, total] = await qb.getManyAndCount();
 
     return buildPaginatedResult(data, total, page, perPage);
   }
 
-  // Generic "mutate the ticket row + append one timeline event, atomically"
-  // used by status updates, resolution and reassignment (RB-15). Loads +
-  // `save()`s the entity (rather than `repo.update()`) for the same audit
-  // subscriber reason as `UsersRepository.update`.
+  // Mutates the ticket row + appends one timeline event, atomically (RB-15).
+  // Loads + `save()`s the entity (not `repo.update()`) so the audit
+  // subscriber sees a populated "before" state.
   async updateWithEvent(
     ticketId: number,
     updates: Partial<TicketEntity>,
@@ -261,8 +251,8 @@ export class TicketsRepository {
     return this.findByUuidWithRelations(ticketUuid) as Promise<TicketEntity>;
   }
 
-  // `PATCH /tickets/{id}/internal-note` (§10.4) — deliberately no timeline
-  // event (see `UpdateInternalNoteUseCase`'s header comment for why).
+  // Deliberately no timeline event — see `UpdateInternalNoteUseCase`'s
+  // header comment for why.
   async updateInternalNote(ticketId: number, internalNote: string): Promise<TicketEntity> {
     const ticket = await this.repo.findOneOrFail({ where: { id: ticketId } });
 
@@ -271,9 +261,8 @@ export class TicketsRepository {
     return this.repo.save(ticket);
   }
 
-  // `GET /admin/dashboard` (§11.2). One shared filtered base query reused
-  // for volume/resolved-count/average, plus a `GROUP BY current_sector_id`
-  // pass for `by_sector`.
+  // One shared filtered base query reused for volume/resolved-count/average,
+  // plus a `GROUP BY current_sector_id` pass for `by_sector`.
   async getDashboardAggregates(filters: IDashboardFilters): Promise<IDashboardAggregates> {
     const baseQb = (): SelectQueryBuilder<TicketEntity> => {
       const qb = this.repo.createQueryBuilder('ticket').where('ticket.deletedAt IS NULL');

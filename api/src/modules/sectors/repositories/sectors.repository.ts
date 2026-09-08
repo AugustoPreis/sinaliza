@@ -50,10 +50,8 @@ export class SectorsRepository {
     return this.repo.save(entity);
   }
 
-  // Only users with the SECTOR role count as "responsible" for a sector, even
-  // though `sector_users` itself doesn't enforce that — mirrors the
-  // `PermissionsGuard`/`sector/tickets` access rule described in
-  // endpoints-sinaliza.md §19.
+  // Only users with the SECTOR role count as "responsible", even though
+  // `sector_users` itself doesn't enforce that.
   async findResponsibleUsers(sectorId: number): Promise<UserEntity[]> {
     const map = await this.findResponsibleUsersBySectorIds([sectorId]);
 
@@ -83,8 +81,8 @@ export class SectorsRepository {
     return map;
   }
 
-  // Symmetric to `UsersRepository.setSectors` — replaces every
-  // `sector_users` row for this sector instead of for a given user.
+  // Symmetric to `UsersRepository.setSectors`, replacing by sector instead
+  // of by user.
   async setResponsibleUsers(sectorId: number, userIds: number[]): Promise<void> {
     await this.sectorUserRepo.delete({ sectorId });
 

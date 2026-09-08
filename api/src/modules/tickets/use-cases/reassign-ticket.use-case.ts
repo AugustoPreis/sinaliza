@@ -17,9 +17,8 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 import { TicketsRepository } from '../repositories/tickets.repository';
 import { assertSectorAuthorized, resolveActorRole } from '../utils/ticket-access.util';
 
-// `POST /tickets/{ticketId}/reassign` (endpoints-sinaliza.md §10.3) — Tela
-// B.3's "Reencaminhar para outro setor". `reason` is validated as required
-// at the DTO layer (RB-07); everything else (RB-05/RB-06) happens here.
+// `reason` is validated as required at the DTO layer (RB-07); everything
+// else (RB-05/RB-06) happens here.
 @Injectable()
 export class ReassignTicketUseCase {
   constructor(
@@ -88,8 +87,7 @@ export class ReassignTicketUseCase {
 
     const updated = await this.ticketsRepository.updateWithEvent(ticket.id, updates, event);
 
-    // RB-14's notification duty extends to reassignment too (§9's "Quando
-    // gerar notificação" and §10.3's "Notifica o solicitante").
+    // RB-14's notification duty extends to reassignment too.
     await this.notificationsRepository.create(
       ticket.requesterId,
       ticket.id,

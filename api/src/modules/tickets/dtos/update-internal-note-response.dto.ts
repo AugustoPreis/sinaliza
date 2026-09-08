@@ -2,8 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { TicketEntity } from '../entities/ticket.entity';
 
-// `PATCH /tickets/{ticketId}/internal-note` response shape
-// (endpoints-sinaliza.md §10.4).
 export class UpdateInternalNoteResponseDTO {
   @ApiProperty()
   success!: boolean;

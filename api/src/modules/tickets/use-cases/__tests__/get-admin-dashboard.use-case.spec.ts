@@ -12,7 +12,11 @@ describe('GetAdminDashboardUseCase', () => {
   const sectorsRepository = mockDeep<SectorsRepository>();
   const locationsRepository = mockDeep<LocationsRepository>();
 
-  const useCase = new GetAdminDashboardUseCase(ticketsRepository, sectorsRepository, locationsRepository);
+  const useCase = new GetAdminDashboardUseCase(
+    ticketsRepository,
+    sectorsRepository,
+    locationsRepository,
+  );
 
   const query = new AdminDashboardQueryDTO();
 

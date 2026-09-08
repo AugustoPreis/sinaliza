@@ -7,8 +7,7 @@ import { SectorTicketQueryDTO } from '../dtos/sector-ticket-query.dto';
 import { SectorTicketListResponseDTO } from '../dtos/sector-ticket-response.dto';
 import { ListSectorTicketsUseCase } from '../use-cases/list-sector-tickets.use-case';
 
-// `GET /sector/tickets` (endpoints-sinaliza.md §10.1) — Telas B.2/B.4. A
-// separate top-level resource from `TicketsController` because it isn't
+// Separate top-level resource from `TicketsController` because it isn't
 // scoped to one ticket id, same reasoning as `AdminTicketsController`.
 @ApiTags('Sector Tickets')
 @ApiBearerAuth()

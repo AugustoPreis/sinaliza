@@ -10,7 +10,6 @@ import { AdminDashboardQueryDTO } from '../dtos/admin-dashboard-query.dto';
 import { AdminDashboardResponseDTO } from '../dtos/admin-dashboard-response.dto';
 import { IDashboardFilters, TicketsRepository } from '../repositories/tickets.repository';
 
-// `GET /admin/dashboard` (endpoints-sinaliza.md §11.2) — Tela C.1.
 @Injectable()
 export class GetAdminDashboardUseCase {
   constructor(

@@ -8,8 +8,7 @@ import { RemoveDeviceTokenDTO } from '../dtos/remove-device-token.dto';
 import { RegisterDeviceTokenUseCase } from '../use-cases/register-device-token.use-case';
 import { RemoveDeviceTokenUseCase } from '../use-cases/remove-device-token.use-case';
 
-// `POST/DELETE /devices/push-token` (endpoints-sinaliza.md §4) —
-// self-service, no `@RequirePermission`: any authenticated user manages
+// Self-service, no `@RequirePermission`: any authenticated user manages
 // their own device tokens.
 @ApiTags('Devices')
 @ApiBearerAuth()

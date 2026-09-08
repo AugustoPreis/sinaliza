@@ -3,6 +3,7 @@ import { randomUUID } from 'crypto';
 import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import * as ExcelJS from 'exceljs';
+import { I18nService } from 'nestjs-i18n';
 import { DataSource, EntityManager } from 'typeorm';
 
 import { HashService } from '@shared/services/hash.service';
@@ -11,7 +12,10 @@ import { UuidService } from '@shared/services/uuid.service';
 import { RoleEntity } from '@modules/roles/entities/role.entity';
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 
-import { USERS_IMPORT_ADMIN_ROLE_VALUE, USERS_IMPORT_TEMPLATE_COLUMNS } from '../constants/users-import.constants';
+import {
+  USERS_IMPORT_ADMIN_ROLE_VALUE,
+  USERS_IMPORT_TEMPLATE_COLUMNS,
+} from '../constants/users-import.constants';
 import { IImportUsersErrorDetail, ImportUsersResultDTO } from '../dtos/import-users-result.dto';
 import { SectorUserEntity } from '../entities/sector-user.entity';
 import { UserRoleEntity } from '../entities/user-role.entity';
@@ -37,6 +41,7 @@ export class ImportUsersUseCase {
     @InjectDataSource() private readonly dataSource: DataSource,
     private readonly hashService: HashService,
     private readonly uuidService: UuidService,
+    private readonly i18n: I18nService,
   ) {}
 
   async execute(file: Express.Multer.File): Promise<ImportUsersResultDTO> {
@@ -48,7 +53,13 @@ export class ImportUsersUseCase {
     const headerErrors = this.validateHeader(worksheet);
 
     if (headerErrors.length) {
-      return { success: false, error: 'INVALID_TEMPLATE', details: headerErrors, created: 0, updated: 0 };
+      return {
+        success: false,
+        error: 'INVALID_TEMPLATE',
+        details: headerErrors,
+        created: 0,
+        updated: 0,
+      };
     }
 
     const { rows, errors } = this.parseRows(worksheet);
@@ -60,7 +71,13 @@ export class ImportUsersUseCase {
     const sectorErrors = await this.validateSectorNames(rows);
 
     if (sectorErrors.length) {
-      return { success: false, error: 'INVALID_TEMPLATE', details: sectorErrors, created: 0, updated: 0 };
+      return {
+        success: false,
+        error: 'INVALID_TEMPLATE',
+        details: sectorErrors,
+        created: 0,
+        updated: 0,
+      };
     }
 
     let created = 0;
@@ -100,7 +117,11 @@ export class ImportUsersUseCase {
         }
 
         const role =
-          row.sectorRole === 'ADMIN' ? adminRole : row.sectorRole === 'SECTOR' ? sectorRole : requesterRole;
+          row.sectorRole === 'ADMIN'
+            ? adminRole
+            : row.sectorRole === 'SECTOR'
+              ? sectorRole
+              : requesterRole;
 
         const userRoleRepo = manager.getRepository(UserRoleEntity);
         await userRoleRepo.delete({ userId: user.id });
@@ -116,7 +137,9 @@ export class ImportUsersUseCase {
             .findOne({ where: { name: row.sectorName } });
 
           if (sector) {
-            await sectorUserRepo.save(sectorUserRepo.create({ userId: user.id, sectorId: sector.id }));
+            await sectorUserRepo.save(
+              sectorUserRepo.create({ userId: user.id, sectorId: sector.id }),
+            );
           }
         }
       }
@@ -129,7 +152,9 @@ export class ImportUsersUseCase {
     const errors: IImportUsersErrorDetail[] = [];
 
     if (!worksheet) {
-      return [{ type: 'MISSING_COLUMN', message: 'A planilha não possui nenhuma aba.' }];
+      return [
+        { type: 'MISSING_COLUMN', message: this.i18n.translate('users.errors.importEmptySheet') },
+      ];
     }
 
     const headerRow = worksheet.getRow(1);
@@ -148,7 +173,10 @@ export class ImportUsersUseCase {
     return errors;
   }
 
-  private parseRows(worksheet: ExcelJS.Worksheet): { rows: IParsedRow[]; errors: IImportUsersErrorDetail[] } {
+  private parseRows(worksheet: ExcelJS.Worksheet): {
+    rows: IParsedRow[];
+    errors: IImportUsersErrorDetail[];
+  } {
     const rows: IParsedRow[] = [];
     const errors: IImportUsersErrorDetail[] = [];
 
@@ -165,7 +193,13 @@ export class ImportUsersUseCase {
       const sectorPapel = this.cellToString(excelRow.getCell(4).value);
 
       if (!name || !email) {
-        errors.push({ type: 'INVALID_ROW', row: rowNumber, message: 'nome e email_institucional são obrigatórios.' });
+        errors.push({
+          type: 'INVALID_ROW',
+          row: rowNumber,
+          message: this.i18n.translate('users.errors.importRowMissingFields', {
+            args: { row: rowNumber },
+          }),
+        });
         continue;
       }
 
@@ -173,7 +207,9 @@ export class ImportUsersUseCase {
         errors.push({
           type: 'INVALID_ROW',
           row: rowNumber,
-          message: `vinculo inválido: "${linkValue}". Esperado ALUNO, PROFESSOR ou SERVIDOR.`,
+          message: this.i18n.translate('users.errors.importRowInvalidLink', {
+            args: { row: rowNumber, value: linkValue },
+          }),
         });
         continue;
       }
@@ -194,7 +230,9 @@ export class ImportUsersUseCase {
   }
 
   private async validateSectorNames(rows: IParsedRow[]): Promise<IImportUsersErrorDetail[]> {
-    const names = [...new Set(rows.filter((r) => r.sectorRole === 'SECTOR').map((r) => r.sectorName!))];
+    const names = [
+      ...new Set(rows.filter((r) => r.sectorRole === 'SECTOR').map((r) => r.sectorName!)),
+    ];
 
     if (!names.length) return [];
 
@@ -205,7 +243,7 @@ export class ImportUsersUseCase {
 
     return missing.map((name) => ({
       type: 'INVALID_ROW' as const,
-      message: `setor_papel desconhecido: "${name}".`,
+      message: this.i18n.translate('users.errors.importUnknownSector', { args: { name } }),
     }));
   }
 
@@ -218,7 +256,8 @@ export class ImportUsersUseCase {
     if (typeof value === 'string') return value.trim();
     if (typeof value === 'number' || typeof value === 'boolean') return String(value).trim();
     if (value instanceof Date) return value.toISOString();
-    if (typeof value === 'object' && 'text' in value) return String((value as { text: unknown }).text).trim();
+    if (typeof value === 'object' && 'text' in value)
+      return String((value as { text: unknown }).text).trim();
 
     return '';
   }

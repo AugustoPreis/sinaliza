@@ -5,7 +5,6 @@ import { IPaginatedResult } from '@shared/interfaces';
 import { NotificationEntity } from '../entities/notification.entity';
 import { ENotificationType } from '../enums/notification-type.enum';
 
-// `GET /notifications` item shape (endpoints-sinaliza.md §9.1).
 export class NotificationResponseDTO {
   @ApiProperty()
   id!: string;
@@ -39,9 +38,8 @@ export class NotificationResponseDTO {
   }
 }
 
-// Same reasoning as `TicketListResponseDTO`: `items`/`page`/`page_size`/
-// `total` follows the doc's own listing shape rather than the project's
-// generic `{data, meta}` envelope.
+// Same shape as `TicketListResponseDTO`: `items`/`page`/`page_size`/`total`
+// rather than the project's generic `{data, meta}` envelope.
 export class NotificationListResponseDTO {
   @ApiProperty({ type: [NotificationResponseDTO] })
   items!: NotificationResponseDTO[];

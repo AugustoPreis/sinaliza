@@ -16,7 +16,9 @@ export class Locations1752600000008 implements MigrationInterface {
       )
     `);
 
-    await queryRunner.query(`CREATE UNIQUE INDEX IF NOT EXISTS ux_buildings_uuid ON buildings(uuid)`);
+    await queryRunner.query(
+      `CREATE UNIQUE INDEX IF NOT EXISTS ux_buildings_uuid ON buildings(uuid)`,
+    );
 
     await queryRunner.query(`
       CREATE TABLE IF NOT EXISTS environments (
@@ -29,7 +31,9 @@ export class Locations1752600000008 implements MigrationInterface {
       )
     `);
 
-    await queryRunner.query(`CREATE UNIQUE INDEX IF NOT EXISTS ux_environments_uuid ON environments(uuid)`);
+    await queryRunner.query(
+      `CREATE UNIQUE INDEX IF NOT EXISTS ux_environments_uuid ON environments(uuid)`,
+    );
     await queryRunner.query(
       `CREATE INDEX IF NOT EXISTS ix_environments_building_id ON environments(building_id)`,
     );

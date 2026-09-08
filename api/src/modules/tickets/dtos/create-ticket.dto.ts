@@ -4,14 +4,9 @@ import { ValidateNested } from 'class-validator';
 
 import { IsString, IsUUID, MaxLength } from '@shared/validators';
 
-// `location` is a nested object in endpoints-sinaliza.md §8.1, but
-// `multipart/form-data` has no native nested-object support (no bracket
-// notation is wired up in this project's body parser). Implementation
-// decision: the client sends it as a single form field whose value is a
-// JSON-encoded string (e.g. `location={"building_id":"...","environment_id":"..."}`),
-// parsed here via `@Transform` before `@ValidateNested` runs — every other
-// field (`description`, `automatic_sector_id`, `confirmed_sector_id`) travels
-// as an ordinary flat multipart text field.
+// `multipart/form-data` has no native nested-object support here, so the
+// client sends `location` as a JSON-encoded string field, parsed via
+// `@Transform` before `@ValidateNested` runs.
 export class CreateTicketLocationDTO {
   @ApiProperty()
   @IsUUID()

@@ -6,7 +6,6 @@ import { ROLE_REQUESTER } from '@shared/constants';
 import { AppException } from '@shared/exceptions';
 import { UuidService } from '@shared/services/uuid.service';
 
-
 import { BuildingEntity } from '@modules/locations/entities/building.entity';
 import { EnvironmentEntity } from '@modules/locations/entities/environment.entity';
 import { LocationsRepository } from '@modules/locations/repositories/locations.repository';
@@ -23,7 +22,6 @@ import { ETicketEventType } from '../enums/ticket-event-type.enum';
 import { ETicketStatus } from '../enums/ticket-status.enum';
 import { TicketsRepository } from '../repositories/tickets.repository';
 
-// `POST /tickets` (endpoints-sinaliza.md §8.1) — Tela A.4's final step.
 @Injectable()
 export class CreateTicketUseCase {
   constructor(
@@ -72,13 +70,9 @@ export class CreateTicketUseCase {
       resolvedBySectorId: null,
       requesterCorrected,
       sectorReclassified: false,
-      // Implementation decision: endpoints-sinaliza.md §8.1 describes `OPEN`
-      // as the ticket's creation-time status, but this API only ever
-      // persists a ticket after Tela A.4's final sector is already known
-      // (`confirmed_sector_id` arrives in the same request). There is no
-      // intermediate moment where a ticket row would actually sit at
-      // `OPEN` — it is created directly as `FORWARDED`, already routed to
-      // the confirmed sector's queue.
+      // Created directly as FORWARDED, not OPEN: the confirmed sector is
+      // already known by the time this request arrives, so there's no
+      // intermediate moment where the ticket would actually sit unrouted.
       status: ETicketStatus.FORWARDED,
       internalNote: null,
       correctSectorReachedAt: null,
@@ -90,9 +84,18 @@ export class CreateTicketUseCase {
       storageKey,
     }));
 
-    const events = this.buildInitialEvents(requesterId, automaticSector.id, confirmedSector.id, requesterCorrected);
+    const events = this.buildInitialEvents(
+      requesterId,
+      automaticSector.id,
+      confirmedSector.id,
+      requesterCorrected,
+    );
 
-    const ticket = await this.ticketsRepository.createWithInitialEvents(ticketData, photosData, events);
+    const ticket = await this.ticketsRepository.createWithInitialEvents(
+      ticketData,
+      photosData,
+      events,
+    );
 
     return TicketResponseDTO.from(ticket, automaticSector, confirmedSector, confirmedSector);
   }
@@ -133,9 +136,6 @@ export class CreateTicketUseCase {
   private async uploadPhotos(ticketUuid: string, photos: Express.Multer.File[]): Promise<string[]> {
     return Promise.all(
       photos.map(async (photo, index) => {
-        // Deterministic but never colliding: ticket uuid + a fresh uuid per
-        // photo + its upload index, unlike the old (removed) avatar upload
-        // which reused a fixed key and relied on overwriting it.
         const key = `tickets/${ticketUuid}/${this.uuidService.generate()}-${index}`;
         await this.storageService.upload(key, photo.buffer, photo.mimetype);
 
@@ -165,7 +165,9 @@ export class CreateTicketUseCase {
       });
     }
 
-    const environment = await this.locationsRepository.findEnvironmentByUuid(location.environment_id);
+    const environment = await this.locationsRepository.findEnvironmentByUuid(
+      location.environment_id,
+    );
 
     if (!environment || environment.buildingId !== building.id) {
       throw AppException.from('locations.errors.environmentNotFound', HttpStatus.NOT_FOUND, {

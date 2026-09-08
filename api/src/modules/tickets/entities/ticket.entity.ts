@@ -12,10 +12,9 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 import { TicketEventEntity } from './ticket-event.entity';
 import { TicketPhotoEntity } from './ticket-photo.entity';
 
-// endpoints-sinaliza.md §16. `automaticSectorId`/`confirmedSectorId` are
-// write-once (RB-03/RB-04) — nothing in this phase ever updates them after
-// `CreateTicketUseCase` sets them. `currentSectorId` is the only sector FK
-// meant to be mutated later (RB-05), by Phase 4's reassign/status flows.
+// `automaticSectorId`/`confirmedSectorId` are write-once (RB-03/RB-04) —
+// nothing updates them after `CreateTicketUseCase` sets them.
+// `currentSectorId` is the only sector FK meant to be mutated later (RB-05).
 @Entity('tickets')
 export class TicketEntity extends BaseEntity {
   @Column({ length: 32, unique: true })
@@ -59,7 +58,7 @@ export class TicketEntity extends BaseEntity {
   @JoinColumn({ name: 'confirmed_sector_id' })
   confirmedSector!: SectorEntity;
 
-  // Mutable (RB-05): Phase 4's reassign flow updates this and appends a
+  // Mutable (RB-05): the reassign flow updates this and appends a
   // `REASSIGNED` event instead of overwriting `confirmedSectorId`.
   @Column({ name: 'current_sector_id', type: 'bigint' })
   currentSectorId!: number;
@@ -84,8 +83,7 @@ export class TicketEntity extends BaseEntity {
   @Column({ type: 'enum', enum: ETicketStatus, enumName: 'ticket_status' })
   status!: ETicketStatus;
 
-  // Setor/admin only (endpoints-sinaliza.md §10.4) — never surfaced to the
-  // requester. Written starting in Phase 4; this phase always leaves it null.
+  // Setor/admin only — never surfaced to the requester.
   @Column({ name: 'internal_note', type: 'text', nullable: true })
   internalNote!: string | null;
 

@@ -40,7 +40,11 @@ export class LocationsSeeder {
 
         if (!exists) {
           await environmentRepository.save(
-            environmentRepository.create({ uuid: uuidv7(), name: environmentName, buildingId: entity.id }),
+            environmentRepository.create({
+              uuid: uuidv7(),
+              name: environmentName,
+              buildingId: entity.id,
+            }),
           );
         }
       }

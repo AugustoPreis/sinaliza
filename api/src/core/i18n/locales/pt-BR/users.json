@@ -9,7 +9,11 @@
     "invalidImportTemplate": "A planilha não corresponde ao modelo oficial de importação.",
     "importMissingColumn": "Coluna obrigatória ausente: \"{column}\".",
     "importColumnOrderMismatch": "Coluna fora de ordem ou com nome diferente do modelo.",
-    "importInvalidRow": "Linha {row} da planilha é inválida."
+    "importInvalidRow": "Linha {row} da planilha é inválida.",
+    "importEmptySheet": "A planilha não possui nenhuma aba.",
+    "importRowMissingFields": "Linha {row}: nome e email_institucional são obrigatórios.",
+    "importRowInvalidLink": "Linha {row}: vínculo inválido: \"{value}\". Esperado ALUNO, PROFESSOR ou SERVIDOR.",
+    "importUnknownSector": "Setor \"{name}\" desconhecido para setor_papel."
   },
 
   "audit": {

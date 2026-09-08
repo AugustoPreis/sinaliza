@@ -5,19 +5,13 @@ import { StorageService } from '@core/storage/storage.service';
 import { ROLE_ADMIN } from '@shared/constants';
 import { AppException } from '@shared/exceptions';
 
-
 import { UsersRepository } from '@modules/users/repositories/users.repository';
 
 import { TicketDetailResponseDTO } from '../dtos/ticket-detail-response.dto';
 import { TicketsRepository } from '../repositories/tickets.repository';
 
-// `GET /tickets/{ticketId}` (endpoints-sinaliza.md §8.3). Access control
-// can't be a flat `@RequirePermission` here because it depends on the row
-// itself (own ticket vs. sector history vs. admin), so it lives entirely in
-// this use-case — see §19's "Ver próprios chamados"/"Ver fila de setor"
-// rows and §21 point 8 (sector history visibility policy still open;
-// `TicketsRepository.ticketBelongsToSectors` implements the simplest
-// reading of it for now, refinable in Phase 4).
+// Access control depends on the row (own ticket, sector history, admin), so
+// it can't be a flat `@RequirePermission` — it lives entirely in this use-case.
 @Injectable()
 export class GetTicketUseCase {
   constructor(
@@ -44,16 +38,13 @@ export class GetTicketUseCase {
     const sectorIds = currentUser.sectorUsers.map((sectorUser) => sectorUser.sectorId);
     const isSectorAuthorized = this.ticketsRepository.ticketBelongsToSectors(ticket, sectorIds);
 
-    // 403, not 404: unlike a lookup-by-uuid mismatch, the ticket
-    // definitely exists — the caller is authenticated but not entitled to
-    // it, which is exactly what `errors.forbidden` (also used by
-    // `PermissionsGuard`) already models elsewhere in this project.
+    // 403, not 404: the ticket exists, the caller just isn't entitled to it.
     if (!isAdmin && !isOwner && !isSectorAuthorized) {
       throw AppException.from('errors.forbidden', HttpStatus.FORBIDDEN);
     }
 
-    // §19: "Ver observação interna" is a Setor/Admin-only row — never the
-    // requester, even though the requester is `isOwner` here.
+    // Internal note is Setor/Admin-only — never the requester, even when
+    // the requester is `isOwner`.
     const includeInternalNote = isAdmin || isSectorAuthorized;
 
     return TicketDetailResponseDTO.from(

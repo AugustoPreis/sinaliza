@@ -12,8 +12,7 @@ import { CreateSectorUseCase } from '../use-cases/create-sector.use-case';
 import { ListAdminSectorsUseCase } from '../use-cases/list-admin-sectors.use-case';
 import { UpdateSectorUseCase } from '../use-cases/update-sector.use-case';
 
-// `GET/POST/PATCH /admin/sectors` (endpoints-sinaliza.md §12) — Tela C.2.
-// No DELETE: see `UpdateSectorUseCase`'s comment.
+// No DELETE: sectors are never deleted, only renamed/recategorized.
 @ApiTags('Admin Sectors')
 @ApiBearerAuth()
 @Controller({ path: 'admin/sectors', version: '1' })

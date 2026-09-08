@@ -33,10 +33,8 @@ import { RestoreUserAccessUseCase } from '../use-cases/restore-user-access.use-c
 import { RevokeUserAccessUseCase } from '../use-cases/revoke-user-access.use-case';
 import { UpdateUserPermissionsUseCase } from '../use-cases/update-user-permissions.use-case';
 
-// Separate from `UsersController`: these routes are all administration-only
-// (Tela C.3/C.4) and live under `admin/users/...` per
-// `endpoints-sinaliza.md` §13/§14, instead of overloading the base
-// `/users` resource with admin-specific actions.
+// Separate from `UsersController`: administration-only routes, kept off the
+// base `/users` resource.
 @ApiTags('Admin Users')
 @ApiBearerAuth()
 @Controller({ path: 'admin/users', version: '1' })

@@ -9,9 +9,6 @@ import { SectorRefDTO } from './sector-ref.dto';
 
 const DESCRIPTION_SUMMARY_MAX_LENGTH = 140;
 
-// `GET /admin/tickets` item shape (endpoints-sinaliza.md §11.1) — a plain
-// `current_sector` ref, no automatic/confirmed ids or location string (that
-// level of detail is what `GET /tickets/{id}` and `/sector/tickets` are for).
 export class AdminTicketListItemResponseDTO {
   @ApiProperty()
   id!: string;

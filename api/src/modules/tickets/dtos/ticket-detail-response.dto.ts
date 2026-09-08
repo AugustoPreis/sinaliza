@@ -68,7 +68,6 @@ export class TicketTimelineEventDTO {
   }
 }
 
-// `GET /tickets/{ticketId}` response shape (endpoints-sinaliza.md §8.3).
 export class TicketDetailResponseDTO {
   @ApiProperty()
   id!: string;
@@ -100,10 +99,8 @@ export class TicketDetailResponseDTO {
   @ApiProperty({ type: [TicketTimelineEventDTO] })
   timeline!: TicketTimelineEventDTO[];
 
-  // Phase 4 addition (endpoints-sinaliza.md §10.4/§19 — "Ver observação
-  // interna: Setor ✅ / Admin ✅ / Solicitante ❌"). Omitted from the
-  // response entirely (not just `null`) when the caller is the requester —
-  // see `includeInternalNote` below and `GetTicketUseCase`.
+  // Omitted from the response entirely (not just `null`) when the caller is
+  // the requester — see `includeInternalNote` below and `GetTicketUseCase`.
   @ApiPropertyOptional()
   internal_note?: string | null;
 
@@ -142,10 +139,8 @@ export class TicketDetailResponseDTO {
   }
 }
 
-// The stored `TicketEventEntity` only carries structured fields (sector ids,
-// status, reason) — the doc's example timeline shows a human-readable
-// `description` per entry, so it's rendered here from that structured data
-// rather than stored redundantly on the event row itself.
+// Rendered from the event's structured fields rather than stored redundantly
+// on the row itself.
 function describeEvent(event: TicketEventEntity): string {
   switch (event.type) {
     case ETicketEventType.TICKET_OPENED:

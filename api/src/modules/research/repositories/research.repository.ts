@@ -5,11 +5,10 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import { TicketEntity } from '@modules/tickets/entities/ticket.entity';
 import { ETicketEventType } from '@modules/tickets/enums/ticket-event-type.enum';
 
-// `GET /admin/research/indicators` (endpoints-sinaliza.md §15.1) filters —
-// period is always by `ticket.createdAt` (§15.1's `from`/`to`), and
-// `sector_id`/`building_id` scope the SAME way `GetAdminDashboardUseCase`'s
-// `IDashboardFilters` do: `sectorId` against `currentSectorId` (the setor
-// "responsável atualmente"), `buildingId` against the ticket's own building.
+// Period filters by `ticket.createdAt`; `sectorId`/`buildingId` scope the
+// same way as `GetAdminDashboardUseCase`'s `IDashboardFilters`: `sectorId`
+// against `currentSectorId` (setor "responsável atualmente"), `buildingId`
+// against the ticket's own building.
 export interface IResearchFilters {
   from?: Date;
   to?: Date;
@@ -29,30 +28,20 @@ export interface IResearchCountRow {
 
 export interface IResearchIndicatorsData {
   totalTickets: number;
-  // §15.1 "Taxa de acerto automático": automatic_sector_id == resolved_by_sector_id
-  // AND requester_corrected == false AND sector_reclassified == false. The
-  // equality against `resolvedBySectorId` is NULL for tickets that were never
-  // resolved, so an unresolved ticket can never match this count — no extra
-  // "status = RESOLVED" filter is needed.
+  // `automaticSectorId == resolvedBySectorId`, which is NULL for unresolved
+  // tickets, so those never match — no extra "status = RESOLVED" filter needed.
   correctWithoutAnyCorrection: number;
-  // §15.1 "Correção pelo solicitante": automatic_sector_id != confirmed_sector_id,
-  // regardless of the ticket's current status.
   correctionsByRequester: number;
-  // §15.1 "Correção pelo setor": at least one `REASSIGNED` timeline event.
+  // At least one `REASSIGNED` timeline event.
   correctionsBySector: number;
-  // Raw `(correctSectorReachedAt - createdAt)` samples in minutes, one per
-  // ticket that already has `correctSectorReachedAt` filled in. Returned as a
-  // flat array (not pre-aggregated) so the use-case can sort it in memory to
-  // compute the median — the pilot's expected data volume makes an in-memory
-  // sort perfectly fine, and Postgres has no built-in MEDIAN aggregate.
+  // Raw `(correctSectorReachedAt - createdAt)` samples in minutes, returned
+  // flat (not pre-aggregated) so the use-case can sort in memory for the
+  // median — Postgres has no built-in MEDIAN aggregate.
   correctSectorMinutes: number[];
-  // Grouped by `currentSectorId` — "volume por setor".
   volumeBySector: IResearchCountRow[];
-  // Grouped by `automaticSectorId` — the raw material for "volume por
-  // categoria". See `GetResearchIndicatorsUseCase` for how a category label
-  // is derived from a sector (there is no `category` column on `Ticket`).
+  // Grouped by `automaticSectorId`; see `GetResearchIndicatorsUseCase` for how
+  // a category label is derived from a sector (`Ticket` has no `category` column).
   volumeByAutomaticSector: IResearchCountRow[];
-  // Grouped by `buildingId` — "volume por local".
   volumeByLocation: IResearchCountRow[];
 }
 
@@ -143,11 +132,9 @@ export class ResearchRepository {
     };
   }
 
-  // `GET /admin/research/export` (§15.2). One row per ticket, with every
-  // relation the export columns need loaded up front; `events` is loaded in
-  // full (not just `REASSIGNED`) so `ExportResearchDataUseCase` can both
-  // count reclassifications and build the optional second sheet from the
-  // same query.
+  // `events` is loaded in full (not just `REASSIGNED`) so
+  // `ExportResearchDataUseCase` can count reclassifications and build the
+  // second sheet from this same query.
   findForExport(filters: IResearchExportFilters): Promise<TicketEntity[]> {
     const qb = this.ticketRepo
       .createQueryBuilder('ticket')

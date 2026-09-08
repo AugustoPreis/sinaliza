@@ -11,11 +11,9 @@ import { SectorTicketListResponseDTO } from '../dtos/sector-ticket-response.dto'
 import { ITicketQueueFilters, TicketsRepository } from '../repositories/tickets.repository';
 import { isAdminUser } from '../utils/ticket-access.util';
 
-// `GET /sector/tickets` (endpoints-sinaliza.md §10.1) — Telas B.2/B.4.
 // RB-08: a SECTOR user only ever sees the sectors in their own
 // `sector_users` rows. ADMIN sees every sector by default, and may narrow
-// down to one via `?sector_id` (same query param, dual purpose depending on
-// caller).
+// down to one via `?sector_id`.
 @Injectable()
 export class ListSectorTicketsUseCase {
   constructor(
@@ -25,7 +23,10 @@ export class ListSectorTicketsUseCase {
     private readonly locationsRepository: LocationsRepository,
   ) {}
 
-  async execute(currentUserUuid: string, query: SectorTicketQueryDTO): Promise<SectorTicketListResponseDTO> {
+  async execute(
+    currentUserUuid: string,
+    query: SectorTicketQueryDTO,
+  ): Promise<SectorTicketListResponseDTO> {
     const currentUser = await this.usersRepository.findByUuid(currentUserUuid);
 
     if (!currentUser) {

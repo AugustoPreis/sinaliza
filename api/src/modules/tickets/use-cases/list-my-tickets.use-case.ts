@@ -6,10 +6,8 @@ import { TicketListResponseDTO } from '../dtos/ticket-list-item-response.dto';
 import { TicketQueryDTO } from '../dtos/ticket-query.dto';
 import { TicketsRepository } from '../repositories/tickets.repository';
 
-// `GET /tickets` (endpoints-sinaliza.md §8.2) — always scoped to "my own
-// tickets" via the authenticated requester, never by permission-driven
-// visibility (that's what makes it different from `/sector/tickets` or
-// `/admin/tickets`, both Phase 4).
+// Always scoped to "my own tickets" via the authenticated requester, never
+// by permission-driven visibility — unlike `/sector/tickets`/`/admin/tickets`.
 @Injectable()
 export class ListMyTicketsUseCase {
   constructor(

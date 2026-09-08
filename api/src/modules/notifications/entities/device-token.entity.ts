@@ -1,12 +1,19 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { UserEntity } from '@modules/users/entities/user.entity';
 
 import { EDevicePlatform } from '../enums/device-platform.enum';
 
-// endpoints-sinaliza.md §4 — one row per (user, device token). Unique on
-// `(user_id, token)` (see migration) so registering the same token twice is
-// idempotent, matching `DeviceTokensRepository.upsert()`.
+// Unique on `(user_id, token)` (see migration) so registering the same token
+// twice is idempotent, matching `DeviceTokensRepository.upsert()`.
 @Entity('device_tokens')
 export class DeviceTokenEntity {
   @PrimaryGeneratedColumn('increment')

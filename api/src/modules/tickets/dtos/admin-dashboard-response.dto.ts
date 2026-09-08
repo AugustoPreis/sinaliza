@@ -32,9 +32,6 @@ export class AdminDashboardSectorRowDTO {
   resolved!: number;
 }
 
-// `GET /admin/dashboard` response shape (endpoints-sinaliza.md §11.2). Built
-// from `TicketsRepository.getDashboardAggregates` (numeric sector ids) plus
-// a `sectorId -> SectorEntity` map to resolve the public uuid/name pair.
 export class AdminDashboardResponseDTO {
   @ApiProperty({ type: AdminDashboardSummaryDTO })
   summary!: AdminDashboardSummaryDTO;
@@ -51,7 +48,7 @@ export class AdminDashboardResponseDTO {
     dto.summary = {
       volume: aggregates.volume,
       resolved_percentage: aggregates.volume
-        ? round1(aggregates.resolvedCount / aggregates.volume * 100)
+        ? round1((aggregates.resolvedCount / aggregates.volume) * 100)
         : 0,
       average_time_to_correct_sector_minutes: aggregates.averageCorrectSectorMinutes
         ? round1(aggregates.averageCorrectSectorMinutes)

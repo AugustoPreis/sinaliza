@@ -6,8 +6,7 @@ import { IsArray, IsEnum, IsUUID } from '@shared/validators';
 
 import { ETicketStatus } from '../enums/ticket-status.enum';
 
-// `GET /admin/dashboard` filters (endpoints-sinaliza.md §11.2) — all
-// optional, no pagination (this endpoint returns a single aggregate object).
+// All filters optional; no pagination (returns a single aggregate object).
 export class AdminDashboardQueryDTO {
   @ApiPropertyOptional()
   @IsOptional()

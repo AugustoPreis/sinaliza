@@ -68,11 +68,9 @@ export class ResearchVolumeDTO {
   by_location!: VolumeByLocationRowDTO[];
 }
 
-// `GET /admin/research/indicators` response shape (endpoints-sinaliza.md
-// §15.1), built entirely by `GetResearchIndicatorsUseCase.execute` from the
-// raw `IResearchIndicatorsData` plus the resolved sector/building name maps
-// — see that use-case for the actual math (percentage/average/median) and
-// for the "what is a ticket's category" decision.
+// Built by `GetResearchIndicatorsUseCase` from `IResearchIndicatorsData` plus
+// resolved sector/building name maps — see that use-case for the math
+// (percentage/average/median) and the "what is a ticket's category" decision.
 export class ResearchIndicatorsResponseDTO {
   @ApiProperty({ type: AutomaticAccuracyDTO })
   automatic_accuracy!: AutomaticAccuracyDTO;

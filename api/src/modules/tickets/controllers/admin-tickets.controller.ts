@@ -10,16 +10,10 @@ import { AdminTicketListResponseDTO } from '../dtos/admin-ticket-response.dto';
 import { GetAdminDashboardUseCase } from '../use-cases/get-admin-dashboard.use-case';
 import { ListAdminTicketsUseCase } from '../use-cases/list-admin-tickets.use-case';
 
-// `GET /admin/tickets`, `GET /admin/dashboard` (endpoints-sinaliza.md §11).
-// Implementation decision (§19 doesn't distinguish these two): both are
-// gated behind the single `tickets:read-all` permission rather than a
-// separate `research:read`/`dashboard:read` — the doc's matrix only has one
-// row ("Ver todos os chamados") that plausibly covers both "see every
-// ticket" and "see the aggregate view of every ticket", and
-// `tickets:read-all` was already the name reserved for this in Phase 3's
-// `PermissionsSeeder`. `research:read`/`research:export` (§15, a later
-// phase) are a distinct concern: per-ticket/aggregate research indicators
-// and export, not this operational dashboard.
+// Both endpoints share the `tickets:read-all` permission rather than
+// separate `research:read`/`dashboard:read` grants — `research:*` is a
+// distinct concern (per-ticket/aggregate research indicators and export),
+// not this operational dashboard.
 @ApiTags('Admin Tickets')
 @ApiBearerAuth()
 @Controller({ path: 'admin', version: '1' })

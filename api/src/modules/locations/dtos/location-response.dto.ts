@@ -3,7 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { BuildingEntity } from '../entities/building.entity';
 import { EnvironmentEntity } from '../entities/environment.entity';
 
-// Field names/nesting follow `endpoints-sinaliza.md` §5.1 literally.
 export class EnvironmentSummaryDTO {
   @ApiProperty()
   id!: string;

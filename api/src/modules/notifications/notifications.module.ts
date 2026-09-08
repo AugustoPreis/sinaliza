@@ -15,11 +15,9 @@ import { ListNotificationsUseCase } from './use-cases/list-notifications.use-cas
 import { RegisterDeviceTokenUseCase } from './use-cases/register-device-token.use-case';
 import { RemoveDeviceTokenUseCase } from './use-cases/remove-device-token.use-case';
 
-// `NotificationsRepository` is exported deliberately: Phase 4's
-// status-change/reassign flows call `NotificationsRepository.create()`
-// directly to satisfy RB-14 ("resolution generates a notification"), same
-// way `SectorsModule`/`LocationsModule` export their repositories for
-// cross-module reuse.
+// `NotificationsRepository` is exported so ticket status-change/reassign
+// flows can call `create()` directly (RB-14), same as `SectorsModule`/
+// `LocationsModule` exporting their repositories for cross-module reuse.
 @Module({
   imports: [
     SharedModule,

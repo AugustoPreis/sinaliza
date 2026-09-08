@@ -4,11 +4,8 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SectorSummaryDTO } from '../dtos/sector-summary.dto';
 import { ListSectorsUseCase } from '../use-cases/list-sectors.use-case';
 
-// `GET /sectors` (endpoints-sinaliza.md §6.1). Deliberately no
-// `@RequirePermission`: any authenticated user (requester or portal staff)
-// may list sectors to populate a picker — see §19, "Ver próprios chamados"
-// vs. this lookup isn't even in the permission matrix, it's just auth-gated
-// by the global `JwtAuthGuard`.
+// Deliberately no `@RequirePermission`: any authenticated user may list
+// sectors to populate a picker; only auth-gated by the global `JwtAuthGuard`.
 @ApiTags('Sectors')
 @ApiBearerAuth()
 @Controller({ path: 'sectors', version: '1' })

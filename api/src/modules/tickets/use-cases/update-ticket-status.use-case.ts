@@ -17,11 +17,9 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 import { TicketsRepository } from '../repositories/tickets.repository';
 import { assertSectorAuthorized, resolveActorRole } from '../utils/ticket-access.util';
 
-// `PATCH /tickets/{ticketId}/status` (endpoints-sinaliza.md §10.2). Only
-// `IN_PROGRESS`/`RESOLVED` come in from the DTO (RB-10: no reopening); this
-// use-case additionally refuses the transition once a ticket is already
-// `RESOLVED`, since neither of those two values is a legal move from there
-// either.
+// Only `IN_PROGRESS`/`RESOLVED` come in from the DTO (RB-10: no reopening);
+// this use-case additionally refuses the transition once a ticket is
+// already `RESOLVED`.
 @Injectable()
 export class UpdateTicketStatusUseCase {
   constructor(
@@ -55,7 +53,9 @@ export class UpdateTicketStatusUseCase {
     }
 
     const toStatus =
-      dto.status === ETicketStatusTransition.RESOLVED ? ETicketStatus.RESOLVED : ETicketStatus.IN_PROGRESS;
+      dto.status === ETicketStatusTransition.RESOLVED
+        ? ETicketStatus.RESOLVED
+        : ETicketStatus.IN_PROGRESS;
 
     const updates: Partial<TicketEntity> = { status: toStatus };
     const event: Partial<TicketEventEntity> = {
@@ -75,13 +75,13 @@ export class UpdateTicketStatusUseCase {
 
     const updated = await this.ticketsRepository.updateWithEvent(ticket.id, updates, event);
 
-    // RB-14 (explicit for resolution) and endpoints-sinaliza.md §10.2's own
-    // "Gera histórico/notificação ao solicitante" line for `IN_PROGRESS` too
-    // — both transitions notify, only the notification `type` differs.
+    // RB-14: both transitions notify the requester, only the type differs.
     await this.notificationsRepository.create(
       ticket.requesterId,
       ticket.id,
-      toStatus === ETicketStatus.RESOLVED ? ENotificationType.TICKET_RESOLVED : ENotificationType.TICKET_STATUS_CHANGED,
+      toStatus === ETicketStatus.RESOLVED
+        ? ENotificationType.TICKET_RESOLVED
+        : ENotificationType.TICKET_STATUS_CHANGED,
       this.buildMessage(ticket.protocol, toStatus),
     );
 
@@ -89,12 +89,9 @@ export class UpdateTicketStatusUseCase {
   }
 
   // Finds the timeline event that last moved the ticket into its *current*
-  // sector: the most recent `REASSIGNED` event landing on `currentSectorId`
-  // if the ticket was ever reassigned, otherwise the original
-  // `REQUESTER_CONFIRMED_SECTOR`/`REQUESTER_CHANGED_SECTOR` event from
-  // ticket creation. Its `createdAt` is "when the correct sector was
-  // reached", which is what §11.2's `average_time_to_correct_sector_minutes`
-  // is measured against.
+  // sector — the most recent `REASSIGNED` event landing there if the ticket
+  // was ever reassigned, otherwise the original confirmation event from
+  // creation. Its `createdAt` feeds `average_time_to_correct_sector_minutes`.
   private resolveCorrectSectorReachedAt(ticket: TicketEntity): Date {
     const relevantTypes = new Set([
       ETicketEventType.REQUESTER_CONFIRMED_SECTOR,
@@ -103,7 +100,9 @@ export class UpdateTicketStatusUseCase {
     ]);
 
     const candidates = (ticket.events ?? [])
-      .filter((event) => relevantTypes.has(event.type) && event.toSectorId === ticket.currentSectorId)
+      .filter(
+        (event) => relevantTypes.has(event.type) && event.toSectorId === ticket.currentSectorId,
+      )
       .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
 
     return candidates.length ? candidates[candidates.length - 1].createdAt : ticket.createdAt;

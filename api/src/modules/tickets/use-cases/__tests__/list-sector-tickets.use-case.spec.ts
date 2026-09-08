@@ -21,7 +21,11 @@ describe('ListSectorTicketsUseCase', () => {
     locationsRepository,
   );
 
-  const query = Object.assign(new SectorTicketQueryDTO(), { page: 1, perPage: 20, order: 'asc' as const });
+  const query = Object.assign(new SectorTicketQueryDTO(), {
+    page: 1,
+    perPage: 20,
+    order: 'asc' as const,
+  });
 
   const emptyResult = { data: [], meta: { total: 0, page: 1, perPage: 20, lastPage: 0 } };
 
@@ -57,7 +61,13 @@ describe('ListSectorTicketsUseCase', () => {
 
     await useCase.execute('usr-admin', query);
 
-    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(null, expect.any(Object), 'ASC', 1, 20);
+    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(
+      null,
+      expect.any(Object),
+      'ASC',
+      1,
+      20,
+    );
   });
 
   it('denies a sector user filtering by a sector_id outside their own set', async () => {
@@ -66,7 +76,11 @@ describe('ListSectorTicketsUseCase', () => {
       userRoles: [],
       sectorUsers: [{ sectorId: 10 }],
     } as never);
-    sectorsRepository.findByUuid.mockResolvedValue({ id: 99, uuid: 'sec-other', name: 'Outro' } as never);
+    sectorsRepository.findByUuid.mockResolvedValue({
+      id: 99,
+      uuid: 'sec-other',
+      name: 'Outro',
+    } as never);
 
     await expect(
       useCase.execute('usr-sector', { ...query, sector_id: 'sec-other' }),
@@ -85,7 +99,13 @@ describe('ListSectorTicketsUseCase', () => {
 
     await useCase.execute('usr-admin', { ...query, sector_id: 'sec-ti' });
 
-    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith([10], expect.any(Object), 'ASC', 1, 20);
+    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(
+      [10],
+      expect.any(Object),
+      'ASC',
+      1,
+      20,
+    );
   });
 
   it('throws when the current user cannot be resolved', async () => {

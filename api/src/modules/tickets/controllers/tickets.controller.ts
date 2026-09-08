@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, Patch, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 
@@ -23,11 +33,8 @@ import { ReassignTicketUseCase } from '../use-cases/reassign-ticket.use-case';
 import { UpdateInternalNoteUseCase } from '../use-cases/update-internal-note.use-case';
 import { UpdateTicketStatusUseCase } from '../use-cases/update-ticket-status.use-case';
 
-// `POST/GET /tickets`, `GET /tickets/{ticketId}` (endpoints-sinaliza.md §8) —
-// the solicitante-facing core of the ticket lifecycle — plus Phase 4's
-// sector/admin mutations on a single ticket (§10.2-10.4): status, reassign,
-// internal note. `/sector/tickets` and `/admin/tickets` queue listings live
-// in their own controllers instead, since they're not scoped to one ticket.
+// `/sector/tickets` and `/admin/tickets` queue listings live in their own
+// controllers instead, since they're not scoped to one ticket id.
 @ApiTags('Tickets')
 @ApiBearerAuth()
 @Controller({ path: 'tickets', version: '1' })
@@ -52,15 +59,13 @@ export class TicketsController {
     @Body() dto: CreateTicketDTO,
     @UploadedFiles() photos: Express.Multer.File[],
   ): Promise<TicketResponseDTO> {
-    // The requester always comes from the authenticated user, never from
-    // the request body — the use-case resolves the numeric id from this uuid.
+    // Requester always comes from the authenticated user, never the body.
     return this.createTicketUseCase.execute(currentUserUuid, dto, photos);
   }
 
   @Get()
-  // Deliberately no `@RequirePermission`: this always lists "my own"
-  // tickets, scoped by the authenticated user, not by a granted permission —
-  // same self-service idiom as `UsersController#updatePassword`.
+  // No `@RequirePermission`: always scoped to the authenticated user, not a
+  // granted permission — same idiom as `UsersController#updatePassword`.
   @ApiOperation({ summary: "List the requester's own tickets (Tela A.2)" })
   findMine(
     @CurrentUser('uuid') currentUserUuid: string,
@@ -70,9 +75,8 @@ export class TicketsController {
   }
 
   @Get(':ticketId')
-  // No `@RequirePermission` either: access here depends on who owns/handles
-  // this specific ticket, not on a flat resource:action grant — see
-  // `GetTicketUseCase` for the actual authorization logic.
+  // No `@RequirePermission`: access depends on the row (owner/handler), not
+  // a flat grant — see `GetTicketUseCase` for the authorization logic.
   @ApiOperation({ summary: 'Get ticket detail and timeline (Tela A.6)' })
   findOne(
     @CurrentUser('uuid') currentUserUuid: string,

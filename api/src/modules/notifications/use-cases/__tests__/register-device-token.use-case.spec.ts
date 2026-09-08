@@ -18,7 +18,10 @@ describe('RegisterDeviceTokenUseCase', () => {
   it('upserts the token for the resolved user', async () => {
     usersRepository.findByUuid.mockResolvedValue({ id: 3, uuid: 'usr-1' } as never);
 
-    const result = await useCase.execute('usr-1', { token: 'tok', platform: EDevicePlatform.ANDROID });
+    const result = await useCase.execute('usr-1', {
+      token: 'tok',
+      platform: EDevicePlatform.ANDROID,
+    });
 
     expect(deviceTokensRepository.upsert).toHaveBeenCalledWith(3, 'tok', EDevicePlatform.ANDROID);
     expect(result).toEqual({ success: true });

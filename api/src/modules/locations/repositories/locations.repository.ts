@@ -22,8 +22,6 @@ export class LocationsRepository {
     });
   }
 
-  // Phase 3 (`modules/tickets`): `POST /tickets` validates the location the
-  // requester picked before persisting the ticket.
   findBuildingByUuid(uuid: string): Promise<BuildingEntity | null> {
     return this.buildingRepo.findOne({ where: { uuid } });
   }

@@ -1,23 +1,15 @@
-// TODO: this is a deliberate placeholder. `endpoints-sinaliza.md` §21 point 3
-// leaves "tecnologia de classificação automática" as an open technical
-// decision — a real model/embeddings/fine-tuned classifier is future work of
-// the research project itself, out of scope for this MVP backend. What's
-// implemented here is the simplest thing that satisfies the functional
-// contract (text in, an existing sector out, RB-02 respected): a keyword
-// overlap count between the description's tokens and each sector's
-// `categories` tags. To replace it: implement `SectorClassifierStrategy`
-// again and swap the provider bound to `SECTOR_CLASSIFIER_STRATEGY` in
-// `ClassificationModule` — nothing else in the codebase should need to
-// change, since Phase 3's ticket creation is expected to depend on the
-// interface, not this class.
+// TODO: placeholder classifier — keyword overlap between the description's
+// tokens and each sector's `categories` tags. Replace with a real
+// model/embeddings classifier by implementing `ISectorClassifierStrategy` and
+// swapping the provider bound to `SECTOR_CLASSIFIER_STRATEGY`.
 import { Injectable } from '@nestjs/common';
 
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 
-import { IClassificationResult, SectorClassifierStrategy } from './sector-classifier.strategy';
+import { IClassificationResult, ISectorClassifierStrategy } from './sector-classifier.strategy';
 
 @Injectable()
-export class KeywordSectorClassifierStrategy implements SectorClassifierStrategy {
+export class KeywordSectorClassifierStrategy implements ISectorClassifierStrategy {
   // No async work happens here (it's a pure in-memory scoring pass), but the
   // interface returns a Promise so real strategies (an HTTP call to a model,
   // a DB-backed lookup...) can slot in without changing the contract.

@@ -9,11 +9,9 @@ import { AdminTicketQueryDTO } from '../dtos/admin-ticket-query.dto';
 import { AdminTicketListResponseDTO } from '../dtos/admin-ticket-response.dto';
 import { ITicketQueueFilters, TicketsRepository } from '../repositories/tickets.repository';
 
-// `GET /admin/tickets` (endpoints-sinaliza.md §11.1). No sector scoping
-// (admin sees every sector by default, §19's "Ver fila de setor: Admin ✅").
-// Ordering isn't documented for this listing the way RB-09 fixes it for
-// `/sector/tickets`, so this defaults to newest-first — the natural read for
-// an administration overview screen, not a work queue to clear oldest-first.
+// No sector scoping — admin sees every sector by default. Defaults to
+// newest-first, unlike RB-09's oldest-first queue ordering for
+// `/sector/tickets`: this is an overview screen, not a work queue to clear.
 @Injectable()
 export class ListAdminTicketsUseCase {
   constructor(

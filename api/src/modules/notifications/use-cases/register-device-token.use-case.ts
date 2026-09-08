@@ -7,7 +7,6 @@ import { UsersRepository } from '@modules/users/repositories/users.repository';
 import { RegisterDeviceTokenDTO } from '../dtos/register-device-token.dto';
 import { DeviceTokensRepository } from '../repositories/device-tokens.repository';
 
-// `POST /devices/push-token` (endpoints-sinaliza.md §4.1).
 @Injectable()
 export class RegisterDeviceTokenUseCase {
   constructor(

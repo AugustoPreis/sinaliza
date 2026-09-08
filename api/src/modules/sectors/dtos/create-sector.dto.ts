@@ -3,8 +3,6 @@ import { IsOptional } from 'class-validator';
 
 import { IsArray, IsString, IsUUID, MaxLength } from '@shared/validators';
 
-// Field names follow `endpoints-sinaliza.md` §12.2 literally
-// (`responsible_user_ids`), same convention as `UpdateUserPermissionsDTO`.
 export class CreateSectorDTO {
   @ApiProperty()
   @IsString()

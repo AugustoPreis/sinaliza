@@ -12,7 +12,11 @@ describe('ListAdminTicketsUseCase', () => {
   const sectorsRepository = mockDeep<SectorsRepository>();
   const locationsRepository = mockDeep<LocationsRepository>();
 
-  const useCase = new ListAdminTicketsUseCase(ticketsRepository, sectorsRepository, locationsRepository);
+  const useCase = new ListAdminTicketsUseCase(
+    ticketsRepository,
+    sectorsRepository,
+    locationsRepository,
+  );
 
   const query = Object.assign(new AdminTicketQueryDTO(), { page: 1, perPage: 20 });
   const emptyResult = { data: [], meta: { total: 0, page: 1, perPage: 20, lastPage: 0 } };
@@ -25,7 +29,13 @@ describe('ListAdminTicketsUseCase', () => {
   it('lists every sector by default (no restriction) ordered newest-first', async () => {
     await useCase.execute(query);
 
-    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(null, expect.any(Object), 'DESC', 1, 20);
+    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(
+      null,
+      expect.any(Object),
+      'DESC',
+      1,
+      20,
+    );
   });
 
   it('scopes to one sector when sector_id is given', async () => {
@@ -33,7 +43,13 @@ describe('ListAdminTicketsUseCase', () => {
 
     await useCase.execute({ ...query, sector_id: 'sec-ti' });
 
-    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith([10], expect.any(Object), 'DESC', 1, 20);
+    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(
+      [10],
+      expect.any(Object),
+      'DESC',
+      1,
+      20,
+    );
   });
 
   it('throws when the given sector_id does not exist', async () => {

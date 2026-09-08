@@ -97,9 +97,9 @@ describe('ReassignTicketUseCase', () => {
   it('rejects when target_sector_id equals the current sector', async () => {
     sectorsRepository.findByUuid.mockResolvedValue({ id: 10, uuid: 'sec-ti', name: 'TI' } as never);
 
-    await expect(useCase.execute('usr-sector', 'tkt-1', { ...dto, target_sector_id: 'sec-ti' })).rejects.toMatchObject(
-      { i18nKey: 'tickets.errors.reassignSameSector' },
-    );
+    await expect(
+      useCase.execute('usr-sector', 'tkt-1', { ...dto, target_sector_id: 'sec-ti' }),
+    ).rejects.toMatchObject({ i18nKey: 'tickets.errors.reassignSameSector' });
   });
 
   it('rejects a sector user acting on a ticket outside their sectors (RB-08)', async () => {

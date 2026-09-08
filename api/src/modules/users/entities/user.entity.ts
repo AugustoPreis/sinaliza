@@ -26,9 +26,8 @@ export class UserEntity extends BaseEntity {
   @Column({ length: 255 })
   name!: string;
 
-  // Matrícula (student) or institutional registration number. Nullable
-  // because not every institutional link necessarily has one at import
-  // time, but unique whenever present (partial unique index, see migration).
+  // Nullable: not every institutional link has one at import time; unique
+  // whenever present (partial unique index, see migration).
   @Audit()
   @Column({ name: 'institutional_id', type: 'varchar', length: 100, nullable: true })
   institutionalId!: string | null;
@@ -43,22 +42,19 @@ export class UserEntity extends BaseEntity {
   })
   institutionalLink!: EInstitutionalLink | null;
 
-  // `INACTIVE` represents "access revoked" in the Sinaliza domain — see
-  // `RevokeUserAccessUseCase`/`RestoreUserAccessUseCase`.
+  // `INACTIVE` represents "access revoked" (see `RevokeUserAccessUseCase`).
   @Audit({ formatter: EnumFormatter })
   @Column({ type: 'enum', enum: EUserStatus, enumName: 'user_status', default: EUserStatus.ACTIVE })
   status!: EUserStatus;
 
-  // Never audited: role assignment writes directly to the `user_roles` join
-  // table via `UsersRepository.setRoles`, which never calls
-  // `UserEntity.repo.save()`, so this relation is structurally unobservable by
-  // the TypeORM subscriber that drives the audit trail.
+  // Never audited: `UsersRepository.setRoles` writes directly to the
+  // `user_roles` join table without going through `save()`, so the audit
+  // subscriber never observes it.
   @Audit({ ignore: true })
   @OneToMany(() => UserRoleEntity, (ur) => ur.user, { eager: true })
   userRoles!: UserRoleEntity[];
 
-  // Same reasoning as `userRoles` above: `UsersRepository.setSectors` writes
-  // directly to the `sector_users` join table.
+  // Same reasoning as `userRoles` above (`UsersRepository.setSectors`).
   @Audit({ ignore: true })
   @OneToMany(() => SectorUserEntity, (su) => su.user, { eager: true })
   sectorUsers!: SectorUserEntity[];

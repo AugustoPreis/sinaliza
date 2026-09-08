@@ -17,9 +17,14 @@ describe('UpdateTicketStatusUseCase', () => {
   const usersRepository = mockDeep<UsersRepository>();
   const notificationsRepository = mockDeep<NotificationsRepository>();
 
-  const useCase = new UpdateTicketStatusUseCase(ticketsRepository, usersRepository, notificationsRepository, {
-    generate: () => 'generated-uuid',
-  });
+  const useCase = new UpdateTicketStatusUseCase(
+    ticketsRepository,
+    usersRepository,
+    notificationsRepository,
+    {
+      generate: () => 'generated-uuid',
+    },
+  );
 
   const sectorUser = { id: 5, userRoles: [], sectorUsers: [{ sectorId: 10 }] } as never;
 

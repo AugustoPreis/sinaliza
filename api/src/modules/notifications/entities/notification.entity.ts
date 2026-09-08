@@ -1,12 +1,18 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { TicketEntity } from '@modules/tickets/entities/ticket.entity';
 import { UserEntity } from '@modules/users/entities/user.entity';
 
 import { ENotificationType } from '../enums/notification-type.enum';
 
-// endpoints-sinaliza.md §9 — a saved record of a push notification. Like
-// `TicketEventEntity`, it's an immutable historical fact (no `updatedAt`):
+// Like `TicketEventEntity`, an immutable historical fact (no `updatedAt`):
 // it's either created, or it never happened.
 @Entity('notifications')
 export class NotificationEntity {

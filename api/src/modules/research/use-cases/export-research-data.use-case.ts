@@ -15,7 +15,6 @@ export interface IResearchExportResult {
 const DATA_SHEET_NAME = 'dados_pesquisa';
 const RECLASSIFICATIONS_SHEET_NAME = 'reclassificacoes';
 
-// endpoints-sinaliza.md §15.2 exact column list, in order.
 const DATA_COLUMNS = [
   'ticket_id',
   'protocol',
@@ -35,9 +34,6 @@ const DATA_COLUMNS = [
   'time_to_resolution_seconds',
 ] as const;
 
-// §15.2 "também pode incluir os eventos de reclassificação em uma
-// aba/tabela separada" — included, since `findForExport` already loads
-// every `TicketEventEntity` per ticket and filtering/mapping them is cheap.
 const RECLASSIFICATION_COLUMNS = [
   'ticket_id',
   'protocol',
@@ -47,7 +43,6 @@ const RECLASSIFICATION_COLUMNS = [
   'created_at',
 ] as const;
 
-// `GET /admin/research/export` (endpoints-sinaliza.md §15.2).
 @Injectable()
 export class ExportResearchDataUseCase {
   constructor(private readonly researchRepository: ResearchRepository) {}
@@ -89,7 +84,10 @@ export class ExportResearchDataUseCase {
         resolved_by_sector: ticket.resolvedBySector?.name ?? null,
         correct_sector_reached_at: ticket.correctSectorReachedAt,
         resolved_at: ticket.resolvedAt,
-        time_to_correct_sector_seconds: diffSeconds(ticket.createdAt, ticket.correctSectorReachedAt),
+        time_to_correct_sector_seconds: diffSeconds(
+          ticket.createdAt,
+          ticket.correctSectorReachedAt,
+        ),
         time_to_resolution_seconds: diffSeconds(ticket.createdAt, ticket.resolvedAt),
       });
     }
@@ -129,12 +127,9 @@ function diffSeconds(start: Date, end: Date | null): number | null {
   return Math.round((end.getTime() - start.getTime()) / 1000);
 }
 
-// The doc's example filename is a single month ("sinaliza_pesquisa_2026-08.xlsx").
 // An export can span an arbitrary `from`/`to` range (or none at all), so
-// there isn't always one unambiguous month to name the file after. Decision:
-// use `to` when given (the range's most recent boundary), else `from`, else
-// the current date — always formatted as `AAAA-MM`, matching the doc's
-// example shape even though the underlying data may cover a wider period.
+// there isn't always one unambiguous month to name the file after: use `to`
+// when given, else `from`, else the current date.
 function buildFilename(query: ResearchExportQueryDTO): string {
   const reference = query.to ?? query.from ?? new Date();
   const yearMonth = `${reference.getUTCFullYear()}-${String(reference.getUTCMonth() + 1).padStart(2, '0')}`;

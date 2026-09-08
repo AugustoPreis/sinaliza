@@ -7,9 +7,6 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 
 import { SectorRefDTO } from './sector-ref.dto';
 
-// How long `description_summary` (endpoints-sinaliza.md §8.2) is allowed to
-// be before it's truncated with an ellipsis — not specified by the doc, a
-// reasonable implementation choice for a list row.
 const DESCRIPTION_SUMMARY_MAX_LENGTH = 140;
 
 export class TicketListItemResponseDTO {
@@ -45,11 +42,9 @@ export class TicketListItemResponseDTO {
   }
 }
 
-// `GET /tickets` response envelope. Deliberately shaped exactly as
-// endpoints-sinaliza.md §8.2 documents it (`items`/`page`/`page_size`/`total`)
-// instead of this project's generic `{data, meta}` pagination envelope
-// (`PaginatedResponseDTO`) — the functional doc is the payload contract of
-// record for this endpoint, so its shape wins over the internal convention.
+// Deliberately shaped as `items`/`page`/`page_size`/`total` instead of this
+// project's generic `{data, meta}` envelope — matches the documented API
+// contract for this endpoint.
 export class TicketListResponseDTO {
   @ApiProperty({ type: [TicketListItemResponseDTO] })
   items!: TicketListItemResponseDTO[];

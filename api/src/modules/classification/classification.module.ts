@@ -9,12 +9,9 @@ import { KeywordSectorClassifierStrategy } from './strategies/keyword-sector-cla
 import { SECTOR_CLASSIFIER_STRATEGY } from './strategies/sector-classifier.strategy';
 import { PreviewClassificationUseCase } from './use-cases/preview-classification.use-case';
 
-// `KeywordSectorClassifierStrategy` is registered under the
-// `SECTOR_CLASSIFIER_STRATEGY` token (inversion of dependency): swapping the
-// classification algorithm later (real model/embeddings/etc.) means adding a
-// new class implementing `SectorClassifierStrategy` and changing only the
-// `useClass` line below — every consumer (this module's use-case, and
-// whatever Phase 3's ticket creation injects) depends on the interface.
+// `KeywordSectorClassifierStrategy` is bound to `SECTOR_CLASSIFIER_STRATEGY`
+// so swapping the classification algorithm later only means changing the
+// `useClass` line below — consumers depend on `ISectorClassifierStrategy`.
 @Module({
   imports: [SharedModule, SectorsModule],
   controllers: [ClassificationController],

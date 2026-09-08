@@ -2,9 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { IsArray, IsString, IsUUID } from '@shared/validators';
 
-// Field names follow `endpoints-sinaliza.md` §14.2 literally (`sector_ids`),
-// which is why `sector_ids` isn't camelCased here — see
-// `UpdateUserPermissionsUseCase` for how `roles`/`sector_ids` are resolved.
+// `sector_ids` intentionally breaks camelCase to match the external contract.
 export class UpdateUserPermissionsDTO {
   @ApiProperty({
     type: [String],

@@ -29,7 +29,9 @@ describe('UpdateInternalNoteUseCase', () => {
       updatedAt: new Date('2026-08-20T15:25:00Z'),
     });
 
-    const dto: UpdateInternalNoteDTO = { internal_note: 'Foi solicitado teste do equipamento antes da troca.' };
+    const dto: UpdateInternalNoteDTO = {
+      internal_note: 'Foi solicitado teste do equipamento antes da troca.',
+    };
     const result = await useCase.execute('usr-sector', 'tkt-1', dto);
 
     expect(ticketsRepository.updateInternalNote).toHaveBeenCalledWith(1, dto.internal_note);

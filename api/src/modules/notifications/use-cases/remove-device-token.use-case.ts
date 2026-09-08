@@ -7,7 +7,6 @@ import { UsersRepository } from '@modules/users/repositories/users.repository';
 import { RemoveDeviceTokenDTO } from '../dtos/remove-device-token.dto';
 import { DeviceTokensRepository } from '../repositories/device-tokens.repository';
 
-// `DELETE /devices/push-token` (endpoints-sinaliza.md §4.2).
 @Injectable()
 export class RemoveDeviceTokenUseCase {
   constructor(

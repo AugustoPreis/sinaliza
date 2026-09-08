@@ -1,9 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-// Phase 3 (`modules/notifications`): `notifications` (endpoints-sinaliza.md
-// §9, `GET /notifications`) and `device_tokens` (§4, push token
-// registration). Neither has a functional dependency on `tickets`/`users`
-// beyond the FKs below, so both live in one migration.
+// `notifications` and `device_tokens` have no functional dependency on each
+// other beyond the FKs below, so both live in one migration.
 export class Notifications1752600000010 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`

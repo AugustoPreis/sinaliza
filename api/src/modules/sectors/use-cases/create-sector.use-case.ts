@@ -9,7 +9,6 @@ import { CreateSectorDTO } from '../dtos/create-sector.dto';
 import { SectorMutationResponseDTO } from '../dtos/sector-mutation-response.dto';
 import { SectorsRepository } from '../repositories/sectors.repository';
 
-// `POST /admin/sectors` (endpoints-sinaliza.md §12.2) — Tela C.2.
 @Injectable()
 export class CreateSectorUseCase {
   constructor(

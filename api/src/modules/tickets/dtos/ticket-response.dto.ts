@@ -7,7 +7,6 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 
 import { SectorRefDTO } from './sector-ref.dto';
 
-// `POST /tickets` response shape (endpoints-sinaliza.md §8.1).
 export class TicketResponseDTO {
   @ApiProperty()
   id!: string;

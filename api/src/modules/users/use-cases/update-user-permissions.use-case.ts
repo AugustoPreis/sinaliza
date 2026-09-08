@@ -13,14 +13,8 @@ import { SectorUserEntity } from '../entities/sector-user.entity';
 import { UserRoleEntity } from '../entities/user-role.entity';
 import { UsersRepository } from '../repositories/users.repository';
 
-// Replaces `AssignRolesUseCase`: the Sinaliza portal edits a user's role and
-// sector assignments together (Tela C.4), so both are resolved and written
-// in a single transaction instead of two separate round-trips.
-//
-// Roles are resolved by `name` (e.g. "ADMIN", "SECTOR", "REQUESTER") to
-// match `endpoints-sinaliza.md` §14.2's payload shape directly; sectors are
-// resolved by `uuid`, consistent with how every other relation in this API
-// is addressed externally.
+// Roles and sector assignments are edited together and written in a single
+// transaction. Roles are resolved by `name`; sectors by `uuid`.
 @Injectable()
 export class UpdateUserPermissionsUseCase {
   constructor(
@@ -47,7 +41,9 @@ export class UpdateUserPermissionsUseCase {
 
       await userRoleRepo.delete({ userId: user.id });
       if (roles.length) {
-        await userRoleRepo.save(roles.map((role) => userRoleRepo.create({ userId: user.id, roleId: role.id })));
+        await userRoleRepo.save(
+          roles.map((role) => userRoleRepo.create({ userId: user.id, roleId: role.id })),
+        );
       }
 
       await sectorUserRepo.delete({ userId: user.id });
@@ -70,7 +66,9 @@ export class UpdateUserPermissionsUseCase {
   private async resolveRoles(names: string[]): Promise<RoleEntity[]> {
     if (!names.length) return [];
 
-    const roles = await this.dataSource.getRepository(RoleEntity).find({ where: { name: In(names) } });
+    const roles = await this.dataSource
+      .getRepository(RoleEntity)
+      .find({ where: { name: In(names) } });
 
     if (roles.length !== new Set(names).size) {
       const found = new Set(roles.map((role) => role.name));
@@ -87,7 +85,9 @@ export class UpdateUserPermissionsUseCase {
   private async resolveSectors(uuids: string[]): Promise<SectorEntity[]> {
     if (!uuids.length) return [];
 
-    const sectors = await this.dataSource.getRepository(SectorEntity).find({ where: { uuid: In(uuids) } });
+    const sectors = await this.dataSource
+      .getRepository(SectorEntity)
+      .find({ where: { uuid: In(uuids) } });
 
     if (sectors.length !== new Set(uuids).size) {
       const found = new Set(sectors.map((sector) => sector.uuid));

@@ -4,7 +4,6 @@ import { IsEnum, IsString, MaxLength } from '@shared/validators';
 
 import { EDevicePlatform } from '../enums/device-platform.enum';
 
-// `POST /devices/push-token` (endpoints-sinaliza.md §4.1).
 export class RegisterDeviceTokenDTO {
   @ApiProperty()
   @IsString()

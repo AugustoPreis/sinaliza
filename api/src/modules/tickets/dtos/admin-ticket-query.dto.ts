@@ -7,11 +7,8 @@ import { IsArray, IsEnum, IsString, IsUUID, MaxLength } from '@shared/validators
 
 import { ETicketStatus } from '../enums/ticket-status.enum';
 
-// `GET /admin/tickets` filters (endpoints-sinaliza.md §11.1) — same filter
-// set as `SectorTicketQueryDTO`, minus the caller-sector scoping/ordering
-// concerns that only apply to the sector's own queue (RB-09 doesn't apply
-// here: admin's list has no "priority" semantics, see
-// `ListAdminTicketsUseCase`).
+// Same filter set as `SectorTicketQueryDTO`, minus sector scoping/ordering
+// (RB-09's ordering only applies to the sector's own queue).
 export class AdminTicketQueryDTO extends PaginationQueryDTO {
   @ApiPropertyOptional()
   @IsOptional()
@@ -48,7 +45,9 @@ export class AdminTicketQueryDTO extends PaginationQueryDTO {
   @IsUUID()
   building_id?: string;
 
-  @ApiPropertyOptional({ description: 'Matches protocol, description or location (building/environment)' })
+  @ApiPropertyOptional({
+    description: 'Matches protocol, description or location (building/environment)',
+  })
   @IsOptional()
   @IsString()
   @MaxLength(255)

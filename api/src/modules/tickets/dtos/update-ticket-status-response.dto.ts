@@ -3,8 +3,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { TicketEntity } from '../entities/ticket.entity';
 import { ETicketStatus } from '../enums/ticket-status.enum';
 
-// `PATCH /tickets/{ticketId}/status` response shape (endpoints-sinaliza.md
-// §10.2).
 export class UpdateTicketStatusResponseDTO {
   @ApiProperty()
   id!: string;

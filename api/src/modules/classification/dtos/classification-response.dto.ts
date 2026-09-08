@@ -2,8 +2,6 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 
-// Field names follow `endpoints-sinaliza.md` §7.1 literally
-// (`automatic_sector`, optional `confidence`).
 export class AutomaticSectorDTO {
   @ApiProperty()
   id!: string;

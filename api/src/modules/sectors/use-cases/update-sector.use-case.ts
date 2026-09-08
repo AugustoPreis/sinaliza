@@ -8,9 +8,6 @@ import { SectorMutationResponseDTO } from '../dtos/sector-mutation-response.dto'
 import { UpdateSectorDTO } from '../dtos/update-sector.dto';
 import { SectorsRepository } from '../repositories/sectors.repository';
 
-// `PATCH /admin/sectors/{sectorId}` (endpoints-sinaliza.md §12.3) — Tela C.2.
-// No DELETE: the functional doc explicitly doesn't ask for sector deletion
-// (see the observation in §12.3).
 @Injectable()
 export class UpdateSectorUseCase {
   constructor(private readonly sectorsRepository: SectorsRepository) {}

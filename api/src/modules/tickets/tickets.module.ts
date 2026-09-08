@@ -34,8 +34,8 @@ import { UpdateTicketStatusUseCase } from './use-cases/update-ticket-status.use-
     SectorsModule,
     LocationsModule,
     UsersModule,
-    // Phase 4: status/reassign flows call `NotificationsRepository.create()`
-    // directly (RB-14) — see `NotificationsModule`'s own header comment.
+    // Status/reassign flows call `NotificationsRepository.create()` directly
+    // (RB-14) — see `NotificationsModule`'s own header comment.
     NotificationsModule,
     TypeOrmModule.forFeature([TicketEntity, TicketPhotoEntity, TicketEventEntity]),
   ],

@@ -9,14 +9,10 @@ import { UpdateInternalNoteDTO } from '../dtos/update-internal-note.dto';
 import { TicketsRepository } from '../repositories/tickets.repository';
 import { assertSectorAuthorized } from '../utils/ticket-access.util';
 
-// `PATCH /tickets/{ticketId}/internal-note` (endpoints-sinaliza.md §10.4).
 // Deliberately does NOT append a `TicketEventEntity` row and does NOT call
-// `NotificationsRepository`: the doc frames this purely as sector/admin
-// bookkeeping ("visível apenas para setor e administração, não para o
-// solicitante"), never a fact about the ticket's lifecycle the requester's
-// timeline (§17/RB-15) or push notifications (§9) are meant to surface. If a
-// future phase decides an audit trail of note edits is needed after all,
-// that's an additive change here, not a revert of this one.
+// `NotificationsRepository`: this is sector/admin-only bookkeeping, never a
+// fact about the ticket's lifecycle that the requester's timeline or push
+// notifications are meant to surface.
 @Injectable()
 export class UpdateInternalNoteUseCase {
   constructor(

@@ -4,12 +4,12 @@ import { mockDeep } from 'jest-mock-extended';
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 import { SectorsRepository } from '@modules/sectors/repositories/sectors.repository';
 
-import { SectorClassifierStrategy } from '../../strategies/sector-classifier.strategy';
+import { ISectorClassifierStrategy } from '../../strategies/sector-classifier.strategy';
 import { PreviewClassificationUseCase } from '../preview-classification.use-case';
 
 describe('PreviewClassificationUseCase', () => {
   const sectorsRepository = mockDeep<SectorsRepository>();
-  const classifier = mockDeep<SectorClassifierStrategy>();
+  const classifier = mockDeep<ISectorClassifierStrategy>();
   const useCase = new PreviewClassificationUseCase(sectorsRepository, classifier);
 
   beforeEach(() => {

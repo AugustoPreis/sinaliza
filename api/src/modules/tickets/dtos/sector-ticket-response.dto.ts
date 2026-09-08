@@ -7,11 +7,9 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 
 const DESCRIPTION_SUMMARY_MAX_LENGTH = 140;
 
-// `GET /sector/tickets` item shape (endpoints-sinaliza.md §10.1) — note this
-// is deliberately different from `TicketListItemResponseDTO` (§8.2, the
-// requester's own list): here `automatic_sector_id`/`confirmed_sector_id`
-// are flat sector uuids plus `classification_diverged`, not a `current_sector`
-// ref object, matching the doc's example exactly.
+// Deliberately different from `TicketListItemResponseDTO`: flat
+// `automatic_sector_id`/`confirmed_sector_id` uuids plus
+// `classification_diverged`, not a `current_sector` ref object.
 export class SectorTicketListItemResponseDTO {
   @ApiProperty()
   id!: string;
@@ -50,9 +48,8 @@ export class SectorTicketListItemResponseDTO {
     dto.status = ticket.status;
     dto.automatic_sector_id = ticket.automaticSector.uuid;
     dto.confirmed_sector_id = ticket.confirmedSector.uuid;
-    // RB-05/RB-06 aside: this is the research signal itself (see the
-    // documentation's "Visão Geral"/§18) — true whenever the requester's
-    // final decision (Tela A.4) departed from the automatic suggestion.
+    // True whenever the requester's final decision departed from the
+    // automatic suggestion (RB-05/RB-06 research signal).
     dto.classification_diverged = ticket.automaticSectorId !== ticket.confirmedSectorId;
     dto.created_at = ticket.createdAt;
 
@@ -61,8 +58,7 @@ export class SectorTicketListItemResponseDTO {
 }
 
 // Same `items`/`page`/`page_size`/`total` envelope choice as
-// `TicketListResponseDTO` — the functional doc's payload contract wins over
-// this project's generic `{data, meta}` pagination envelope.
+// `TicketListResponseDTO`.
 export class SectorTicketListResponseDTO {
   @ApiProperty({ type: [SectorTicketListItemResponseDTO] })
   items!: SectorTicketListItemResponseDTO[];

@@ -4,7 +4,10 @@ import { LocationsRepository } from '@modules/locations/repositories/locations.r
 import { SectorsRepository } from '@modules/sectors/repositories/sectors.repository';
 
 import { ResearchIndicatorsQueryDTO } from '../../dtos/research-indicators-query.dto';
-import { IResearchIndicatorsData, ResearchRepository } from '../../repositories/research.repository';
+import {
+  IResearchIndicatorsData,
+  ResearchRepository,
+} from '../../repositories/research.repository';
 import { GetResearchIndicatorsUseCase } from '../get-research-indicators.use-case';
 
 describe('GetResearchIndicatorsUseCase', () => {

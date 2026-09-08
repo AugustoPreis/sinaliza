@@ -4,9 +4,7 @@ import { UserEntity } from '@modules/users/entities/user.entity';
 
 import { SectorEntity } from '../entities/sector.entity';
 
-// Field names follow `endpoints-sinaliza.md` §12.1 literally
-// (`responsible_users` as `{id, name, email}` objects, not just UUIDs) —
-// this is the admin-facing shape (Tela C.2), unlike the enxuto
+// Admin-facing shape (full `responsible_users` objects), unlike the leaner
 // `SectorSummaryDTO` used by the public lookup.
 export class SectorResponsibleUserDTO {
   @ApiProperty()

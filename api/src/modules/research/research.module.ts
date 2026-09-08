@@ -12,15 +12,10 @@ import { ResearchRepository } from './repositories/research.repository';
 import { ExportResearchDataUseCase } from './use-cases/export-research-data.use-case';
 import { GetResearchIndicatorsUseCase } from './use-cases/get-research-indicators.use-case';
 
-// Phase 5 (last domain module): §15's research indicators/export. Reuses
-// `TicketEntity` straight from `modules/tickets` (via its own
-// `TypeOrmModule.forFeature`, not by importing `TicketsModule`, since it only
-// needs read access to that table and none of `TicketsRepository`'s
-// write-path methods — the `REASSIGNED`-event counts and the export's event
-// rows are both read off `TicketEntity.events` via query builder joins/
-// relations, no separate `TicketEventEntity` repository injection needed)
-// plus `SectorsModule`/`LocationsModule` for resolving sector/building uuids
-// and names in the indicators response.
+// `TicketEntity` is pulled in via its own `TypeOrmModule.forFeature` rather
+// than importing `TicketsModule`, since this module only needs read access
+// (no `TicketsRepository` write-path methods) — event rows are read off
+// `TicketEntity.events` via query builder joins/relations directly.
 @Module({
   imports: [SharedModule, SectorsModule, LocationsModule, TypeOrmModule.forFeature([TicketEntity])],
   controllers: [ResearchController],

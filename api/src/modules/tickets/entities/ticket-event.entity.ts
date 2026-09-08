@@ -1,4 +1,11 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 import { UserEntity } from '@modules/users/entities/user.entity';
@@ -8,11 +15,9 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 
 import { TicketEntity } from './ticket.entity';
 
-// endpoints-sinaliza.md §17 — immutable timeline row. No `updatedAt`/soft
-// delete on purpose: an event is a historical fact, never edited or removed
-// (RB-15, and the research indicators in §15 depend on this history being
-// intact). `actorUserId`/`actorRole` are nullable because `AUTO_CLASSIFIED`
-// has no human actor.
+// No `updatedAt`/soft delete on purpose: an event is a historical fact,
+// never edited or removed (RB-15). `actorUserId`/`actorRole` are nullable
+// because `AUTO_CLASSIFIED` has no human actor.
 @Entity('ticket_events')
 export class TicketEventEntity {
   @PrimaryGeneratedColumn('increment')

@@ -1,4 +1,5 @@
 import * as ExcelJS from 'exceljs';
+import { I18nService } from 'nestjs-i18n';
 import { DataSource } from 'typeorm';
 
 import { HashService } from '@shared/services/hash.service';
@@ -38,6 +39,7 @@ describe('ImportUsersUseCase', () => {
 
   let hashService: jest.Mocked<HashService>;
   let uuidService: jest.Mocked<UuidService>;
+  let i18n: jest.Mocked<I18nService>;
   let dataSource: jest.Mocked<DataSource>;
   let userRepo: { findOne: jest.Mock; save: jest.Mock; create: jest.Mock };
   let userRoleRepo: { delete: jest.Mock; save: jest.Mock; create: jest.Mock };
@@ -47,8 +49,11 @@ describe('ImportUsersUseCase', () => {
   let useCase: ImportUsersUseCase;
 
   beforeEach(() => {
-    hashService = { hash: jest.fn().mockResolvedValue('hashed') } as unknown as jest.Mocked<HashService>;
+    hashService = {
+      hash: jest.fn().mockResolvedValue('hashed'),
+    } as unknown as jest.Mocked<HashService>;
     uuidService = { generate: jest.fn().mockReturnValue('new-uuid') };
+    i18n = { translate: jest.fn((key: string) => key) } as unknown as jest.Mocked<I18nService>;
 
     userRepo = {
       findOne: jest.fn().mockResolvedValue(null),
@@ -87,7 +92,7 @@ describe('ImportUsersUseCase', () => {
       ),
     } as unknown as jest.Mocked<DataSource>;
 
-    useCase = new ImportUsersUseCase(dataSource, hashService, uuidService);
+    useCase = new ImportUsersUseCase(dataSource, hashService, uuidService, i18n);
   });
 
   it('rejects the whole file when the header is missing a column', async () => {

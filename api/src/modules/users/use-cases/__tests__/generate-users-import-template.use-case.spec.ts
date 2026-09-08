@@ -15,8 +15,8 @@ describe('GenerateUsersImportTemplateUseCase', () => {
     await workbook.xlsx.load(buffer as unknown as ExcelJS.Buffer);
 
     const worksheet = workbook.worksheets[0];
-    const headerValues = USERS_IMPORT_TEMPLATE_COLUMNS.map((_, index) =>
-      worksheet.getRow(1).getCell(index + 1).value,
+    const headerValues = USERS_IMPORT_TEMPLATE_COLUMNS.map(
+      (_, index) => worksheet.getRow(1).getCell(index + 1).value,
     );
 
     expect(headerValues).toEqual([...USERS_IMPORT_TEMPLATE_COLUMNS]);

@@ -27,7 +27,13 @@ import { UpdateUserUseCase } from './use-cases/update-user.use-case';
 @Module({
   imports: [
     SharedModule,
-    TypeOrmModule.forFeature([UserEntity, UserRoleEntity, SectorUserEntity, RoleEntity, SectorEntity]),
+    TypeOrmModule.forFeature([
+      UserEntity,
+      UserRoleEntity,
+      SectorUserEntity,
+      RoleEntity,
+      SectorEntity,
+    ]),
   ],
   controllers: [UsersController, AdminUsersController],
   providers: [

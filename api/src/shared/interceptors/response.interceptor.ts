@@ -1,4 +1,10 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor, StreamableFile } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+  StreamableFile,
+} from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -9,7 +15,10 @@ export interface IApiResponse<T> {
 }
 
 @Injectable()
-export class ResponseInterceptor<T> implements NestInterceptor<T, IApiResponse<T> | StreamableFile> {
+export class ResponseInterceptor<T> implements NestInterceptor<
+  T,
+  IApiResponse<T> | StreamableFile
+> {
   intercept(
     _context: ExecutionContext,
     next: CallHandler<T>,

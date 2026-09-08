@@ -13,7 +13,12 @@ describe('ListAdminSectorsUseCase', () => {
   });
 
   it('returns sectors with categories and responsible users', async () => {
-    const sector = { id: 1, uuid: 'sec-ti', name: 'TI', categories: ['rede', 'wifi'] } as SectorEntity;
+    const sector = {
+      id: 1,
+      uuid: 'sec-ti',
+      name: 'TI',
+      categories: ['rede', 'wifi'],
+    } as SectorEntity;
 
     sectorsRepository.search.mockResolvedValue([sector]);
     sectorsRepository.findResponsibleUsersBySectorIds.mockResolvedValue(

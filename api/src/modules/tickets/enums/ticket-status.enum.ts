@@ -1,6 +1,5 @@
-// endpoints-sinaliza.md §2/§16 — resting states of a ticket. `RECLASSIFIED`
-// is deliberately NOT a member here (RB-06): reclassification is a timeline
-// event (`ETicketEventType.REASSIGNED`), never a persisted status.
+// `RECLASSIFIED` is deliberately NOT a member here (RB-06): reclassification
+// is a timeline event (`ETicketEventType.REASSIGNED`), never a persisted status.
 export enum ETicketStatus {
   OPEN = 'OPEN',
   FORWARDED = 'FORWARDED',

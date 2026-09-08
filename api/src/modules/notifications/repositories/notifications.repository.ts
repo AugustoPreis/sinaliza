@@ -6,7 +6,6 @@ import { IPaginatedResult } from '@shared/interfaces';
 import { UuidService } from '@shared/services/uuid.service';
 import { buildPaginatedResult, buildSkip } from '@shared/utils/pagination.util';
 
-
 import { NotificationEntity } from '../entities/notification.entity';
 import { ENotificationType } from '../enums/notification-type.enum';
 
@@ -18,10 +17,14 @@ export class NotificationsRepository {
     private readonly uuidService: UuidService,
   ) {}
 
-  // Called internally by other modules (Phase 4's status/reassign flows,
-  // RB-14) — never exposed as its own HTTP endpoint. `NotificationsModule`
-  // exports this repository specifically so those flows can call it.
-  create(userId: number, ticketId: number, type: ENotificationType, message: string): Promise<NotificationEntity> {
+  // Called internally by other modules' status/reassign flows (RB-14) —
+  // never exposed as its own HTTP endpoint.
+  create(
+    userId: number,
+    ticketId: number,
+    type: ENotificationType,
+    message: string,
+  ): Promise<NotificationEntity> {
     const entity = this.repo.create({
       uuid: this.uuidService.generate(),
       userId,

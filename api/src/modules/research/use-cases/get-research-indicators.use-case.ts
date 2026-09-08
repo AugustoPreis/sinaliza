@@ -18,10 +18,6 @@ import {
   ResearchRepository,
 } from '../repositories/research.repository';
 
-// `GET /admin/research/indicators` (endpoints-sinaliza.md §15.1) — Tela C.5
-// and the research hypothesis in the functional doc ("classificação e
-// encaminhamento automáticos reduzem erro e tempo, em comparação com o
-// processo manual?").
 @Injectable()
 export class GetResearchIndicatorsUseCase {
   constructor(
@@ -113,7 +109,9 @@ function mapSectorRows(
 
       return { sector_id: sector.uuid, sector_name: sector.name, count: row.count };
     })
-    .filter((row): row is { sector_id: string; sector_name: string; count: number } => row !== null);
+    .filter(
+      (row): row is { sector_id: string; sector_name: string; count: number } => row !== null,
+    );
 }
 
 function mapLocationRows(
@@ -133,20 +131,12 @@ function mapLocationRows(
     );
 }
 
-// Decision (there is no `category` column on `Ticket` — endpoints-sinaliza.md
-// §16 doesn't have one, only `SectorEntity.categories`, which is a list of
-// tags per SETOR, not per chamado): a ticket's "category" for this indicator
-// is the FIRST tag of its `automaticSectorId`'s `categories` list — i.e. the
-// tag the keyword classifier most likely matched to route it there in the
-// first place (categories are seeded/edited in a meaningful "most
-// representative first" order, e.g. `sec_manutencao` → ["vazamento",
-// "elétrica", "porta", "janela"]). When a sector has no categories configured
-// (`categories` empty), its name is used as the category label instead, so
-// every ticket still counts somewhere instead of being silently dropped.
-// Categories collapse across sectors: two sectors sharing a first tag (or a
-// sector's name colliding with another sector's first tag) are merged into
-// one row, since the indicator is about the LABEL, not the sector identity —
-// `by_sector` already covers the per-sector breakdown.
+// `Ticket` has no `category` column, only `SectorEntity.categories` (a list
+// of tags per setor). A ticket's "category" here is the first tag of its
+// automatic sector's `categories` (assumed seeded most-representative-first),
+// falling back to the sector's name when it has no categories configured.
+// Categories collapse across sectors (the indicator is about the label, not
+// sector identity) — `by_sector` already covers the per-sector breakdown.
 function buildCategoryVolume(
   rows: IResearchCountRow[],
   sectorById: Map<number, SectorEntity>,

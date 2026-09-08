@@ -1,10 +1,8 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-// Phase 3 (`modules/tickets`): `tickets` + `ticket_photos` (mutable) and the
-// immutable `ticket_events` timeline (endpoints-sinaliza.md §16/§17), plus
-// the dedicated protocol sequence (`TicketsRepository.nextProtocol()`
-// formats it as `SIN-<n>`). Starting at 1000 just so early protocols don't
-// look suspiciously like a fresh/empty system.
+// `ticket_events` is an immutable timeline, separate from the mutable
+// `tickets`/`ticket_photos` tables. Protocol sequence starts at 1000 so
+// early protocols don't look suspiciously like a fresh/empty system.
 export class Tickets1752600000009 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
@@ -57,7 +55,9 @@ export class Tickets1752600000009 implements MigrationInterface {
     `);
 
     await queryRunner.query(`CREATE UNIQUE INDEX IF NOT EXISTS ux_tickets_uuid ON tickets(uuid)`);
-    await queryRunner.query(`CREATE INDEX IF NOT EXISTS ix_tickets_requester_id ON tickets(requester_id)`);
+    await queryRunner.query(
+      `CREATE INDEX IF NOT EXISTS ix_tickets_requester_id ON tickets(requester_id)`,
+    );
     await queryRunner.query(
       `CREATE INDEX IF NOT EXISTS ix_tickets_current_sector_id ON tickets(current_sector_id)`,
     );

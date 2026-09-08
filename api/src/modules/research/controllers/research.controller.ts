@@ -9,12 +9,9 @@ import { ResearchIndicatorsResponseDTO } from '../dtos/research-indicators-respo
 import { ExportResearchDataUseCase } from '../use-cases/export-research-data.use-case';
 import { GetResearchIndicatorsUseCase } from '../use-cases/get-research-indicators.use-case';
 
-// `GET /admin/research/indicators`, `GET /admin/research/export`
-// (endpoints-sinaliza.md §15) — Tela C.5. Gated behind the dedicated
-// `research:read`/`research:export` permissions (§19 matrix), distinct from
-// `tickets:read-all` which backs the operational `/admin/tickets` and
-// `/admin/dashboard` endpoints (see `AdminTicketsController`'s header
-// comment).
+// Gated behind dedicated `research:read`/`research:export` permissions,
+// distinct from `tickets:read-all` (operational `/admin/tickets` and
+// `/admin/dashboard`).
 @ApiTags('Admin Research')
 @ApiBearerAuth()
 @Controller({ path: 'admin/research', version: '1' })
@@ -26,7 +23,9 @@ export class ResearchController {
 
   @Get('indicators')
   @RequirePermission('research', 'read')
-  @ApiOperation({ summary: 'Research indicators: automatic accuracy, corrections, volume (Tela C.5)' })
+  @ApiOperation({
+    summary: 'Research indicators: automatic accuracy, corrections, volume (Tela C.5)',
+  })
   indicators(@Query() query: ResearchIndicatorsQueryDTO): Promise<ResearchIndicatorsResponseDTO> {
     return this.getResearchIndicatorsUseCase.execute(query);
   }

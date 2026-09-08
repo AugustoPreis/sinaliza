@@ -3,7 +3,16 @@ import { IsOptional } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
 import { PASSWORD_REGEX } from '@shared/constants';
-import { IsArray, IsEmail, IsEnum, IsString, IsUUID, Matches, MaxLength, MinLength } from '@shared/validators';
+import {
+  IsArray,
+  IsEmail,
+  IsEnum,
+  IsString,
+  IsUUID,
+  Matches,
+  MaxLength,
+  MinLength,
+} from '@shared/validators';
 
 import { EInstitutionalLink } from '../enums/institutional-link.enum';
 
