@@ -22,7 +22,10 @@ export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps)
   const sectorsQuery = useAdminSectorsQuery();
 
   const buildings = locationsQuery.data?.buildings ?? [];
-  const buildingOptions = buildings.map((building) => ({ value: building.id, label: building.name }));
+  const buildingOptions = buildings.map((building) => ({
+    value: building.id,
+    label: building.name,
+  }));
   const selectedBuilding = buildingOptions.find((option) => option.value === filters.buildingId);
 
   const sectors = sectorsQuery.data?.items ?? [];

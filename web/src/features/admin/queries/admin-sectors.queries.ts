@@ -14,7 +14,10 @@ import type {
 import type { ApiError } from '@core/errors/error.types';
 
 import * as adminSectorsService from '../services/admin-sectors.service';
-import type { IAdminSectorsResponse, IUpdateSectorPayload } from '../services/admin-sectors.service';
+import type {
+  IAdminSectorsResponse,
+  IUpdateSectorPayload,
+} from '../services/admin-sectors.service';
 
 export const adminSectorQueryKeys = {
   all: ['admin-sectors'] as const,

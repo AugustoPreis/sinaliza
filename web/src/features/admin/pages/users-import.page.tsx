@@ -29,7 +29,9 @@ export function AdminUsersImportPage(): ReactElement {
       const blob = await adminUsersService.downloadImportTemplate();
       downloadBlob(blob, TEMPLATE_FILENAME);
     } catch (error) {
-      toast.error(mapAxiosErrorToAppError(error as Parameters<typeof mapAxiosErrorToAppError>[0]).message);
+      toast.error(
+        mapAxiosErrorToAppError(error as Parameters<typeof mapAxiosErrorToAppError>[0]).message,
+      );
     } finally {
       setIsDownloading(false);
     }

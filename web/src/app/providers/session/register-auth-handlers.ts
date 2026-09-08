@@ -6,10 +6,9 @@ import { refresh } from '@features/auth';
 
 import { router } from '../../router/router';
 
-// Mirrors the routes under app/routes/_auth/ — pages reachable while logged
-// out. onSessionExpired fires on the very first /auth/me 401 too (the normal
-// "not logged in yet" bootstrap outcome, not just a session dying mid-browse),
-// so it must not force a redirect away from one of these.
+// Mirrors app/routes/_auth/. onSessionExpired also fires on the very first
+// /auth/me 401 (normal "not logged in yet"), so it must not redirect away
+// from one of these.
 const PUBLIC_PATHS: string[] = [ROUTES.login, ROUTES.forgotPassword, ROUTES.resetPassword];
 
 export function registerRealAuthHandlers(): void {

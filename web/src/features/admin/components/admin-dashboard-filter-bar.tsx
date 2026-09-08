@@ -40,7 +40,10 @@ export function AdminDashboardFilterBar({
   const sectorsQuery = useAdminSectorsQuery();
 
   const buildings = locationsQuery.data?.buildings ?? [];
-  const buildingOptions = buildings.map((building) => ({ value: building.id, label: building.name }));
+  const buildingOptions = buildings.map((building) => ({
+    value: building.id,
+    label: building.name,
+  }));
   const selectedBuilding = buildingOptions.find((option) => option.value === filters.buildingId);
 
   const sectors = sectorsQuery.data?.items ?? [];
@@ -51,7 +54,9 @@ export function AdminDashboardFilterBar({
     value: status,
     label: tTickets(`status.${status}`),
   }));
-  const selectedStatusOptions = statusOptions.filter((option) => filters.status.includes(option.value));
+  const selectedStatusOptions = statusOptions.filter((option) =>
+    filters.status.includes(option.value),
+  );
 
   return (
     <Grid columns={4} gap={4} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

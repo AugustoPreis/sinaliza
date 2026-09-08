@@ -97,13 +97,15 @@ export function MultiSelect({
       </PopoverTrigger>
       <PopoverContent align="start" className="w-[var(--radix-popover-trigger-width)] p-0">
         <Command shouldFilter={false}>
-          <CommandInput
-            placeholder={searchPlaceholder}
-            onValueChange={handleSearchChange}
-          />
+          <CommandInput placeholder={searchPlaceholder} onValueChange={handleSearchChange} />
           <CommandList>
             {isLoading ? (
-              <HStack align="center" justify="center" gap={2} className="py-6 text-sm text-muted-foreground">
+              <HStack
+                align="center"
+                justify="center"
+                gap={2}
+                className="py-6 text-sm text-muted-foreground"
+              >
                 <Loader2 size={16} aria-hidden="true" className="animate-spin" />
                 {t('actions.loading')}
               </HStack>

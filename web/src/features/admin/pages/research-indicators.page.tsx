@@ -44,7 +44,9 @@ export function AdminResearchIndicatorsPage(): ReactElement {
       });
       downloadBlob(blob, EXPORT_FILENAME);
     } catch (error) {
-      toast.error(mapAxiosErrorToAppError(error as Parameters<typeof mapAxiosErrorToAppError>[0]).message);
+      toast.error(
+        mapAxiosErrorToAppError(error as Parameters<typeof mapAxiosErrorToAppError>[0]).message,
+      );
     } finally {
       setIsExporting(false);
     }

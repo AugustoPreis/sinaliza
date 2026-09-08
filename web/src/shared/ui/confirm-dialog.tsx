@@ -33,7 +33,8 @@ export function ConfirmDialog({
   isConfirming = false,
   variant = 'default',
 }: ConfirmDialogProps): ReactElement {
-  const confirmVariant: ButtonProps['variant'] = variant === 'destructive' ? 'destructive' : 'default';
+  const confirmVariant: ButtonProps['variant'] =
+    variant === 'destructive' ? 'destructive' : 'default';
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -52,7 +53,12 @@ export function ConfirmDialog({
           >
             {cancelLabel}
           </Button>
-          <Button type="button" variant={confirmVariant} onClick={onConfirm} disabled={isConfirming}>
+          <Button
+            type="button"
+            variant={confirmVariant}
+            onClick={onConfirm}
+            disabled={isConfirming}
+          >
             {confirmLabel}
           </Button>
         </DialogFooter>

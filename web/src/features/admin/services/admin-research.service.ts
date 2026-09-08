@@ -16,9 +16,7 @@ export function fetchResearchIndicators(
 
 // Same situation as the users import template: this streams a binary
 // spreadsheet, so it's fetched directly with `responseType: 'blob'`.
-export async function exportResearchData(
-  params?: ResearchControllerExportV1Params,
-): Promise<Blob> {
+export async function exportResearchData(params?: ResearchControllerExportV1Params): Promise<Blob> {
   const response = await axiosInstance.get('/api/v1/admin/research/export', {
     params,
     responseType: 'blob',

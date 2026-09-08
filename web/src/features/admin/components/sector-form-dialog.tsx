@@ -7,22 +7,13 @@ import { toast } from 'sonner';
 import { mapAxiosErrorToAppError } from '@core/errors/error.mapper';
 import { useDebounce } from '@shared/hooks/use-debounce.hook';
 import { Button } from '@shared/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@shared/ui/dialog';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@shared/ui/dialog';
 import { FormField } from '@shared/ui/form';
 import { Input } from '@shared/ui/input';
 import { Stack } from '@shared/ui/layout';
 import { MultiSelect, type IMultiSelectOption } from '@shared/ui/multi-select';
 
-import {
-  useCreateSectorMutation,
-  useUpdateSectorMutation,
-} from '../queries/admin-sectors.queries';
+import { useCreateSectorMutation, useUpdateSectorMutation } from '../queries/admin-sectors.queries';
 import { useAdminUsersQuery } from '../queries/admin-users.queries';
 import { sectorFormSchema, type SectorFormValues } from '../schemas/sector-form.schema';
 import type { IAdminSector } from '../services/admin-sectors.service';
@@ -96,9 +87,7 @@ export function SectorFormDialog({
 
   function onSubmit(values: SectorFormValues): void {
     function onSuccess(): void {
-      toast.success(
-        isEditing ? t('sectors.form.updateSuccess') : t('sectors.form.createSuccess'),
-      );
+      toast.success(isEditing ? t('sectors.form.updateSuccess') : t('sectors.form.createSuccess'));
       handleOpenChange(false);
     }
 

@@ -63,7 +63,11 @@ export function ApiSelect({
           className="h-9 w-full justify-between gap-2 px-3 font-normal"
         >
           <Box className="min-w-0 flex-1 truncate text-left">
-            {selectedOption ? selectedOption.label : <Box className="text-muted-foreground">{placeholder}</Box>}
+            {selectedOption ? (
+              selectedOption.label
+            ) : (
+              <Box className="text-muted-foreground">{placeholder}</Box>
+            )}
           </Box>
           <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
         </Button>

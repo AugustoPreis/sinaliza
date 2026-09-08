@@ -60,12 +60,7 @@ export function SectorsTable({ items }: SectorsTableProps): ReactElement {
       className: 'text-right',
       cell: (row) => (
         <Can permission="sectors:manage">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => setEditingSector(row)}
-          >
+          <Button type="button" variant="ghost" size="sm" onClick={() => setEditingSector(row)}>
             <Pencil size={16} aria-hidden="true" />
             {t('sectors.table.edit')}
           </Button>

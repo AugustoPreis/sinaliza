@@ -26,7 +26,10 @@ export interface TicketStatusControlProps {
   status: TicketDetailResponseDTOStatus;
 }
 
-export function TicketStatusControl({ ticketId, status }: TicketStatusControlProps): ReactElement | null {
+export function TicketStatusControl({
+  ticketId,
+  status,
+}: TicketStatusControlProps): ReactElement | null {
   const { t } = useTranslation('tickets');
   const updateStatusMutation = useUpdateTicketStatusMutation(ticketId);
 

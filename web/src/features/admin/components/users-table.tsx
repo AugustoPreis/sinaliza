@@ -48,7 +48,9 @@ export function UsersTable({ items }: UsersTableProps): ReactElement {
 
     function onSuccess(): void {
       toast.success(
-        isRevoked ? t('usersPermissions.access.restoreSuccess') : t('usersPermissions.access.revokeSuccess'),
+        isRevoked
+          ? t('usersPermissions.access.restoreSuccess')
+          : t('usersPermissions.access.revokeSuccess'),
       );
       setAccessActionUser(undefined);
     }
@@ -183,7 +185,9 @@ export function UsersTable({ items }: UsersTableProps): ReactElement {
             : t('usersPermissions.access.revokeDescription', { name: accessActionUser?.name })
         }
         confirmLabel={
-          isRevoked ? t('usersPermissions.access.restoreConfirm') : t('usersPermissions.access.revokeConfirm')
+          isRevoked
+            ? t('usersPermissions.access.restoreConfirm')
+            : t('usersPermissions.access.revokeConfirm')
         }
         cancelLabel={t('usersPermissions.access.cancel')}
         variant={isRevoked ? 'default' : 'destructive'}

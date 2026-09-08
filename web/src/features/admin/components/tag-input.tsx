@@ -61,12 +61,7 @@ export function TagInput({ value, onChange, placeholder, disabled }: TagInputPro
           className="rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
         >
           {tag}
-          <button
-            type="button"
-            onClick={() => removeTag(tag)}
-            disabled={disabled}
-            aria-label={tag}
-          >
+          <button type="button" onClick={() => removeTag(tag)} disabled={disabled} aria-label={tag}>
             <X size={12} aria-hidden="true" />
           </button>
         </HStack>

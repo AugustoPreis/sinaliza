@@ -7,13 +7,7 @@ import { toast } from 'sonner';
 import type { AdminUsersControllerFindAllV1200 } from '@core/api/generated/sinalizaAPI.schemas';
 import { mapAxiosErrorToAppError } from '@core/errors/error.mapper';
 import { Button } from '@shared/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@shared/ui/dialog';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@shared/ui/dialog';
 import { FormField } from '@shared/ui/form';
 import { Stack } from '@shared/ui/layout';
 import { MultiSelect } from '@shared/ui/multi-select';
@@ -118,7 +112,9 @@ export function UserPermissionsDialog({
                   value={field.value}
                   onChange={field.onChange}
                   options={roleOptions}
-                  selectedOptions={roleOptions.filter((option) => field.value.includes(option.value))}
+                  selectedOptions={roleOptions.filter((option) =>
+                    field.value.includes(option.value),
+                  )}
                   placeholder={t('usersPermissions.dialog.rolesPlaceholder')}
                   emptyMessage={t('usersPermissions.dialog.rolesEmpty')}
                 />

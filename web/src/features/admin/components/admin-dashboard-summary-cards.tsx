@@ -24,7 +24,9 @@ export function AdminDashboardSummaryCards({
     {
       key: 'averageTime',
       label: t('dashboard.summary.averageTime'),
-      value: t('dashboard.summary.minutes', { count: Math.round(summary.average_time_to_correct_sector_minutes) }),
+      value: t('dashboard.summary.minutes', {
+        count: Math.round(summary.average_time_to_correct_sector_minutes),
+      }),
     },
   ];
 

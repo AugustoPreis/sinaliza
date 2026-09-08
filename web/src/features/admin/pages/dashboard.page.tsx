@@ -29,13 +29,9 @@ const DEFAULT_FILTERS: IAdminTicketFilters = {
   search: '',
 };
 
-// Tela C.1 combines the aggregate indicators panel (`GET /admin/dashboard`)
-// with a consolidated by-sector table on the same screen. We additionally
-// render the full individual-ticket listing (`GET /admin/tickets`) further
-// down this same page — rather than adding a second route — so an admin can
-// both see the aggregate picture and drill into any single ticket (reusing
-// the shared `/tickets/$ticketId` detail route, which `GetTicketUseCase`
-// already grants ADMIN full access to) without leaving the "Painel geral".
+// Tela C.1: aggregate indicators + by-sector table plus the full ticket
+// listing on one page, so an admin can drill into a ticket without leaving
+// the "Painel geral".
 export function AdminDashboardPage(): ReactElement {
   const { t } = useTranslation('admin');
   const navigate = useNavigate();
