@@ -1,0 +1,77 @@
+{
+  "queue": {
+    "title": "Fila do setor"
+  },
+  "resolved": {
+    "title": "Resolvidos",
+    "searchLabel": "Buscar",
+    "searchPlaceholder": "Protocolo, local ou palavra da descrição"
+  },
+  "table": {
+    "loading": "Carregando chamados...",
+    "protocol": "Protocolo",
+    "description": "Descrição",
+    "location": "Local",
+    "status": "Status",
+    "divergence": "Divergência",
+    "diverged": "Divergente",
+    "empty": "Nenhum chamado encontrado."
+  },
+  "filters": {
+    "searchLabel": "Buscar",
+    "searchPlaceholder": "Protocolo, local ou descrição",
+    "statusLabel": "Status",
+    "statusPlaceholder": "Todos os status",
+    "statusEmpty": "Nenhum status encontrado.",
+    "buildingLabel": "Prédio",
+    "buildingPlaceholder": "Todos os prédios",
+    "buildingEmpty": "Nenhum prédio encontrado.",
+    "periodLabel": "Período"
+  },
+  "status": {
+    "OPEN": "Aberto",
+    "FORWARDED": "Encaminhado",
+    "IN_PROGRESS": "Em andamento",
+    "RESOLVED": "Resolvido"
+  },
+  "detail": {
+    "loading": "Carregando chamado...",
+    "notFound": "Chamado não encontrado.",
+    "description": "Descrição",
+    "photos": "Fotos",
+    "photoAlt": "Foto do chamado {{protocol}}",
+    "classification": "Classificação",
+    "automaticSector": "Setor automático",
+    "confirmedSector": "Setor confirmado",
+    "currentSector": "Setor atual",
+    "diverged": "Divergente",
+    "status": {
+      "success": "Status atualizado com sucesso.",
+      "action": {
+        "IN_PROGRESS": "Iniciar atendimento",
+        "RESOLVED": "Marcar como resolvido"
+      }
+    },
+    "reassign": {
+      "trigger": "Reencaminhar",
+      "title": "Reencaminhar chamado",
+      "targetSectorLabel": "Setor de destino",
+      "targetSectorPlaceholder": "Selecione o setor",
+      "reasonLabel": "Motivo do reencaminhamento",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "success": "Chamado reencaminhado com sucesso."
+    },
+    "internalNote": {
+      "label": "Observação interna",
+      "empty": "Nenhuma observação registrada.",
+      "placeholder": "Visível apenas para o setor e a administração.",
+      "save": "Salvar observação",
+      "success": "Observação interna salva com sucesso."
+    },
+    "timeline": {
+      "title": "Linha do tempo",
+      "empty": "Nenhum evento registrado."
+    }
+  }
+}
