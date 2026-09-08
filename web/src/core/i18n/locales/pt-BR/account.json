@@ -1,0 +1,14 @@
+{
+  "title": "Minha conta",
+  "subtitle": "Gerencie sua senha de acesso.",
+  "password": {
+    "sectionTitle": "Senha de acesso",
+    "sectionDescription": "Atualize a senha usada para entrar no sistema.",
+    "currentLabel": "Senha atual",
+    "newLabel": "Nova senha",
+    "newHint": "Mínimo de 8 caracteres, com letras e números.",
+    "confirmLabel": "Confirmar nova senha",
+    "submit": "Alterar senha",
+    "success": "Senha alterada com sucesso."
+  }
+}

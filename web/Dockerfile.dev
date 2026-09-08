@@ -1,0 +1,15 @@
+FROM node:24-alpine AS dev
+
+RUN corepack enable
+WORKDIR /app
+
+COPY . .
+
+RUN corepack prepare --activate $(node -p "require('./package.json').packageManager || 'pnpm@11.5.3'")
+RUN pnpm install
+
+# Runs as root: Vite's dependency optimizer writes into the bind-mounted
+# node_modules/.vite at runtime, which a non-root user couldn't do since
+# that directory is populated by this root-run `pnpm install`. Dev-only,
+# never shipped.
+CMD ["pnpm", "dev"]

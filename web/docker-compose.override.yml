@@ -1,0 +1,11 @@
+# Applied automatically by `docker compose up` for local development:
+# hot-reload via bind mount of the code, same pattern as ../api.
+services:
+  web:
+    build:
+      dockerfile: Dockerfile.dev
+    environment:
+      CI: 'true'
+    volumes:
+      - .:/app
+      - /app/node_modules
