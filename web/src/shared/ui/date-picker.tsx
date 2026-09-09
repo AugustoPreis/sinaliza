@@ -81,10 +81,7 @@ export function DatePicker({
           </Button>
         ) : null}
       </Box>
-      <PopoverContent
-        className="w-auto min-w-[var(--radix-popover-trigger-width)] p-0"
-        align="start"
-      >
+      <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
           selected={selectedDate}

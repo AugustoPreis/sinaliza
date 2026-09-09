@@ -77,7 +77,11 @@ export function ApiSelect({
                 <Box className="text-muted-foreground">{placeholder}</Box>
               )}
             </Box>
-            <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
+            {/* Hidden once a value is picked — the clear button below takes
+                this same slot instead of stacking a second icon next to it. */}
+            {selectedOption ? null : (
+              <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
+            )}
           </Button>
         </PopoverTrigger>
         {selectedOption ? (
@@ -92,7 +96,7 @@ export function ApiSelect({
             size="icon"
             onClick={handleClear}
             aria-label={t('actions.clear')}
-            className="absolute right-7 top-1/2 size-6 -translate-y-1/2 p-0 opacity-50 hover:opacity-100"
+            className="absolute right-1.5 top-1/2 size-6 -translate-y-1/2 p-0 opacity-50 hover:opacity-100"
           >
             <X size={14} aria-hidden="true" />
           </Button>
