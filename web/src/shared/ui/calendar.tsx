@@ -33,13 +33,13 @@ export function Calendar({ className, classNames, showOutsideDays = true, ...pro
           'size-7 bg-transparent p-0 opacity-70 hover:opacity-100',
         ),
         month_grid: 'w-full border-collapse',
-        weekdays: 'flex',
-        weekday: 'text-muted-foreground w-8 text-[0.8rem] font-normal',
-        week: 'flex w-full mt-2',
+        weekdays: 'flex gap-1',
+        weekday: 'text-muted-foreground w-9 text-[0.8rem] font-normal',
+        week: 'flex w-full gap-1 mt-1',
         day: 'p-0 text-center text-sm relative [&:has([aria-selected])]:bg-accent',
         day_button: cn(
           buttonVariants({ variant: 'ghost' }),
-          'size-8 p-0 font-normal aria-selected:opacity-100',
+          'size-9 p-0 font-normal aria-selected:opacity-100',
         ),
         selected:
           'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rounded-md',

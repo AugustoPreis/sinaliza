@@ -1,10 +1,5 @@
 import { Check, ChevronsUpDown, Loader2, X } from 'lucide-react';
-import {
-  useState,
-  type ReactElement,
-  type ReactNode,
-  type MouseEvent as ReactMouseEvent,
-} from 'react';
+import { useState, type ReactElement, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@shared/ui/button';
@@ -58,43 +53,51 @@ export function ApiSelect({
     setOpen(false);
   }
 
-  function handleClear(event: ReactMouseEvent<SVGSVGElement>): void {
-    // Clear without opening the popover — the click already lands on the
-    // trigger button, so stop it before Radix toggles `open`.
-    event.stopPropagation();
-    event.preventDefault();
+  function handleClear(): void {
     onChange(undefined);
   }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          type="button"
-          variant="outline"
-          disabled={disabled}
-          className="h-9 w-full justify-between gap-2 px-3 font-normal"
-        >
-          <Box className="min-w-0 flex-1 truncate text-left">
-            {selectedOption ? (
-              selectedOption.label
-            ) : (
-              <Box className="text-muted-foreground">{placeholder}</Box>
+      <Box className="relative">
+        <PopoverTrigger asChild>
+          <Button
+            type="button"
+            variant="outline"
+            disabled={disabled}
+            className={cn(
+              'h-9 w-full justify-between gap-2 px-3 font-normal',
+              selectedOption && 'pr-9',
             )}
-          </Box>
-          {selectedOption ? (
-            <X
-              size={16}
-              aria-label={t('actions.clear')}
-              role="button"
-              tabIndex={-1}
-              onClick={handleClear}
-              className="shrink-0 opacity-50 hover:opacity-100"
-            />
-          ) : null}
-          <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
-        </Button>
-      </PopoverTrigger>
+          >
+            <Box className="min-w-0 flex-1 truncate text-left">
+              {selectedOption ? (
+                selectedOption.label
+              ) : (
+                <Box className="text-muted-foreground">{placeholder}</Box>
+              )}
+            </Box>
+            <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        {selectedOption ? (
+          // A real sibling button, not a descendant of the trigger: the
+          // trigger's own SVG children are `pointer-events-none` (so clicks
+          // on the chevron fall through to the button), which meant a clear
+          // icon nested inside the same trigger never received clicks either
+          // — they always fell through to the trigger and reopened it.
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={handleClear}
+            aria-label={t('actions.clear')}
+            className="absolute right-7 top-1/2 size-6 -translate-y-1/2 p-0 opacity-50 hover:opacity-100"
+          >
+            <X size={14} aria-hidden="true" />
+          </Button>
+        ) : null}
+      </Box>
       <PopoverContent align="start" className="w-[var(--radix-popover-trigger-width)] p-0">
         <Command shouldFilter={false}>
           <CommandInput placeholder={searchPlaceholder} onValueChange={onSearch} />
