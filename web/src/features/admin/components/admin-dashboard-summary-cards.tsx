@@ -2,8 +2,9 @@ import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { AdminDashboardSummaryDTO } from '@core/api/generated/sinalizaAPI.schemas';
-import { Grid, Stack } from '@shared/ui/layout';
-import { Heading, Text } from '@shared/ui/typography';
+import { Card, CardContent, CardDescription } from '@shared/ui/card';
+import { Grid } from '@shared/ui/layout';
+import { Heading } from '@shared/ui/typography';
 
 export interface AdminDashboardSummaryCardsProps {
   summary: AdminDashboardSummaryDTO;
@@ -33,14 +34,14 @@ export function AdminDashboardSummaryCards({
   return (
     <Grid columns={3} gap={4} className="grid-cols-1 sm:grid-cols-3">
       {cards.map((card) => (
-        <Stack key={card.key} gap={1} className="rounded-lg border border-border p-4">
-          <Text size="sm" tone="muted">
-            {card.label}
-          </Text>
-          <Heading level={2} size="lg">
-            {card.value}
-          </Heading>
-        </Stack>
+        <Card key={card.key}>
+          <CardContent className="flex flex-col gap-2 p-6">
+            <CardDescription>{card.label}</CardDescription>
+            <Heading level={2} size="lg">
+              {card.value}
+            </Heading>
+          </CardContent>
+        </Card>
       ))}
     </Grid>
   );
