@@ -1,6 +1,5 @@
 {
   "appName": "Sinaliza",
-  "stackTagline": "Vite + React + TanStack Router + Tailwind v4",
   "theme": {
     "switchToDarkMode": "Modo escuro",
     "switchToLightMode": "Modo claro"
@@ -16,7 +15,6 @@
     "dashboard": "Início",
     "sectorQueue": "Fila do setor",
     "sectorResolved": "Resolvidos",
-    "adminDashboard": "Painel geral",
     "adminSectors": "Setores e categorias",
     "adminUsersImport": "Importar usuários",
     "adminUsersPermissions": "Usuários e permissões",
@@ -28,18 +26,14 @@
     }
   },
   "sidebar": {
-    "settings": "Configurações",
     "collapse": "Recolher"
   },
   "breadcrumbs": {
     "dashboard": "Início",
     "account": "Minha conta",
-    "preferences": "Preferências",
-    "settings": "Configurações",
     "sectorQueue": "Fila do setor",
     "sectorResolved": "Resolvidos",
     "sectorTicketDetail": "Detalhe do chamado",
-    "adminDashboard": "Painel geral",
     "adminSectors": "Setores e categorias",
     "adminUsersImport": "Importar usuários",
     "adminUsersPermissions": "Usuários e permissões",
@@ -51,18 +45,9 @@
   },
   "userMenu": {
     "trigger": "Menu do usuário",
-    "myProfile": "Meu perfil",
-    "preferences": "Preferências"
+    "myProfile": "Meu perfil"
   },
   "pages": {
-    "preferences": {
-      "title": "Preferências",
-      "description": "Esta página está em construção."
-    },
-    "settings": {
-      "title": "Configurações",
-      "description": "Esta página está em construção."
-    },
     "sectorQueue": {
       "title": "Fila do setor",
       "description": "Esta página está em construção."

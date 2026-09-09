@@ -1,6 +1,5 @@
 import {
   Building2,
-  Gauge,
   Inbox,
   LayoutDashboard,
   LineChart,
@@ -40,13 +39,6 @@ export const APP_NAV_ITEMS = [
     icon: ListChecks,
     group: 'nav.groups.sector',
     permission: 'tickets:read-sector',
-  },
-  {
-    labelKey: 'nav.adminDashboard',
-    to: ROUTES.admin.tickets,
-    icon: Gauge,
-    group: 'nav.groups.administration',
-    permission: 'tickets:read-all',
   },
   {
     labelKey: 'nav.adminSectors',

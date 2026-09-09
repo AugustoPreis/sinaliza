@@ -1,9 +1,7 @@
-import { Link } from '@tanstack/react-router';
-import { ChevronLeft, ChevronRight, Settings } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ROUTES } from '@shared/routes';
 import { Box, Stack } from '@shared/ui/layout';
 import { cn } from '@shared/utils/cn';
 
@@ -29,10 +27,6 @@ export function AppSidebar(): ReactElement {
       </Box>
 
       <Stack gap={1} className="border-border p-4">
-        <Link to={ROUTES.settings} className={getSidebarItemClasses(collapsed)}>
-          <Settings size={18} aria-hidden="true" />
-          {!collapsed && t('sidebar.settings')}
-        </Link>
         <button
           type="button"
           onClick={toggleCollapsed}

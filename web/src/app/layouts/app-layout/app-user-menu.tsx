@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { LogOut, Moon, Settings2, Sun, User } from 'lucide-react';
+import { LogOut, Moon, Sun, User } from 'lucide-react';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -70,12 +70,6 @@ export function AppUserMenu(): ReactElement | null {
           <Link to={ROUTES.account}>
             <User size={16} aria-hidden="true" />
             {t('userMenu.myProfile', { ns: 'common' })}
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link to={ROUTES.preferences}>
-            <Settings2 size={16} aria-hidden="true" />
-            {t('userMenu.preferences', { ns: 'common' })}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild onClick={toggleThemeMode}>

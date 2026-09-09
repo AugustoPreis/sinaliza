@@ -1,27 +1,21 @@
-import { createFileRoute } from '@tanstack/react-router';
-import type { ReactElement } from 'react';
-import { useTranslation } from 'react-i18next';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
-import { Container, Stack } from '@shared/ui/layout';
-import { Heading, Text } from '@shared/ui/typography';
+import { useAuthStore } from '@core/auth/auth.store';
+import { hasPermission } from '@core/auth/permissions';
+import { ROUTES } from '@shared/routes';
 
-import { LogoutButton } from '@features/auth';
+import { AdminDashboardPage } from '@features/admin';
 
+// "/" is the Painel Geral for whoever can see every sector (tickets:read-all)
+// — everyone else (sector agents) lands on their own queue instead.
 export const Route = createFileRoute('/_authenticated/')({
-  component: HomePage,
+  beforeLoad: () => {
+    const permissions = useAuthStore.getState().user?.permissions ?? [];
+
+    if (!hasPermission(permissions, 'tickets:read-all')) {
+      throw redirect({ to: ROUTES.tickets.queue });
+    }
+  },
+  component: AdminDashboardPage,
   staticData: { breadcrumb: 'breadcrumbs.dashboard' },
 });
-
-function HomePage(): ReactElement {
-  const { t } = useTranslation();
-
-  return (
-    <Container>
-      <Stack align="center" gap={4}>
-        <Heading level={1}>{t('appName')}</Heading>
-        <Text tone="muted">{t('stackTagline')}</Text>
-        <LogoutButton />
-      </Stack>
-    </Container>
-  );
-}
