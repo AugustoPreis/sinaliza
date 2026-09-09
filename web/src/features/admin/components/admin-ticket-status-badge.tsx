@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 import type { AdminTicketListItemResponseDTOStatus } from '@core/api/generated/sinalizaAPI.schemas';
 import { Badge, type BadgeProps } from '@shared/ui/badge';
 
+// Brand mapping: ABERTO neutral, ENCAMINHADO info/blue, EM ANDAMENTO
+// warning/amber, RESOLVIDO success/green.
 const STATUS_VARIANTS: Record<AdminTicketListItemResponseDTOStatus, BadgeProps['variant']> = {
-  OPEN: 'secondary',
-  FORWARDED: 'warning',
-  IN_PROGRESS: 'default',
+  OPEN: 'outline',
+  FORWARDED: 'info',
+  IN_PROGRESS: 'warning',
   RESOLVED: 'success',
 };
 
