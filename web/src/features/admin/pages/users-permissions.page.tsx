@@ -1,12 +1,16 @@
-import type { ReactElement } from 'react';
+import { Plus } from 'lucide-react';
+import { useState, type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Can } from '@core/auth/can';
 import { useListQueryParams } from '@shared/hooks/use-list-query-params.hook';
-import { Container, Stack } from '@shared/ui/layout';
+import { Button } from '@shared/ui/button';
+import { Container, HStack, Stack } from '@shared/ui/layout';
 import { LoadingState } from '@shared/ui/loading-state';
 import { Pagination } from '@shared/ui/pagination';
 import { Heading } from '@shared/ui/typography';
 
+import { CreateUserDialog } from '../components/create-user-dialog';
 import { UsersFilterBar } from '../components/users-filter-bar';
 import { UsersTable } from '../components/users-table';
 import { useAdminUsersQuery } from '../queries/admin-users.queries';
@@ -20,6 +24,7 @@ const DEFAULT_FILTERS: IAdminUserFilters = {
 
 export function AdminUsersPermissionsPage(): ReactElement {
   const { t } = useTranslation('admin');
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
   const { page, setPage, filters, setFilter, debouncedFilters } =
     useListQueryParams<IAdminUserFilters>(DEFAULT_FILTERS);
 
@@ -37,7 +42,15 @@ export function AdminUsersPermissionsPage(): ReactElement {
   return (
     <Container size="wide">
       <Stack gap={6}>
-        <Heading level={1}>{t('usersPermissions.title')}</Heading>
+        <HStack align="center" justify="between" wrap gap={4}>
+          <Heading level={1}>{t('usersPermissions.title')}</Heading>
+          <Can permission="users:create">
+            <Button type="button" onClick={() => setIsCreateOpen(true)}>
+              <Plus size={16} aria-hidden="true" />
+              {t('usersPermissions.createButton')}
+            </Button>
+          </Can>
+        </HStack>
 
         <UsersFilterBar filters={filters} onChange={setFilter} />
 
@@ -50,6 +63,8 @@ export function AdminUsersPermissionsPage(): ReactElement {
           </Stack>
         )}
       </Stack>
+
+      <CreateUserDialog open={isCreateOpen} onOpenChange={setIsCreateOpen} />
     </Container>
   );
 }

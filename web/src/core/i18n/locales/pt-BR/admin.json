@@ -46,6 +46,7 @@
     "title": "Setores e categorias",
     "loading": "Carregando setores...",
     "createButton": "Novo setor",
+    "readOnlyNotice": "Você está vendo os setores e categorias em modo somente leitura. Para solicitar alterações, entre em contato com a administração.",
     "searchPlaceholder": "Buscar por nome do setor",
     "table": {
       "name": "Nome",
@@ -95,6 +96,27 @@
   "usersPermissions": {
     "title": "Usuários e permissões",
     "loading": "Carregando usuários...",
+    "createButton": "Cadastrar usuário",
+    "createDialog": {
+      "title": "Cadastrar usuário",
+      "nameLabel": "Nome",
+      "emailLabel": "E-mail institucional",
+      "institutionalLinkLabel": "Vínculo",
+      "institutionalLinks": {
+        "ALUNO": "Aluno",
+        "PROFESSOR": "Professor",
+        "SERVIDOR": "Servidor"
+      },
+      "sectorRoleLabel": "Papel / setor",
+      "sectorRolePlaceholder": "Selecione o papel",
+      "sectorRoleEmpty": "Nenhum setor encontrado.",
+      "sectorRoleNone": "Nenhum (Solicitante)",
+      "sectorRoleAdmin": "Administrador",
+      "cancel": "Cancelar",
+      "save": "Cadastrar",
+      "success": "Usuário cadastrado com sucesso.",
+      "roleNotConfigured": "O papel \"{{role}}\" ainda não está configurado no sistema."
+    },
     "roles": {
       "REQUESTER": "Solicitante",
       "SECTOR": "Setor",

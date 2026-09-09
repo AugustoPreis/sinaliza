@@ -9,11 +9,13 @@ import {
 import type {
   AdminUsersControllerFindAllV1200,
   AdminUsersControllerFindAllV1Params,
+  CreateUserDTO,
   ImportUsersResultDTO,
   RevokeUserAccessDTO,
   UpdateUserPermissionsDTO,
   UpdateUserPermissionsResponseDTO,
   UserAccessResponseDTO,
+  UserResponseDTO,
 } from '@core/api/generated/sinalizaAPI.schemas';
 import type { ApiError } from '@core/errors/error.types';
 
@@ -32,6 +34,21 @@ export function useAdminUsersQuery(
     queryKey: adminUserQueryKeys.list(params),
     queryFn: () => adminUsersService.fetchAdminUsers(params),
     placeholderData: (previousData) => previousData,
+  });
+}
+
+export function useCreateUserMutation(): UseMutationResult<
+  UserResponseDTO,
+  ApiError,
+  CreateUserDTO
+> {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (dto) => adminUsersService.createUser(dto),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: adminUserQueryKeys.all });
+    },
   });
 }
 

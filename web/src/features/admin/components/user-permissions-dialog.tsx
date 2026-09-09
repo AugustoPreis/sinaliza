@@ -143,7 +143,7 @@ export function UserPermissionsDialog({
             ) : null}
           </Stack>
 
-          <DialogFooter>
+          <DialogFooter className="mt-6">
             <Button
               type="button"
               variant="outline"
