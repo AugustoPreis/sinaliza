@@ -15,6 +15,15 @@ import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
+  // Express 5 defaults to the 'simple' query parser (Node's `querystring`),
+  // which doesn't understand `key[]=`/`key[0]=` array notation — it keeps
+  // `status[]` as a literal key instead of producing `status: [...]`. The
+  // frontend's Axios client serializes array query params that way (and
+  // supertest/qs use the indexed form), so filters silently no-op without
+  // this. 'extended' restores the `qs`-based parsing Express 4 used by
+  // default.
+  app.getHttpAdapter().getInstance().set('query parser', 'extended');
+
   const configService = app.get(ConfigService);
   const port = configService.get<number>('app.port', 3000);
   const prefix = configService.get<string>('app.prefix', 'api');

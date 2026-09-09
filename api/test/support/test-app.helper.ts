@@ -46,6 +46,10 @@ export async function bootstrapTestApp(
 
   const app = moduleRef.createNestApplication();
 
+  // See main.ts: Express 5 defaults to the 'simple' query parser, which
+  // breaks `key[]=`/`key[0]=` array query params (e.g. `?status[]=...`).
+  app.getHttpAdapter().getInstance().set('query parser', 'extended');
+
   app.use(helmet());
   app.use(compression());
   app.use(cookieParser());
