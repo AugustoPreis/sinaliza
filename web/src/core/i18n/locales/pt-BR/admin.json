@@ -12,9 +12,12 @@
       "buildingLabel": "Prédio",
       "buildingPlaceholder": "Todos os prédios",
       "buildingEmpty": "Nenhum prédio encontrado.",
-      "periodLabel": "Período",
+      "periodFromLabel": "De",
+      "periodToLabel": "Até",
       "searchLabel": "Buscar",
-      "searchPlaceholder": "Protocolo, local ou descrição"
+      "searchPlaceholder": "Protocolo, local ou descrição",
+      "showMoreFilters": "Ver mais filtros",
+      "showLessFilters": "Ver menos filtros"
     },
     "summary": {
       "volume": "Volume de chamados",
@@ -184,7 +187,8 @@
       "buildingLabel": "Prédio",
       "buildingPlaceholder": "Todos os prédios",
       "buildingEmpty": "Nenhum prédio encontrado.",
-      "periodLabel": "Período"
+      "periodFromLabel": "De",
+      "periodToLabel": "Até"
     },
     "summary": {
       "automaticAccuracy": "Acerto automático",

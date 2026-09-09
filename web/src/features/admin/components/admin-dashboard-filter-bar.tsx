@@ -1,4 +1,5 @@
-import type { ReactElement } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -6,7 +7,7 @@ import {
   type AdminTicketsControllerFindAllV1StatusItem as TStatus,
 } from '@core/api/generated/sinalizaAPI.schemas';
 import { ApiSelect } from '@shared/ui/api-select';
-import { DateRangePicker } from '@shared/ui/date-range-picker';
+import { Button } from '@shared/ui/button';
 import { Input } from '@shared/ui/input';
 import { Label } from '@shared/ui/label';
 import { Grid, Stack } from '@shared/ui/layout';
@@ -37,6 +38,7 @@ export function AdminDashboardFilterBar({
 }: AdminDashboardFilterBarProps): ReactElement {
   const { t } = useTranslation('admin');
   const { t: tTickets } = useTranslation('tickets');
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
   const locationsQuery = useLocationsQuery();
   const sectorsQuery = useAdminSectorsQuery();
 
@@ -60,80 +62,116 @@ export function AdminDashboardFilterBar({
   );
 
   return (
-    <Grid
-      columns={4}
-      gap={4}
-      className={
-        showSearch
-          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5'
-          : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-      }
-    >
-      {showSearch ? (
+    <Stack gap={4}>
+      <Grid
+        gap={6}
+        className={
+          showSearch
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            : 'grid-cols-1 sm:grid-cols-2'
+        }
+      >
+        {showSearch ? (
+          <Stack gap={2}>
+            <Label htmlFor="dashboard-search">{t('dashboard.filters.searchLabel')}</Label>
+            <Input
+              id="dashboard-search"
+              value={filters.search}
+              onChange={(event) => onChange('search', event.target.value)}
+              placeholder={t('dashboard.filters.searchPlaceholder')}
+            />
+          </Stack>
+        ) : null}
+
         <Stack gap={2}>
-          <Label htmlFor="dashboard-search">{t('dashboard.filters.searchLabel')}</Label>
-          <Input
-            id="dashboard-search"
-            value={filters.search}
-            onChange={(event) => onChange('search', event.target.value)}
-            placeholder={t('dashboard.filters.searchPlaceholder')}
+          <Label htmlFor="dashboard-sector">{t('dashboard.filters.sectorLabel')}</Label>
+          <ApiSelect
+            value={filters.sectorId}
+            onChange={(value) => onChange('sectorId', value)}
+            options={sectorOptions}
+            selectedOption={selectedSector}
+            isLoading={sectorsQuery.isLoading}
+            placeholder={t('dashboard.filters.sectorPlaceholder')}
+            emptyMessage={t('dashboard.filters.sectorEmpty')}
           />
         </Stack>
-      ) : null}
 
-      <Stack gap={2}>
-        <Label htmlFor="dashboard-sector">{t('dashboard.filters.sectorLabel')}</Label>
-        <ApiSelect
-          value={filters.sectorId}
-          onChange={(value) => onChange('sectorId', value)}
-          options={sectorOptions}
-          selectedOption={selectedSector}
-          isLoading={sectorsQuery.isLoading}
-          placeholder={t('dashboard.filters.sectorPlaceholder')}
-          emptyMessage={t('dashboard.filters.sectorEmpty')}
-        />
-      </Stack>
+        <Stack gap={2}>
+          <Label htmlFor="dashboard-status">{t('dashboard.filters.statusLabel')}</Label>
+          <MultiSelect
+            value={filters.status}
+            onChange={(value) => onChange('status', value as TStatus[])}
+            options={statusOptions}
+            selectedOptions={selectedStatusOptions}
+            placeholder={t('dashboard.filters.statusPlaceholder')}
+            emptyMessage={t('dashboard.filters.statusEmpty')}
+          />
+        </Stack>
+      </Grid>
 
-      <Stack gap={2}>
-        <Label htmlFor="dashboard-status">{t('dashboard.filters.statusLabel')}</Label>
-        <MultiSelect
-          value={filters.status}
-          onChange={(value) => onChange('status', value as TStatus[])}
-          options={statusOptions}
-          selectedOptions={selectedStatusOptions}
-          placeholder={t('dashboard.filters.statusPlaceholder')}
-          emptyMessage={t('dashboard.filters.statusEmpty')}
-        />
-      </Stack>
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="w-fit"
+        onClick={() => setShowMoreFilters((current) => !current)}
+      >
+        {showMoreFilters ? (
+          <>
+            <ChevronUp size={16} aria-hidden="true" />
+            {t('dashboard.filters.showLessFilters')}
+          </>
+        ) : (
+          <>
+            <ChevronDown size={16} aria-hidden="true" />
+            {t('dashboard.filters.showMoreFilters')}
+          </>
+        )}
+      </Button>
 
-      <Stack gap={2}>
-        <Label htmlFor="dashboard-building">{t('dashboard.filters.buildingLabel')}</Label>
-        <ApiSelect
-          value={filters.buildingId}
-          onChange={(value) => onChange('buildingId', value)}
-          options={buildingOptions}
-          selectedOption={selectedBuilding}
-          isLoading={locationsQuery.isLoading}
-          placeholder={t('dashboard.filters.buildingPlaceholder')}
-          emptyMessage={t('dashboard.filters.buildingEmpty')}
-        />
-      </Stack>
+      {/* Values stay in `filters` even while collapsed, so hiding this
+          section never resets Prédio/Período. */}
+      <Grid
+        gap={6}
+        className={
+          showMoreFilters
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            : 'hidden'
+        }
+      >
+        <Stack gap={2}>
+          <Label htmlFor="dashboard-building">{t('dashboard.filters.buildingLabel')}</Label>
+          <ApiSelect
+            value={filters.buildingId}
+            onChange={(value) => onChange('buildingId', value)}
+            options={buildingOptions}
+            selectedOption={selectedBuilding}
+            isLoading={locationsQuery.isLoading}
+            placeholder={t('dashboard.filters.buildingPlaceholder')}
+            emptyMessage={t('dashboard.filters.buildingEmpty')}
+          />
+        </Stack>
 
-      <Stack gap={2}>
-        <Label htmlFor="dashboard-from">{t('dashboard.filters.periodLabel')}</Label>
-        <DateRangePicker
-          idPrefix="dashboard"
-          from={filters.from}
-          to={filters.to}
-          onChange={({ from, to }) => {
-            onChange('from', from);
-            onChange('to', to);
-          }}
-          placeholder={tTickets('filters.periodPlaceholder')}
-          fromLabel={tTickets('filters.periodFromLabel')}
-          toLabel={tTickets('filters.periodToLabel')}
-        />
-      </Stack>
-    </Grid>
+        <Stack gap={2}>
+          <Label htmlFor="dashboard-from">{t('dashboard.filters.periodFromLabel')}</Label>
+          <Input
+            id="dashboard-from"
+            type="date"
+            value={filters.from ?? ''}
+            onChange={(event) => onChange('from', event.target.value || undefined)}
+          />
+        </Stack>
+
+        <Stack gap={2}>
+          <Label htmlFor="dashboard-to">{t('dashboard.filters.periodToLabel')}</Label>
+          <Input
+            id="dashboard-to"
+            type="date"
+            value={filters.to ?? ''}
+            onChange={(event) => onChange('to', event.target.value || undefined)}
+          />
+        </Stack>
+      </Grid>
+    </Stack>
   );
 }

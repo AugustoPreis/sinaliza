@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ApiSelect } from '@shared/ui/api-select';
-import { DateRangePicker } from '@shared/ui/date-range-picker';
+import { Input } from '@shared/ui/input';
 import { Label } from '@shared/ui/label';
 import { Grid, Stack } from '@shared/ui/layout';
 
@@ -18,7 +18,6 @@ export interface ResearchFilterBarProps {
 
 export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps): ReactElement {
   const { t } = useTranslation('admin');
-  const { t: tTickets } = useTranslation('tickets');
   const locationsQuery = useLocationsQuery();
   const sectorsQuery = useAdminSectorsQuery();
 
@@ -34,7 +33,7 @@ export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps)
   const selectedSector = sectorOptions.find((option) => option.value === filters.sectorId);
 
   return (
-    <Grid columns={3} gap={4} className="grid-cols-1 sm:grid-cols-3">
+    <Grid gap={6} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       <Stack gap={2}>
         <Label htmlFor="research-sector">{t('research.filters.sectorLabel')}</Label>
         <ApiSelect
@@ -62,18 +61,22 @@ export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps)
       </Stack>
 
       <Stack gap={2}>
-        <Label htmlFor="research-from">{t('research.filters.periodLabel')}</Label>
-        <DateRangePicker
-          idPrefix="research"
-          from={filters.from}
-          to={filters.to}
-          onChange={({ from, to }) => {
-            onChange('from', from);
-            onChange('to', to);
-          }}
-          placeholder={tTickets('filters.periodPlaceholder')}
-          fromLabel={tTickets('filters.periodFromLabel')}
-          toLabel={tTickets('filters.periodToLabel')}
+        <Label htmlFor="research-from">{t('research.filters.periodFromLabel')}</Label>
+        <Input
+          id="research-from"
+          type="date"
+          value={filters.from ?? ''}
+          onChange={(event) => onChange('from', event.target.value || undefined)}
+        />
+      </Stack>
+
+      <Stack gap={2}>
+        <Label htmlFor="research-to">{t('research.filters.periodToLabel')}</Label>
+        <Input
+          id="research-to"
+          type="date"
+          value={filters.to ?? ''}
+          onChange={(event) => onChange('to', event.target.value || undefined)}
         />
       </Stack>
     </Grid>

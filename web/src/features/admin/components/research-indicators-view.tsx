@@ -55,7 +55,12 @@ export function ResearchIndicatorsView({ indicators }: ResearchIndicatorsViewPro
     {
       key: 'count',
       header: t('research.volume.count'),
-      cell: (row) => <Text size="sm">{row.count}</Text>,
+      className: 'w-px whitespace-nowrap text-center',
+      cell: (row) => (
+        <Text size="sm" className="text-center">
+          {row.count}
+        </Text>
+      ),
     },
   ];
 
@@ -68,7 +73,12 @@ export function ResearchIndicatorsView({ indicators }: ResearchIndicatorsViewPro
     {
       key: 'count',
       header: t('research.volume.count'),
-      cell: (row) => <Text size="sm">{row.count}</Text>,
+      className: 'w-px whitespace-nowrap text-center',
+      cell: (row) => (
+        <Text size="sm" className="text-center">
+          {row.count}
+        </Text>
+      ),
     },
   ];
 
@@ -81,13 +91,19 @@ export function ResearchIndicatorsView({ indicators }: ResearchIndicatorsViewPro
     {
       key: 'count',
       header: t('research.volume.count'),
-      cell: (row) => <Text size="sm">{row.count}</Text>,
+      className: 'w-px whitespace-nowrap text-center',
+      cell: (row) => (
+        <Text size="sm" className="text-center">
+          {row.count}
+        </Text>
+      ),
     },
   ];
 
   return (
     <Stack gap={8}>
-      <Grid gap={4} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+      {/* 5 cards: 3 + 2 layout on lg. Adding/removing a card changes this. */}
+      <Grid gap={4} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {summaryCards.map((card) => (
           <Card key={card.key}>
             <CardContent className="flex flex-col gap-2 p-6">
