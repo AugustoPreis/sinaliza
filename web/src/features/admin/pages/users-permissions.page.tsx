@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react';
+import { Plus, Upload } from 'lucide-react';
 import { useState, type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,6 +11,7 @@ import { Pagination } from '@shared/ui/pagination';
 import { Heading } from '@shared/ui/typography';
 
 import { CreateUserDialog } from '../components/create-user-dialog';
+import { ImportUsersDialog } from '../components/import-users-dialog';
 import { UsersFilterBar } from '../components/users-filter-bar';
 import { UsersTable } from '../components/users-table';
 import { useAdminUsersQuery } from '../queries/admin-users.queries';
@@ -25,6 +26,7 @@ const DEFAULT_FILTERS: IAdminUserFilters = {
 export function AdminUsersPermissionsPage(): ReactElement {
   const { t } = useTranslation('admin');
   const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isImportOpen, setIsImportOpen] = useState(false);
   const { page, setPage, filters, setFilter, debouncedFilters } =
     useListQueryParams<IAdminUserFilters>(DEFAULT_FILTERS);
 
@@ -44,12 +46,20 @@ export function AdminUsersPermissionsPage(): ReactElement {
       <Stack gap={6}>
         <HStack align="center" justify="between" wrap gap={4}>
           <Heading level={1}>{t('usersPermissions.title')}</Heading>
-          <Can permission="users:create">
-            <Button type="button" onClick={() => setIsCreateOpen(true)}>
-              <Plus size={16} aria-hidden="true" />
-              {t('usersPermissions.createButton')}
-            </Button>
-          </Can>
+          <HStack gap={2}>
+            <Can permission="users:import">
+              <Button type="button" variant="outline" onClick={() => setIsImportOpen(true)}>
+                <Upload size={16} aria-hidden="true" />
+                {t('usersPermissions.importButton')}
+              </Button>
+            </Can>
+            <Can permission="users:create">
+              <Button type="button" onClick={() => setIsCreateOpen(true)}>
+                <Plus size={16} aria-hidden="true" />
+                {t('usersPermissions.createButton')}
+              </Button>
+            </Can>
+          </HStack>
         </HStack>
 
         <UsersFilterBar filters={filters} onChange={setFilter} />
@@ -65,6 +75,7 @@ export function AdminUsersPermissionsPage(): ReactElement {
       </Stack>
 
       <CreateUserDialog open={isCreateOpen} onOpenChange={setIsCreateOpen} />
+      <ImportUsersDialog open={isImportOpen} onOpenChange={setIsImportOpen} />
     </Container>
   );
 }

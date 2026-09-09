@@ -12,7 +12,6 @@ export const ROUTES = {
   admin: {
     tickets: '/admin/tickets',
     sectors: '/admin/sectors',
-    usersImport: '/admin/users/import',
     usersPermissions: '/admin/users',
     research: '/admin/research',
   },

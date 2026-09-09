@@ -4,7 +4,6 @@ import {
   LayoutDashboard,
   LineChart,
   ListChecks,
-  Upload,
   Users,
   type LucideIcon,
 } from 'lucide-react';
@@ -46,13 +45,6 @@ export const APP_NAV_ITEMS = [
     icon: Building2,
     group: 'nav.groups.administration',
     permission: 'sectors:read',
-  },
-  {
-    labelKey: 'nav.adminUsersImport',
-    to: ROUTES.admin.usersImport,
-    icon: Upload,
-    group: 'nav.groups.administration',
-    permission: 'users:import',
   },
   {
     labelKey: 'nav.adminUsersPermissions',

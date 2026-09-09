@@ -22,7 +22,6 @@ import { Route as AuthenticatedTicketsIndexRouteImport } from './routes/_authent
 import { Route as AuthenticatedTicketsTicketIdRouteImport } from './routes/_authenticated/tickets/$ticketId'
 import { Route as AuthenticatedTicketsResolvedRouteImport } from './routes/_authenticated/tickets/resolved'
 import { Route as AuthenticatedAdminUsersIndexRouteImport } from './routes/_authenticated/admin/users/index'
-import { Route as AuthenticatedAdminUsersImportRouteImport } from './routes/_authenticated/admin/users/import'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -95,12 +94,6 @@ const AuthenticatedAdminUsersIndexRoute =
     path: '/admin/users/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedAdminUsersImportRoute =
-  AuthenticatedAdminUsersImportRouteImport.update({
-    id: '/admin/users/import',
-    path: '/admin/users/import',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
@@ -114,7 +107,6 @@ export interface FileRoutesByFullPath {
   '/tickets/$ticketId': typeof AuthenticatedTicketsTicketIdRoute
   '/tickets/resolved': typeof AuthenticatedTicketsResolvedRoute
   '/tickets/': typeof AuthenticatedTicketsIndexRoute
-  '/admin/users/import': typeof AuthenticatedAdminUsersImportRoute
   '/admin/users/': typeof AuthenticatedAdminUsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -129,7 +121,6 @@ export interface FileRoutesByTo {
   '/tickets/$ticketId': typeof AuthenticatedTicketsTicketIdRoute
   '/tickets/resolved': typeof AuthenticatedTicketsResolvedRoute
   '/tickets': typeof AuthenticatedTicketsIndexRoute
-  '/admin/users/import': typeof AuthenticatedAdminUsersImportRoute
   '/admin/users': typeof AuthenticatedAdminUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -146,7 +137,6 @@ export interface FileRoutesById {
   '/_authenticated/tickets/$ticketId': typeof AuthenticatedTicketsTicketIdRoute
   '/_authenticated/tickets/resolved': typeof AuthenticatedTicketsResolvedRoute
   '/_authenticated/tickets/': typeof AuthenticatedTicketsIndexRoute
-  '/_authenticated/admin/users/import': typeof AuthenticatedAdminUsersImportRoute
   '/_authenticated/admin/users/': typeof AuthenticatedAdminUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -163,7 +153,6 @@ export interface FileRouteTypes {
     | '/tickets/$ticketId'
     | '/tickets/resolved'
     | '/tickets/'
-    | '/admin/users/import'
     | '/admin/users/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -178,7 +167,6 @@ export interface FileRouteTypes {
     | '/tickets/$ticketId'
     | '/tickets/resolved'
     | '/tickets'
-    | '/admin/users/import'
     | '/admin/users'
   id:
     | '__root__'
@@ -194,7 +182,6 @@ export interface FileRouteTypes {
     | '/_authenticated/tickets/$ticketId'
     | '/_authenticated/tickets/resolved'
     | '/_authenticated/tickets/'
-    | '/_authenticated/admin/users/import'
     | '/_authenticated/admin/users/'
   fileRoutesById: FileRoutesById
 }
@@ -298,13 +285,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminUsersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/admin/users/import': {
-      id: '/_authenticated/admin/users/import'
-      path: '/admin/users/import'
-      fullPath: '/admin/users/import'
-      preLoaderRoute: typeof AuthenticatedAdminUsersImportRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
   }
 }
 
@@ -317,7 +297,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedTicketsTicketIdRoute: typeof AuthenticatedTicketsTicketIdRoute
   AuthenticatedTicketsResolvedRoute: typeof AuthenticatedTicketsResolvedRoute
   AuthenticatedTicketsIndexRoute: typeof AuthenticatedTicketsIndexRoute
-  AuthenticatedAdminUsersImportRoute: typeof AuthenticatedAdminUsersImportRoute
   AuthenticatedAdminUsersIndexRoute: typeof AuthenticatedAdminUsersIndexRoute
 }
 
@@ -330,7 +309,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedTicketsTicketIdRoute: AuthenticatedTicketsTicketIdRoute,
   AuthenticatedTicketsResolvedRoute: AuthenticatedTicketsResolvedRoute,
   AuthenticatedTicketsIndexRoute: AuthenticatedTicketsIndexRoute,
-  AuthenticatedAdminUsersImportRoute: AuthenticatedAdminUsersImportRoute,
   AuthenticatedAdminUsersIndexRoute: AuthenticatedAdminUsersIndexRoute,
 }
 

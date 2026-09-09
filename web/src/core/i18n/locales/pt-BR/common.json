@@ -16,7 +16,6 @@
     "sectorQueue": "Fila do setor",
     "sectorResolved": "Resolvidos",
     "adminSectors": "Setores e categorias",
-    "adminUsersImport": "Importar usuários",
     "adminUsersPermissions": "Usuários e permissões",
     "adminResearch": "Indicadores da pesquisa",
     "groups": {
@@ -35,7 +34,6 @@
     "sectorResolved": "Resolvidos",
     "sectorTicketDetail": "Detalhe do chamado",
     "adminSectors": "Setores e categorias",
-    "adminUsersImport": "Importar usuários",
     "adminUsersPermissions": "Usuários e permissões",
     "adminResearch": "Indicadores da pesquisa"
   },
@@ -62,10 +60,6 @@
     },
     "adminSectors": {
       "title": "Setores e categorias",
-      "description": "Esta página está em construção."
-    },
-    "adminUsersImport": {
-      "title": "Importar usuários",
       "description": "Esta página está em construção."
     },
     "adminUsersPermissions": {
