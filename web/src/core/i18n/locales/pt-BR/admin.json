@@ -83,7 +83,9 @@
     "uploadStep": {
       "title": "2. Envie o arquivo preenchido",
       "description": "Selecione o arquivo .xlsx preenchido e clique em importar.",
-      "button": "Importar"
+      "button": "Importar",
+      "chooseFileButton": "Escolher arquivo",
+      "noFileChosen": "Nenhum arquivo selecionado"
     },
     "result": {
       "successBadge": "Importação concluída",

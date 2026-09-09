@@ -41,7 +41,16 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 });
 
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse<ISuccessEnvelope>) =>
-    ({ ...response, data: response.data.data }) as AxiosResponse,
+  (response: AxiosResponse<ISuccessEnvelope>) => {
+    // Binary responses (file downloads) never carry the
+    // {success, data, timestamp} envelope — `response.data` is already the
+    // Blob itself. Unwrapping it here produced `URL.createObjectURL(undefined)`
+    // downstream, since `.data.data` doesn't exist on a Blob.
+    if (response.config.responseType === 'blob') {
+      return response as AxiosResponse;
+    }
+
+    return { ...response, data: response.data.data } as AxiosResponse;
+  },
   (error: AxiosError) => handleUnauthorized(error, (config) => axiosInstance(config)),
 );

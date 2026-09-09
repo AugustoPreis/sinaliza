@@ -1,11 +1,12 @@
 import { Download, Upload } from 'lucide-react';
-import { useRef, useState, type ChangeEvent, type ReactElement } from 'react';
+import { useState, type ChangeEvent, type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
 import { mapAxiosErrorToAppError } from '@core/errors/error.mapper';
 import { Badge } from '@shared/ui/badge';
 import { Button } from '@shared/ui/button';
+import { FileInput } from '@shared/ui/file-input';
 import { Container, Stack } from '@shared/ui/layout';
 import { Heading, Text } from '@shared/ui/typography';
 import { downloadBlob } from '@shared/utils/download-blob';
@@ -17,7 +18,6 @@ const TEMPLATE_FILENAME = 'modelo_usuarios_sinaliza.xlsx';
 
 export function AdminUsersImportPage(): ReactElement {
   const { t } = useTranslation('admin');
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
   const [isDownloading, setIsDownloading] = useState(false);
   const importMutation = useImportUsersMutation();
@@ -93,12 +93,11 @@ export function AdminUsersImportPage(): ReactElement {
             {t('usersImport.uploadStep.description')}
           </Text>
 
-          <input
-            ref={fileInputRef}
-            type="file"
+          <FileInput
             accept=".xlsx"
             onChange={handleFileChange}
-            className="text-sm"
+            buttonLabel={t('usersImport.uploadStep.chooseFileButton')}
+            noFileLabel={t('usersImport.uploadStep.noFileChosen')}
           />
 
           <Button
