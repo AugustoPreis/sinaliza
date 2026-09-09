@@ -6,6 +6,7 @@ import {
   type SectorTicketsControllerFindAllV1StatusItem as TStatus,
 } from '@core/api/generated/sinalizaAPI.schemas';
 import { ApiSelect } from '@shared/ui/api-select';
+import { DatePicker } from '@shared/ui/date-picker';
 import { Input } from '@shared/ui/input';
 import { Label } from '@shared/ui/label';
 import { Grid, Stack } from '@shared/ui/layout';
@@ -28,6 +29,7 @@ const STATUS_OPTIONS: TStatus[] = [
 
 export function TicketsFilterBar({ filters, onChange }: TicketsFilterBarProps): ReactElement {
   const { t } = useTranslation('tickets');
+  const { t: tCommon } = useTranslation();
   const locationsQuery = useLocationsQuery();
 
   const buildings = locationsQuery.data?.buildings ?? [];
@@ -84,21 +86,21 @@ export function TicketsFilterBar({ filters, onChange }: TicketsFilterBarProps): 
 
       <Stack gap={2}>
         <Label htmlFor="ticket-from">{t('filters.periodFromLabel')}</Label>
-        <Input
+        <DatePicker
           id="ticket-from"
-          type="date"
-          value={filters.from ?? ''}
-          onChange={(event) => onChange('from', event.target.value || undefined)}
+          value={filters.from}
+          onChange={(value) => onChange('from', value)}
+          placeholder={tCommon('datePicker.placeholder')}
         />
       </Stack>
 
       <Stack gap={2}>
         <Label htmlFor="ticket-to">{t('filters.periodToLabel')}</Label>
-        <Input
+        <DatePicker
           id="ticket-to"
-          type="date"
-          value={filters.to ?? ''}
-          onChange={(event) => onChange('to', event.target.value || undefined)}
+          value={filters.to}
+          onChange={(value) => onChange('to', value)}
+          placeholder={tCommon('datePicker.placeholder')}
         />
       </Stack>
     </Grid>

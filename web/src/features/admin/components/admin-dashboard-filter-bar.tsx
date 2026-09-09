@@ -8,6 +8,7 @@ import {
 } from '@core/api/generated/sinalizaAPI.schemas';
 import { ApiSelect } from '@shared/ui/api-select';
 import { Button } from '@shared/ui/button';
+import { DatePicker } from '@shared/ui/date-picker';
 import { Input } from '@shared/ui/input';
 import { Label } from '@shared/ui/label';
 import { Grid, Stack } from '@shared/ui/layout';
@@ -38,6 +39,7 @@ export function AdminDashboardFilterBar({
 }: AdminDashboardFilterBarProps): ReactElement {
   const { t } = useTranslation('admin');
   const { t: tTickets } = useTranslation('tickets');
+  const { t: tCommon } = useTranslation();
   const [showMoreFilters, setShowMoreFilters] = useState(false);
   const locationsQuery = useLocationsQuery();
   const sectorsQuery = useAdminSectorsQuery();
@@ -154,21 +156,21 @@ export function AdminDashboardFilterBar({
 
         <Stack gap={2}>
           <Label htmlFor="dashboard-from">{t('dashboard.filters.periodFromLabel')}</Label>
-          <Input
+          <DatePicker
             id="dashboard-from"
-            type="date"
-            value={filters.from ?? ''}
-            onChange={(event) => onChange('from', event.target.value || undefined)}
+            value={filters.from}
+            onChange={(value) => onChange('from', value)}
+            placeholder={tCommon('datePicker.placeholder')}
           />
         </Stack>
 
         <Stack gap={2}>
           <Label htmlFor="dashboard-to">{t('dashboard.filters.periodToLabel')}</Label>
-          <Input
+          <DatePicker
             id="dashboard-to"
-            type="date"
-            value={filters.to ?? ''}
-            onChange={(event) => onChange('to', event.target.value || undefined)}
+            value={filters.to}
+            onChange={(value) => onChange('to', value)}
+            placeholder={tCommon('datePicker.placeholder')}
           />
         </Stack>
       </Grid>

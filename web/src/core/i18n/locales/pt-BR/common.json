@@ -11,6 +11,9 @@
     "showPassword": "Mostrar senha",
     "hidePassword": "Ocultar senha"
   },
+  "datePicker": {
+    "placeholder": "Selecionar data"
+  },
   "nav": {
     "dashboard": "Início",
     "sectorQueue": "Fila do setor",

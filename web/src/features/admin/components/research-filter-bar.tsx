@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ApiSelect } from '@shared/ui/api-select';
-import { Input } from '@shared/ui/input';
+import { DatePicker } from '@shared/ui/date-picker';
 import { Label } from '@shared/ui/label';
 import { Grid, Stack } from '@shared/ui/layout';
 
@@ -18,6 +18,7 @@ export interface ResearchFilterBarProps {
 
 export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps): ReactElement {
   const { t } = useTranslation('admin');
+  const { t: tCommon } = useTranslation();
   const locationsQuery = useLocationsQuery();
   const sectorsQuery = useAdminSectorsQuery();
 
@@ -62,21 +63,21 @@ export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps)
 
       <Stack gap={2}>
         <Label htmlFor="research-from">{t('research.filters.periodFromLabel')}</Label>
-        <Input
+        <DatePicker
           id="research-from"
-          type="date"
-          value={filters.from ?? ''}
-          onChange={(event) => onChange('from', event.target.value || undefined)}
+          value={filters.from}
+          onChange={(value) => onChange('from', value)}
+          placeholder={tCommon('datePicker.placeholder')}
         />
       </Stack>
 
       <Stack gap={2}>
         <Label htmlFor="research-to">{t('research.filters.periodToLabel')}</Label>
-        <Input
+        <DatePicker
           id="research-to"
-          type="date"
-          value={filters.to ?? ''}
-          onChange={(event) => onChange('to', event.target.value || undefined)}
+          value={filters.to}
+          onChange={(value) => onChange('to', value)}
+          placeholder={tCommon('datePicker.placeholder')}
         />
       </Stack>
     </Grid>
