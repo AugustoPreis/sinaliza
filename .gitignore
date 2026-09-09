@@ -30,3 +30,6 @@ pnpm-debug.log*
 
 # TanStack Router generated cache
 .tanstack/
+
+# Brand asset handoff (source files, not consumed directly by the app)
+/brand/

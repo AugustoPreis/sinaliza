@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Stack } from '@shared/ui/layout';
 import { cn } from '@shared/utils/cn';
 
+import { AppBrand } from './app-brand';
 import { AppNav } from './app-nav';
 import { useSidebarStore } from './app-sidebar.store';
 import { getSidebarItemClasses } from './sidebar-item-classes';
@@ -22,6 +23,10 @@ export function AppSidebar(): ReactElement {
         collapsed ? 'w-20' : 'w-64',
       )}
     >
+      <Box className={cn('border-b border-border p-4', collapsed && 'flex justify-center')}>
+        <AppBrand collapsed={collapsed} />
+      </Box>
+
       <Box className="flex-1 overflow-y-auto p-4">
         <AppNav collapsed={collapsed} />
       </Box>

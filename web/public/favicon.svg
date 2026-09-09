@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Ícone Sinaliza"><rect width="120" height="120" rx="28" fill="#0D5C63"/><g transform="translate(10 10)"><g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round">
+  <path d="M18 25 C36 25 38 50 57 50"/><path d="M18 75 C36 75 38 50 57 50"/><path d="M18 50 H82"/>
+  <circle cx="18" cy="25" r="4" fill="#FFFFFF" stroke="none"/><circle cx="18" cy="50" r="4" fill="#FFFFFF" stroke="none"/><circle cx="18" cy="75" r="4" fill="#FFFFFF" stroke="none"/><circle cx="82" cy="50" r="7" fill="#FFFFFF" stroke="none"/>
+</g></g></svg>
