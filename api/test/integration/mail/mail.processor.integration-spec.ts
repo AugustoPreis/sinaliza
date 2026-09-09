@@ -105,7 +105,7 @@ describe('mail processor (integration)', () => {
       subject,
       template: 'password-reset',
       context: {
-        appName: 'Boilerplate',
+        appName: 'Sinaliza',
         locale: 'pt-BR',
         greeting: 'Hello integration test',
         body: 'Body copy',

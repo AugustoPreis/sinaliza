@@ -38,7 +38,7 @@ describe('ForgotPasswordUseCase', () => {
     'auth.passwordResetExpiresIn': '30m',
     'auth.passwordResetSecret': 'reset-secret',
     'app.frontendUrl': 'https://app.example.com',
-    'app.name': 'Boilerplate',
+    'app.name': 'Sinaliza',
   };
 
   beforeEach(() => {
