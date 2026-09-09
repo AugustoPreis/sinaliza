@@ -6,9 +6,10 @@ import {
   type AdminTicketsControllerFindAllV1StatusItem as TStatus,
 } from '@core/api/generated/sinalizaAPI.schemas';
 import { ApiSelect } from '@shared/ui/api-select';
+import { DateRangePicker } from '@shared/ui/date-range-picker';
 import { Input } from '@shared/ui/input';
 import { Label } from '@shared/ui/label';
-import { Box, Grid, Stack } from '@shared/ui/layout';
+import { Grid, Stack } from '@shared/ui/layout';
 import { MultiSelect } from '@shared/ui/multi-select';
 
 import { useLocationsQuery } from '@features/tickets';
@@ -59,7 +60,27 @@ export function AdminDashboardFilterBar({
   );
 
   return (
-    <Grid columns={4} gap={4} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+    <Grid
+      columns={4}
+      gap={4}
+      className={
+        showSearch
+          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5'
+          : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+      }
+    >
+      {showSearch ? (
+        <Stack gap={2}>
+          <Label htmlFor="dashboard-search">{t('dashboard.filters.searchLabel')}</Label>
+          <Input
+            id="dashboard-search"
+            value={filters.search}
+            onChange={(event) => onChange('search', event.target.value)}
+            placeholder={t('dashboard.filters.searchPlaceholder')}
+          />
+        </Stack>
+      ) : null}
+
       <Stack gap={2}>
         <Label htmlFor="dashboard-sector">{t('dashboard.filters.sectorLabel')}</Label>
         <ApiSelect
@@ -98,37 +119,21 @@ export function AdminDashboardFilterBar({
         />
       </Stack>
 
-      <Box>
-        <Stack gap={2}>
-          <Label htmlFor="dashboard-from">{t('dashboard.filters.periodLabel')}</Label>
-          <Grid columns={2} gap={2}>
-            <Input
-              id="dashboard-from"
-              type="date"
-              value={filters.from ?? ''}
-              onChange={(event) => onChange('from', event.target.value || undefined)}
-            />
-            <Input
-              id="dashboard-to"
-              type="date"
-              value={filters.to ?? ''}
-              onChange={(event) => onChange('to', event.target.value || undefined)}
-            />
-          </Grid>
-        </Stack>
-      </Box>
-
-      {showSearch ? (
-        <Stack gap={2}>
-          <Label htmlFor="dashboard-search">{t('dashboard.filters.searchLabel')}</Label>
-          <Input
-            id="dashboard-search"
-            value={filters.search}
-            onChange={(event) => onChange('search', event.target.value)}
-            placeholder={t('dashboard.filters.searchPlaceholder')}
-          />
-        </Stack>
-      ) : null}
+      <Stack gap={2}>
+        <Label htmlFor="dashboard-from">{t('dashboard.filters.periodLabel')}</Label>
+        <DateRangePicker
+          idPrefix="dashboard"
+          from={filters.from}
+          to={filters.to}
+          onChange={({ from, to }) => {
+            onChange('from', from);
+            onChange('to', to);
+          }}
+          placeholder={tTickets('filters.periodPlaceholder')}
+          fromLabel={tTickets('filters.periodFromLabel')}
+          toLabel={tTickets('filters.periodToLabel')}
+        />
+      </Stack>
     </Grid>
   );
 }

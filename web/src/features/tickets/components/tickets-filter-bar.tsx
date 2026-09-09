@@ -6,9 +6,10 @@ import {
   type SectorTicketsControllerFindAllV1StatusItem as TStatus,
 } from '@core/api/generated/sinalizaAPI.schemas';
 import { ApiSelect } from '@shared/ui/api-select';
+import { DateRangePicker } from '@shared/ui/date-range-picker';
 import { Input } from '@shared/ui/input';
 import { Label } from '@shared/ui/label';
-import { Box, Grid, Stack } from '@shared/ui/layout';
+import { Grid, Stack } from '@shared/ui/layout';
 import { MultiSelect } from '@shared/ui/multi-select';
 
 import { useLocationsQuery } from '../queries/locations.queries';
@@ -82,25 +83,21 @@ export function TicketsFilterBar({ filters, onChange }: TicketsFilterBarProps): 
         />
       </Stack>
 
-      <Box>
-        <Stack gap={2}>
-          <Label htmlFor="ticket-from">{t('filters.periodLabel')}</Label>
-          <Grid columns={2} gap={2}>
-            <Input
-              id="ticket-from"
-              type="date"
-              value={filters.from ?? ''}
-              onChange={(event) => onChange('from', event.target.value || undefined)}
-            />
-            <Input
-              id="ticket-to"
-              type="date"
-              value={filters.to ?? ''}
-              onChange={(event) => onChange('to', event.target.value || undefined)}
-            />
-          </Grid>
-        </Stack>
-      </Box>
+      <Stack gap={2}>
+        <Label htmlFor="ticket-from">{t('filters.periodLabel')}</Label>
+        <DateRangePicker
+          idPrefix="ticket"
+          from={filters.from}
+          to={filters.to}
+          onChange={({ from, to }) => {
+            onChange('from', from);
+            onChange('to', to);
+          }}
+          placeholder={t('filters.periodPlaceholder')}
+          fromLabel={t('filters.periodFromLabel')}
+          toLabel={t('filters.periodToLabel')}
+        />
+      </Stack>
     </Grid>
   );
 }

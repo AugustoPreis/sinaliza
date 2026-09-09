@@ -2,9 +2,9 @@ import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ApiSelect } from '@shared/ui/api-select';
-import { Input } from '@shared/ui/input';
+import { DateRangePicker } from '@shared/ui/date-range-picker';
 import { Label } from '@shared/ui/label';
-import { Box, Grid, Stack } from '@shared/ui/layout';
+import { Grid, Stack } from '@shared/ui/layout';
 
 import { useLocationsQuery } from '@features/tickets';
 
@@ -18,6 +18,7 @@ export interface ResearchFilterBarProps {
 
 export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps): ReactElement {
   const { t } = useTranslation('admin');
+  const { t: tTickets } = useTranslation('tickets');
   const locationsQuery = useLocationsQuery();
   const sectorsQuery = useAdminSectorsQuery();
 
@@ -60,25 +61,21 @@ export function ResearchFilterBar({ filters, onChange }: ResearchFilterBarProps)
         />
       </Stack>
 
-      <Box>
-        <Stack gap={2}>
-          <Label htmlFor="research-from">{t('research.filters.periodLabel')}</Label>
-          <Grid columns={2} gap={2}>
-            <Input
-              id="research-from"
-              type="date"
-              value={filters.from ?? ''}
-              onChange={(event) => onChange('from', event.target.value || undefined)}
-            />
-            <Input
-              id="research-to"
-              type="date"
-              value={filters.to ?? ''}
-              onChange={(event) => onChange('to', event.target.value || undefined)}
-            />
-          </Grid>
-        </Stack>
-      </Box>
+      <Stack gap={2}>
+        <Label htmlFor="research-from">{t('research.filters.periodLabel')}</Label>
+        <DateRangePicker
+          idPrefix="research"
+          from={filters.from}
+          to={filters.to}
+          onChange={({ from, to }) => {
+            onChange('from', from);
+            onChange('to', to);
+          }}
+          placeholder={tTickets('filters.periodPlaceholder')}
+          fromLabel={tTickets('filters.periodFromLabel')}
+          toLabel={tTickets('filters.periodToLabel')}
+        />
+      </Stack>
     </Grid>
   );
 }

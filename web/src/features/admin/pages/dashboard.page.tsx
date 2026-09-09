@@ -2,7 +2,6 @@ import { useNavigate } from '@tanstack/react-router';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AdminTicketsControllerFindAllV1StatusItem } from '@core/api/generated/sinalizaAPI.schemas';
 import { useListQueryParams } from '@shared/hooks/use-list-query-params.hook';
 import { ROUTES } from '@shared/routes';
 import { Container, Stack } from '@shared/ui/layout';
@@ -19,13 +18,10 @@ import type { IAdminTicketFilters } from '../types/admin-ticket-filters.type';
 
 const PAGE_SIZE = 20;
 
+// Empty = every status — this is an overview panel, not a queue to clear,
+// so it shouldn't start narrowed to a subset.
 const DEFAULT_FILTERS: IAdminTicketFilters = {
-  status: [
-    AdminTicketsControllerFindAllV1StatusItem.OPEN,
-    AdminTicketsControllerFindAllV1StatusItem.FORWARDED,
-    AdminTicketsControllerFindAllV1StatusItem.IN_PROGRESS,
-    AdminTicketsControllerFindAllV1StatusItem.RESOLVED,
-  ],
+  status: [],
   search: '',
 };
 
@@ -59,7 +55,7 @@ export function AdminDashboardPage(): ReactElement {
   const pageSize = ticketsQuery.data?.page_size ?? PAGE_SIZE;
 
   return (
-    <Container>
+    <Container size="wide">
       <Stack gap={6}>
         <Stack gap={1}>
           <Heading level={1}>{t('dashboard.title')}</Heading>

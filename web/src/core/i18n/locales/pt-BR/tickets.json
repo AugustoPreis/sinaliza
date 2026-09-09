@@ -26,7 +26,10 @@
     "buildingLabel": "Prédio",
     "buildingPlaceholder": "Todos os prédios",
     "buildingEmpty": "Nenhum prédio encontrado.",
-    "periodLabel": "Período"
+    "periodLabel": "Período",
+    "periodPlaceholder": "Selecione um período",
+    "periodFromLabel": "De",
+    "periodToLabel": "Até"
   },
   "status": {
     "OPEN": "Aberto",

@@ -53,7 +53,7 @@ export function AdminResearchIndicatorsPage(): ReactElement {
   }
 
   return (
-    <Container>
+    <Container size="wide">
       <Stack gap={6}>
         <HStack align="center" justify="between" wrap gap={4}>
           <Heading level={1}>{t('research.title')}</Heading>

@@ -1,5 +1,10 @@
-import { Check, ChevronsUpDown, Loader2 } from 'lucide-react';
-import { useState, type ReactElement, type ReactNode } from 'react';
+import { Check, ChevronsUpDown, Loader2, X } from 'lucide-react';
+import {
+  useState,
+  type ReactElement,
+  type ReactNode,
+  type MouseEvent as ReactMouseEvent,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@shared/ui/button';
@@ -53,6 +58,14 @@ export function ApiSelect({
     setOpen(false);
   }
 
+  function handleClear(event: ReactMouseEvent<SVGSVGElement>): void {
+    // Clear without opening the popover — the click already lands on the
+    // trigger button, so stop it before Radix toggles `open`.
+    event.stopPropagation();
+    event.preventDefault();
+    onChange(undefined);
+  }
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -69,6 +82,16 @@ export function ApiSelect({
               <Box className="text-muted-foreground">{placeholder}</Box>
             )}
           </Box>
+          {selectedOption ? (
+            <X
+              size={16}
+              aria-label={t('actions.clear')}
+              role="button"
+              tabIndex={-1}
+              onClick={handleClear}
+              className="shrink-0 opacity-50 hover:opacity-100"
+            />
+          ) : null}
           <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

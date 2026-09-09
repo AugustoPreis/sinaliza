@@ -39,7 +39,7 @@ export function SectorTicketsResolvedPage(): ReactElement {
   const pageSize = ticketsQuery.data?.page_size ?? PAGE_SIZE;
 
   return (
-    <Container>
+    <Container size="wide">
       <Stack gap={6}>
         <Stack gap={1}>
           <Heading level={1}>{t('resolved.title')}</Heading>

@@ -24,7 +24,7 @@ export function AdminSectorsPage(): ReactElement {
   const items = sectorsQuery.data?.items ?? [];
 
   return (
-    <Container>
+    <Container size="wide">
       <Stack gap={6}>
         <HStack align="center" justify="between" wrap gap={4}>
           <Heading level={1}>{t('sectors.title')}</Heading>

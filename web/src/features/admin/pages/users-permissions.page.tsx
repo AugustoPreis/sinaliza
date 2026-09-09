@@ -35,7 +35,7 @@ export function AdminUsersPermissionsPage(): ReactElement {
   const meta = usersQuery.data?.meta;
 
   return (
-    <Container>
+    <Container size="wide">
       <Stack gap={6}>
         <Heading level={1}>{t('usersPermissions.title')}</Heading>
 

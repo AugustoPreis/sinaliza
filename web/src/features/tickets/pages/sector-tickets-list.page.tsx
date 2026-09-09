@@ -2,7 +2,6 @@ import { useNavigate } from '@tanstack/react-router';
 import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SectorTicketsControllerFindAllV1StatusItem } from '@core/api/generated/sinalizaAPI.schemas';
 import { useListQueryParams } from '@shared/hooks/use-list-query-params.hook';
 import { ROUTES } from '@shared/routes';
 import { Container, Stack } from '@shared/ui/layout';
@@ -17,12 +16,10 @@ import type { ISectorTicketFilters } from '../types/sector-ticket-filters.type';
 
 const PAGE_SIZE = 20;
 
+// Empty = every status (RB-09's queue shows everything by default; the
+// operator narrows down from there, they don't start narrowed).
 const DEFAULT_FILTERS: ISectorTicketFilters = {
-  status: [
-    SectorTicketsControllerFindAllV1StatusItem.OPEN,
-    SectorTicketsControllerFindAllV1StatusItem.FORWARDED,
-    SectorTicketsControllerFindAllV1StatusItem.IN_PROGRESS,
-  ],
+  status: [],
   search: '',
   order: 'asc',
 };
@@ -49,7 +46,7 @@ export function SectorTicketsListPage(): ReactElement {
   const pageSize = ticketsQuery.data?.page_size ?? PAGE_SIZE;
 
   return (
-    <Container>
+    <Container size="wide">
       <Stack gap={6}>
         <Stack gap={1}>
           <Heading level={1}>{t('queue.title')}</Heading>
