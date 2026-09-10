@@ -96,7 +96,7 @@
       "summary": "{{created}} usuário(s) criado(s) e {{updated}} atualizado(s).",
       "errorBadge": "Importação rejeitada",
       "genericError": "O arquivo enviado não corresponde ao modelo esperado.",
-      "atomicNote": "Nenhum usuário foi criado ou atualizado — a importação é atômica e o arquivo inteiro foi rejeitado."
+      "atomicNote": "Nenhum usuário foi criado ou atualizado - a importação é atômica e o arquivo inteiro foi rejeitado."
     }
   },
   "usersPermissions": {
@@ -168,7 +168,7 @@
     },
     "access": {
       "revokeTitle": "Revogar acesso",
-      "revokeDescription": "O acesso de {{name}} será revogado. Isso não exclui o usuário nem seu histórico — o acesso pode ser restaurado a qualquer momento.",
+      "revokeDescription": "O acesso de {{name}} será revogado. Isso não exclui o usuário nem seu histórico - o acesso pode ser restaurado a qualquer momento.",
       "revokeConfirm": "Revogar acesso",
       "revokeSuccess": "Acesso revogado com sucesso.",
       "restoreTitle": "Restaurar acesso",

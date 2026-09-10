@@ -31,7 +31,7 @@ export function importUsers(file: File): Promise<ImportUsersResultDTO> {
 }
 
 // The generated client types this call as `void` because it streams a
-// binary spreadsheet — fetch it directly with `responseType: 'blob'`
+// binary spreadsheet - fetch it directly with `responseType: 'blob'`
 // instead of going through the JSON-oriented `customInstance` mutator.
 export async function downloadImportTemplate(): Promise<Blob> {
   const response = await axiosInstance.get('/api/v1/admin/users/import-template', {

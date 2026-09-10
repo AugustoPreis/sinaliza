@@ -29,14 +29,14 @@ export interface IResearchCountRow {
 export interface IResearchIndicatorsData {
   totalTickets: number;
   // `automaticSectorId == resolvedBySectorId`, which is NULL for unresolved
-  // tickets, so those never match — no extra "status = RESOLVED" filter needed.
+  // tickets, so those never match - no extra "status = RESOLVED" filter needed.
   correctWithoutAnyCorrection: number;
   correctionsByRequester: number;
   // At least one `REASSIGNED` timeline event.
   correctionsBySector: number;
   // Raw `(correctSectorReachedAt - createdAt)` samples in minutes, returned
   // flat (not pre-aggregated) so the use-case can sort in memory for the
-  // median — Postgres has no built-in MEDIAN aggregate.
+  // median - Postgres has no built-in MEDIAN aggregate.
   correctSectorMinutes: number[];
   volumeBySector: IResearchCountRow[];
   // Grouped by `automaticSectorId`; see `GetResearchIndicatorsUseCase` for how

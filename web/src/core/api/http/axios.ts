@@ -20,7 +20,7 @@ function readCookie(name: string): string | null {
 
 export const axiosInstance = axios.create({
   // Orval bakes the full `/api/v1/...` path (API_PREFIX + version) into
-  // every generated call already, straight from the live OpenAPI spec —
+  // every generated call already, straight from the live OpenAPI spec -
   // this only needs to supply the origin.
   baseURL: env.VITE_API_BASE_URL,
   withCredentials: true,
@@ -43,7 +43,7 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<ISuccessEnvelope>) => {
     // Binary responses (file downloads) never carry the
-    // {success, data, timestamp} envelope — `response.data` is already the
+    // {success, data, timestamp} envelope - `response.data` is already the
     // Blob itself. Unwrapping it here produced `URL.createObjectURL(undefined)`
     // downstream, since `.data.data` doesn't exist on a Blob.
     if (response.config.responseType === 'blob') {

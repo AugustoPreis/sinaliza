@@ -65,7 +65,7 @@ export class TicketsController {
 
   @Get()
   // No `@RequirePermission`: always scoped to the authenticated user, not a
-  // granted permission — same idiom as `UsersController#updatePassword`.
+  // granted permission - same idiom as `UsersController#updatePassword`.
   @ApiOperation({ summary: "List the requester's own tickets (Tela A.2)" })
   findMine(
     @CurrentUser('uuid') currentUserUuid: string,
@@ -76,7 +76,7 @@ export class TicketsController {
 
   @Get(':ticketId')
   // No `@RequirePermission`: access depends on the row (owner/handler), not
-  // a flat grant — see `GetTicketUseCase` for the authorization logic.
+  // a flat grant - see `GetTicketUseCase` for the authorization logic.
   @ApiOperation({ summary: 'Get ticket detail and timeline (Tela A.6)' })
   findOne(
     @CurrentUser('uuid') currentUserUuid: string,

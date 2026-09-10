@@ -42,7 +42,7 @@ export class UsersRepository {
     });
   }
 
-  // Login by matrícula (`institutionalId`) or e-mail — see `LocalStrategy`.
+  // Login by matrícula (`institutionalId`) or e-mail - see `LocalStrategy`.
   findByIdentifier(identifier: string): Promise<UserEntity | null> {
     return this.repo.findOne({
       where: [
@@ -81,7 +81,7 @@ export class UsersRepository {
       .getOne();
   }
 
-  // Login by matrícula or e-mail, with the password hash selected — used by
+  // Login by matrícula or e-mail, with the password hash selected - used by
   // `LocalStrategy`.
   findByIdentifierWithPassword(identifier: string): Promise<UserEntity | null> {
     return this.repo

@@ -7,7 +7,7 @@ import { UuidService } from '@shared/services/uuid.service';
 import { DeviceTokenEntity } from '../entities/device-token.entity';
 import { EDevicePlatform } from '../enums/device-platform.enum';
 
-// TODO(push-dispatch): this repository only persists the token — no
+// TODO(push-dispatch): this repository only persists the token - no
 // FCM/APNs integration yet. Wiring one up means looking up the user's
 // tokens here wherever `NotificationsRepository.create()` is called, and
 // dispatching an actual push.

@@ -49,7 +49,7 @@ export function AppNav({ onNavigate, collapsed = false }: AppNavProps): ReactEle
               activeProps={{ className: 'bg-accent text-accent-foreground' }}
               // Fuzzy (prefix) matching is TanStack Router's default, which
               // makes a nav item like "/tickets" also light up on
-              // "/tickets/resolved" — exact matching is what a flat sidebar
+              // "/tickets/resolved" - exact matching is what a flat sidebar
               // of distinct destinations actually needs.
               activeOptions={{ exact: true }}
             >

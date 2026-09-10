@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { SectorEntity } from '../entities/sector.entity';
 
-// Used by the public sector lookup — a picker only needs `id`/`name`,
+// Used by the public sector lookup - a picker only needs `id`/`name`,
 // never categories or responsible users.
 export class SectorSummaryDTO {
   @ApiProperty()

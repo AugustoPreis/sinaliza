@@ -18,7 +18,7 @@ export function Calendar({ className, classNames, showOutsideDays = true, ...pro
         months: 'flex flex-col gap-4',
         month: 'flex flex-col gap-4',
         // `pointer-events-none`: this label is non-interactive text sitting in the
-        // same row as the absolutely-positioned nav buttons — without it, its
+        // same row as the absolutely-positioned nav buttons - without it, its
         // `w-full` box sits on top of the buttons (later in paint order) and
         // steals clicks landing on the chevron icon at the row's vertical center.
         month_caption: 'flex justify-center pt-1 relative items-center w-full pointer-events-none',

@@ -16,7 +16,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   // Express 5 defaults to the 'simple' query parser (Node's `querystring`),
-  // which doesn't understand `key[]=`/`key[0]=` array notation — it keeps
+  // which doesn't understand `key[]=`/`key[0]=` array notation - it keeps
   // `status[]` as a literal key instead of producing `status: [...]`. The
   // frontend's Axios client serializes array query params that way (and
   // supertest/qs use the indexed form), so filters silently no-op without
@@ -54,7 +54,7 @@ async function bootstrap(): Promise<void> {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Sinaliza API')
-    .setDescription('API do Sinaliza — sistema de chamados universitário')
+    .setDescription('API do Sinaliza - sistema de chamados universitário')
     .setVersion(process.env.npm_package_version ?? '1.0.0')
     .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' })
     .build();

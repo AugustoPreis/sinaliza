@@ -18,7 +18,7 @@ import type { IAdminTicketFilters } from '../types/admin-ticket-filters.type';
 
 const PAGE_SIZE = 10;
 
-// Empty = every status — this is an overview panel, not a queue to clear,
+// Empty = every status - this is an overview panel, not a queue to clear,
 // so it shouldn't start narrowed to a subset.
 const DEFAULT_FILTERS: IAdminTicketFilters = {
   status: [],

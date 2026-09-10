@@ -7,7 +7,7 @@ import { TicketQueryDTO } from '../dtos/ticket-query.dto';
 import { TicketsRepository } from '../repositories/tickets.repository';
 
 // Always scoped to "my own tickets" via the authenticated requester, never
-// by permission-driven visibility — unlike `/sector/tickets`/`/admin/tickets`.
+// by permission-driven visibility - unlike `/sector/tickets`/`/admin/tickets`.
 @Injectable()
 export class ListMyTicketsUseCase {
   constructor(

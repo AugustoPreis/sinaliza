@@ -17,7 +17,7 @@ import type { ISectorTicketFilters } from '../types/sector-ticket-filters.type';
 const PAGE_SIZE = 20;
 
 // Empty status = the active queue (backend defaults to FORWARDED/IN_PROGRESS,
-// excluding RESOLVED — see `ListSectorTicketsUseCase`). Newest first: this
+// excluding RESOLVED - see `ListSectorTicketsUseCase`). Newest first: this
 // queue is browsed like a feed, not worked oldest-first.
 const DEFAULT_FILTERS: ISectorTicketFilters = {
   status: [],

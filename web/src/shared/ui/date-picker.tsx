@@ -22,7 +22,7 @@ export interface DatePickerProps {
 
 /**
  * Selection-only date field: the trigger is a button, not a text input, so
- * there is no way to type a date — the calendar popover is the only input.
+ * there is no way to type a date - the calendar popover is the only input.
  */
 export function DatePicker({
   id,
@@ -68,7 +68,7 @@ export function DatePicker({
           // trigger's own SVG children are `pointer-events-none` (so clicks
           // on the calendar icon fall through to the button), which meant a
           // clear icon nested inside the same trigger never received clicks
-          // either — they always fell through to the trigger and reopened it.
+          // either - they always fell through to the trigger and reopened it.
           <Button
             type="button"
             variant="ghost"

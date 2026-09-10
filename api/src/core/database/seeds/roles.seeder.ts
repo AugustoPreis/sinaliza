@@ -7,7 +7,7 @@ import { PermissionEntity } from '@modules/roles/entities/permission.entity';
 import { RoleEntity } from '@modules/roles/entities/role.entity';
 
 // Sinaliza has 3 roles (endpoints-sinaliza.md §2/§19): REQUESTER, SECTOR and
-// ADMIN. Only ADMIN is reserved/system-managed — it always gets every
+// ADMIN. Only ADMIN is reserved/system-managed - it always gets every
 // permission that exists at seed time (including ones added by future
 // phases, since this seeder re-runs `permissions.find()` each time).
 // REQUESTER and SECTOR are ordinary roles: an admin can edit their
@@ -19,13 +19,13 @@ const NON_RESERVED_ROLES = [
 ];
 
 // Minimal default permission each ordinary role needs to use its own core
-// flow out of the box. Granted once, additively — never removed here — so
+// flow out of the box. Granted once, additively - never removed here - so
 // an admin's later changes from the RBAC screens aren't fought on every
 // seed run.
 //
 // SECTOR also gets `sectors:read` even though the picker the reassign flow
 // actually uses (`GET /sectors`) is already unguarded for any authenticated
-// user (see `SectorsController`) — this additionally lets SECTOR read
+// user (see `SectorsController`) - this additionally lets SECTOR read
 // `GET /admin/sectors`' fuller view (categories + responsible users).
 const DEFAULT_ROLE_PERMISSIONS: Record<string, Array<{ resource: string; action: string }>> = {
   [ROLE_REQUESTER]: [

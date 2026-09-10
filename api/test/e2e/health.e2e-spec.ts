@@ -47,7 +47,7 @@ describe('Health (e2e)', () => {
     const response = await request(app.getHttpServer()).get('/api/v1/health').expect(200);
 
     // Every response is wrapped by the global ResponseInterceptor in
-    // { success, data, timestamp } — the health payload lives under `data`.
+    // { success, data, timestamp } - the health payload lives under `data`.
     expect(response.body.success).toBe(true);
     expect(response.body.data.status).toBe('ok');
     expect(response.body.data.checks.database).toBe('ok');

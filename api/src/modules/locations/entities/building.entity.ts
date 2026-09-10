@@ -9,7 +9,7 @@ import {
 
 import { EnvironmentEntity } from './environment.entity';
 
-// No admin screen manages buildings/environments in this version — see
+// No admin screen manages buildings/environments in this version - see
 // `LocationsSeeder` for the dev-only sample data.
 @Entity('buildings')
 export class BuildingEntity {

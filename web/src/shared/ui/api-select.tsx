@@ -77,7 +77,7 @@ export function ApiSelect({
                 <Box className="text-muted-foreground">{placeholder}</Box>
               )}
             </Box>
-            {/* Hidden once a value is picked — the clear button below takes
+            {/* Hidden once a value is picked - the clear button below takes
                 this same slot instead of stacking a second icon next to it. */}
             {selectedOption ? null : (
               <ChevronsUpDown size={16} aria-hidden="true" className="shrink-0 opacity-50" />
@@ -89,7 +89,7 @@ export function ApiSelect({
           // trigger's own SVG children are `pointer-events-none` (so clicks
           // on the chevron fall through to the button), which meant a clear
           // icon nested inside the same trigger never received clicks either
-          // — they always fell through to the trigger and reopened it.
+          // - they always fell through to the trigger and reopened it.
           <Button
             type="button"
             variant="ghost"

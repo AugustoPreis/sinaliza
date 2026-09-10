@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { IsString, MaxLength } from '@shared/validators';
 
-// Empty string is allowed on purpose — it's how a sector clears a
+// Empty string is allowed on purpose - it's how a sector clears a
 // previously written note.
 export class UpdateInternalNoteDTO {
   @ApiProperty()

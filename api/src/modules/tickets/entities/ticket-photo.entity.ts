@@ -4,7 +4,7 @@ import { BaseEntity } from '@shared/entities/base.entity';
 
 import { TicketEntity } from './ticket.entity';
 
-// Only `storageKey` is persisted — the public URL is derived on read via
+// Only `storageKey` is persisted - the public URL is derived on read via
 // `StorageService.publicUrl()`.
 @Entity('ticket_photos')
 export class TicketPhotoEntity extends BaseEntity {

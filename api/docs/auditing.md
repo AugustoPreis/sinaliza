@@ -126,5 +126,5 @@ a `repo.save()`):
 "INACTIVE", display: "Inativo" } }`.
 
 See also [testing.md](./testing.md): `test/integration/audit/audit-trail.integration-spec.ts`
-proves this exact flow end-to-end against a real Postgres, subscriber included — it's the one
+proves this exact flow end-to-end against a real Postgres, subscriber included - it's the one
 piece of this pipeline that can't be proven without the real TypeORM subscriber in the loop.

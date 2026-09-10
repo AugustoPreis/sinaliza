@@ -11,7 +11,7 @@ import { GetAdminDashboardUseCase } from '../use-cases/get-admin-dashboard.use-c
 import { ListAdminTicketsUseCase } from '../use-cases/list-admin-tickets.use-case';
 
 // Both endpoints share the `tickets:read-all` permission rather than
-// separate `research:read`/`dashboard:read` grants — `research:*` is a
+// separate `research:read`/`dashboard:read` grants - `research:*` is a
 // distinct concern (per-ticket/aggregate research indicators and export),
 // not this operational dashboard.
 @ApiTags('Admin Tickets')

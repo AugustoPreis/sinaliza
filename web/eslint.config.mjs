@@ -7,7 +7,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-// Common rules shared with the api project's own eslint.config.mjs — kept as
+// Common rules shared with the api project's own eslint.config.mjs - kept as
 // plain literals here since api and web no longer share a package.
 const base = [
   eslint.configs.recommended,
@@ -98,7 +98,7 @@ export default tseslint.config(
       ],
       // Architectural boundaries between app/core/shared/features. Barrel-only
       // access between features is deferred to whichever PR adds the second
-      // feature — nothing exists yet to validate that rule against.
+      // feature - nothing exists yet to validate that rule against.
       'import/no-restricted-paths': [
         'error',
         {
@@ -106,7 +106,7 @@ export default tseslint.config(
             {
               target: './src/core',
               from: './src/features',
-              message: 'core/ is cross-cutting infrastructure — it cannot depend on features/.',
+              message: 'core/ is cross-cutting infrastructure - it cannot depend on features/.',
             },
             {
               target: './src/core',
@@ -116,12 +116,12 @@ export default tseslint.config(
             {
               target: './src/shared',
               from: './src/features',
-              message: 'shared/ is domain-agnostic — it cannot depend on features/.',
+              message: 'shared/ is domain-agnostic - it cannot depend on features/.',
             },
             {
               target: './src/shared',
               from: './src/core',
-              message: 'shared/ is domain-agnostic — it cannot depend on core/.',
+              message: 'shared/ is domain-agnostic - it cannot depend on core/.',
             },
             {
               target: './src/shared',
@@ -140,7 +140,7 @@ export default tseslint.config(
   },
   {
     // Every route file exports `Route` (TanStack Router config, not a
-    // component) alongside the page component — the official file-based
+    // component) alongside the page component - the official file-based
     // routing pattern, always flagged as a false positive by this rule.
     files: ['src/app/routes/**/*.tsx'],
     rules: {
@@ -149,7 +149,7 @@ export default tseslint.config(
   },
   {
     // `throw redirect(...)`/`throw notFound(...)` are TanStack Router's own
-    // documented control-flow idiom for beforeLoad/loader — neither throws
+    // documented control-flow idiom for beforeLoad/loader - neither throws
     // a real Error instance. Covers route files and the shared route
     // guards (core/auth/route-guards.ts) that also throw them.
     files: ['src/app/routes/**/*.tsx', 'src/core/auth/route-guards.ts'],

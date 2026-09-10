@@ -89,7 +89,7 @@ export class UpdateTicketStatusUseCase {
   }
 
   // Finds the timeline event that last moved the ticket into its *current*
-  // sector — the most recent `REASSIGNED` event landing there if the ticket
+  // sector - the most recent `REASSIGNED` event landing there if the ticket
   // was ever reassigned, otherwise the original confirmation event from
   // creation. Its `createdAt` feeds `average_time_to_correct_sector_minutes`.
   private resolveCorrectSectorReachedAt(ticket: TicketEntity): Date {

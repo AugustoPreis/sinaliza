@@ -30,7 +30,7 @@ export interface CreateUserDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-// The created user has no password an admin ever sees — same as the bulk
+// The created user has no password an admin ever sees - same as the bulk
 // import flow (`ImportUsersUseCase`), which hashes a random UUID. They get
 // in through "forgot password", not a value we hand out here.
 function generateRandomPassword(): string {

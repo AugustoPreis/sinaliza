@@ -20,7 +20,7 @@ export interface TicketsFilterBarProps {
   onChange: <K extends keyof ISectorTicketFilters>(key: K, value: ISectorTicketFilters[K]) => void;
 }
 
-// The queue only ever holds active tickets — RESOLVED has its own screen
+// The queue only ever holds active tickets - RESOLVED has its own screen
 // (`/tickets/resolved`), and OPEN is never actually reachable (tickets are
 // created directly as FORWARDED, see `CreateTicketUseCase`).
 const STATUS_OPTIONS: TStatus[] = [

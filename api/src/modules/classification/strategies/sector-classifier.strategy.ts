@@ -11,6 +11,6 @@ export interface IClassificationResult {
 }
 
 export interface ISectorClassifierStrategy {
-  // RB-02: `description` is the ONLY input — never photo content/URLs.
+  // RB-02: `description` is the ONLY input - never photo content/URLs.
   classify(description: string, sectors: SectorEntity[]): Promise<IClassificationResult>;
 }

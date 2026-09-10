@@ -43,7 +43,7 @@ export class TicketListItemResponseDTO {
 }
 
 // Deliberately shaped as `items`/`page`/`page_size`/`total` instead of this
-// project's generic `{data, meta}` envelope — matches the documented API
+// project's generic `{data, meta}` envelope - matches the documented API
 // contract for this endpoint.
 export class TicketListResponseDTO {
   @ApiProperty({ type: [TicketListItemResponseDTO] })

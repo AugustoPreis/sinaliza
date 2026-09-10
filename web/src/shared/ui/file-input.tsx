@@ -23,7 +23,7 @@ export interface FileInputProps extends Omit<
 // Styled replacement for the raw `<input type="file">`, which renders as
 // "Choose File / No file chosen" with no way to match the rest of the
 // design system. The native input itself stays in the DOM (visually
-// hidden) so keyboard/file-picker behavior is untouched — only its default
+// hidden) so keyboard/file-picker behavior is untouched - only its default
 // chrome is swapped for a Button + filename text.
 export function FileInput({
   buttonLabel,

@@ -1,8 +1,8 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-// `buildings` 1—N `environments`, backing the guided prédio → ambiente
+// `buildings` 1-N `environments`, backing the guided prédio → ambiente
 // picker (Tela A.3) and `GET /locations` (endpoints-sinaliza.md §5). No
-// admin screen manages this cadastro in this version — see
+// admin screen manages this cadastro in this version - see
 // `LocationsSeeder` for the dev-only sample data that fills it.
 export class Locations1752600000008 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

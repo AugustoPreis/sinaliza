@@ -100,7 +100,7 @@ export class TicketDetailResponseDTO {
   timeline!: TicketTimelineEventDTO[];
 
   // Omitted from the response entirely (not just `null`) when the caller is
-  // the requester — see `includeInternalNote` below and `GetTicketUseCase`.
+  // the requester - see `includeInternalNote` below and `GetTicketUseCase`.
   @ApiPropertyOptional()
   internal_note?: string | null;
 

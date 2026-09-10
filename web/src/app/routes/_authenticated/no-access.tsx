@@ -6,7 +6,7 @@ import { Container, Stack } from '@shared/ui/layout';
 import { Heading, Text } from '@shared/ui/typography';
 
 // Dead-end landing for an authenticated user whose permissions don't grant
-// any screen in this admin web app (e.g. REQUESTER) — see
+// any screen in this admin web app (e.g. REQUESTER) - see
 // `resolveLandingRoute` for why every guard funnels here instead of
 // bouncing between two equally-guarded routes.
 function NoAccessPage(): ReactElement {

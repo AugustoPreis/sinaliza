@@ -7,18 +7,18 @@ import { PermissionEntity } from '@modules/roles/entities/permission.entity';
 // `resource:action` shape.
 //
 // `research:read`/`research:export` are deliberately separate from
-// `tickets:read-all` — see `AdminTicketsController`'s header comment for why
+// `tickets:read-all` - see `AdminTicketsController`'s header comment for why
 // that one covers the operational `/admin/tickets`+`/admin/dashboard` pair
 // instead.
 //
 // `tickets:create` backs `POST /tickets` (`GET /tickets` and
 // `GET /tickets/{id}` are self-service/row-based, see `TicketsController`,
 // so neither needs a `@RequirePermission`). `read-all` backs BOTH
-// `GET /admin/tickets` (§11.1) and `GET /admin/dashboard` (§11.2) — see
+// `GET /admin/tickets` (§11.1) and `GET /admin/dashboard` (§11.2) - see
 // `AdminTicketsController`'s header comment for why one permission covers
 // both. `devices:manage`/`notifications:read` are defined but deliberately
 // left ungated by `@RequirePermission` (self-service, same idiom as
-// `users:update` password change) — kept here only so the names exist for
+// `users:update` password change) - kept here only so the names exist for
 // anything that wants to grant/check them later.
 const RESOURCE_ACTIONS: Record<string, string[]> = {
   users: ['create', 'read', 'update', 'delete', 'import', 'manage-permissions', 'revoke'],
@@ -46,7 +46,7 @@ const RESOURCE_ACTIONS: Record<string, string[]> = {
   notifications: ['read'],
   // §15 (Tela C.5): research:read backs `GET /admin/research/indicators`,
   // research:export backs `GET /admin/research/export`. Admin-only (§19
-  // matrix) — no default role grants these to REQUESTER/SECTOR.
+  // matrix) - no default role grants these to REQUESTER/SECTOR.
   research: ['read', 'export'],
 };
 

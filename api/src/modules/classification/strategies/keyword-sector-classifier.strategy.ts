@@ -1,4 +1,4 @@
-// TODO: placeholder classifier — keyword overlap between the description's
+// TODO: placeholder classifier - keyword overlap between the description's
 // tokens and each sector's `categories` tags. Replace with a real
 // model/embeddings classifier by implementing `ISectorClassifierStrategy` and
 // swapping the provider bound to `SECTOR_CLASSIFIER_STRATEGY`.
@@ -25,7 +25,7 @@ export class KeywordSectorClassifierStrategy implements ISectorClassifierStrateg
 
     // No category matched any token at all: fall back to the first sector in
     // alphabetical order by name. Deterministic and doesn't require a
-    // dedicated "fallback sector" flag on `SectorEntity` — every sector is an
+    // dedicated "fallback sector" flag on `SectorEntity` - every sector is an
     // equally valid target when the description gives no signal.
     if (bestScore <= 0) {
       return Promise.resolve({ sector: this.fallbackSector(sectors), confidence: 0 });

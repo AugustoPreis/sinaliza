@@ -1,6 +1,6 @@
-# Sinaliza — Especificação de API sugerida
+# Sinaliza - Especificação de API sugerida
 
-> Documento técnico derivado da **Documentação Funcional do Sinaliza — 20 de agosto de 2026**.
+> Documento técnico derivado da **Documentação Funcional do Sinaliza - 20 de agosto de 2026**.
 >
 > A documentação original descreve telas, perfis e regras de negócio, mas **não define endpoints HTTP**. Portanto, os nomes das rotas, métodos HTTP e formatos JSON abaixo são uma **proposta de implementação** para cobrir o comportamento especificado, sem adicionar funcionalidades de produto fora do escopo.
 
@@ -422,7 +422,7 @@ A documentação diz explicitamente que as fotos servem apenas como evidência v
 
 ---
 
-# 8. Chamados — solicitante
+# 8. Chamados - solicitante
 
 ## 8.1 `POST /tickets`
 
@@ -876,7 +876,7 @@ A reclassificação é um **evento**, não um status persistente.
 
 ---
 
-# 11. Administração — chamados e painel
+# 11. Administração - chamados e painel
 
 ## 11.1 `GET /admin/tickets`
 
@@ -968,7 +968,7 @@ Filtros opcionais:
 
 ---
 
-# 12. Administração — setores e categorias
+# 12. Administração - setores e categorias
 
 ## 12.1 `GET /admin/sectors`
 
@@ -1107,7 +1107,7 @@ A documentação funcional não define exclusão de setor. Por isso, um `DELETE 
 
 ---
 
-# 13. Administração — importação de usuários
+# 13. Administração - importação de usuários
 
 ## 13.1 `GET /admin/users/import-template`
 
@@ -1152,7 +1152,7 @@ A documentação não fixa os nomes técnicos exatos das colunas. Eles devem ser
 file = usuarios.xlsx
 ```
 
-### O que retorna — sucesso
+### O que retorna - sucesso
 
 ```json
 {
@@ -1162,7 +1162,7 @@ file = usuarios.xlsx
 }
 ```
 
-### O que retorna — erro de modelo
+### O que retorna - erro de modelo
 
 ```json
 {
@@ -1210,7 +1210,7 @@ A importação deve funcionar como uma operação atômica.
 
 ---
 
-# 14. Administração — usuários e permissões
+# 14. Administração - usuários e permissões
 
 ## 14.1 `GET /admin/users`
 
@@ -1596,27 +1596,27 @@ Essa nomenclatura é uma decisão técnica; o requisito funcional é preservar a
 
 # 18. Regras de negócio que a API não pode quebrar
 
-## RB-01 — Sem autocadastro
+## RB-01 - Sem autocadastro
 
 Usuários só acessam o sistema se já existirem na base importada pela administração.
 
-## RB-02 — Classificação usa somente descrição
+## RB-02 - Classificação usa somente descrição
 
 Fotos não podem participar da classificação automática neste MVP.
 
-## RB-03 — Preservar classificação original
+## RB-03 - Preservar classificação original
 
 Mesmo que o solicitante altere o setor, `automatic_sector_id` nunca deve ser sobrescrito.
 
-## RB-04 — Preservar decisão do solicitante
+## RB-04 - Preservar decisão do solicitante
 
 `confirmed_sector_id` representa a decisão da Tela A.4 e também não deve ser sobrescrito caso um setor reclassifique posteriormente.
 
-## RB-05 — Setor atual é mutável
+## RB-05 - Setor atual é mutável
 
 `current_sector_id` muda quando ocorre reencaminhamento.
 
-## RB-06 — Reclassificação é evento
+## RB-06 - Reclassificação é evento
 
 Nunca deixar um chamado “parado” em status `RECLASSIFIED`.
 
@@ -1627,39 +1627,39 @@ current_sector_id = target_sector_id
 status = FORWARDED
 ```
 
-## RB-07 — Motivo obrigatório ao reencaminhar
+## RB-07 - Motivo obrigatório ao reencaminhar
 
 Não permitir reclassificação sem `reason`.
 
-## RB-08 — Fila do setor isolada
+## RB-08 - Fila do setor isolada
 
 Equipe de setor só enxerga os chamados dos setores que possui permissão para acessar.
 
-## RB-09 — Ordem padrão da fila
+## RB-09 - Ordem padrão da fila
 
 Chamados ativos do setor devem ser ordenados do mais antigo para o mais recente.
 
-## RB-10 — Sem reabertura
+## RB-10 - Sem reabertura
 
 Não criar transição `RESOLVED → IN_PROGRESS/OPEN` neste MVP.
 
-## RB-11 — Sem prioridade/SLA
+## RB-11 - Sem prioridade/SLA
 
 Não adicionar prioridade, urgência ou SLA como requisito desta versão.
 
-## RB-12 — Importação atômica
+## RB-12 - Importação atômica
 
 Qualquer incompatibilidade com o modelo invalida o arquivo inteiro, sem alterações parciais.
 
-## RB-13 — Revogação preserva histórico
+## RB-13 - Revogação preserva histórico
 
 Nunca apagar registros de atendimento/reclassificação quando um usuário tiver acesso revogado.
 
-## RB-14 — Resolução gera notificação
+## RB-14 - Resolução gera notificação
 
 Ao marcar como resolvido, o solicitante deve receber push e o evento deve aparecer no histórico de notificações.
 
-## RB-15 — Toda mudança relevante entra na linha do tempo
+## RB-15 - Toda mudança relevante entra na linha do tempo
 
 Guardar data/hora de:
 
@@ -1838,7 +1838,7 @@ A documentação funcional não especifica os itens abaixo. Eles precisam ser de
 
 ---
 
-# 22. Fora do escopo — não criar endpoints agora
+# 22. Fora do escopo - não criar endpoints agora
 
 Com base na Seção 9 da documentação, não é necessário criar nesta versão:
 
@@ -1862,7 +1862,7 @@ Também não há requisito para:
 
 # 23. Ordem recomendada de implementação
 
-## Etapa 1 — Base
+## Etapa 1 - Base
 
 ```text
 /auth/login
@@ -1872,7 +1872,7 @@ Também não há requisito para:
 /locations
 ```
 
-## Etapa 2 — Fluxo principal do solicitante
+## Etapa 2 - Fluxo principal do solicitante
 
 ```text
 /classification/preview
@@ -1881,7 +1881,7 @@ Também não há requisito para:
 /tickets/{id} GET
 ```
 
-## Etapa 3 — Atendimento do setor
+## Etapa 3 - Atendimento do setor
 
 ```text
 /sector/tickets
@@ -1890,14 +1890,14 @@ Também não há requisito para:
 /tickets/{id}/internal-note
 ```
 
-## Etapa 4 — Notificações
+## Etapa 4 - Notificações
 
 ```text
 /devices/push-token
 /notifications
 ```
 
-## Etapa 5 — Administração
+## Etapa 5 - Administração
 
 ```text
 /admin/sectors
@@ -1908,7 +1908,7 @@ Também não há requisito para:
 /admin/users/{id}/revoke
 ```
 
-## Etapa 6 — Pesquisa e indicadores
+## Etapa 6 - Pesquisa e indicadores
 
 ```text
 /admin/dashboard

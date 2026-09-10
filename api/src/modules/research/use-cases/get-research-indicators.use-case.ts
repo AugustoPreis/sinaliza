@@ -136,7 +136,7 @@ function mapLocationRows(
 // automatic sector's `categories` (assumed seeded most-representative-first),
 // falling back to the sector's name when it has no categories configured.
 // Categories collapse across sectors (the indicator is about the label, not
-// sector identity) — `by_sector` already covers the per-sector breakdown.
+// sector identity) - `by_sector` already covers the per-sector breakdown.
 function buildCategoryVolume(
   rows: IResearchCountRow[],
   sectorById: Map<number, SectorEntity>,

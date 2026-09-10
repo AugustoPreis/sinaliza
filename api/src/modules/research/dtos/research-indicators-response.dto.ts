@@ -69,7 +69,7 @@ export class ResearchVolumeDTO {
 }
 
 // Built by `GetResearchIndicatorsUseCase` from `IResearchIndicatorsData` plus
-// resolved sector/building name maps — see that use-case for the math
+// resolved sector/building name maps - see that use-case for the math
 // (percentage/average/median) and the "what is a ticket's category" decision.
 export class ResearchIndicatorsResponseDTO {
   @ApiProperty({ type: AutomaticAccuracyDTO })

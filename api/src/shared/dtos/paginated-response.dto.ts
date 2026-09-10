@@ -19,7 +19,7 @@ export class PaginationMetaDTO implements IPaginationMeta {
 }
 
 export class PaginatedResponseDTO<T> implements IPaginatedResult<T> {
-  // T is erased at runtime, so this can't carry its own type metadata —
+  // T is erased at runtime, so this can't carry its own type metadata -
   // ApiPaginatedResponse overrides `data` per-endpoint via an `allOf`
   // schema fragment instead. Left undecorated, Nest's schema factory
   // trips over introspecting this generic array property on its own.

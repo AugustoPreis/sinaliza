@@ -33,7 +33,7 @@ interface IParsedRow {
 }
 
 // RB-12: the whole file is validated (structure AND row content) before a
-// single write happens. Any mismatch — header shape or row data — rejects
+// single write happens. Any mismatch - header shape or row data - rejects
 // the entire spreadsheet, nothing partial is ever persisted.
 @Injectable()
 export class ImportUsersUseCase {
@@ -51,7 +51,7 @@ export class ImportUsersUseCase {
       await workbook.xlsx.load(file.buffer as unknown as ExcelJS.Buffer);
     } catch {
       // Not a valid .xlsx (corrupted upload, wrong format renamed to .xlsx,
-      // etc) — ExcelJS throws its own low-level parser error here, which
+      // etc) - ExcelJS throws its own low-level parser error here, which
       // isn't something to surface to an end user.
       return {
         success: false,

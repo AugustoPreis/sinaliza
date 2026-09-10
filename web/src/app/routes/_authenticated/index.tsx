@@ -6,7 +6,7 @@ import { hasPermission, resolveLandingRoute } from '@core/auth/permissions';
 import { AdminDashboardPage } from '@features/admin';
 
 // "/" is the Painel Geral for whoever can see every sector (tickets:read-all)
-// — everyone else is sent to wherever `resolveLandingRoute` says they
+// - everyone else is sent to wherever `resolveLandingRoute` says they
 // actually belong (their sector queue, or the "no access" dead end), never
 // blindly to "/tickets" (a REQUESTER has neither permission, which used to
 // bounce forever between the two routes).

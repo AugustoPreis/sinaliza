@@ -31,7 +31,7 @@ export interface ITicketListFilters {
 }
 
 // Shared by `findManyForQueue`'s two callers (sector queue and admin
-// listing) — same shape, different DTO mapping and `sectorIds` scoping.
+// listing) - same shape, different DTO mapping and `sectorIds` scoping.
 export interface ITicketQueueFilters {
   statuses?: ETicketStatus[];
   from?: Date;
@@ -85,7 +85,7 @@ export class TicketsRepository {
     return `SIN-${nextval}`;
   }
 
-  // Ticket + photos + initial timeline events in one transaction — either
+  // Ticket + photos + initial timeline events in one transaction - either
   // all three are persisted, or none are.
   async createWithInitialEvents(
     ticketData: Partial<TicketEntity>,
@@ -212,7 +212,7 @@ export class TicketsRepository {
       qb.andWhere('ticket.buildingId = :buildingId', { buildingId: filters.buildingId });
     }
 
-    // Plain ILIKE OR across protocol/description/location — no full-text
+    // Plain ILIKE OR across protocol/description/location - no full-text
     // search infra in this project.
     if (filters.search) {
       qb.andWhere(
@@ -252,7 +252,7 @@ export class TicketsRepository {
     return this.findByUuidWithRelations(ticketUuid) as Promise<TicketEntity>;
   }
 
-  // Deliberately no timeline event — see `UpdateInternalNoteUseCase`'s
+  // Deliberately no timeline event - see `UpdateInternalNoteUseCase`'s
   // header comment for why.
   async updateInternalNote(ticketId: number, internalNote: string): Promise<TicketEntity> {
     const ticket = await this.repo.findOneOrFail({ where: { id: ticketId } });

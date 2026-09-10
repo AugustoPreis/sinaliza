@@ -17,7 +17,7 @@ export class NotificationsRepository {
     private readonly uuidService: UuidService,
   ) {}
 
-  // Called internally by other modules' status/reassign flows (RB-14) —
+  // Called internally by other modules' status/reassign flows (RB-14) -
   // never exposed as its own HTTP endpoint.
   create(
     userId: number,

@@ -16,7 +16,7 @@ const DATA_SHEET_NAME = 'dados_pesquisa';
 const RECLASSIFICATIONS_SHEET_NAME = 'reclassificacoes';
 
 // `key` is the internal row field name (used when building each row below);
-// `header` is what the end user actually sees in the spreadsheet — no
+// `header` is what the end user actually sees in the spreadsheet - no
 // internal identifiers (`ticket_id`, the ticket's UUID) and no English.
 const DATA_COLUMNS = [
   { key: 'protocol', header: 'Protocolo' },
@@ -125,7 +125,7 @@ function diffSeconds(start: Date, end: Date | null): number | null {
   return Math.round((end.getTime() - start.getTime()) / 1000);
 }
 
-// Elapsed duration, not a time of day — hours aren't capped at 24 (a ticket
+// Elapsed duration, not a time of day - hours aren't capped at 24 (a ticket
 // open for a day and a half reads "36:15", not "12:15").
 function formatDurationHHmm(totalSeconds: number | null): string | null {
   if (totalSeconds === null) return null;

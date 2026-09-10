@@ -7,7 +7,7 @@ export interface IApiErrorResponse {
   statusCode: number;
   timestamp: string;
   path: string;
-  // Validation errors (422) come back as a flat string[] — the API's
+  // Validation errors (422) come back as a flat string[] - the API's
   // exception filter never attaches which field each message belongs to,
   // so there's no way to route them into individual form fields yet.
   message: string | string[];

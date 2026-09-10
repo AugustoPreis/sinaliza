@@ -1,4 +1,4 @@
-# NOT a monorepo declaration — this project has no `packages:` field and is
+# NOT a monorepo declaration - this project has no `packages:` field and is
 # not part of any workspace. Since pnpm 10, this filename is simply where
 # pnpm stores the "which postinstall scripts are allowed to run" allowlist
 # (`pnpm approve-builds`), even for a single standalone package.

@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 // Sinaliza adaptation: `users.avatar_url` is dropped (no avatar screen in
 // this product), replaced by `institutional_id` (matrícula) and
 // `institutional_link` (ALUNO | PROFESSOR | SERVIDOR). `status` is kept
-// as-is — `INACTIVE` now means "access revoked" (RB-13), not a new column.
+// as-is - `INACTIVE` now means "access revoked" (RB-13), not a new column.
 export class UsersInstitutional1752600000005 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`

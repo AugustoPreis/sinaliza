@@ -1,8 +1,8 @@
-# Sinaliza — Web
+# Sinaliza - Web
 
 Portal do Setor e Portal da Administração do Sinaliza (React + Vite,
 TanStack Router, Radix/Tailwind, React Query, Zustand). Projeto standalone,
-sem relação de monorepo com `../api` — se comunica com ela só via HTTP.
+sem relação de monorepo com `../api` - se comunica com ela só via HTTP.
 
 ## Como rodar
 

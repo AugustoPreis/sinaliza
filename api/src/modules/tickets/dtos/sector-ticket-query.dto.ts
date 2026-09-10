@@ -53,7 +53,7 @@ export class SectorTicketQueryDTO extends PaginationQueryDTO {
 
   // No `sort` field: `created_at` (RB-09's ordering key) is the only
   // sortable column this queue needs, so `order` alone is enough. Default is
-  // newest-first — the queue is browsed like a feed, not worked oldest-first.
+  // newest-first - the queue is browsed like a feed, not worked oldest-first.
   @ApiPropertyOptional({ default: 'desc', enum: ['asc', 'desc'] })
   @IsOptional()
   @IsIn(['asc', 'desc'])

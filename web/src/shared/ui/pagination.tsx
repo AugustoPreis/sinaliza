@@ -8,7 +8,7 @@ import { Text } from '@shared/ui/typography';
 
 // Structurally compatible with (but not importing) the API's
 // PaginationMetaDTO, so this primitive stays free of any dependency on
-// core/ — shared/ cannot depend on core/.
+// core/ - shared/ cannot depend on core/.
 export interface IPaginationMeta {
   page: number;
   perPage: number;

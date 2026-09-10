@@ -7,7 +7,7 @@ import { Box, type BoxProps } from './layout';
 
 export type CardProps = BoxProps;
 
-// Brand radius (16px, --radius-card) — distinct from the 10px controls use.
+// Brand radius (16px, --radius-card) - distinct from the 10px controls use.
 export function Card({ className, ...props }: CardProps): ReactElement {
   return (
     <Box

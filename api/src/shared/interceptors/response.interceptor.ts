@@ -26,7 +26,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<
     return next.handle().pipe(
       map((data) => {
         // Binary/file responses (e.g. the users import template and research
-        // export spreadsheets) must reach the client as the raw stream —
+        // export spreadsheets) must reach the client as the raw stream -
         // wrapping them in the `{success, data, timestamp}` envelope would
         // turn the download into corrupted JSON.
         if (data instanceof StreamableFile) {

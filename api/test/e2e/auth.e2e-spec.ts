@@ -19,7 +19,7 @@ const ADMIN_PASSWORD = 'AdminTest@123';
 
 /**
  * `POST /auth/login` is `@Throttle({ default: { limit: 5, ttl: 900000 } })`
- * (5 requests per 15 minutes, per IP) — a limit shared by every request in
+ * (5 requests per 15 minutes, per IP) - a limit shared by every request in
  * this file, success or failure alike, since the guard counts requests, not
  * outcomes. To stay under it, this spec logs in at most 5 times total:
  *   1. the "logs in with correct credentials" test, whose agent/cookies are
@@ -152,7 +152,7 @@ describe('Auth (e2e)', () => {
       );
 
       // /auth/refresh calls setAuthCookies() again, rotating the XSRF-TOKEN
-      // cookie too. The header captured at login is now stale — re-capture
+      // cookie too. The header captured at login is now stale - re-capture
       // it here so the logout tests below send a token that matches the
       // cookie the agent is now holding.
       const xsrfCookie = setCookieHeader.find((cookie) =>

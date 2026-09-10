@@ -11,7 +11,7 @@ import { TicketDetailResponseDTO } from '../dtos/ticket-detail-response.dto';
 import { TicketsRepository } from '../repositories/tickets.repository';
 
 // Access control depends on the row (own ticket, sector history, admin), so
-// it can't be a flat `@RequirePermission` — it lives entirely in this use-case.
+// it can't be a flat `@RequirePermission` - it lives entirely in this use-case.
 @Injectable()
 export class GetTicketUseCase {
   constructor(
@@ -43,7 +43,7 @@ export class GetTicketUseCase {
       throw AppException.from('errors.forbidden', HttpStatus.FORBIDDEN);
     }
 
-    // Internal note is Setor/Admin-only — never the requester, even when
+    // Internal note is Setor/Admin-only - never the requester, even when
     // the requester is `isOwner`.
     const includeInternalNote = isAdmin || isSectorAuthorized;
 

@@ -7,7 +7,7 @@ import type {
 } from '@core/api/generated/sinalizaAPI.schemas';
 
 // `GET /admin/sectors` has no documented response schema in the live
-// OpenAPI spec (orval generated `void`) — this reflects the actual JSON
+// OpenAPI spec (orval generated `void`) - this reflects the actual JSON
 // returned by `AdminSectorsController.findAll` / `SectorResponseDTO`.
 export interface IAdminSectorResponsibleUser {
   id: string;

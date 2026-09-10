@@ -13,7 +13,7 @@
 @import '@fontsource/inter/latin-ext-600.css';
 @import '@fontsource/inter/latin-ext-700.css';
 
-/* Manrope for headings only (brand guide: 600-700 weight) — same
+/* Manrope for headings only (brand guide: 600-700 weight) - same
    latin/latin-ext subset reasoning as Inter above. */
 @import '@fontsource/manrope/latin-600.css';
 @import '@fontsource/manrope/latin-700.css';
@@ -44,8 +44,8 @@
   --muted-foreground: oklch(0.489 0.0221 204.73); /* #526466 text secondary */
   --accent: oklch(0.9431 0.0211 193.17);
   --accent-foreground: oklch(0.2522 0.0192 201.61);
-  /* Brand accent (#E6A83C) is reserved for focus/illustration/highlight —
-     never as a background behind small white text — so it drives the
+  /* Brand accent (#E6A83C) is reserved for focus/illustration/highlight -
+     never as a background behind small white text - so it drives the
      focus ring, not `--accent`'s hover-background role. */
   --accent-brand: oklch(0.772 0.1398 77.33);
   --destructive: oklch(0.533 0.1651 22.27); /* #B9383E error */
@@ -104,7 +104,7 @@
 
   --radius-sm: calc(var(--radius) - 4px);
   /* Brand radii: 10px controls (== --radius), 16px cards, pill (999px) for
-     round buttons/badges — `rounded-full` already covers the pill case. */
+     round buttons/badges - `rounded-full` already covers the pill case. */
   --radius-md: var(--radius);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);

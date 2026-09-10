@@ -7,7 +7,7 @@ import { UserAccessResponseDTO } from '../dtos/user-access-response.dto';
 import { EUserStatus } from '../enums/user-status.enum';
 import { UsersRepository } from '../repositories/users.repository';
 
-// RB-13: revoking is never deletion — it only flips `status` to `INACTIVE`.
+// RB-13: revoking is never deletion - it only flips `status` to `INACTIVE`.
 // The user row, its roles/sectors and any ticket history it's referenced
 // from stay untouched.
 @Injectable()

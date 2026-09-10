@@ -145,7 +145,7 @@ describe('ExportResearchDataUseCase', () => {
     const row = worksheet.getRow(3).values as unknown[];
 
     // ExcelJS's `Row.values` reads back an empty/null cell as `undefined`,
-    // not `null` — either way it's absent from the exported spreadsheet.
+    // not `null` - either way it's absent from the exported spreadsheet.
     expect(row[14]).toBeFalsy();
     expect(row[15]).toBeFalsy();
   });

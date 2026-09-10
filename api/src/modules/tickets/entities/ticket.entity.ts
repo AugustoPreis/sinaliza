@@ -12,7 +12,7 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 import { TicketEventEntity } from './ticket-event.entity';
 import { TicketPhotoEntity } from './ticket-photo.entity';
 
-// `automaticSectorId`/`confirmedSectorId` are write-once (RB-03/RB-04) —
+// `automaticSectorId`/`confirmedSectorId` are write-once (RB-03/RB-04) -
 // nothing updates them after `CreateTicketUseCase` sets them.
 // `currentSectorId` is the only sector FK meant to be mutated later (RB-05).
 @Entity('tickets')
@@ -83,7 +83,7 @@ export class TicketEntity extends BaseEntity {
   @Column({ type: 'enum', enum: ETicketStatus, enumName: 'ticket_status' })
   status!: ETicketStatus;
 
-  // Setor/admin only — never surfaced to the requester.
+  // Setor/admin only - never surfaced to the requester.
   @Column({ name: 'internal_note', type: 'text', nullable: true })
   internalNote!: string | null;
 

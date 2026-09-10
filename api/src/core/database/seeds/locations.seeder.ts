@@ -6,7 +6,7 @@ import { EnvironmentEntity } from '@modules/locations/entities/environment.entit
 
 // Dev-only sample data. `endpoints-sinaliza.md` §21 point 2 explicitly leaves
 // the origin of the buildings/environments cadastro as an open technical
-// decision — there is no admin screen to manage it in this version (see
+// decision - there is no admin screen to manage it in this version (see
 // `LocationsModule`'s comment). This seeder exists purely so a local/dev
 // environment has something to pick from on Tela A.3; a real deployment
 // would need this data provided by the institution through some other means

@@ -12,7 +12,7 @@ import { ETicketStatus } from '../enums/ticket-status.enum';
 import { ITicketQueueFilters, TicketsRepository } from '../repositories/tickets.repository';
 import { isAdminUser } from '../utils/ticket-access.util';
 
-// The active queue (no `status` filter given) never includes RESOLVED —
+// The active queue (no `status` filter given) never includes RESOLVED -
 // that's what `/tickets/resolved` is for. A caller can still ask for
 // RESOLVED explicitly (that's exactly how the resolved-tickets screen
 // reuses this same endpoint), this only changes the *default*.
@@ -56,7 +56,7 @@ export class ListSectorTicketsUseCase {
       }
 
       // RB-08: a non-admin asking for a sector outside their own set gets
-      // denied outright, not silently scoped back to their own sectors —
+      // denied outright, not silently scoped back to their own sectors -
       // otherwise a sector could probe which sector uuids exist by noticing
       // the response never errors.
       if (!isAdmin && !ownSectorIds.includes(sector.id)) {

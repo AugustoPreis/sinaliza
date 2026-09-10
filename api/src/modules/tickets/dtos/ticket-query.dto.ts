@@ -8,7 +8,7 @@ import { IsArray, IsEnum } from '@shared/validators';
 import { ETicketStatus } from '../enums/ticket-status.enum';
 
 // Pagination uses this project's own `page`/`perPage` query convention, but
-// the response body uses `page`/`page_size` — see `TicketListResponseDTO`.
+// the response body uses `page`/`page_size` - see `TicketListResponseDTO`.
 export class TicketQueryDTO extends PaginationQueryDTO {
   @ApiPropertyOptional({
     enum: ETicketStatus,

@@ -11,7 +11,7 @@ import { PreviewClassificationUseCase } from './use-cases/preview-classification
 
 // `KeywordSectorClassifierStrategy` is bound to `SECTOR_CLASSIFIER_STRATEGY`
 // so swapping the classification algorithm later only means changing the
-// `useClass` line below — consumers depend on `ISectorClassifierStrategy`.
+// `useClass` line below - consumers depend on `ISectorClassifierStrategy`.
 @Module({
   imports: [SharedModule, SectorsModule],
   controllers: [ClassificationController],

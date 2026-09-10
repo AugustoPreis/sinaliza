@@ -12,7 +12,7 @@ export function isAdminUser(user: UserEntity): boolean {
 }
 
 // RB-08: a sector only ever acts on the ticket wherever `current_sector_id`
-// currently sits — history (past sectors/REASSIGNED targets) only matters
+// currently sits - history (past sectors/REASSIGNED targets) only matters
 // for read access, not for these write actions. 403, not 404: the ticket
 // exists, the caller just isn't entitled to act on it.
 export function assertSectorAuthorized(ticket: TicketEntity, user: UserEntity): void {

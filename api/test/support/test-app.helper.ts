@@ -24,7 +24,7 @@ export interface IBootstrapTestAppOptions {
 }
 
 // S3 is always mocked here: per the storage strategy (docs/testing.md), e2e
-// specs prove the HTTP flow, not the S3 protocol — that's already covered by
+// specs prove the HTTP flow, not the S3 protocol - that's already covered by
 // `storage.service.integration-spec.ts` against a real MinIO container.
 export async function bootstrapTestApp(
   options: IBootstrapTestAppOptions,

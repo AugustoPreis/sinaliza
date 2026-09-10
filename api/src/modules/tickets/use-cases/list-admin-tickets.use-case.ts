@@ -9,7 +9,7 @@ import { AdminTicketQueryDTO } from '../dtos/admin-ticket-query.dto';
 import { AdminTicketListResponseDTO } from '../dtos/admin-ticket-response.dto';
 import { ITicketQueueFilters, TicketsRepository } from '../repositories/tickets.repository';
 
-// No sector scoping — admin sees every sector by default. Defaults to
+// No sector scoping - admin sees every sector by default. Defaults to
 // newest-first, unlike RB-09's oldest-first queue ordering for
 // `/sector/tickets`: this is an overview screen, not a work queue to clear.
 @Injectable()

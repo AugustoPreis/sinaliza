@@ -36,7 +36,7 @@ interface ITicketListResponse {
 
 // Reproduces RB-09's queue-status filter over real HTTP (`GET
 // /sector/tickets?status=...` and `GET /admin/tickets?status=...`), through
-// the real Express query parser and Nest's `ValidationPipe`/query DTOs —
+// the real Express query parser and Nest's `ValidationPipe`/query DTOs -
 // the layer a mocked use-case spec can't exercise.
 describe('Ticket status filter (integration)', () => {
   let containers: ITestContainers;
@@ -148,7 +148,7 @@ describe('Ticket status filter (integration)', () => {
 
   // The frontend's Axios client serializes array query params as repeated
   // bracketed keys (`status[]=A&status[]=B`), not bare repeated keys or
-  // indexed brackets — build the querystring by hand so this test actually
+  // indexed brackets - build the querystring by hand so this test actually
   // exercises that wire format instead of whatever a test-client helper
   // happens to prefer.
   function bracketArrayQuery(param: string, values: string[]): string {

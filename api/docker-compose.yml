@@ -4,7 +4,7 @@
 #
 # Explicit project name: this folder is just called "api", and Compose
 # otherwise derives the project name (and therefore volume/network names)
-# from the directory basename — colliding with any other unrelated project
+# from the directory basename - colliding with any other unrelated project
 # on the same machine that also happens to be named "api".
 name: sinaliza-api
 services:

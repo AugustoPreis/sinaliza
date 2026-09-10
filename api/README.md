@@ -1,4 +1,4 @@
-# Sinaliza — API
+# Sinaliza - API
 
 API do Sinaliza (sistema de chamados universitário): autenticação JWT
 (cookies httpOnly + refresh token), autorização por permissão (RBAC),

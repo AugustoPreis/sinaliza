@@ -18,7 +18,7 @@ export function requireGuest(): void {
 }
 
 // Redirects to whatever screen this user's permissions actually grant,
-// never blindly to "/" — "/" itself requires a permission (tickets:read-all)
+// never blindly to "/" - "/" itself requires a permission (tickets:read-all)
 // that not every role has, and bouncing there unconditionally is how a
 // REQUESTER (no tickets:read-all, no tickets:read-sector) ends up in an
 // infinite redirect loop between "/" and "/tickets".

@@ -14,7 +14,7 @@ import { GetResearchIndicatorsUseCase } from './use-cases/get-research-indicator
 
 // `TicketEntity` is pulled in via its own `TypeOrmModule.forFeature` rather
 // than importing `TicketsModule`, since this module only needs read access
-// (no `TicketsRepository` write-path methods) — event rows are read off
+// (no `TicketsRepository` write-path methods) - event rows are read off
 // `TicketEntity.events` via query builder joins/relations directly.
 @Module({
   imports: [SharedModule, SectorsModule, LocationsModule, TypeOrmModule.forFeature([TicketEntity])],

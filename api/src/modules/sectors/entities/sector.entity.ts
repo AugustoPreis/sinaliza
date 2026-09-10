@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-// Responsible users aren't a column here — they live in the `sector_users`
+// Responsible users aren't a column here - they live in the `sector_users`
 // join table (`SectorUserEntity`). No soft delete: sectors are never
 // deleted, so `BaseEntity` (which carries `deletedAt`) isn't used here.
 @Entity('sectors')

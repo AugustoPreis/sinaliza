@@ -68,7 +68,7 @@ export class GenerateUsersImportTemplateUseCase {
     return Buffer.from(buffer);
   }
 
-  // A dynamic dropdown list needs a real range to point at — ExcelJS has no
+  // A dynamic dropdown list needs a real range to point at - ExcelJS has no
   // "inline list of N dynamic values" validation, so the values live on a
   // hidden auxiliary sheet and the dropdown references that range.
   private addSectorRoleListSheet(workbook: ExcelJS.Workbook, allowedValues: string[]): void {

@@ -51,7 +51,7 @@ export class CreateTicketDTO {
     type: 'array',
     items: { type: 'string', format: 'binary' },
     required: false,
-    description: 'Fotos opcionais (evidência visual — nunca usadas na classificação, RB-02)',
+    description: 'Fotos opcionais (evidência visual - nunca usadas na classificação, RB-02)',
   })
   photos?: unknown;
 }
