@@ -1,0 +1,28 @@
+{
+  "export": {
+    "dataSheet": {
+      "protocol": "Protocolo",
+      "createdAt": "Criado em",
+      "description": "Descrição",
+      "building": "Prédio",
+      "environment": "Ambiente",
+      "automaticSector": "Setor automático",
+      "confirmedSector": "Setor confirmado",
+      "requesterCorrected": "Solicitante corrigiu o setor",
+      "sectorReclassified": "Setor foi reclassificado",
+      "reclassificationCount": "Quantidade de reclassificações",
+      "resolvedBySector": "Resolvido pelo setor",
+      "correctSectorReachedAt": "Setor correto alcançado em",
+      "resolvedAt": "Resolvido em",
+      "timeToCorrectSector": "Tempo até o setor correto",
+      "timeToResolution": "Tempo até a resolução"
+    },
+    "reclassificationsSheet": {
+      "protocol": "Protocolo",
+      "fromSector": "Setor de origem",
+      "toSector": "Setor de destino",
+      "reason": "Motivo",
+      "createdAt": "Data"
+    }
+  }
+}

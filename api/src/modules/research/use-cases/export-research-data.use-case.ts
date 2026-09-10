@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as ExcelJS from 'exceljs';
+import { I18nService } from 'nestjs-i18n';
 
 import { TicketEntity } from '@modules/tickets/entities/ticket.entity';
 import { ETicketEventType } from '@modules/tickets/enums/ticket-event-type.enum';
@@ -16,37 +17,43 @@ const DATA_SHEET_NAME = 'dados_pesquisa';
 const RECLASSIFICATIONS_SHEET_NAME = 'reclassificacoes';
 
 // `key` is the internal row field name (used when building each row below);
-// `header` is what the end user actually sees in the spreadsheet - no
-// internal identifiers (`ticket_id`, the ticket's UUID) and no English.
+// `i18nKey` resolves the header the end user actually sees, from
+// `research.json` - no internal identifiers (`ticket_id`, the ticket's
+// UUID), no English, and no hardcoded copy here. The time columns' values
+// are already formatted as HH:mm (see `formatDurationHHmm`); the header
+// itself doesn't restate that.
 const DATA_COLUMNS = [
-  { key: 'protocol', header: 'Protocolo' },
-  { key: 'created_at', header: 'Criado em' },
-  { key: 'description', header: 'Descrição' },
-  { key: 'building', header: 'Prédio' },
-  { key: 'environment', header: 'Ambiente' },
-  { key: 'automatic_sector', header: 'Setor automático' },
-  { key: 'confirmed_sector', header: 'Setor confirmado' },
-  { key: 'requester_corrected', header: 'Solicitante corrigiu o setor' },
-  { key: 'sector_reclassified', header: 'Setor foi reclassificado' },
-  { key: 'reclassification_count', header: 'Quantidade de reclassificações' },
-  { key: 'resolved_by_sector', header: 'Resolvido pelo setor' },
-  { key: 'correct_sector_reached_at', header: 'Setor correto alcançado em' },
-  { key: 'resolved_at', header: 'Resolvido em' },
-  { key: 'time_to_correct_sector', header: 'Tempo até o setor correto (HH:mm)' },
-  { key: 'time_to_resolution', header: 'Tempo até a resolução (HH:mm)' },
+  { key: 'protocol', i18nKey: 'research.export.dataSheet.protocol' },
+  { key: 'created_at', i18nKey: 'research.export.dataSheet.createdAt' },
+  { key: 'description', i18nKey: 'research.export.dataSheet.description' },
+  { key: 'building', i18nKey: 'research.export.dataSheet.building' },
+  { key: 'environment', i18nKey: 'research.export.dataSheet.environment' },
+  { key: 'automatic_sector', i18nKey: 'research.export.dataSheet.automaticSector' },
+  { key: 'confirmed_sector', i18nKey: 'research.export.dataSheet.confirmedSector' },
+  { key: 'requester_corrected', i18nKey: 'research.export.dataSheet.requesterCorrected' },
+  { key: 'sector_reclassified', i18nKey: 'research.export.dataSheet.sectorReclassified' },
+  { key: 'reclassification_count', i18nKey: 'research.export.dataSheet.reclassificationCount' },
+  { key: 'resolved_by_sector', i18nKey: 'research.export.dataSheet.resolvedBySector' },
+  { key: 'correct_sector_reached_at', i18nKey: 'research.export.dataSheet.correctSectorReachedAt' },
+  { key: 'resolved_at', i18nKey: 'research.export.dataSheet.resolvedAt' },
+  { key: 'time_to_correct_sector', i18nKey: 'research.export.dataSheet.timeToCorrectSector' },
+  { key: 'time_to_resolution', i18nKey: 'research.export.dataSheet.timeToResolution' },
 ] as const;
 
 const RECLASSIFICATION_COLUMNS = [
-  { key: 'protocol', header: 'Protocolo' },
-  { key: 'from_sector', header: 'Setor de origem' },
-  { key: 'to_sector', header: 'Setor de destino' },
-  { key: 'reason', header: 'Motivo' },
-  { key: 'created_at', header: 'Data' },
+  { key: 'protocol', i18nKey: 'research.export.reclassificationsSheet.protocol' },
+  { key: 'from_sector', i18nKey: 'research.export.reclassificationsSheet.fromSector' },
+  { key: 'to_sector', i18nKey: 'research.export.reclassificationsSheet.toSector' },
+  { key: 'reason', i18nKey: 'research.export.reclassificationsSheet.reason' },
+  { key: 'created_at', i18nKey: 'research.export.reclassificationsSheet.createdAt' },
 ] as const;
 
 @Injectable()
 export class ExportResearchDataUseCase {
-  constructor(private readonly researchRepository: ResearchRepository) {}
+  constructor(
+    private readonly researchRepository: ResearchRepository,
+    private readonly i18n: I18nService,
+  ) {}
 
   async execute(query: ResearchExportQueryDTO): Promise<IResearchExportResult> {
     const filters: IResearchExportFilters = { from: query.from, to: query.to };
@@ -65,7 +72,11 @@ export class ExportResearchDataUseCase {
   private buildDataSheet(workbook: ExcelJS.Workbook, tickets: TicketEntity[]): void {
     const worksheet = workbook.addWorksheet(DATA_SHEET_NAME);
 
-    worksheet.columns = DATA_COLUMNS.map(({ key, header }) => ({ header, key, width: 24 }));
+    worksheet.columns = DATA_COLUMNS.map(({ key, i18nKey }) => ({
+      header: this.i18n.translate(i18nKey),
+      key,
+      width: 24,
+    }));
 
     for (const ticket of tickets) {
       const reclassificationCount = reassignedEvents(ticket).length;
@@ -95,8 +106,8 @@ export class ExportResearchDataUseCase {
   private buildReclassificationsSheet(workbook: ExcelJS.Workbook, tickets: TicketEntity[]): void {
     const worksheet = workbook.addWorksheet(RECLASSIFICATIONS_SHEET_NAME);
 
-    worksheet.columns = RECLASSIFICATION_COLUMNS.map(({ key, header }) => ({
-      header,
+    worksheet.columns = RECLASSIFICATION_COLUMNS.map(({ key, i18nKey }) => ({
+      header: this.i18n.translate(i18nKey),
       key,
       width: 24,
     }));

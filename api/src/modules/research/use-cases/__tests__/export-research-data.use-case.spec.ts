@@ -1,5 +1,6 @@
 import * as ExcelJS from 'exceljs';
 import { mockDeep } from 'jest-mock-extended';
+import { I18nService } from 'nestjs-i18n';
 
 import { ETicketEventType } from '@modules/tickets/enums/ticket-event-type.enum';
 
@@ -7,9 +8,38 @@ import { ResearchExportQueryDTO } from '../../dtos/research-export-query.dto';
 import { ResearchRepository } from '../../repositories/research.repository';
 import { ExportResearchDataUseCase } from '../export-research-data.use-case';
 
+// Mirrors `research.json`'s `export.*` keys so the header-order test below
+// exercises the same lookup the real i18n loader performs, without pulling
+// in the real nestjs-i18n runtime.
+const TRANSLATIONS: Record<string, string> = {
+  'research.export.dataSheet.protocol': 'Protocolo',
+  'research.export.dataSheet.createdAt': 'Criado em',
+  'research.export.dataSheet.description': 'Descrição',
+  'research.export.dataSheet.building': 'Prédio',
+  'research.export.dataSheet.environment': 'Ambiente',
+  'research.export.dataSheet.automaticSector': 'Setor automático',
+  'research.export.dataSheet.confirmedSector': 'Setor confirmado',
+  'research.export.dataSheet.requesterCorrected': 'Solicitante corrigiu o setor',
+  'research.export.dataSheet.sectorReclassified': 'Setor foi reclassificado',
+  'research.export.dataSheet.reclassificationCount': 'Quantidade de reclassificações',
+  'research.export.dataSheet.resolvedBySector': 'Resolvido pelo setor',
+  'research.export.dataSheet.correctSectorReachedAt': 'Setor correto alcançado em',
+  'research.export.dataSheet.resolvedAt': 'Resolvido em',
+  'research.export.dataSheet.timeToCorrectSector': 'Tempo até o setor correto',
+  'research.export.dataSheet.timeToResolution': 'Tempo até a resolução',
+  'research.export.reclassificationsSheet.protocol': 'Protocolo',
+  'research.export.reclassificationsSheet.fromSector': 'Setor de origem',
+  'research.export.reclassificationsSheet.toSector': 'Setor de destino',
+  'research.export.reclassificationsSheet.reason': 'Motivo',
+  'research.export.reclassificationsSheet.createdAt': 'Data',
+};
+
 describe('ExportResearchDataUseCase', () => {
   const researchRepository = mockDeep<ResearchRepository>();
-  const useCase = new ExportResearchDataUseCase(researchRepository);
+  const i18n = {
+    translate: jest.fn((key: string) => TRANSLATIONS[key] ?? key),
+  } as unknown as jest.Mocked<I18nService>;
+  const useCase = new ExportResearchDataUseCase(researchRepository, i18n);
 
   const createdAt = new Date('2026-08-20T14:30:00Z');
   const correctSectorReachedAt = new Date('2026-08-20T15:00:00Z'); // +1800s
@@ -114,8 +144,8 @@ describe('ExportResearchDataUseCase', () => {
       'Resolvido pelo setor',
       'Setor correto alcançado em',
       'Resolvido em',
-      'Tempo até o setor correto (HH:mm)',
-      'Tempo até a resolução (HH:mm)',
+      'Tempo até o setor correto',
+      'Tempo até a resolução',
     ]);
   });
 
