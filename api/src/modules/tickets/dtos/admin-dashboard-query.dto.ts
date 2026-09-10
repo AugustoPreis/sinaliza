@@ -2,7 +2,7 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import { IsDate, IsOptional } from 'class-validator';
 
-import { IsArray, IsEnum, IsUUID } from '@shared/validators';
+import { IsArray, IsEnum, IsString, IsUUID, MaxLength } from '@shared/validators';
 
 import { ETicketStatus } from '../enums/ticket-status.enum';
 
@@ -38,4 +38,12 @@ export class AdminDashboardQueryDTO {
   @IsOptional()
   @IsUUID()
   building_id?: string;
+
+  @ApiPropertyOptional({
+    description: 'Matches protocol, description or location (building/environment)',
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  search?: string;
 }

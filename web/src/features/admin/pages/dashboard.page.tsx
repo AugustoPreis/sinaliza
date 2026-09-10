@@ -16,7 +16,7 @@ import { AdminTicketsTable } from '../components/admin-tickets-table';
 import { useAdminDashboardQuery, useAdminTicketsQuery } from '../queries/admin-tickets.queries';
 import type { IAdminTicketFilters } from '../types/admin-ticket-filters.type';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 // Empty = every status — this is an overview panel, not a queue to clear,
 // so it shouldn't start narrowed to a subset.
@@ -40,6 +40,7 @@ export function AdminDashboardPage(): ReactElement {
     from: debouncedFilters.from,
     to: debouncedFilters.to,
     building_id: debouncedFilters.buildingId,
+    search: debouncedFilters.search || undefined,
   };
 
   const dashboardQuery = useAdminDashboardQuery(commonParams);
@@ -47,7 +48,6 @@ export function AdminDashboardPage(): ReactElement {
     ...commonParams,
     page,
     perPage: PAGE_SIZE,
-    search: debouncedFilters.search || undefined,
   });
 
   const items = ticketsQuery.data?.items ?? [];

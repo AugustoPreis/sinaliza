@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export interface IImportUsersErrorDetail {
-  type: 'MISSING_COLUMN' | 'COLUMN_ORDER_MISMATCH' | 'INVALID_ROW';
+  type: 'MISSING_COLUMN' | 'COLUMN_ORDER_MISMATCH' | 'INVALID_ROW' | 'UNREADABLE_FILE';
   expected?: string;
   received?: string;
   column_index?: number;

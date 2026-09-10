@@ -11,6 +11,7 @@
     "importColumnOrderMismatch": "Coluna fora de ordem ou com nome diferente do modelo.",
     "importInvalidRow": "Linha {row} da planilha é inválida.",
     "importEmptySheet": "A planilha não possui nenhuma aba.",
+    "importUnreadableFile": "Não foi possível ler o arquivo enviado. Baixe o modelo oficial e tente novamente.",
     "importRowMissingFields": "Linha {row}: nome e email_institucional são obrigatórios.",
     "importRowInvalidLink": "Linha {row}: vínculo inválido: \"{value}\". Esperado ALUNO, PROFESSOR ou SERVIDOR.",
     "importUnknownSector": "Setor \"{name}\" desconhecido para setor_papel."

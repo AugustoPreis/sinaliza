@@ -24,6 +24,7 @@ export const APP_NAV_ITEMS = [
     to: ROUTES.home,
     icon: LayoutDashboard,
     group: 'nav.groups.general',
+    permission: 'tickets:read-all',
   },
   {
     labelKey: 'nav.sectorQueue',

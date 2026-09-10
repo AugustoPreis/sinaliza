@@ -95,6 +95,15 @@ describe('ImportUsersUseCase', () => {
     useCase = new ImportUsersUseCase(dataSource, hashService, uuidService, i18n);
   });
 
+  it('rejects with a friendly error when the uploaded file is not a valid spreadsheet', async () => {
+    const result = await useCase.execute(asMulterFile(Buffer.from('not an xlsx file')));
+
+    expect(result.success).toBe(false);
+    expect(result.error).toBe('INVALID_TEMPLATE');
+    expect(result.details?.[0]).toMatchObject({ type: 'UNREADABLE_FILE' });
+    expect(userRepo.save).not.toHaveBeenCalled();
+  });
+
   it('rejects the whole file when the header is missing a column', async () => {
     const buffer = await buildWorkbookBuffer(
       ['nome', 'email_institucional', 'vinculo'],

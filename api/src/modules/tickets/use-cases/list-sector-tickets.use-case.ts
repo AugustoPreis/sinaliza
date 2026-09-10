@@ -8,8 +8,15 @@ import { UsersRepository } from '@modules/users/repositories/users.repository';
 
 import { SectorTicketQueryDTO } from '../dtos/sector-ticket-query.dto';
 import { SectorTicketListResponseDTO } from '../dtos/sector-ticket-response.dto';
+import { ETicketStatus } from '../enums/ticket-status.enum';
 import { ITicketQueueFilters, TicketsRepository } from '../repositories/tickets.repository';
 import { isAdminUser } from '../utils/ticket-access.util';
+
+// The active queue (no `status` filter given) never includes RESOLVED —
+// that's what `/tickets/resolved` is for. A caller can still ask for
+// RESOLVED explicitly (that's exactly how the resolved-tickets screen
+// reuses this same endpoint), this only changes the *default*.
+const DEFAULT_QUEUE_STATUSES = [ETicketStatus.FORWARDED, ETicketStatus.IN_PROGRESS];
 
 // RB-08: a SECTOR user only ever sees the sectors in their own
 // `sector_users` rows. ADMIN sees every sector by default, and may narrow
@@ -74,7 +81,7 @@ export class ListSectorTicketsUseCase {
     }
 
     const filters: ITicketQueueFilters = {
-      statuses: query.status,
+      statuses: query.status?.length ? query.status : DEFAULT_QUEUE_STATUSES,
       from: query.from,
       to: query.to,
       buildingId,

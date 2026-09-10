@@ -15,32 +15,33 @@ export interface IResearchExportResult {
 const DATA_SHEET_NAME = 'dados_pesquisa';
 const RECLASSIFICATIONS_SHEET_NAME = 'reclassificacoes';
 
+// `key` is the internal row field name (used when building each row below);
+// `header` is what the end user actually sees in the spreadsheet — no
+// internal identifiers (`ticket_id`, the ticket's UUID) and no English.
 const DATA_COLUMNS = [
-  'ticket_id',
-  'protocol',
-  'created_at',
-  'description',
-  'building',
-  'environment',
-  'automatic_sector',
-  'confirmed_sector',
-  'requester_corrected',
-  'sector_reclassified',
-  'reclassification_count',
-  'resolved_by_sector',
-  'correct_sector_reached_at',
-  'resolved_at',
-  'time_to_correct_sector_seconds',
-  'time_to_resolution_seconds',
+  { key: 'protocol', header: 'Protocolo' },
+  { key: 'created_at', header: 'Criado em' },
+  { key: 'description', header: 'Descrição' },
+  { key: 'building', header: 'Prédio' },
+  { key: 'environment', header: 'Ambiente' },
+  { key: 'automatic_sector', header: 'Setor automático' },
+  { key: 'confirmed_sector', header: 'Setor confirmado' },
+  { key: 'requester_corrected', header: 'Solicitante corrigiu o setor' },
+  { key: 'sector_reclassified', header: 'Setor foi reclassificado' },
+  { key: 'reclassification_count', header: 'Quantidade de reclassificações' },
+  { key: 'resolved_by_sector', header: 'Resolvido pelo setor' },
+  { key: 'correct_sector_reached_at', header: 'Setor correto alcançado em' },
+  { key: 'resolved_at', header: 'Resolvido em' },
+  { key: 'time_to_correct_sector', header: 'Tempo até o setor correto (HH:mm)' },
+  { key: 'time_to_resolution', header: 'Tempo até a resolução (HH:mm)' },
 ] as const;
 
 const RECLASSIFICATION_COLUMNS = [
-  'ticket_id',
-  'protocol',
-  'from_sector',
-  'to_sector',
-  'reason',
-  'created_at',
+  { key: 'protocol', header: 'Protocolo' },
+  { key: 'from_sector', header: 'Setor de origem' },
+  { key: 'to_sector', header: 'Setor de destino' },
+  { key: 'reason', header: 'Motivo' },
+  { key: 'created_at', header: 'Data' },
 ] as const;
 
 @Injectable()
@@ -64,13 +65,12 @@ export class ExportResearchDataUseCase {
   private buildDataSheet(workbook: ExcelJS.Workbook, tickets: TicketEntity[]): void {
     const worksheet = workbook.addWorksheet(DATA_SHEET_NAME);
 
-    worksheet.columns = DATA_COLUMNS.map((header) => ({ header, key: header, width: 24 }));
+    worksheet.columns = DATA_COLUMNS.map(({ key, header }) => ({ header, key, width: 24 }));
 
     for (const ticket of tickets) {
       const reclassificationCount = reassignedEvents(ticket).length;
 
       worksheet.addRow({
-        ticket_id: ticket.uuid,
         protocol: ticket.protocol,
         created_at: ticket.createdAt,
         description: ticket.description,
@@ -84,11 +84,10 @@ export class ExportResearchDataUseCase {
         resolved_by_sector: ticket.resolvedBySector?.name ?? null,
         correct_sector_reached_at: ticket.correctSectorReachedAt,
         resolved_at: ticket.resolvedAt,
-        time_to_correct_sector_seconds: diffSeconds(
-          ticket.createdAt,
-          ticket.correctSectorReachedAt,
+        time_to_correct_sector: formatDurationHHmm(
+          diffSeconds(ticket.createdAt, ticket.correctSectorReachedAt),
         ),
-        time_to_resolution_seconds: diffSeconds(ticket.createdAt, ticket.resolvedAt),
+        time_to_resolution: formatDurationHHmm(diffSeconds(ticket.createdAt, ticket.resolvedAt)),
       });
     }
   }
@@ -96,16 +95,15 @@ export class ExportResearchDataUseCase {
   private buildReclassificationsSheet(workbook: ExcelJS.Workbook, tickets: TicketEntity[]): void {
     const worksheet = workbook.addWorksheet(RECLASSIFICATIONS_SHEET_NAME);
 
-    worksheet.columns = RECLASSIFICATION_COLUMNS.map((header) => ({
+    worksheet.columns = RECLASSIFICATION_COLUMNS.map(({ key, header }) => ({
       header,
-      key: header,
+      key,
       width: 24,
     }));
 
     for (const ticket of tickets) {
       for (const event of reassignedEvents(ticket)) {
         worksheet.addRow({
-          ticket_id: ticket.uuid,
           protocol: ticket.protocol,
           from_sector: event.fromSector?.name ?? null,
           to_sector: event.toSector?.name ?? null,
@@ -125,6 +123,18 @@ function diffSeconds(start: Date, end: Date | null): number | null {
   if (!end) return null;
 
   return Math.round((end.getTime() - start.getTime()) / 1000);
+}
+
+// Elapsed duration, not a time of day — hours aren't capped at 24 (a ticket
+// open for a day and a half reads "36:15", not "12:15").
+function formatDurationHHmm(totalSeconds: number | null): string | null {
+  if (totalSeconds === null) return null;
+
+  const totalMinutes = Math.round(totalSeconds / 60);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
 // An export can span an arbitrary `from`/`to` range (or none at all), so

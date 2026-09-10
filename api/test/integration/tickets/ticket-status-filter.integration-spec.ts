@@ -167,12 +167,18 @@ describe('Ticket status filter (integration)', () => {
     expect(body.items.every((item) => item.status === ETicketStatus.RESOLVED)).toBe(true);
   });
 
-  it('GET /sector/tickets with no status filter returns every status', async () => {
+  it('GET /sector/tickets with no status filter defaults to the active queue (FORWARDED/IN_PROGRESS), excluding RESOLVED and OPEN', async () => {
     const response = await sectorAgent.agent.get('/api/v1/sector/tickets').expect(200);
 
     const body = response.body.data as ITicketListResponse;
 
-    expect(body.total).toBe(5);
+    expect(body.total).toBe(2);
+    expect(
+      body.items.every(
+        (item) =>
+          item.status === ETicketStatus.FORWARDED || item.status === ETicketStatus.IN_PROGRESS,
+      ),
+    ).toBe(true);
   });
 
   it('GET /admin/tickets?status[]=RESOLVED only returns RESOLVED tickets', async () => {

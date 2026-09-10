@@ -15,6 +15,7 @@ import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 import { Route as AuthResetPasswordRouteImport } from './routes/_auth/reset-password'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
+import { Route as AuthenticatedNoAccessRouteImport } from './routes/_authenticated/no-access'
 import { Route as AuthenticatedAdminResearchRouteImport } from './routes/_authenticated/admin/research'
 import { Route as AuthenticatedAdminSectorsRouteImport } from './routes/_authenticated/admin/sectors'
 import { Route as AuthenticatedAdminTicketsRouteImport } from './routes/_authenticated/admin/tickets'
@@ -50,6 +51,11 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
 const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
   id: '/account',
   path: '/account',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNoAccessRoute = AuthenticatedNoAccessRouteImport.update({
+  id: '/no-access',
+  path: '/no-access',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAdminResearchRoute =
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/account': typeof AuthenticatedAccountRoute
+  '/no-access': typeof AuthenticatedNoAccessRoute
   '/admin/research': typeof AuthenticatedAdminResearchRoute
   '/admin/sectors': typeof AuthenticatedAdminSectorsRoute
   '/admin/tickets': typeof AuthenticatedAdminTicketsRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/reset-password': typeof AuthResetPasswordRoute
   '/account': typeof AuthenticatedAccountRoute
+  '/no-access': typeof AuthenticatedNoAccessRoute
   '/': typeof AuthenticatedIndexRoute
   '/admin/research': typeof AuthenticatedAdminResearchRoute
   '/admin/sectors': typeof AuthenticatedAdminSectorsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/reset-password': typeof AuthResetPasswordRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/_authenticated/no-access': typeof AuthenticatedNoAccessRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/admin/research': typeof AuthenticatedAdminResearchRoute
   '/_authenticated/admin/sectors': typeof AuthenticatedAdminSectorsRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/account'
+    | '/no-access'
     | '/admin/research'
     | '/admin/sectors'
     | '/admin/tickets'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/reset-password'
     | '/account'
+    | '/no-access'
     | '/'
     | '/admin/research'
     | '/admin/sectors'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_auth/reset-password'
     | '/_authenticated/account'
+    | '/_authenticated/no-access'
     | '/_authenticated/'
     | '/_authenticated/admin/research'
     | '/_authenticated/admin/sectors'
@@ -236,6 +248,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAccountRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/no-access': {
+      id: '/_authenticated/no-access'
+      path: '/no-access'
+      fullPath: '/no-access'
+      preLoaderRoute: typeof AuthenticatedNoAccessRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/research': {
       id: '/_authenticated/admin/research'
       path: '/admin/research'
@@ -290,6 +309,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+  AuthenticatedNoAccessRoute: typeof AuthenticatedNoAccessRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedAdminResearchRoute: typeof AuthenticatedAdminResearchRoute
   AuthenticatedAdminSectorsRoute: typeof AuthenticatedAdminSectorsRoute
@@ -302,6 +322,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+  AuthenticatedNoAccessRoute: AuthenticatedNoAccessRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedAdminResearchRoute: AuthenticatedAdminResearchRoute,
   AuthenticatedAdminSectorsRoute: AuthenticatedAdminSectorsRoute,

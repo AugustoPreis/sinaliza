@@ -16,12 +16,13 @@ import type { ISectorTicketFilters } from '../types/sector-ticket-filters.type';
 
 const PAGE_SIZE = 20;
 
-// Empty = every status (RB-09's queue shows everything by default; the
-// operator narrows down from there, they don't start narrowed).
+// Empty status = the active queue (backend defaults to FORWARDED/IN_PROGRESS,
+// excluding RESOLVED — see `ListSectorTicketsUseCase`). Newest first: this
+// queue is browsed like a feed, not worked oldest-first.
 const DEFAULT_FILTERS: ISectorTicketFilters = {
   status: [],
   search: '',
-  order: 'asc',
+  order: 'desc',
 };
 
 export function SectorTicketsListPage(): ReactElement {

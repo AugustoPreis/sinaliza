@@ -108,6 +108,42 @@ describe('ListSectorTicketsUseCase', () => {
     );
   });
 
+  it('defaults to the active queue (FORWARDED/IN_PROGRESS), excluding RESOLVED, when no status filter is given', async () => {
+    usersRepository.findByUuid.mockResolvedValue({
+      id: 2,
+      userRoles: [{ role: { name: 'ADMIN' } }],
+      sectorUsers: [],
+    } as never);
+
+    await useCase.execute('usr-admin', query);
+
+    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(
+      null,
+      expect.objectContaining({ statuses: ['FORWARDED', 'IN_PROGRESS'] }),
+      'ASC',
+      1,
+      20,
+    );
+  });
+
+  it('respects an explicit status filter, including RESOLVED (the resolved-tickets screen reuses this endpoint)', async () => {
+    usersRepository.findByUuid.mockResolvedValue({
+      id: 2,
+      userRoles: [{ role: { name: 'ADMIN' } }],
+      sectorUsers: [],
+    } as never);
+
+    await useCase.execute('usr-admin', { ...query, status: ['RESOLVED'] } as never);
+
+    expect(ticketsRepository.findManyForQueue).toHaveBeenCalledWith(
+      null,
+      expect.objectContaining({ statuses: ['RESOLVED'] }),
+      'ASC',
+      1,
+      20,
+    );
+  });
+
   it('throws when the current user cannot be resolved', async () => {
     usersRepository.findByUuid.mockResolvedValue(null);
 

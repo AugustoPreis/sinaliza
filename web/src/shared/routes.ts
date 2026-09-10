@@ -4,6 +4,7 @@ export const ROUTES = {
   forgotPassword: '/forgot-password',
   resetPassword: '/reset-password',
   account: '/account',
+  noAccess: '/no-access',
   tickets: {
     queue: '/tickets',
     resolved: '/tickets/resolved',

@@ -53,6 +53,7 @@ export class GetAdminDashboardUseCase {
       from: query.from,
       to: query.to,
       buildingId,
+      search: query.search,
     };
 
     const aggregates = await this.ticketsRepository.getDashboardAggregates(filters);

@@ -72,6 +72,10 @@
     "adminResearch": {
       "title": "Indicadores da pesquisa",
       "description": "Esta página está em construção."
+    },
+    "noAccess": {
+      "title": "Sem acesso",
+      "description": "Seu usuário ainda não tem uma tela disponível neste portal. Fale com um administrador se acredita que isso é um engano."
     }
   },
   "pagination": {

@@ -46,7 +46,23 @@ export class ImportUsersUseCase {
 
   async execute(file: Express.Multer.File): Promise<ImportUsersResultDTO> {
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.load(file.buffer as unknown as ExcelJS.Buffer);
+
+    try {
+      await workbook.xlsx.load(file.buffer as unknown as ExcelJS.Buffer);
+    } catch {
+      // Not a valid .xlsx (corrupted upload, wrong format renamed to .xlsx,
+      // etc) — ExcelJS throws its own low-level parser error here, which
+      // isn't something to surface to an end user.
+      return {
+        success: false,
+        error: 'INVALID_TEMPLATE',
+        details: [
+          { type: 'UNREADABLE_FILE', message: this.i18n.translate('users.errors.importUnreadableFile') },
+        ],
+        created: 0,
+        updated: 0,
+      };
+    }
 
     const worksheet = workbook.worksheets[0];
 

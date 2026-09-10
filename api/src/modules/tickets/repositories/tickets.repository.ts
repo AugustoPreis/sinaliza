@@ -46,6 +46,7 @@ export interface IDashboardFilters {
   from?: Date;
   to?: Date;
   buildingId?: number;
+  search?: string;
 }
 
 export interface IDashboardBySectorRow {
@@ -265,7 +266,11 @@ export class TicketsRepository {
   // plus a `GROUP BY current_sector_id` pass for `by_sector`.
   async getDashboardAggregates(filters: IDashboardFilters): Promise<IDashboardAggregates> {
     const baseQb = (): SelectQueryBuilder<TicketEntity> => {
-      const qb = this.repo.createQueryBuilder('ticket').where('ticket.deletedAt IS NULL');
+      const qb = this.repo
+        .createQueryBuilder('ticket')
+        .leftJoin('ticket.building', 'building')
+        .leftJoin('ticket.environment', 'environment')
+        .where('ticket.deletedAt IS NULL');
 
       if (filters.sectorId) {
         qb.andWhere('ticket.currentSectorId = :sectorId', { sectorId: filters.sectorId });
@@ -285,6 +290,16 @@ export class TicketsRepository {
 
       if (filters.buildingId) {
         qb.andWhere('ticket.buildingId = :buildingId', { buildingId: filters.buildingId });
+      }
+
+      // Same ILIKE-across-columns approach as `findManyForQueue`, so the
+      // dashboard's cards/by-sector table reflect the same search the
+      // ticket listing below them is filtered by.
+      if (filters.search) {
+        qb.andWhere(
+          '(ticket.protocol ILIKE :search OR ticket.description ILIKE :search OR building.name ILIKE :search OR environment.name ILIKE :search)',
+          { search: `%${filters.search}%` },
+        );
       }
 
       return qb;
