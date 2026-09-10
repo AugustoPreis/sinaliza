@@ -93,10 +93,8 @@
     },
     "result": {
       "successBadge": "Importação concluída",
-      "summary": "{{created}} usuário(s) criado(s) e {{updated}} atualizado(s).",
       "errorBadge": "Importação rejeitada",
-      "genericError": "O arquivo enviado não corresponde ao modelo esperado.",
-      "atomicNote": "Nenhum usuário foi criado ou atualizado - a importação é atômica e o arquivo inteiro foi rejeitado."
+      "summary": "{{created}} usuário(s) criado(s) e {{updated}} atualizado(s)."
     }
   },
   "usersPermissions": {

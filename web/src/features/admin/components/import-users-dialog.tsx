@@ -68,8 +68,26 @@ export function ImportUsersDialog({ open, onOpenChange }: ImportUsersDialogProps
     }
 
     importMutation.mutate(selectedFile, {
+      onSuccess: (response) => {
+        if (!response.success) {
+          const message =
+            response.details
+              ?.map((detail) =>
+                typeof detail?.message === 'string' ? detail.message : JSON.stringify(detail),
+              )
+              .join('\n') || t('usersImport.result.errorBadge');
+
+          toast.error(message);
+
+          setSelectedFile(undefined);
+          importMutation.reset();
+        }
+      },
       onError: (error) => {
         toast.error(mapAxiosErrorToAppError(error).message);
+
+        setSelectedFile(undefined);
+        importMutation.reset();
       },
     });
   }
@@ -116,32 +134,38 @@ export function ImportUsersDialog({ open, onOpenChange }: ImportUsersDialogProps
             </Text>
 
             {selectedFile ? (
-              <HStack gap={3} align="center" wrap>
-                <Text size="sm" className="min-w-0 truncate">
-                  {selectedFile.name}
-                </Text>
-                <HStack gap={2}>
-                  <Button
+              <HStack gap={3} align="center" className="w-full flex-nowrap">
+                <HStack
+                  gap={2}
+                  align="center"
+                  className="min-w-0 flex-1 rounded-md border border-border bg-muted/50 px-3 py-2"
+                >
+                  <Text size="sm" className="min-w-0 flex-1 truncate">
+                    {selectedFile.name}
+                  </Text>
+
+                  <button
                     type="button"
-                    variant="outline"
-                    size="icon"
                     onClick={handleClearFile}
                     aria-label={t('usersImport.uploadStep.removeFile')}
+                    className="flex size-5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
                   >
-                    <X size={16} aria-hidden="true" />
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={handleImport}
-                    disabled={importMutation.isPending}
-                  >
-                    <Upload size={16} aria-hidden="true" />
-                    {t('usersImport.uploadStep.button')}
-                  </Button>
+                    <X size={14} aria-hidden="true" />
+                  </button>
                 </HStack>
+
+                <Button
+                  type="button"
+                  onClick={handleImport}
+                  disabled={importMutation.isPending}
+                  className="shrink-0"
+                >
+                  <Upload size={16} aria-hidden="true" />
+                  {t('usersImport.uploadStep.button')}
+                </Button>
               </HStack>
             ) : (
-              <Button type="button" variant="outline" asChild className="w-fit cursor-pointer">
+              <Button type="button" variant="outline" asChild className="w-fit pt-2 cursor-pointer">
                 <label htmlFor={fileInputId}>
                   <Upload size={16} aria-hidden="true" />
                   {t('usersImport.uploadStep.chooseFileButton')}
@@ -158,45 +182,20 @@ export function ImportUsersDialog({ open, onOpenChange }: ImportUsersDialogProps
             />
           </Stack>
 
-          {result ? (
+          {result?.success ? (
             <Stack gap={2} className="rounded-lg border border-border p-4">
-              {result.success ? (
-                <Stack gap={1}>
-                  <Badge variant="success" className="w-fit">
-                    {t('usersImport.result.successBadge')}
-                  </Badge>
-                  <Text size="sm">
-                    {t('usersImport.result.summary', {
-                      created: result.created,
-                      updated: result.updated,
-                    })}
-                  </Text>
-                </Stack>
-              ) : (
-                <Stack gap={1}>
-                  <Badge variant="destructive" className="w-fit">
-                    {t('usersImport.result.errorBadge')}
-                  </Badge>
-                  <Text size="sm">{result.error ?? t('usersImport.result.genericError')}</Text>
-                  <Text size="sm" tone="muted">
-                    {t('usersImport.result.atomicNote')}
-                  </Text>
-                  {result.details && result.details.length > 0 ? (
-                    <Stack gap={1} className="rounded-md bg-muted p-2">
-                      {result.details.map((detail, index) => (
-                        <Text
-                          key={`${index}-${JSON.stringify(detail)}`}
-                          size="sm"
-                          tone="muted"
-                          className="font-mono"
-                        >
-                          {JSON.stringify(detail)}
-                        </Text>
-                      ))}
-                    </Stack>
-                  ) : null}
-                </Stack>
-              )}
+              <Stack gap={1}>
+                <Badge variant="success" className="w-fit">
+                  {t('usersImport.result.successBadge')}
+                </Badge>
+
+                <Text size="sm">
+                  {t('usersImport.result.summary', {
+                    created: result.created,
+                    updated: result.updated,
+                  })}
+                </Text>
+              </Stack>
             </Stack>
           ) : null}
         </Stack>
