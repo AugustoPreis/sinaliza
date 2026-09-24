@@ -20,7 +20,7 @@ ou instruções de classificação adicionais no corpo da requisição à IA.
 
 A IA retorna JSON. Exemplo ilustrativo com ID oficial; valores de modelo e pontuação
 variam por execução. Uma resposta realmente capturada está em
-`reports/structured-api-example.json` (catálogo MOCK, IDs de demonstração).
+`../reports/structured-api-example.json` (catálogo MOCK, IDs de demonstração).
 
 ```json
 {
@@ -95,7 +95,7 @@ cinco setores podem exigir revisão. Passar esses exemplos não prova precisão 
 - Tokens de serviço ficam só no backend. O mobile usa a autenticação normal do Sinaliza.
 - O modelo atual continua MOCK; as proteções que impedem seu uso como modelo REAL permanecem.
 - O timeout padrão do backend foi ajustado para 15 segundos (`AI_TIMEOUT_MS`), pois uma chamada local medida levou 4,3 segundos. Ajuste à máquina; medições locais estão em
-  `reports/structured-api-evaluation.json`. São medições de desenvolvimento, não garantia de SLA.
+  `../reports/structured-api-evaluation.json`. São medições de desenvolvimento, não garantia de SLA.
 
 ## Verificar
 
@@ -105,3 +105,43 @@ No backend: `npm run build` e `npm test -- --runInBand src/modules/classificatio
 
 Os testes usam serviços locais e repositório de setores simulado. Não são homologação do
 mobile real, da autenticação em produção ou do banco PostgreSQL.
+
+## Configuração dos serviços
+
+
+Backend (`api/.env`, não versionar credenciais):
+
+```dotenv
+AI_MODE=disabled
+AI_SERVICE_URL=http://127.0.0.1:3001
+AI_SERVICE_TOKEN=<segredo compartilhado com pelo menos 32 caracteres>
+AI_TIMEOUT_MS=15000
+```
+
+Serviço IA (variáveis do processo; o comando não carrega `.env` automaticamente):
+
+```dotenv
+AI_MODE=disabled
+AI_HOST=127.0.0.1
+AI_PORT=3001
+AI_SERVICE_TOKEN=<mesmo segredo do backend>
+AI_MODEL_PATH=/caminho/absoluto/modelo.json
+BACKEND_API_URL=http://127.0.0.1:3000/api/v1
+BACKEND_API_TOKEN=<JWT válido do backend>
+BACKEND_TIMEOUT_MS=3000
+```
+
+Use o valor do cookie `access_token` obtido no login existente como `BACKEND_API_TOKEN`; o provider o envia no header Cookie. O token `AI_SERVICE_TOKEN` continua sendo enviado como Bearer exclusivamente na chamada backend → IA. Ele precisa continuar válido;
+expiração ou revogação interrompe a classificação. Não há renovação automática nem
+novo mecanismo de conta de serviço nesta entrega. Nunca use o segredo da IA como JWT.
+Entre hosts, configure HTTPS e acesso privado aos serviços. Em contêineres, configure
+`AI_HOST=0.0.0.0` e URLs que resolvam entre os contêineres.
+
+Execute `npm run build && npm run start:service` na IA e inicie o backend normalmente.
+`AI_MODE=disabled` retorna 503 sem carregar modelo ou consultar setores na IA.
+Para ativar com dados reais, configure **ambos** os processos com `AI_MODE=trained`
+e um artefato com `metadata.dataSource=REAL`, cujos IDs correspondam aos UUIDs reais.
+Não basta renomear o metadata de um modelo MOCK.
+`AI_MODE=mock` serve apenas para desenvolvimento isolado com IDs compatíveis;
+`NODE_ENV=production` proíbe esse modo. Não existe tradução de nomes MOCK para UUIDs reais.
+

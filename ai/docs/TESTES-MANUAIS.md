@@ -1,6 +1,6 @@
 # Testar chamados na mão
 
-Abra um terminal na pasta `academic-ticket-ai` e execute:
+Abra um terminal na pasta `ai` e execute:
 
 ```bash
 npm run predict
@@ -36,4 +36,4 @@ Para medir qualidade real, use relatos inéditos cujo setor correto você já sa
 os testes entre os cinco setores. Não use somente exemplos que o sistema já acertou.
 Frases vagas precisam de complemento: "preciso de ajuda" não identifica um setor.
 
-Consulte `reports/aceitacao-ecc.md` para os resultados medidos e suas limitações.
+Consulte `../reports/avaliacao.md` para os resultados medidos e suas limitações.

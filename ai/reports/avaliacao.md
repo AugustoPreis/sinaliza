@@ -47,7 +47,7 @@ A primeira execução em outra máquina baixa os pesos públicos; inferência fi
 ## Complemento: contrato estruturado e descrições complexas
 
 65 testes da IA e 21 testes do módulo de classificação do backend aprovados. O backend
-passa adiante os metadados auditáveis; veja CONTRATO-CLASSIFICACAO.md e o exemplo real
+passa adiante os metadados auditáveis; veja [o contrato HTTP](../docs/CONTRATO-CLASSIFICACAO.md) e o exemplo real
 em reports/structured-api-example.json. A regressão nos mesmos 26 grupos após o novo
 pré-processamento manteve 19/26 acertos (73,08%), registrada em structured-api-evaluation.json.
 Sem retreinamento. O tempo de inicialização agora ocorre antes de abrir a API; medições

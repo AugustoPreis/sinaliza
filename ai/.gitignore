@@ -15,3 +15,7 @@ coverage/
 .env.*
 !.env.example
 deliverables/
+
+# Caches Python de experimentos locais
+__pycache__/
+*.py[cod]

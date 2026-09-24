@@ -1,234 +1,137 @@
 # Sinaliza AI
 
-> Versão atual: classificador híbrido local (TF-IDF + embeddings multilíngues). Para testar no terminal, veja [TESTES-MANUAIS.md](TESTES-MANUAIS.md); para métricas e limites, [aceitação ECC](reports/aceitacao-ecc.md). A precisão próxima de 100% ainda não foi atingida.
+A versão local inclui TI, Secretaria Acadêmica, Financeiro, Biblioteca e Infraestrutura.
+O treinamento é sintético (MOCK). A sugestão de setor precisa de confirmação humana.
+Para testar na mão, veja [testes manuais](docs/TESTES-MANUAIS.md).
 
+## Instalação e artefatos
 
-**Entrega da IA sem banco:** comece por [ENTREGA-IA.md](ENTREGA-IA.md). Use `npm run predict` para o modelo selecionado na comparação de Random Forest real. `npm run demo` preserva a demonstração histórica por centroides. Não execute geração de dataset para iniciar a aplicação.
+Na raiz do repositório, entre em `ai/` com `cd ai`. O serviço usa Node.js/TypeScript; Python não é necessário.
 
+Modelos treinados e datasets gerados não são versionados no Git. Um clone novo precisa dos artefatos do pacote de entrega ou de um treinamento local antes de executar previsões e testes que dependem do modelo. O pacote inclui esses artefatos; não substitua configurações privadas ao extraí-lo.
 
-Classificador local de chamados acadêmicos em TypeScript. Ele recebe **somente a descrição textual** e devolve o `sector_id`. Na integração HTTP, os setores são consultados no backend por `BackendSectorProvider`; na demonstração local, vêm da configuração MOCK. Os cinco setores atuais são exclusivamente **mock de desenvolvimento**, não uma definição oficial.
+## Executar
 
-## Arquitetura
-
-```text
-CSV (`text`, `sector_id`) → split estratificado (80/10/10, seed 42)
-  ├─ normalização → [nspell opcional] → TF-IDF → Random Forest (padrão) / centroides (opção explícita) → artefato JSON
-  └─ normalização → MiniLM (384, mean pooling, L2) → Random Forest → artefato JSON
-```
-
-Treinamento e inferência são separados. A inferência TF-IDF carrega vocabulário, IDF, configuração e classificador persistidos; ela nunca reajusta o vetorizador. O MiniLM é baixado e executado localmente por Transformers.js/ONNX, sem API externa.
-
-## Requisitos e instalação
-
-- Node.js 20 ou superior (recomendado Node 22 LTS)
-- npm 10 ou superior
-- Espaço disponível para o cache local do modelo MiniLM
-
-Confirme as versões antes da instalação:
+Na pasta `ai`, com Node.js 22 e npm:
 
 ```bash
-node --version  # deve mostrar v20 ou superior
-npm --version   # recomendado v10 ou superior
+npm ci
+npm run check
+npm run predict -- "Na sala de aula, bateram na régua de energia e caiu toda a energia da fileira."
 ```
 
-### Ubuntu com Node instalado pelo Snap
+O resultado esperado desse relato é `Infraestrutura`. Use `npm run predict` para digitar
+outras descrições, uma por linha, e `/sair` para encerrar.
+O comando usa `models/release/manifest.json` se existir; caso contrário, usa
+`models/latest.json`. Para escolher outro artefato, passe `--model caminho/modelo.json`.
 
-Se `node --version` mostrar `v10.24.1` e `which node` mostrar `/snap/bin/node`, atualize o canal do Snap:
+## Os dois testes de aceitação
 
 ```bash
-sudo snap refresh node --channel=22/stable
-hash -r
-node --version
-npm --version
+npm run test:acceptance
 ```
 
-Se o Snap informar que o canal precisa ser alterado explicitamente, use:
+1. API autenticada com o modelo salvo: verifica o hash do dataset, os cinco setores e
+   uma descrição conhecida de cada setor. É uma verificação funcional.
+2. API com o relato real de queda de energia: verifica o texto original e a versão resumida,
+   a ausência desses textos no dataset e o retorno de Infraestrutura.
+
+O segundo caso veio do usuário e não foi usado para treinar. Como já orientou o diagnóstico,
+é uma regressão conhecida, não uma estimativa independente de acurácia. Outros exemplos
+reais inéditos, rotulados por responsáveis pelos setores, ainda são necessários.
+
+## HTTP local, sem banco
+
+Terminal 1:
 
 ```bash
-sudo snap switch node --channel=22/stable
-sudo snap refresh node
-hash -r
+npm run demo:http
 ```
 
-Depois de confirmar Node 22, refaça a instalação limpa das dependências geradas parcialmente pelo Node antigo:
+Terminal 2:
 
 ```bash
-rm -rf node_modules
-npm install
-npm run build
-npm test
+npm run request -- "Na sala de aula, bateram na régua de energia e caiu toda a energia da fileira."
 ```
 
-O projeto também contém `.nvmrc` e `.node-version` para quem utiliza NVM, fnm ou outro gerenciador compatível. A configuração `.npmrc` interrompe a instalação imediatamente quando a versão do Node é incompatível, evitando erros difíceis de interpretar dentro do ONNX ou TypeScript.
+A API escuta em `http://127.0.0.1:3001/classification/preview`, recebe
+`{"description":"..."}` por POST e retorna `automatic_sector`, `sector_id`, `confidence`,
+`model` e `dataSource`. A pontuação não é probabilidade calibrada de acerto.
+O token público desses comandos serve somente para demonstração local. Não funciona com
+`NODE_ENV=production`. Se a porta já estiver ocupada, use o serviço existente atualizado
+ou encerre a instância anterior antes de abrir outra.
+
+## Modelo e reprodução
+
+O modelo atual combina TF-IDF por palavras com embeddings multilíngues locais.
+A API mantém os campos existentes e acrescenta `classification.requires_review`, `classification.review_reason` e
+`classification.alternatives` para comunicar pouca evidência ou discordância. O campo `confidence`
+continua sendo uma pontuação, não probabilidade calibrada. Não é Random Forest.
+
+Para preparar os artefatos em um clone novo, execute primeiro `npm run demo:train`
+(gera o dataset MOCK e um modelo lexical). Depois execute o treino híbrido abaixo.
+Esses comandos retreinam e atualizam o modelo selecionado; não são necessários para
+apenas iniciar uma cópia já preparada.
 
 ```bash
-npm install
-npm run build
-npm test
+npm run demo:train:hybrid
+npm run check:all
 ```
 
-Na primeira execução MiniLM, Transformers.js baixa os pesos do Hugging Face. As execuções seguintes usam o cache local. Para operar totalmente offline, aqueça esse cache antes de remover o acesso à rede.
+A seleção usa grupos de validação separados; o ajuste final inclui treino+validação,
+sem grupos de teste. O relatório exato está indicado em `models/latest.json`.
+No teste de 26 representantes de grupos, o modelo acertou 19 (73,08%); o anterior acertava
+18 nos mesmos textos. Na validação usada para seleção, foram 22/25 (88%). Os resultados
+são exploratórios em dados sintéticos, não prova de precisão perto de 100% em chamados reais.
 
-## Estrutura
+A primeira execução em uma máquina nova baixa pesos públicos do modelo multilíngue;
+os textos são processados localmente. Depois os pesos ficam em cache.
+Para usar o modelo lexical anterior sem embeddings, passe `--model` com o caminho desse artefato.
 
-```text
-config/               configuração externa de setores mock
-data/mock/            exemplos exclusivamente de desenvolvimento
-data/private/         dados reais anonimizados, ignorados pelo Git
-data/feedback/        feedback local, ignorado pelo Git
-reports/v1/           relatórios versionados
-src/classification/   contrato e adapters do classificador
-src/sectors/          SectorProvider desacoplado do backend
-src/feedback/         repositório local e contrato futuro
-src/dataset/          validação, carregamento e split
-src/preprocessing/    normalização, nspell e termos institucionais
-src/tfidf/            vetorização, treino e inferência clássica
-src/minilm/           embeddings, treino e inferência semântica
-src/random-forest/    classificador, probabilidade e persistência
-src/evaluation/       métricas, matrizes e benchmark
-models/v1/            artefatos treinados e versionados
-tests/                testes rápidos e integrações pesadas
-```
+Consulte `reports/avaliacao.md` para limites, revisão e evidências.
+`demo:train:hybrid` atualiza o ponteiro e as cópias de demonstração; reinicie serviços já abertos
+para carregar mudanças. Dataset e modelos históricos são preservados.
 
-## Dataset
+## Integração e pacote
 
-`data/mock/chamados.csv` contém 80 exemplos sintéticos iniciais. O formato é:
-
-```csv
-text,sector_id
-"não consigo acessar o portal","TI"
-```
-
-O split usa seed `42`, é estratificado e produz 80% treino, 10% validação e 10% teste. Textos normalizados duplicados interrompem o processo para evitar vazamento.
-
-Para testar a infraestrutura de 10.000 registros balanceados:
+Consulte [contrato HTTP](docs/CONTRATO-CLASSIFICACAO.md) para o fluxo mobile → backend → IA, campos estruturados e tratamento de revisão.
 
 ```bash
-npm run dataset:generate:mock
+npm run package:ai
 ```
 
-O gerador valida tamanho, IDs, textos, cobertura, balanceamento e duplicatas. Ele gera somente dados marcados como mock. O dataset oficial só deve ser criado depois que o backend fornecer os setores oficiais.
+O pacote fica em `deliverables/sinaliza-ia.zip`, com manifesto SHA256. Não contém os
+CSV privados, tokens, dependências nem caches. Usa uma lista explícita de arquivos.
 
-Cada setor precisa trazer ao menos dois exemplos representativos. O nome não é inserido nas descrições; o vínculo supervisionado fica somente em `sector_id`:
+A integração normal consulta os setores do backend. Configure `AI_MODEL_TYPE=tfidf`,
+`AI_MODEL_PATH`, `AI_MODE`, `AI_SERVICE_TOKEN`, `BACKEND_API_URL` e `BACKEND_API_TOKEN`.
+`AI_MODE` é `disabled` por padrão; um modelo MOCK não pode ser ativado como produção.
+`AI_SECTOR_SOURCE=mock-file` é permitido somente em modo MOCK.
 
-```json
-{
-  "id": "id-fornecido-pelo-backend",
-  "name": "nome fornecido pelo backend",
-  "active": true,
-  "examples": ["primeiro problema representativo", "segundo problema representativo"]
-}
-```
+O mapa `config/backend-demo-sector-map.json` inclui cinco UUIDs exclusivos de demonstração.
+Nenhum setor foi cadastrado no banco por esta correção. Para integrar, os IDs devem corresponder
+aos setores reais; consulte [a configuração dos serviços](docs/CONTRATO-CLASSIFICACAO.md#configuração-dos-serviços).
 
-O arquivo gerado e seu manifesto ficam em `data/mock/generated/mock-v2/`. O manifesto registra distribuição, diferença entre classes, duplicatas, comprimentos, repetição de inícios, vazamento do nome da classe e cobertura dos exemplos. Essa pasta é ignorada pelo Git porque os arquivos podem ser regenerados.
+## Organização
 
-Um setor novo fica imediatamente visível ao provider, mas os classificadores TF-IDF/MiniLM com Random Forest possuem classes fixas. Por isso, o serviço detecta o novo ID e exige nova geração/validação e retreinamento; ele não finge aprendizado automático.
+- `src/`: serviço HTTP, classificação, pré-processamento, treino e avaliação.
+- `tests/`: verificações automatizadas.
+- `scripts/`: verificação e empacotamento.
+- `config/` e `data/mock/`: configuração e exemplos sintéticos.
+- `models/`: artefatos locais gerados, ignorados pelo Git.
+- `reports/`: evidências de avaliação; relatórios antigos documentam modelos anteriores.
+- `docs/`: contrato HTTP e roteiro de testes manuais.
 
-### Uso de chamados reais
+Os algoritmos alternativos de treino continuam disponíveis nos scripts do `package.json`.
+Os dados reais devem ficar em `data/private/`, ignorada pelo Git. O comando
+`npm run dataset:prepare -- /caminho/exportacao.csv --sectors /caminho/setores.json`
+prepara uma cópia anonimizada; revise-a antes de usar para treino.
 
-Nunca coloque uma exportação original da instituição em `data/mock` nem faça commit dela. A pasta `data/private/`, arquivos `*.real.csv` e `*.private.csv` estão bloqueados no `.gitignore`.
+## Integração com o repositório
 
-O importador aceita aliases de colunas, mas resolve o setor exclusivamente pela configuração externa (`id` ou `name`). Ele elimina duplicatas exatas e substitui automaticamente e-mail, CPF, telefone, RA e URL. A detecção automática não reconhece nomes com segurança; uma revisão humana continua obrigatória.
-
-Prepare uma cópia anonimizada sem alterar o arquivo original:
-
-```bash
-npm run dataset:prepare -- "/caminho/para/exportacao.csv" --sectors "/caminho/sectors.oficial.json"
-```
-
-Isso gera, com permissão restrita ao usuário:
-
-```text
-data/private/chamados-reais.csv
-data/private/chamados-reais.csv.report.json
-```
-
-Revise o CSV e o relatório localmente. Depois selecione-o sem alterar código:
-
-```bash
-DATASET_PATH=data/private/chamados-reais.csv npm run train:tfidf
-DATASET_PATH=data/private/chamados-reais.csv npm run train:minilm
-DATASET_PATH=data/private/chamados-reais.csv npm run benchmark
-```
-
-Antes de qualquer envio ao GitHub, execute `git status` e confirme que `data/private/` não aparece. A instituição deve autorizar o uso e definir finalidade, acesso, retenção e descarte conforme suas políticas e a LGPD.
-
-## Treino e previsão
-
-```bash
-# Word TF-IDF (padrão)
-npm run train:tfidf
-
-# Demais representações
-npm run train:tfidf -- --mode char
-npm run train:tfidf -- --mode combined
-npm run train:tfidf -- --mode word --spell
-
-# MiniLM local
-npm run train:minilm
-
-npm run predict:tfidf -- "não consigo entrar no portal"
-npm run predict:tfidf -- "portau fora do ar" --model models/v1/tfidf/tfidf-char-rf.json
-npm run predict:minilm -- "não consigo entrar no portal"
-```
-
-O retorno tem contrato simples, adequado para ser encapsulado posteriormente por um provider NestJS:
-
-```json
-{ "sectorId": "id-fornecido-pelo-backend", "confidence": 0.91, "model": "tfidf-word-rf" }
-```
-
-`confidence` é a proporção real de votos das árvores na classe prevista, fornecida pela Random Forest; não é um valor inventado nem uma probabilidade calibrada. Antes de produção, calibre-a em validação e estabeleça um limiar para triagem humana.
-
-### Correção ortográfica e desempenho
-
-Para evitar vários minutos de inicialização, a execução combina duas camadas: o léxico integral de `dictionary-pt` reconhece palavras válidas, enquanto o nspell recebe um vocabulário compacto do domínio para produzir sugestões. Apenas destinos explicitamente seguros e sem ambiguidade são aceitos. Assim, o dicionário integral participa da validação sem bloquear treino, inferência ou benchmark.
-
-## Avaliação e benchmark
-
-```bash
-npm run evaluate:tfidf
-npm run evaluate:minilm
-npm run benchmark
-```
-
-O benchmark treina os cinco experimentos exigidos, mostra o progresso de cada etapa, avalia apenas no conjunto de teste, apresenta a tabela comparativa e métricas por setor, e salva `reports/v1/benchmark.json`. São registrados accuracy, precision, recall, F1 por classe, macro-F1, weighted-F1, matriz de confusão, tempo de treino, latência sequencial média e tamanho do artefato.
-
-## Como funcionam os modelos
-
-**Word TF-IDF** pondera unigramas e bigramas conforme a frequência no chamado e raridade no corpus. **Character TF-IDF** usa n-grams de 3 a 5 caracteres, permitindo sobreposição entre `portal` e `portau`. O modo combinado concatena os dois espaços com prefixos distintos.
-
-**MiniLM** aplica mean pooling e normalização L2 ao vetor de 384 dimensões. Ele pode aproximar frases semanticamente semelhantes mesmo sem palavras iguais. Não há fine-tuning nesta versão.
-
-**Random Forest** recebe os vetores e combina 100 árvores. A mesma abstração serializa/carrega os dois modelos. Apesar de classificadores lineares frequentemente serem competitivos em TF-IDF esparso, Random Forest foi preservado para manter a comparação solicitada.
-
-## Artefatos
-
-- TF-IDF: modo, n-grams, vocabulário ordenado, IDF, opções, classes e floresta.
-- MiniLM: identificador do transformer, pooling, normalização, dimensionalidade, classes e floresta.
-- Os pesos MiniLM permanecem no cache gerenciado por Transformers.js.
-
-## Testes
-
-```bash
-npm test             # suíte unitária rápida
-npm run test:spell   # testes de correção e vocabulário português
-npm run test:minilm  # baixa/carrega MiniLM e valida shape/norma
-```
-
-Os testes cobrem normalização, vocabulário institucional, split, TF-IDF, persistência da floresta, inferência e métricas. As integrações pesadas ficam separadas para não tornar o ciclo unitário lento.
-
-## Limitações e evoluções
-
-- O dataset inicial é pequeno e sintético; métricas não representam desempenho real.
-- `all-MiniLM-L6-v2` é mais forte em inglês; um próximo experimento recomendado para português é um Sentence Transformer multilíngue.
-- A confiança por votos não é calibrada. Avalie isotonic regression ou Platt scaling com a validação.
-- A correção é conservadora: palavras curtas, institucionais ou com sugestões ambíguas permanecem intactas.
-- Próximos passos: dados reais anonimizados, split por grupos, análise de drift, limiar de rejeição, versionamento formal e provider/módulo NestJS.
-
-## Decisões de biblioteca
-
-- O TF-IDF foi implementado no projeto para assegurar persistência completa e transformação idêntica na inferência.
-- `ml-random-forest` oferece classificação multiclasse, serialização/carregamento e probabilidade por votação.
-- `nspell` trabalha com o dicionário Hunspell `dictionary-pt` e aceita vocabulário customizado.
-- `@huggingface/transformers` executa o modelo ONNX localmente e suporta feature extraction em batch.
+O backend fica em `../api/` e o frontend em `../web/`. O mobile ainda não está implementado.
+O backend consulta a IA por HTTP; a IA usa `BACKEND_API_TOKEN` como cookie `access_token`
+para consultar os setores. Esse JWT pode expirar e não possui renovação automática.
+Configure o mesmo `AI_SERVICE_TOKEN` nos dois serviços e confira as variáveis em
+[.env.example](.env.example). A IA não carrega esse arquivo automaticamente.
+O fluxo completo com login e banco real ainda precisa de homologação.
