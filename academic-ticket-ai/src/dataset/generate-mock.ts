@@ -1,0 +1,25 @@
+import { AI_CONFIG } from '../config/ai.js';
+import { generateBalancedDataset, writeDataset } from './generator.js';
+import { validateDataset } from './validator.js';
+import { FileSectorProvider } from '../sectors/provider.js';
+import { writeJson } from '../shared/utils.js';
+
+const output = process.argv[2] ?? `data/mock/generated/${AI_CONFIG.datasetVersion}/chamados.csv`;
+const provider = new FileSectorProvider(AI_CONFIG.mockSectorConfigPath);
+const sectors = await provider.getActiveSectors();
+const records = generateBalancedDataset(sectors);
+const result = validateDataset(records, sectors);
+await writeDataset(output, records);
+const reportPath = `${output}.report.json`;
+await writeJson(reportPath, { dataset: 'SINALIZA_MOCK', generatedAt: new Date().toISOString(), ...result });
+console.log('DATASET SINALIZA (MOCK)');
+console.log(`Total de chamados: ${result.total}`);
+console.log(`Total de setores: ${result.sectorCount}`);
+console.table(Object.entries(result.distribution).map(([sector_id, samples]) => ({ sector_id, samples })));
+console.log(`Menor quantidade: ${result.minimumPerSector}`);
+console.log(`Maior quantidade: ${result.maximumPerSector}`);
+console.log(`Diferença: ${result.difference}`);
+console.log(`Duplicatas exatas: ${result.exactDuplicates}`);
+for (const [check, status] of Object.entries(result.checks)) console.log(`Validação ${check}: ${status}`);
+console.log(`Status final: ${result.status}`);
+console.log(`Arquivos: ${output} e ${reportPath}`);

@@ -1,0 +1,393 @@
+{
+  "runId": "v-2026-09-24_15-14-19-523",
+  "dataSource": "MOCK",
+  "scope": "local-group-representatives",
+  "dataset": {
+    "path": "data/mock/generated/mock-v2/chamados.csv",
+    "version": "mock-v2",
+    "hash": "785626726299575a970b5cbc27c32c5b176e9a6f873a1c640b18e6b9fe1cb1d6",
+    "validation": {
+      "status": "VALID",
+      "total": 10000,
+      "sectorCount": 5,
+      "distribution": {
+        "TI": 2000,
+        "Secretaria Acadêmica": 2000,
+        "Financeiro": 2000,
+        "Biblioteca": 2000,
+        "Infraestrutura": 2000
+      },
+      "minimumPerSector": 2000,
+      "maximumPerSector": 2000,
+      "difference": 0,
+      "exactDuplicates": 0,
+      "duplicateRate": 0,
+      "labelLeakageCount": 0,
+      "lengthDistribution": {
+        "short": 2220,
+        "medium": 6832,
+        "long": 948
+      },
+      "maximumOpeningRate": 0.1004,
+      "examplesCovered": 251,
+      "examplesTotal": 251,
+      "checks": {
+        "total": "PASS",
+        "sectors": "PASS",
+        "balance": "PASS",
+        "texts": "PASS",
+        "duplicates": "PASS",
+        "variety": "PASS",
+        "labelLeakage": "PASS",
+        "examples": "PASS"
+      }
+    }
+  },
+  "split": {
+    "train": 200,
+    "availableTrain": 7969,
+    "validation": 996,
+    "test": 1035,
+    "groupLeakage": 0
+  },
+  "selectionCriterion": "validation-macro-F1",
+  "validationResults": [
+    {
+      "id": "centroid",
+      "path": "models/v-2026-09-24_15-14-19-523/centroid.json",
+      "metrics": {
+        "accuracy": 0.5582329317269076,
+        "macroF1": 0.5554433573542469,
+        "weightedF1": 0.5551364305489702,
+        "perClass": {
+          "TI": {
+            "precision": 0.6845238095238095,
+            "recall": 0.5867346938775511,
+            "f1": 0.6318681318681318,
+            "support": 196
+          },
+          "Secretaria Acadêmica": {
+            "precision": 0.484251968503937,
+            "recall": 0.615,
+            "f1": 0.5418502202643172,
+            "support": 200
+          },
+          "Financeiro": {
+            "precision": 0.46120689655172414,
+            "recall": 0.535,
+            "f1": 0.4953703703703704,
+            "support": 200
+          },
+          "Biblioteca": {
+            "precision": 0.5725806451612904,
+            "recall": 0.355,
+            "f1": 0.4382716049382716,
+            "support": 200
+          },
+          "Infraestrutura": {
+            "precision": 0.6422018348623854,
+            "recall": 0.7,
+            "f1": 0.6698564593301436,
+            "support": 200
+          }
+        },
+        "confusionMatrix": [
+          [
+            115,
+            14,
+            26,
+            1,
+            40
+          ],
+          [
+            11,
+            123,
+            32,
+            29,
+            5
+          ],
+          [
+            15,
+            42,
+            107,
+            13,
+            23
+          ],
+          [
+            12,
+            65,
+            42,
+            71,
+            10
+          ],
+          [
+            15,
+            10,
+            25,
+            10,
+            140
+          ]
+        ],
+        "classIds": [
+          "TI",
+          "Secretaria Acadêmica",
+          "Financeiro",
+          "Biblioteca",
+          "Infraestrutura"
+        ]
+      }
+    },
+    {
+      "id": "nearest-example",
+      "path": "models/v-2026-09-24_15-14-19-523/nearest-example.json",
+      "metrics": {
+        "accuracy": 0.44779116465863456,
+        "macroF1": 0.4453979047786706,
+        "weightedF1": 0.44508478597866,
+        "perClass": {
+          "TI": {
+            "precision": 0.672,
+            "recall": 0.42857142857142855,
+            "f1": 0.5233644859813084,
+            "support": 196
+          },
+          "Secretaria Acadêmica": {
+            "precision": 0.37572254335260113,
+            "recall": 0.325,
+            "f1": 0.34852546916890076,
+            "support": 200
+          },
+          "Financeiro": {
+            "precision": 0.3497536945812808,
+            "recall": 0.355,
+            "f1": 0.3523573200992556,
+            "support": 200
+          },
+          "Biblioteca": {
+            "precision": 0.3964757709251101,
+            "recall": 0.45,
+            "f1": 0.4215456674473068,
+            "support": 200
+          },
+          "Infraestrutura": {
+            "precision": 0.5074626865671642,
+            "recall": 0.68,
+            "f1": 0.5811965811965812,
+            "support": 200
+          }
+        },
+        "confusionMatrix": [
+          [
+            84,
+            4,
+            23,
+            24,
+            61
+          ],
+          [
+            11,
+            65,
+            66,
+            39,
+            19
+          ],
+          [
+            15,
+            39,
+            71,
+            39,
+            36
+          ],
+          [
+            5,
+            61,
+            28,
+            90,
+            16
+          ],
+          [
+            10,
+            4,
+            15,
+            35,
+            136
+          ]
+        ],
+        "classIds": [
+          "TI",
+          "Secretaria Acadêmica",
+          "Financeiro",
+          "Biblioteca",
+          "Infraestrutura"
+        ]
+      }
+    },
+    {
+      "id": "random-forest",
+      "path": "models/v-2026-09-24_15-14-19-523/random-forest.json",
+      "metrics": {
+        "accuracy": 0.31827309236947793,
+        "macroF1": 0.2559695300725933,
+        "weightedF1": 0.25699752015320615,
+        "perClass": {
+          "TI": {
+            "precision": 0,
+            "recall": 0,
+            "f1": 0,
+            "support": 196
+          },
+          "Secretaria Acadêmica": {
+            "precision": 0.24242424242424243,
+            "recall": 0.6,
+            "f1": 0.3453237410071942,
+            "support": 200
+          },
+          "Financeiro": {
+            "precision": 0.3333333333333333,
+            "recall": 0.005,
+            "f1": 0.009852216748768473,
+            "support": 200
+          },
+          "Biblioteca": {
+            "precision": 0.23248407643312102,
+            "recall": 0.365,
+            "f1": 0.2840466926070039,
+            "support": 200
+          },
+          "Infraestrutura": {
+            "precision": 0.6684782608695652,
+            "recall": 0.615,
+            "f1": 0.640625,
+            "support": 200
+          }
+        },
+        "confusionMatrix": [
+          [
+            0,
+            100,
+            0,
+            60,
+            36
+          ],
+          [
+            0,
+            120,
+            0,
+            74,
+            6
+          ],
+          [
+            0,
+            104,
+            1,
+            88,
+            7
+          ],
+          [
+            0,
+            114,
+            1,
+            73,
+            12
+          ],
+          [
+            0,
+            57,
+            1,
+            19,
+            123
+          ]
+        ],
+        "classIds": [
+          "TI",
+          "Secretaria Acadêmica",
+          "Financeiro",
+          "Biblioteca",
+          "Infraestrutura"
+        ]
+      }
+    }
+  ],
+  "testMetrics": {
+    "accuracy": 0.4830917874396135,
+    "macroF1": 0.46686142557806376,
+    "weightedF1": 0.4689810071759217,
+    "perClass": {
+      "TI": {
+        "precision": 0.545045045045045,
+        "recall": 0.5148936170212766,
+        "f1": 0.5295404814004376,
+        "support": 235
+      },
+      "Secretaria Acadêmica": {
+        "precision": 0.4329501915708812,
+        "recall": 0.565,
+        "f1": 0.4902386117136659,
+        "support": 200
+      },
+      "Financeiro": {
+        "precision": 0.4539249146757679,
+        "recall": 0.665,
+        "f1": 0.539553752535497,
+        "support": 200
+      },
+      "Biblioteca": {
+        "precision": 0.4157303370786517,
+        "recall": 0.185,
+        "f1": 0.2560553633217993,
+        "support": 200
+      },
+      "Infraestrutura": {
+        "precision": 0.5647058823529412,
+        "recall": 0.48,
+        "f1": 0.5189189189189188,
+        "support": 200
+      }
+    },
+    "confusionMatrix": [
+      [
+        121,
+        28,
+        44,
+        5,
+        37
+      ],
+      [
+        7,
+        113,
+        33,
+        29,
+        18
+      ],
+      [
+        20,
+        33,
+        133,
+        8,
+        6
+      ],
+      [
+        47,
+        56,
+        47,
+        37,
+        13
+      ],
+      [
+        27,
+        31,
+        36,
+        10,
+        96
+      ]
+    ],
+    "classIds": [
+      "TI",
+      "Secretaria Acadêmica",
+      "Financeiro",
+      "Biblioteca",
+      "Infraestrutura"
+    ]
+  },
+  "modelPath": "models/v-2026-09-24_15-14-19-523/centroid.json"
+}

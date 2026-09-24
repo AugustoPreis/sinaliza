@@ -1,0 +1,73 @@
+{
+  "kind": "DEVELOPMENT_MOCK",
+  "version": "mock-v2",
+  "sectors": [
+    {
+      "id": "TI", "name": "TI", "active": true,
+      "examples": [
+        "não consigo acessar o portal acadêmico", "esqueci a senha da minha conta",
+        "a internet do laboratório está sem conexão", "o ambiente virtual não carrega as disciplinas",
+        "meu e-mail institucional parou de receber mensagens", "o aplicativo fecha quando tento entrar",
+        "minha conta foi bloqueada depois de várias tentativas", "a tela do sistema fica totalmente branca",
+        "não consigo enviar arquivos no ambiente virtual", "troquei de celular e perdi acesso ao autenticador", "o wi-fi do campus cai durante a aula", "o computador do laboratório não liga", "a impressora não aceita meu trabalho", "o navegador mostra erro ao abrir o portal", "meu cadastro de acesso expirou", "o código de verificação não chega", "o sistema desconecta durante o preenchimento", "o arquivo enviado fica preso no carregamento", "a videoconferência fica sem áudio", "o projetor da sala não reconhece o notebook", "preciso configurar a rede no celular", "a senha temporária não funciona", "o leitor de cartão não responde", "a página informa erro de permissão", "o programa fecha ao abrir um documento", "meu acesso remoto foi recusado", "a plataforma não mostra minhas turmas", "o anexo ultrapassa o limite sem explicar", "a notificação do sistema não aparece", "o login funciona mas a tela seguinte trava", "preciso ativar a autenticação em dois fatores", "a rede cabeada não identifica o computador", "o teclado do laboratório parou", "o sistema está muito lento nesta manhã", "o link recebido abre uma página inexistente", "a conta continua bloqueada após trocar a senha", "não consigo baixar o material da aula", "o microfone não é reconhecido", "preciso instalar o programa usado na disciplina", "o portal rejeita meu código de acesso", "a atualização deixou o aplicativo instável", "o monitor do computador está sem imagem", "o sistema não salva as alterações", "a conta institucional não sincroniza no celular", "o upload termina mas o arquivo desaparece", "o sinal da rede não chega à sala", "o certificado digital não é reconhecido", "a página pede permissão repetidamente", "o sistema exibe uma mensagem desconhecida"
+        , "o driver da impressora do laboratório não instala", "a conexão VPN do campus não autentica"
+      ]
+    },
+    {
+      "id": "Secretaria Acadêmica", "name": "Secretaria Acadêmica", "active": true,
+      "examples": [
+        "quero alterar minha matrícula", "preciso de uma declaração de matrícula",
+        "minha nota não aparece no histórico", "gostaria de pedir aproveitamento de disciplina",
+        "preciso atualizar meus dados cadastrais", "quero solicitar o trancamento do curso",
+        "preciso incluir uma disciplina neste semestre", "meu nome está incorreto no histórico",
+        "gostaria de mudar para outro turno", "preciso solicitar a segunda via do diploma", "quero transferir curso para outro campus", "preciso corrigir meu RA", "quando começa a rematrícula", "quero cancelar uma disciplina", "solicito uma certidão acadêmica", "como faço o reingresso", "preciso entregar documentos de matrícula", "minha disciplina sumiu da grade", "quero solicitar colação de grau", "preciso comprovar conclusão do curso", "como atualizo meu nome no cadastro", "quero mudar a modalidade do curso", "qual o prazo para matrícula", "preciso incluir atividade complementar", "minha frequência está incorreta", "quero pedir revisão de uma nota", "como solicito equivalência curricular", "preciso de histórico atualizado", "quero trancar apenas uma disciplina", "posso retomar um curso cancelado", "preciso alterar meu endereço cadastral", "como faço a matrícula fora do prazo", "quero solicitar uma declaração de conclusão", "minha turma não aparece no sistema", "preciso trocar o orientador", "como funciona a transferência interna", "quero pedir dispensa de disciplina", "meu documento foi recusado na matrícula", "quando sai o calendário acadêmico", "preciso atualizar minha foto institucional", "quero consultar minhas disciplinas cursadas", "como peço atendimento para colar grau", "minha situação acadêmica está divergente", "preciso regularizar uma pendência documental", "quero mudar o período de ingresso", "onde solicito comprovante de vínculo", "minha rematrícula foi cancelada", "preciso saber os requisitos para concluir o curso"
+        , "quero solicitar atendimento sobre minha formatura", "preciso corrigir uma disciplina no meu plano"
+      ]
+    },
+    {
+      "id": "Financeiro", "name": "Financeiro", "active": true,
+      "examples": [
+        "não recebi o boleto deste mês", "a mensalidade aparece em aberto mas já paguei",
+        "preciso negociar parcelas atrasadas", "o desconto da bolsa não foi aplicado",
+        "a cobrança veio duplicada no cartão", "o valor da mensalidade veio incorreto",
+        "meu pagamento ainda não foi compensado", "preciso de um comprovante de quitação",
+        "fiz o pagamento por pix mas ainda aparece débito", "cobraram juros mesmo com o pagamento dentro do prazo", "quero emitir segunda via do boleto", "onde vejo minhas pendências", "preciso atualizar a forma de pagamento", "minha bolsa não aparece no contrato", "quero pedir desconto por pontualidade", "o estorno ainda não foi depositado", "preciso alterar a data de vencimento", "o boleto veio com valor diferente", "como funciona o financiamento estudantil", "quero renegociar minha dívida", "paguei duas vezes a mesma parcela", "a fatura do cartão foi recusada", "preciso do recibo das mensalidades", "o parcelamento não foi aplicado", "minha isenção não consta", "quero contestar uma cobrança", "o pagamento em dinheiro não foi registrado", "preciso saber o valor da próxima mensalidade", "a negociação venceu", "como faço acordo das parcelas", "o desconto de convênio desapareceu", "minha nota fiscal não foi emitida", "quero trocar o responsável financeiro", "o boleto está indisponível no portal", "paguei por cartão e consta pendente", "preciso conferir cobranças antigas", "o valor da rematrícula está errado", "quero solicitar devolução de valor", "a parcela negociada veio diferente", "minha conta financeira está bloqueada", "como consulto o contrato financeiro", "o desconto foi retirado sem aviso", "preciso corrigir meus dados de faturamento", "a cobrança foi feita após cancelamento", "o vencimento caiu em feriado", "quero parcelar o valor do semestre", "a taxa foi cobrada duas vezes", "preciso de orientação sobre seguro educacional", "o comprovante enviado não foi aceito"
+        , "não reconheço uma cobrança no meu contrato de mensalidade"
+      ]
+    },
+    {
+      "id": "Biblioteca", "name": "Biblioteca", "active": true,
+      "examples": [
+        "preciso renovar o empréstimo de um livro", "quero reservar uma obra que está emprestada",
+        "não consigo acessar o acervo digital", "minha devolução está atrasada",
+        "preciso consultar uma base de artigos", "perdi um livro que estava emprestado",
+        "quero consultar as obras disponíveis no acervo", "minha reserva desapareceu do sistema",
+        "preciso localizar uma tese para meu trabalho", "quero saber o limite de obras por aluno", "qual o horário de atendimento", "o cadastro para empréstimo está bloqueado", "preciso devolver livros em outro campus", "como solicito ficha catalográfica", "quero acessar periódicos online", "o livro reservado não foi separado", "minha multa foi calculada incorretamente", "posso renovar uma obra atrasada", "preciso encontrar uma revista antiga", "como faço uma doação de livros", "quero consultar teses do acervo", "o sistema não mostra meu empréstimo", "perdi meu cartão de acesso", "a base de artigos pede senha", "preciso localizar um autor", "o prazo de devolução não foi atualizado", "quero reservar uma sala de estudo", "como consulto o regulamento", "o exemplar disponível não aparece", "minha reserva expirou antes do prazo", "preciso renovar uma revista", "o terminal de consulta está ocupado", "quero saber se uma obra está disponível", "a busca não encontra o título", "preciso de acesso remoto às bases", "a multa continua depois da devolução", "como retiro material reservado", "quero consultar material audiovisual", "o empréstimo não foi registrado", "preciso de ajuda para pesquisar no catálogo", "o livro chegou danificado", "quero sugerir uma nova obra", "minha conta não permite reservas", "onde encontro normas para TCC", "o acesso à revista foi negado", "preciso localizar um e-book", "a devolução automática falhou", "quero saber como funciona a reserva"
+        , "preciso verificar o status de uma doação", "quero consultar o prazo de uma reserva"
+      ]
+    },
+    {
+      "id": "Infraestrutura", "name": "Infraestrutura", "active": true,
+      "examples": [
+        "a tomada da sala de aula não funciona", "preciso de um técnico de manutenção urgente",
+        "a lâmpada da sala está queimada", "o ar condicionado parou de funcionar",
+        "há vazamento de água no corredor", "a porta da sala não fecha corretamente",
+        "o teto tem infiltração", "a cadeira está quebrada", "a mesa está instável",
+        "há mofo na parede", "a fechadura não abre", "o vidro da janela está rachado",
+        "preciso de reparo no piso", "o rodapé está solto", "há problemas na ligação de energia",
+        "o transformador está fazendo barulho", "falta iluminação de emergência", "a escada está enferrujada",
+        "há água entrando pela janela", "o telhado precisa de reparos", "há barulho estranho no sistema elétrico",
+        "a ventilação está entupida", "o chão está muito molhado", "há fissura na parede",
+        "o espelho do banheiro está partido", "há fiação exposta", "a mangueira está rompida",
+        "o encanamento entupiu", "há umidade excessiva na sala", "o motor não está funcionando",
+        "falta manutenção na estrutura", "há objetos soltos no teto", "a rede de proteção está rompida",
+        "preciso chamar eletricista", "o painel de controle está com defeito", "há vazamento nas tubulações",
+        "o sistema de esgoto está comprometido", "a estrutura de sustentação está danificada", "há cupins na madeira",
+        "o piso está descascando", "há problemas na estrutura metálica", "o acabamento está deteriorado",
+        "preciso de limpeza de dutos", "há acúmulo de poeira prejudicial", "o isolamento térmico falhou",
+        "há deficiência na iluminação", "o sistema de segurança falhou", "preciso reparar o elevador"
+        , "a manutenção da estrutura está atrasada", "há problemas na divisão de ambientes"
+      ]
+    }
+  ]
+}

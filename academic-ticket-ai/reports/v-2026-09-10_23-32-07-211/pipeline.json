@@ -1,0 +1,176 @@
+{
+  "runId": "v-2026-09-10_23-32-07-211",
+  "dataset": {
+    "path": "data/mock/generated/mock-v1/chamados.csv",
+    "version": "mock-v1",
+    "hash": "a46e03e602d23f909d68f7a70990f85f0b0e9340eba71f4faffe18eb2f1f0869",
+    "validation": {
+      "status": "VALID",
+      "total": 10000,
+      "sectorCount": 4,
+      "distribution": {
+        "TI": 2500,
+        "Secretaria Acadêmica": 2500,
+        "Financeiro": 2500,
+        "Biblioteca": 2500
+      },
+      "minimumPerSector": 2500,
+      "maximumPerSector": 2500,
+      "difference": 0,
+      "exactDuplicates": 0,
+      "duplicateRate": 0,
+      "labelLeakageCount": 0,
+      "lengthDistribution": {
+        "short": 358,
+        "medium": 8805,
+        "long": 837
+      },
+      "maximumOpeningRate": 0.1,
+      "examplesCovered": 40,
+      "examplesTotal": 40,
+      "checks": {
+        "total": "PASS",
+        "sectors": "PASS",
+        "balance": "PASS",
+        "texts": "PASS",
+        "duplicates": "PASS",
+        "variety": "PASS",
+        "labelLeakage": "PASS",
+        "examples": "PASS"
+      }
+    }
+  },
+  "split": {
+    "train": 8000,
+    "validation": 1000,
+    "test": 1000,
+    "groupLeakage": 0
+  },
+  "validationMetrics": {
+    "accuracy": 0.434,
+    "macroF1": 0.40335076450907814,
+    "weightedF1": 0.4033507645090782,
+    "perClass": {
+      "TI": {
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "support": 250
+      },
+      "Secretaria Acadêmica": {
+        "precision": 0.39408866995073893,
+        "recall": 0.96,
+        "f1": 0.5587892898719442,
+        "support": 250
+      },
+      "Financeiro": {
+        "precision": 0.6548672566371682,
+        "recall": 0.296,
+        "f1": 0.40771349862258954,
+        "support": 250
+      },
+      "Biblioteca": {
+        "precision": 0.9917355371900827,
+        "recall": 0.48,
+        "f1": 0.6469002695417789,
+        "support": 250
+      }
+    },
+    "confusionMatrix": [
+      [
+        0,
+        230,
+        19,
+        1
+      ],
+      [
+        0,
+        240,
+        10,
+        0
+      ],
+      [
+        157,
+        19,
+        74,
+        0
+      ],
+      [
+        0,
+        120,
+        10,
+        120
+      ]
+    ],
+    "classIds": [
+      "TI",
+      "Secretaria Acadêmica",
+      "Financeiro",
+      "Biblioteca"
+    ]
+  },
+  "testMetrics": {
+    "accuracy": 0.419,
+    "macroF1": 0.36214554868968696,
+    "weightedF1": 0.36214554868968696,
+    "perClass": {
+      "TI": {
+        "precision": 0.351027397260274,
+        "recall": 0.82,
+        "f1": 0.4916067146282973,
+        "support": 250
+      },
+      "Secretaria Acadêmica": {
+        "precision": 0.7172995780590717,
+        "recall": 0.68,
+        "f1": 0.6981519507186859,
+        "support": 250
+      },
+      "Financeiro": {
+        "precision": 0.4888888888888889,
+        "recall": 0.176,
+        "f1": 0.2588235294117647,
+        "support": 250
+      },
+      "Biblioteca": {
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "support": 250
+      }
+    },
+    "confusionMatrix": [
+      [
+        205,
+        26,
+        19,
+        0
+      ],
+      [
+        0,
+        170,
+        27,
+        53
+      ],
+      [
+        147,
+        23,
+        44,
+        36
+      ],
+      [
+        232,
+        18,
+        0,
+        0
+      ]
+    ],
+    "classIds": [
+      "TI",
+      "Secretaria Acadêmica",
+      "Financeiro",
+      "Biblioteca"
+    ]
+  },
+  "modelPath": "models/v-2026-09-10_23-32-07-211/tfidf-word-rf.json"
+}

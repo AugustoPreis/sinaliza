@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.cache/
+models/**/*.json
+!models/**/.gitkeep
+data/processed/
+data/private/
+data/feedback/
+data/mock/generated/
+*.real.csv
+*.private.csv
+coverage/
+
+.env
+.env.*
+!.env.example
+deliverables/

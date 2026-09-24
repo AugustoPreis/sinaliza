@@ -1,0 +1,1776 @@
+{
+  "generatedAt": "2026-09-10T23:54:50.268Z",
+  "sectors": [
+    {
+      "sector": "TI",
+      "total": 51,
+      "counts": {
+        "claros": 3,
+        "ambiguos": 28,
+        "genericos": 20,
+        "conflicting": 6
+      },
+      "topicCounts": {
+        "acesso": 4,
+        "login": 1,
+        "senha": 3,
+        "internet": 1,
+        "rede": 3,
+        "sistema": 6,
+        "portal": 3,
+        "aplicativo": 2,
+        "computador": 3,
+        "impressora": 2,
+        "arquivo": 2,
+        "autenticacao": 0,
+        "wifi": 0,
+        "vpn": 1,
+        "erro": 2,
+        "instalar": 1
+      },
+      "examples": [
+        {
+          "index": 1,
+          "example": "não consigo acessar o portal acadêmico",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 2,
+          "example": "esqueci a senha da minha conta",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 3,
+          "example": "a internet do laboratório está sem conexão",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 4,
+          "example": "o ambiente virtual não carrega as disciplinas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 5,
+          "example": "meu e-mail institucional parou de receber mensagens",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 6,
+          "example": "o aplicativo fecha quando tento entrar",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 7,
+          "example": "minha conta foi bloqueada depois de várias tentativas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 8,
+          "example": "a tela do sistema fica totalmente branca",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 9,
+          "example": "não consigo enviar arquivos no ambiente virtual",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 10,
+          "example": "troquei de celular e perdi acesso ao autenticador",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 11,
+          "example": "o wi-fi do campus cai durante a aula",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 12,
+          "example": "o computador do laboratório não liga",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 13,
+          "example": "a impressora não aceita meu trabalho",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 14,
+          "example": "o navegador mostra erro ao abrir o portal",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 15,
+          "example": "meu cadastro de acesso expirou",
+          "classification": "ambiguo",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI",
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 16,
+          "example": "o código de verificação não chega",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 17,
+          "example": "o sistema desconecta durante o preenchimento",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 18,
+          "example": "o arquivo enviado fica preso no carregamento",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 19,
+          "example": "a videoconferência fica sem áudio",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 20,
+          "example": "o projetor da sala não reconhece o notebook",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 21,
+          "example": "preciso configurar a rede no celular",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 22,
+          "example": "a senha temporária não funciona",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 23,
+          "example": "o leitor de cartão não responde",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 24,
+          "example": "a página informa erro de permissão",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 25,
+          "example": "o programa fecha ao abrir um documento",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 26,
+          "example": "meu acesso remoto foi recusado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 27,
+          "example": "a plataforma não mostra minhas turmas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 28,
+          "example": "o anexo ultrapassa o limite sem explicar",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 29,
+          "example": "a notificação do sistema não aparece",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 30,
+          "example": "o login funciona mas a tela seguinte trava",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 31,
+          "example": "preciso ativar a autenticação em dois fatores",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 32,
+          "example": "a rede cabeada não identifica o computador",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 33,
+          "example": "o teclado do laboratório parou",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 34,
+          "example": "o sistema está muito lento nesta manhã",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 35,
+          "example": "o link recebido abre uma página inexistente",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 36,
+          "example": "a conta continua bloqueada após trocar a senha",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 37,
+          "example": "não consigo baixar o material da aula",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 38,
+          "example": "o microfone não é reconhecido",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 39,
+          "example": "preciso instalar o programa usado na disciplina",
+          "classification": "ambiguo",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI",
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 40,
+          "example": "o portal rejeita meu código de acesso",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 41,
+          "example": "a atualização deixou o aplicativo instável",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 42,
+          "example": "o monitor do computador está sem imagem",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 43,
+          "example": "o sistema não salva as alterações",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 44,
+          "example": "a conta institucional não sincroniza no celular",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 45,
+          "example": "o upload termina mas o arquivo desaparece",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 46,
+          "example": "o sinal da rede não chega à sala",
+          "classification": "ambiguo",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI",
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 47,
+          "example": "o certificado digital não é reconhecido",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 48,
+          "example": "a página pede permissão repetidamente",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 49,
+          "example": "o sistema exibe uma mensagem desconhecida",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 50,
+          "example": "o driver da impressora do laboratório não instala",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 51,
+          "example": "a conexão VPN do campus não autentica",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "TI"
+          ]
+        }
+      ]
+    },
+    {
+      "sector": "Secretaria Acadêmica",
+      "total": 50,
+      "counts": {
+        "claros": 0,
+        "ambiguos": 19,
+        "genericos": 31,
+        "conflicting": 1
+      },
+      "topicCounts": {
+        "matricula": 0,
+        "disciplina": 7,
+        "historico": 0,
+        "diploma": 1,
+        "curso": 6,
+        "nota": 2,
+        "frequencia": 0,
+        "documento": 1,
+        "rematricula": 0,
+        "formatura": 1,
+        "transferencia": 0,
+        "cadastro": 1
+      },
+      "examples": [
+        {
+          "index": 1,
+          "example": "quero alterar minha matrícula",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 2,
+          "example": "preciso de uma declaração de matrícula",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 3,
+          "example": "minha nota não aparece no histórico",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 4,
+          "example": "gostaria de pedir aproveitamento de disciplina",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 5,
+          "example": "preciso atualizar meus dados cadastrais",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 6,
+          "example": "quero solicitar o trancamento do curso",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 7,
+          "example": "preciso incluir uma disciplina neste semestre",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 8,
+          "example": "meu nome está incorreto no histórico",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 9,
+          "example": "gostaria de mudar para outro turno",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 10,
+          "example": "preciso solicitar a segunda via do diploma",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 11,
+          "example": "quero transferir curso para outro campus",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 12,
+          "example": "preciso corrigir meu RA",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 13,
+          "example": "quando começa a rematrícula",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 14,
+          "example": "quero cancelar uma disciplina",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 15,
+          "example": "solicito uma certidão acadêmica",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 16,
+          "example": "como faço o reingresso",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 17,
+          "example": "preciso entregar documentos de matrícula",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 18,
+          "example": "minha disciplina sumiu da grade",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 19,
+          "example": "quero solicitar colação de grau",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 20,
+          "example": "preciso comprovar conclusão do curso",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 21,
+          "example": "como atualizo meu nome no cadastro",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 22,
+          "example": "quero mudar a modalidade do curso",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 23,
+          "example": "qual o prazo para matrícula",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 24,
+          "example": "preciso incluir atividade complementar",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 25,
+          "example": "minha frequência está incorreta",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 26,
+          "example": "quero pedir revisão de uma nota",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 27,
+          "example": "como solicito equivalência curricular",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 28,
+          "example": "preciso de histórico atualizado",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 29,
+          "example": "quero trancar apenas uma disciplina",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 30,
+          "example": "posso retomar um curso cancelado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 31,
+          "example": "preciso alterar meu endereço cadastral",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 32,
+          "example": "como faço a matrícula fora do prazo",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 33,
+          "example": "quero solicitar uma declaração de conclusão",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 34,
+          "example": "minha turma não aparece no sistema",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 35,
+          "example": "preciso trocar o orientador",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 36,
+          "example": "como funciona a transferência interna",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 37,
+          "example": "quero pedir dispensa de disciplina",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 38,
+          "example": "meu documento foi recusado na matrícula",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 39,
+          "example": "quando sai o calendário acadêmico",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 40,
+          "example": "preciso atualizar minha foto institucional",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 41,
+          "example": "quero consultar minhas disciplinas cursadas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 42,
+          "example": "como peço atendimento para colar grau",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 43,
+          "example": "minha situação acadêmica está divergente",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 44,
+          "example": "preciso regularizar uma pendência documental",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 45,
+          "example": "quero mudar o período de ingresso",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 46,
+          "example": "onde solicito comprovante de vínculo",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 47,
+          "example": "minha rematrícula foi cancelada",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 48,
+          "example": "preciso saber os requisitos para concluir o curso",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 49,
+          "example": "quero solicitar atendimento sobre minha formatura",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 50,
+          "example": "preciso corrigir uma disciplina no meu plano",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        }
+      ]
+    },
+    {
+      "sector": "Financeiro",
+      "total": 50,
+      "counts": {
+        "claros": 8,
+        "ambiguos": 19,
+        "genericos": 23,
+        "conflicting": 2
+      },
+      "topicCounts": {
+        "boleto": 4,
+        "mensalidade": 4,
+        "pagamento": 5,
+        "cobranca": 0,
+        "parcela": 2,
+        "bolsa": 2,
+        "desconto": 4,
+        "juros": 1,
+        "fatura": 1,
+        "pix": 1,
+        "divida": 0,
+        "contrato": 3,
+        "estorno": 1,
+        "valor": 6,
+        "taxa": 1
+      },
+      "examples": [
+        {
+          "index": 1,
+          "example": "não recebi o boleto deste mês",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 2,
+          "example": "a mensalidade aparece em aberto mas já paguei",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 3,
+          "example": "preciso negociar parcelas atrasadas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 4,
+          "example": "o desconto da bolsa não foi aplicado",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 5,
+          "example": "a cobrança veio duplicada no cartão",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 6,
+          "example": "o valor da mensalidade veio incorreto",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 7,
+          "example": "meu pagamento ainda não foi compensado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 8,
+          "example": "preciso de um comprovante de quitação",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 9,
+          "example": "fiz o pagamento por pix mas ainda aparece débito",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 10,
+          "example": "cobraram juros mesmo com o pagamento dentro do prazo",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 11,
+          "example": "quero emitir segunda via do boleto",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 12,
+          "example": "onde vejo minhas pendências",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 13,
+          "example": "preciso atualizar a forma de pagamento",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 14,
+          "example": "minha bolsa não aparece no contrato",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 15,
+          "example": "quero pedir desconto por pontualidade",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 16,
+          "example": "o estorno ainda não foi depositado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 17,
+          "example": "preciso alterar a data de vencimento",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 18,
+          "example": "o boleto veio com valor diferente",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 19,
+          "example": "como funciona o financiamento estudantil",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 20,
+          "example": "quero renegociar minha dívida",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 21,
+          "example": "paguei duas vezes a mesma parcela",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 22,
+          "example": "a fatura do cartão foi recusada",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 23,
+          "example": "preciso do recibo das mensalidades",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 24,
+          "example": "o parcelamento não foi aplicado",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 25,
+          "example": "minha isenção não consta",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 26,
+          "example": "quero contestar uma cobrança",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 27,
+          "example": "o pagamento em dinheiro não foi registrado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 28,
+          "example": "preciso saber o valor da próxima mensalidade",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 29,
+          "example": "a negociação venceu",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 30,
+          "example": "como faço acordo das parcelas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 31,
+          "example": "o desconto de convênio desapareceu",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 32,
+          "example": "minha nota fiscal não foi emitida",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 33,
+          "example": "quero trocar o responsável financeiro",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 34,
+          "example": "o boleto está indisponível no portal",
+          "classification": "ambiguo",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI",
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 35,
+          "example": "paguei por cartão e consta pendente",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 36,
+          "example": "preciso conferir cobranças antigas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 37,
+          "example": "o valor da rematrícula está errado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 38,
+          "example": "quero solicitar devolução de valor",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 39,
+          "example": "a parcela negociada veio diferente",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 40,
+          "example": "minha conta financeira está bloqueada",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 41,
+          "example": "como consulto o contrato financeiro",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 42,
+          "example": "o desconto foi retirado sem aviso",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 43,
+          "example": "preciso corrigir meus dados de faturamento",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 44,
+          "example": "a cobrança foi feita após cancelamento",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 45,
+          "example": "o vencimento caiu em feriado",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 46,
+          "example": "quero parcelar o valor do semestre",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 47,
+          "example": "a taxa foi cobrada duas vezes",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        },
+        {
+          "index": 48,
+          "example": "preciso de orientação sobre seguro educacional",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 49,
+          "example": "o comprovante enviado não foi aceito",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 50,
+          "example": "não reconheço uma cobrança no meu contrato de mensalidade",
+          "classification": "claro",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Financeiro"
+          ]
+        }
+      ]
+    },
+    {
+      "sector": "Biblioteca",
+      "total": 50,
+      "counts": {
+        "claros": 0,
+        "ambiguos": 25,
+        "genericos": 25,
+        "conflicting": 7
+      },
+      "topicCounts": {
+        "livro": 4,
+        "obra": 4,
+        "acervo": 3,
+        "emprestimo": 0,
+        "devolucao": 0,
+        "reserva": 4,
+        "artigo": 0,
+        "tese": 1,
+        "revista": 3,
+        "catalogo": 0,
+        "exemplar": 1,
+        "multa": 2,
+        "periodico": 0,
+        "biblioteca": 0,
+        "sala": 1,
+        "ebook": 0,
+        "material": 2
+      },
+      "examples": [
+        {
+          "index": 1,
+          "example": "preciso renovar o empréstimo de um livro",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 2,
+          "example": "quero reservar uma obra que está emprestada",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 3,
+          "example": "não consigo acessar o acervo digital",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 4,
+          "example": "minha devolução está atrasada",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 5,
+          "example": "preciso consultar uma base de artigos",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 6,
+          "example": "perdi um livro que estava emprestado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 7,
+          "example": "quero consultar as obras disponíveis no acervo",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 8,
+          "example": "minha reserva desapareceu do sistema",
+          "classification": "ambiguo",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI",
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 9,
+          "example": "preciso localizar uma tese para meu trabalho",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 10,
+          "example": "quero saber o limite de obras por aluno",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 11,
+          "example": "qual o horário de atendimento",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 12,
+          "example": "o cadastro para empréstimo está bloqueado",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "Secretaria Acadêmica"
+          ]
+        },
+        {
+          "index": 13,
+          "example": "preciso devolver livros em outro campus",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 14,
+          "example": "como solicito ficha catalográfica",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 15,
+          "example": "quero acessar periódicos online",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 16,
+          "example": "o livro reservado não foi separado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 17,
+          "example": "minha multa foi calculada incorretamente",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 18,
+          "example": "posso renovar uma obra atrasada",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 19,
+          "example": "preciso encontrar uma revista antiga",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 20,
+          "example": "como faço uma doação de livros",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 21,
+          "example": "quero consultar teses do acervo",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 22,
+          "example": "o sistema não mostra meu empréstimo",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 23,
+          "example": "perdi meu cartão de acesso",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 24,
+          "example": "a base de artigos pede senha",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 25,
+          "example": "preciso localizar um autor",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 26,
+          "example": "o prazo de devolução não foi atualizado",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 27,
+          "example": "quero reservar uma sala de estudo",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 28,
+          "example": "como consulto o regulamento",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 29,
+          "example": "o exemplar disponível não aparece",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 30,
+          "example": "minha reserva expirou antes do prazo",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 31,
+          "example": "preciso renovar uma revista",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 32,
+          "example": "o terminal de consulta está ocupado",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 33,
+          "example": "quero saber se uma obra está disponível",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 34,
+          "example": "a busca não encontra o título",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 35,
+          "example": "preciso de acesso remoto às bases",
+          "classification": "generico",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI"
+          ]
+        },
+        {
+          "index": 36,
+          "example": "a multa continua depois da devolução",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 37,
+          "example": "como retiro material reservado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 38,
+          "example": "quero consultar material audiovisual",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 39,
+          "example": "o empréstimo não foi registrado",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 40,
+          "example": "preciso de ajuda para pesquisar no catálogo",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 41,
+          "example": "o livro chegou danificado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 42,
+          "example": "quero sugerir uma nova obra",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 43,
+          "example": "minha conta não permite reservas",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 44,
+          "example": "onde encontro normas para TCC",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 45,
+          "example": "o acesso à revista foi negado",
+          "classification": "ambiguo",
+          "potentiallyConflicting": true,
+          "topics": [
+            "TI",
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 46,
+          "example": "preciso localizar um e-book",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 47,
+          "example": "a devolução automática falhou",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 48,
+          "example": "quero saber como funciona a reserva",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        },
+        {
+          "index": 49,
+          "example": "preciso verificar o status de uma doação",
+          "classification": "generico",
+          "potentiallyConflicting": false,
+          "topics": []
+        },
+        {
+          "index": 50,
+          "example": "quero consultar o prazo de uma reserva",
+          "classification": "ambiguo",
+          "potentiallyConflicting": false,
+          "topics": [
+            "Biblioteca"
+          ]
+        }
+      ]
+    }
+  ],
+  "redundantSuspects": [
+    {
+      "left": {
+        "sector": "TI",
+        "index": 29,
+        "example": "a notificação do sistema não aparece",
+        "tokens": {}
+      },
+      "right": {
+        "sector": "Secretaria Acadêmica",
+        "index": 34,
+        "example": "minha turma não aparece no sistema",
+        "tokens": {}
+      },
+      "similarity": 0.6,
+      "sameSector": false
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+export const AI_CONFIG = {
+  datasetSize: 10_000,
+  split: { train: 0.8, validation: 0.1, test: 0.1 },
+  seed: 42,
+  datasetVersion: 'mock-v2',
+  modelVersion: 'v1',
+  mockDatasetPath: 'data/mock/generated/mock-v2/chamados.csv',
+  mockFixturePath: 'data/mock/chamados.csv',
+  mockSectorConfigPath: 'config/sectors.mock.json',
+  feedbackPath: 'data/feedback/feedback.jsonl',
+  modelRoot: 'models',
+  reportRoot: 'reports',
+  duplicateThreshold: 0.02,
+  maximumOpeningRate: 0.2,
+  textLength: { short: 60, medium: 140 },
+  minimumExamplesPerSector: 2,
+  randomForest: { nEstimators: 5, maxFeatures: 0, maxDepth: 10 },
+} as const;

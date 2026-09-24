@@ -1,0 +1,30 @@
+{
+  "kind": "DEVELOPMENT_MOCK",
+  "items": [
+    {
+      "modelSectorId": "TI",
+      "id": "10000000-0000-4000-8000-000000000001",
+      "name": "TI"
+    },
+    {
+      "modelSectorId": "Secretaria Acadêmica",
+      "id": "10000000-0000-4000-8000-000000000002",
+      "name": "Secretaria Acadêmica"
+    },
+    {
+      "modelSectorId": "Financeiro",
+      "id": "10000000-0000-4000-8000-000000000003",
+      "name": "Financeiro"
+    },
+    {
+      "modelSectorId": "Biblioteca",
+      "id": "10000000-0000-4000-8000-000000000004",
+      "name": "Biblioteca"
+    },
+    {
+      "modelSectorId": "Infraestrutura",
+      "id": "10000000-0000-4000-8000-000000000005",
+      "name": "Infraestrutura"
+    }
+  ]
+}

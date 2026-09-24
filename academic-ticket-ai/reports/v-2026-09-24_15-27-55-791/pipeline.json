@@ -1,0 +1,531 @@
+{
+  "runId": "v-2026-09-24_15-27-55-791",
+  "dataSource": "MOCK",
+  "dataset": {
+    "path": "data/mock/generated/mock-v2/chamados.csv",
+    "hash": "785626726299575a970b5cbc27c32c5b176e9a6f873a1c640b18e6b9fe1cb1d6",
+    "version": "mock-v2"
+  },
+  "scope": "one-shortest-example-per-group; known synthetic dataset, not independent real data",
+  "split": {
+    "train": 225,
+    "validation": 0,
+    "test": 26,
+    "groupLeakage": 0
+  },
+  "selection": {
+    "mode": "word",
+    "neighbors": 1,
+    "weight": 0.25,
+    "metrics": {
+      "accuracy": 0.88,
+      "macroF1": 0.8816239316239315,
+      "weightedF1": 0.8816239316239316,
+      "perClass": {
+        "TI": {
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 5
+        },
+        "Secretaria Acadêmica": {
+          "precision": 0.625,
+          "recall": 1,
+          "f1": 0.7692307692307693,
+          "support": 5
+        },
+        "Financeiro": {
+          "precision": 1,
+          "recall": 0.8,
+          "f1": 0.888888888888889,
+          "support": 5
+        },
+        "Biblioteca": {
+          "precision": 1,
+          "recall": 0.6,
+          "f1": 0.7499999999999999,
+          "support": 5
+        },
+        "Infraestrutura": {
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 5
+        }
+      },
+      "confusionMatrix": [
+        [
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ],
+      "classIds": [
+        "TI",
+        "Secretaria Acadêmica",
+        "Financeiro",
+        "Biblioteca",
+        "Infraestrutura"
+      ]
+    },
+    "errors": [
+      {
+        "text": "olá, preciso de orientação sobre seguro educacional",
+        "expected": "Financeiro",
+        "predicted": "Secretaria Acadêmica",
+        "scores": [
+          {
+            "sectorId": "Secretaria Acadêmica",
+            "score": 0.39047331088272635,
+            "semanticScore": 0.499905182084379
+          },
+          {
+            "sectorId": "Biblioteca",
+            "score": 0.31465098225339255,
+            "semanticScore": 0.36217928446666015
+          },
+          {
+            "sectorId": "Financeiro",
+            "score": 0.28517099686812286,
+            "semanticScore": 0.40056692954673034
+          },
+          {
+            "sectorId": "Infraestrutura",
+            "score": 0.25499987442247496,
+            "semanticScore": 0.3106907948943728
+          },
+          {
+            "sectorId": "TI",
+            "score": 0.18015431624242065,
+            "semanticScore": 0.39694531320031834
+          }
+        ]
+      },
+      {
+        "text": "olá, como solicito ficha catalográfica",
+        "expected": "Biblioteca",
+        "predicted": "Secretaria Acadêmica",
+        "scores": [
+          {
+            "sectorId": "Secretaria Acadêmica",
+            "score": 0.36516020738502397,
+            "semanticScore": 0.7775723997977457
+          },
+          {
+            "sectorId": "Financeiro",
+            "score": 0.27512477121313766,
+            "semanticScore": 0.8622894620235162
+          },
+          {
+            "sectorId": "Biblioteca",
+            "score": 0.24169706096943114,
+            "semanticScore": 0.7703454320886336
+          },
+          {
+            "sectorId": "Infraestrutura",
+            "score": 0.16461615163481833,
+            "semanticScore": 0.5740528750289113
+          },
+          {
+            "sectorId": "TI",
+            "score": 0.16303183934475846,
+            "semanticScore": 0.5760409478142476
+          }
+        ]
+      },
+      {
+        "text": "olá, como consulto o regulamento",
+        "expected": "Biblioteca",
+        "predicted": "Secretaria Acadêmica",
+        "scores": [
+          {
+            "sectorId": "Secretaria Acadêmica",
+            "score": 0.3514050010893019,
+            "semanticScore": 0.6434619973212261
+          },
+          {
+            "sectorId": "Financeiro",
+            "score": 0.2903216994876625,
+            "semanticScore": 0.6086879698626738
+          },
+          {
+            "sectorId": "Biblioteca",
+            "score": 0.2778199673994818,
+            "semanticScore": 0.625234015537359
+          },
+          {
+            "sectorId": "TI",
+            "score": 0.2493423990753337,
+            "semanticScore": 0.5822190472917942
+          },
+          {
+            "sectorId": "Infraestrutura",
+            "score": 0.20254726743370077,
+            "semanticScore": 0.48240788626957803
+          }
+        ]
+      }
+    ],
+    "validationGroups": 25,
+    "initialTrainGroups": 200,
+    "refit": "train + validation; no test groups"
+  },
+  "modelPath": "models/v-2026-09-24_15-27-55-791/tfidf-semantic.json",
+  "previousPath": "models/v-2026-09-24_15-15-51-472/centroid-combined.json",
+  "baselineMetrics": {
+    "accuracy": 0.6923076923076923,
+    "macroF1": 0.6594738594738594,
+    "weightedF1": 0.6636952790798945,
+    "perClass": {
+      "TI": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1": 0.7692307692307692,
+        "support": 6
+      },
+      "Secretaria Acadêmica": {
+        "precision": 0.5714285714285714,
+        "recall": 0.8,
+        "f1": 0.6666666666666666,
+        "support": 5
+      },
+      "Financeiro": {
+        "precision": 0.8333333333333334,
+        "recall": 1,
+        "f1": 0.9090909090909091,
+        "support": 5
+      },
+      "Biblioteca": {
+        "precision": 0.5,
+        "recall": 0.2,
+        "f1": 0.28571428571428575,
+        "support": 5
+      },
+      "Infraestrutura": {
+        "precision": 0.75,
+        "recall": 0.6,
+        "f1": 0.6666666666666665,
+        "support": 5
+      }
+    },
+    "confusionMatrix": [
+      [
+        5,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      [
+        2,
+        2,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        1,
+        3
+      ]
+    ],
+    "classIds": [
+      "TI",
+      "Secretaria Acadêmica",
+      "Financeiro",
+      "Biblioteca",
+      "Infraestrutura"
+    ]
+  },
+  "testMetrics": {
+    "accuracy": 0.7307692307692307,
+    "macroF1": 0.7192640692640693,
+    "weightedF1": 0.7195720945720946,
+    "perClass": {
+      "TI": {
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1": 0.7272727272727272,
+        "support": 6
+      },
+      "Secretaria Acadêmica": {
+        "precision": 0.7142857142857143,
+        "recall": 1,
+        "f1": 0.8333333333333333,
+        "support": 5
+      },
+      "Financeiro": {
+        "precision": 0.5555555555555556,
+        "recall": 1,
+        "f1": 0.7142857142857143,
+        "support": 5
+      },
+      "Biblioteca": {
+        "precision": 1,
+        "recall": 0.4,
+        "f1": 0.5714285714285715,
+        "support": 5
+      },
+      "Infraestrutura": {
+        "precision": 1,
+        "recall": 0.6,
+        "f1": 0.7499999999999999,
+        "support": 5
+      }
+    },
+    "confusionMatrix": [
+      [
+        4,
+        0,
+        2,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        0,
+        3
+      ]
+    ],
+    "classIds": [
+      "TI",
+      "Secretaria Acadêmica",
+      "Financeiro",
+      "Biblioteca",
+      "Infraestrutura"
+    ]
+  },
+  "reviewMetrics": {
+    "requiresReview": 14,
+    "total": 26,
+    "accepted": 12,
+    "acceptedAccuracy": 1
+  },
+  "predictions": [
+    {
+      "groupId": "TI:example-9",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": true
+    },
+    {
+      "groupId": "TI:example-23",
+      "expected": "TI",
+      "predicted": "Financeiro",
+      "requiresReview": true
+    },
+    {
+      "groupId": "TI:example-25",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false
+    },
+    {
+      "groupId": "TI:example-31",
+      "expected": "TI",
+      "predicted": "Financeiro",
+      "requiresReview": true
+    },
+    {
+      "groupId": "TI:example-33",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false
+    },
+    {
+      "groupId": "TI:example-42",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-4",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-33",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-43",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-48",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-49",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Financeiro:example-7",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Financeiro:example-9",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Financeiro:example-24",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Financeiro:example-41",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Financeiro:example-46",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Biblioteca:example-16",
+      "expected": "Biblioteca",
+      "predicted": "Biblioteca",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Biblioteca:example-17",
+      "expected": "Biblioteca",
+      "predicted": "Financeiro",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Biblioteca:example-20",
+      "expected": "Biblioteca",
+      "predicted": "Biblioteca",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Biblioteca:example-23",
+      "expected": "Biblioteca",
+      "predicted": "TI",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Biblioteca:example-43",
+      "expected": "Biblioteca",
+      "predicted": "Financeiro",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Infraestrutura:example-30",
+      "expected": "Infraestrutura",
+      "predicted": "Infraestrutura",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Infraestrutura:example-34",
+      "expected": "Infraestrutura",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true
+    },
+    {
+      "groupId": "Infraestrutura:example-38",
+      "expected": "Infraestrutura",
+      "predicted": "Infraestrutura",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Infraestrutura:example-39",
+      "expected": "Infraestrutura",
+      "predicted": "Infraestrutura",
+      "requiresReview": false
+    },
+    {
+      "groupId": "Infraestrutura:example-48",
+      "expected": "Infraestrutura",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true
+    }
+  ]
+}

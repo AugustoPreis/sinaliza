@@ -1,0 +1,376 @@
+{
+  "datasetHash": "785626726299575a970b5cbc27c32c5b176e9a6f873a1c640b18e6b9fe1cb1d6",
+  "transformerModel": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+  "transformerRevision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+  "samples": {
+    "train": 200,
+    "validation": 25
+  },
+  "scope": "shortest-per-group; test not evaluated",
+  "cachePath": ".cache/semantic/7bbc4af1effc84fb827616530e1bcccf4f3aeb1f999f40baf027d41587bde30c.json",
+  "results": [
+    {
+      "neighbors": 3,
+      "metrics": {
+        "accuracy": 0.72,
+        "macroF1": 0.7205949605949606,
+        "weightedF1": 0.7205949605949605,
+        "perClass": {
+          "TI": {
+            "precision": 1,
+            "recall": 0.8,
+            "f1": 0.888888888888889,
+            "support": 5
+          },
+          "Secretaria Acadêmica": {
+            "precision": 0.5,
+            "recall": 0.8,
+            "f1": 0.6153846153846154,
+            "support": 5
+          },
+          "Financeiro": {
+            "precision": 0.6666666666666666,
+            "recall": 0.8,
+            "f1": 0.7272727272727272,
+            "support": 5
+          },
+          "Biblioteca": {
+            "precision": 1,
+            "recall": 0.4,
+            "f1": 0.5714285714285715,
+            "support": 5
+          },
+          "Infraestrutura": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 5
+          }
+        },
+        "confusionMatrix": [
+          [
+            4,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            4,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            4
+          ]
+        ],
+        "classIds": [
+          "TI",
+          "Secretaria Acadêmica",
+          "Financeiro",
+          "Biblioteca",
+          "Infraestrutura"
+        ]
+      },
+      "errors": [
+        {
+          "text": "olá, o anexo ultrapassa o limite sem explicar",
+          "expected": "TI",
+          "predicted": "Infraestrutura"
+        },
+        {
+          "text": "olá, como peço atendimento para colar grau",
+          "expected": "Secretaria Acadêmica",
+          "predicted": "Financeiro"
+        },
+        {
+          "text": "olá, preciso de orientação sobre seguro educacional",
+          "expected": "Financeiro",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, quero saber o limite de obras por aluno",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, como solicito ficha catalográfica",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, como consulto o regulamento",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, há fiação exposta",
+          "expected": "Infraestrutura",
+          "predicted": "Financeiro"
+        }
+      ]
+    },
+    {
+      "neighbors": 5,
+      "metrics": {
+        "accuracy": 0.72,
+        "macroF1": 0.7205949605949606,
+        "weightedF1": 0.7205949605949605,
+        "perClass": {
+          "TI": {
+            "precision": 1,
+            "recall": 0.8,
+            "f1": 0.888888888888889,
+            "support": 5
+          },
+          "Secretaria Acadêmica": {
+            "precision": 0.5,
+            "recall": 0.8,
+            "f1": 0.6153846153846154,
+            "support": 5
+          },
+          "Financeiro": {
+            "precision": 0.6666666666666666,
+            "recall": 0.8,
+            "f1": 0.7272727272727272,
+            "support": 5
+          },
+          "Biblioteca": {
+            "precision": 1,
+            "recall": 0.4,
+            "f1": 0.5714285714285715,
+            "support": 5
+          },
+          "Infraestrutura": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8000000000000002,
+            "support": 5
+          }
+        },
+        "confusionMatrix": [
+          [
+            4,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            4,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            4
+          ]
+        ],
+        "classIds": [
+          "TI",
+          "Secretaria Acadêmica",
+          "Financeiro",
+          "Biblioteca",
+          "Infraestrutura"
+        ]
+      },
+      "errors": [
+        {
+          "text": "olá, o anexo ultrapassa o limite sem explicar",
+          "expected": "TI",
+          "predicted": "Infraestrutura"
+        },
+        {
+          "text": "olá, como peço atendimento para colar grau",
+          "expected": "Secretaria Acadêmica",
+          "predicted": "Financeiro"
+        },
+        {
+          "text": "olá, preciso de orientação sobre seguro educacional",
+          "expected": "Financeiro",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, quero saber o limite de obras por aluno",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, como solicito ficha catalográfica",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, como consulto o regulamento",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, há fiação exposta",
+          "expected": "Infraestrutura",
+          "predicted": "Financeiro"
+        }
+      ]
+    },
+    {
+      "neighbors": 1,
+      "metrics": {
+        "accuracy": 0.72,
+        "macroF1": 0.7146353646353647,
+        "weightedF1": 0.7146353646353646,
+        "perClass": {
+          "TI": {
+            "precision": 1,
+            "recall": 0.6,
+            "f1": 0.7499999999999999,
+            "support": 5
+          },
+          "Secretaria Acadêmica": {
+            "precision": 0.5,
+            "recall": 0.8,
+            "f1": 0.6153846153846154,
+            "support": 5
+          },
+          "Financeiro": {
+            "precision": 0.6666666666666666,
+            "recall": 0.8,
+            "f1": 0.7272727272727272,
+            "support": 5
+          },
+          "Biblioteca": {
+            "precision": 1,
+            "recall": 0.4,
+            "f1": 0.5714285714285715,
+            "support": 5
+          },
+          "Infraestrutura": {
+            "precision": 0.8333333333333334,
+            "recall": 1,
+            "f1": 0.9090909090909091,
+            "support": 5
+          }
+        },
+        "confusionMatrix": [
+          [
+            3,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            4,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "classIds": [
+          "TI",
+          "Secretaria Acadêmica",
+          "Financeiro",
+          "Biblioteca",
+          "Infraestrutura"
+        ]
+      },
+      "errors": [
+        {
+          "text": "olá, o wi-fi do campus cai durante a aula",
+          "expected": "TI",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, o anexo ultrapassa o limite sem explicar",
+          "expected": "TI",
+          "predicted": "Infraestrutura"
+        },
+        {
+          "text": "olá, como peço atendimento para colar grau",
+          "expected": "Secretaria Acadêmica",
+          "predicted": "Financeiro"
+        },
+        {
+          "text": "olá, preciso de orientação sobre seguro educacional",
+          "expected": "Financeiro",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, quero saber o limite de obras por aluno",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        },
+        {
+          "text": "olá, como solicito ficha catalográfica",
+          "expected": "Biblioteca",
+          "predicted": "Financeiro"
+        },
+        {
+          "text": "olá, como consulto o regulamento",
+          "expected": "Biblioteca",
+          "predicted": "Secretaria Acadêmica"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "academic-ticket-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Classificação de chamados acadêmicos com TF-IDF/MiniLM e Random Forest",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:minilm": "RUN_MINILM_TESTS=1 vitest run tests/minilm.integration.test.ts",
+    "test:spell": "vitest run tests/preprocessing.test.ts",
+    "dataset:prepare": "node --import tsx src/dataset/prepare-real.ts",
+    "dataset:generate:mock": "node --import tsx src/dataset/generate-mock.ts",
+    "dataset:validate": "node --import tsx src/dataset/validate-cli.ts",
+    "dataset:audit": "node --import tsx src/dataset/audit-examples.ts",
+    "ai:pipeline": "node --import tsx src/pipeline/run.ts",
+    "train:tfidf": "node --import tsx src/tfidf/train.ts",
+    "train:minilm": "node --import tsx src/minilm/train.ts",
+    "evaluate:tfidf": "node --import tsx src/evaluation/evaluate-tfidf.ts",
+    "evaluate:minilm": "node --import tsx src/evaluation/evaluate-minilm.ts",
+    "evaluate:group-cv": "node --import tsx src/evaluation/group-cross-validation.ts",
+    "evaluate:multicentroid": "node --import tsx src/evaluation/evaluate-multicentroid.ts",
+    "benchmark": "node --import tsx src/evaluation/benchmark.ts",
+    "benchmark:classical": "node --import tsx src/tfidf/classical-benchmark.ts",
+    "predict:tfidf": "node --import tsx src/tfidf/predict.ts",
+    "predict:minilm": "node --import tsx src/minilm/predict.ts",
+    "start:service": "node dist/src/http/main.js",
+    "dev:service": "node --import tsx src/http/main.ts",
+    "demo:prepare": "node --import tsx src/demo/prepare.ts",
+    "demo": "node --import tsx src/demo/cli.ts",
+    "check": "npm run build && npm test",
+    "demo:prepare-backend": "node --import tsx src/demo/prepare-backend.ts",
+    "check:all": "node scripts/check-all.mjs",
+    "predict": "node --import tsx src/classification/predict-cli.ts",
+    "demo:http": "node --import tsx src/http/demo.ts",
+    "request": "node --import tsx src/http/request.ts",
+    "release:prepare": "node --import tsx src/release/prepare.ts",
+    "benchmark:quick": "node --import tsx src/evaluation/benchmark.ts --quick",
+    "package:ai": "node scripts/package-group.mjs --ai-only",
+    "test:acceptance": "vitest run tests/acceptance.test.ts",
+    "demo:train": "node --import tsx src/pipeline/prepare-local.ts && npm run demo:prepare-backend",
+    "benchmark:hybrid": "node --import tsx src/evaluation/semantic-benchmark.ts",
+    "demo:train:hybrid": "npm run benchmark:hybrid && node --import tsx src/pipeline/prepare-hybrid.ts && npm run demo:prepare-backend"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "csv-parse": "^7.0.2",
+    "dictionary-pt": "^4.0.0",
+    "ml-random-forest": "^2.1.0",
+    "nspell": "^2.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
