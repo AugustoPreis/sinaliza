@@ -1,0 +1,6 @@
+{
+  "required": "Este campo é obrigatório.",
+  "email": "Informe um e-mail válido.",
+  "passwordTooWeak": "A senha deve ter ao menos 8 caracteres, incluindo maiúscula, minúscula, número e caractere especial.",
+  "passwordsDoNotMatch": "As senhas não coincidem."
+}

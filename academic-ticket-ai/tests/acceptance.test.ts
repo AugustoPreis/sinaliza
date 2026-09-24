@@ -22,7 +22,7 @@ beforeAll(async () => {
   const address = server.address();
   if (!address || typeof address === 'string') throw new Error('Porta indisponível.');
   url = `http://127.0.0.1:${address.port}/classification/preview`;
-});
+}, 120_000);
 afterAll(async () => {
   if (server?.listening) {
     server.closeAllConnections();

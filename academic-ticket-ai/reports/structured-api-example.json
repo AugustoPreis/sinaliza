@@ -1,0 +1,66 @@
+{
+  "sector_id": "TI",
+  "automatic_sector": {
+    "id": "TI",
+    "name": "TI"
+  },
+  "confidence": 0.33031034876993765,
+  "model": "tfidf-multilingual-minilm-hybrid",
+  "processing": {
+    "normalization": "unicode-whitespace-lowercase-v1",
+    "corrected_tokens": 1,
+    "semantic_chunks": 1
+  },
+  "requires_review": false,
+  "alternatives": [
+    {
+      "id": "TI",
+      "name": "TI",
+      "score": 0.33031034876993765
+    },
+    {
+      "id": "Infraestrutura",
+      "name": "Infraestrutura",
+      "score": 0.17773357589927394
+    },
+    {
+      "id": "Biblioteca",
+      "name": "Biblioteca",
+      "score": 0.1563092519074819
+    }
+  ],
+  "dataSource": "MOCK",
+  "classification": {
+    "schema_version": 1,
+    "request_id": "b1984c9f-6516-48e2-81bf-1d73c7b37d06",
+    "model": "tfidf-multilingual-minilm-hybrid",
+    "model_version": "v-2026-09-24_15-27-55-791",
+    "method": "tfidf-semantic",
+    "data_source": "MOCK",
+    "score_type": "uncalibrated_score",
+    "requires_review": false,
+    "review_reason": null,
+    "alternatives": [
+      {
+        "id": "TI",
+        "name": "TI",
+        "score": 0.33031034876993765
+      },
+      {
+        "id": "Infraestrutura",
+        "name": "Infraestrutura",
+        "score": 0.17773357589927394
+      },
+      {
+        "id": "Biblioteca",
+        "name": "Biblioteca",
+        "score": 0.1563092519074819
+      }
+    ],
+    "processing": {
+      "normalization": "unicode-whitespace-lowercase-v1",
+      "corrected_tokens": 1,
+      "semantic_chunks": 1
+    }
+  }
+}

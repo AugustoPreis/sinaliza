@@ -1,0 +1,7 @@
+{
+  "errors": {
+    "notFound": "Chamado não encontrado.",
+    "alreadyResolved": "Chamado já resolvido: não é possível reabrir ou reencaminhar.",
+    "reassignSameSector": "O chamado já está no setor informado."
+  }
+}

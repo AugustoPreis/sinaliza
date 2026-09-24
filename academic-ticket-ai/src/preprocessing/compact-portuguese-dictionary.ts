@@ -21,7 +21,7 @@ perdeu perdi periódicos pix pontualidade portal prazo preciso prorrogar quitar 
 receber recibos redefinir renegociação renovar reserva reservar retirar segunda semestre
 senha situação solicitar suspenso sistema sistemas taxa tela tese transferir trocar turno
 última atualizar valor vencida vencido vencimento via virtual wifi
-acervo acesso bloqueada acessar portal empréstimo acadêmico histórico
+acervo acesso bloqueada acessar portal empréstimo acadêmico histórico projetor computador energia tomada lâmpada
 `.trim().split(/\s+/u);
 
 // A correção automática só aceita destinos importantes no domínio. Palavras
@@ -30,6 +30,7 @@ export const SAFE_CORRECTION_TARGETS = new Set([
   'acesso', 'acessar', 'acadêmico', 'acadêmica', 'biblioteca', 'bloqueada',
   'boleto', 'empréstimo', 'financeiro', 'histórico', 'matrícula', 'mensalidade',
   'portal', 'rematrícula', 'secretaria', 'senha', 'sistema',
+  'projetor', 'computador', 'energia', 'tomada', 'lâmpada',
 ]);
 
 export const COMPACT_AFFIX = `SET UTF-8

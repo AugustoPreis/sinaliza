@@ -1,0 +1,272 @@
+{
+  "scope": "Regression on previously explored 26 synthetic test groups; new preprocessing, no retraining",
+  "modelPath": "models/v-2026-09-24_15-27-55-791/tfidf-semantic.json",
+  "processing": "description-v1",
+  "metrics": {
+    "accuracy": 0.7307692307692307,
+    "macroF1": 0.7174325674325674,
+    "weightedF1": 0.7178110351187275,
+    "perClass": {
+      "TI": {
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1": 0.7272727272727272,
+        "support": 6
+      },
+      "Secretaria Acadêmica": {
+        "precision": 0.625,
+        "recall": 1,
+        "f1": 0.7692307692307693,
+        "support": 5
+      },
+      "Financeiro": {
+        "precision": 0.625,
+        "recall": 1,
+        "f1": 0.7692307692307693,
+        "support": 5
+      },
+      "Biblioteca": {
+        "precision": 1,
+        "recall": 0.4,
+        "f1": 0.5714285714285715,
+        "support": 5
+      },
+      "Infraestrutura": {
+        "precision": 1,
+        "recall": 0.6,
+        "f1": 0.7499999999999999,
+        "support": 5
+      }
+    },
+    "confusionMatrix": [
+      [
+        4,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        5,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        0,
+        3
+      ]
+    ],
+    "classIds": [
+      "TI",
+      "Secretaria Acadêmica",
+      "Financeiro",
+      "Biblioteca",
+      "Infraestrutura"
+    ]
+  },
+  "coldRequestMs": 5905.900389,
+  "warmP95Ms": 2569.612790000001,
+  "results": [
+    {
+      "groupId": "TI:example-9",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false,
+      "latencyMs": 5905.900389
+    },
+    {
+      "groupId": "TI:example-23",
+      "expected": "TI",
+      "predicted": "Financeiro",
+      "requiresReview": true,
+      "latencyMs": 981.0011639999993
+    },
+    {
+      "groupId": "TI:example-25",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false,
+      "latencyMs": 1076.3095869999997
+    },
+    {
+      "groupId": "TI:example-31",
+      "expected": "TI",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true,
+      "latencyMs": 1308.621932
+    },
+    {
+      "groupId": "TI:example-33",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false,
+      "latencyMs": 2296.378063
+    },
+    {
+      "groupId": "TI:example-42",
+      "expected": "TI",
+      "predicted": "TI",
+      "requiresReview": false,
+      "latencyMs": 2569.612790000001
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-4",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": false,
+      "latencyMs": 41.974208000001454
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-33",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": false,
+      "latencyMs": 1762.327996
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-43",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true,
+      "latencyMs": 30.306759999999485
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-48",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true,
+      "latencyMs": 432.1028289999995
+    },
+    {
+      "groupId": "Secretaria Acadêmica:example-49",
+      "expected": "Secretaria Acadêmica",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": false,
+      "latencyMs": 39.56688299999951
+    },
+    {
+      "groupId": "Financeiro:example-7",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false,
+      "latencyMs": 38.02235799999835
+    },
+    {
+      "groupId": "Financeiro:example-9",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false,
+      "latencyMs": 47.021584999998595
+    },
+    {
+      "groupId": "Financeiro:example-24",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false,
+      "latencyMs": 1232.2470990000002
+    },
+    {
+      "groupId": "Financeiro:example-41",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": true,
+      "latencyMs": 1124.092109000001
+    },
+    {
+      "groupId": "Financeiro:example-46",
+      "expected": "Financeiro",
+      "predicted": "Financeiro",
+      "requiresReview": false,
+      "latencyMs": 27.24630100000286
+    },
+    {
+      "groupId": "Biblioteca:example-16",
+      "expected": "Biblioteca",
+      "predicted": "Biblioteca",
+      "requiresReview": true,
+      "latencyMs": 1036.9776820000006
+    },
+    {
+      "groupId": "Biblioteca:example-17",
+      "expected": "Biblioteca",
+      "predicted": "Financeiro",
+      "requiresReview": true,
+      "latencyMs": 1200.9551250000004
+    },
+    {
+      "groupId": "Biblioteca:example-20",
+      "expected": "Biblioteca",
+      "predicted": "Biblioteca",
+      "requiresReview": true,
+      "latencyMs": 2721.3444869999985
+    },
+    {
+      "groupId": "Biblioteca:example-23",
+      "expected": "Biblioteca",
+      "predicted": "TI",
+      "requiresReview": true,
+      "latencyMs": 21.271545999999944
+    },
+    {
+      "groupId": "Biblioteca:example-43",
+      "expected": "Biblioteca",
+      "predicted": "Financeiro",
+      "requiresReview": true,
+      "latencyMs": 1133.0274720000016
+    },
+    {
+      "groupId": "Infraestrutura:example-30",
+      "expected": "Infraestrutura",
+      "predicted": "Infraestrutura",
+      "requiresReview": true,
+      "latencyMs": 389.16392800000176
+    },
+    {
+      "groupId": "Infraestrutura:example-34",
+      "expected": "Infraestrutura",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true,
+      "latencyMs": 427.65506599999935
+    },
+    {
+      "groupId": "Infraestrutura:example-38",
+      "expected": "Infraestrutura",
+      "predicted": "Infraestrutura",
+      "requiresReview": false,
+      "latencyMs": 985.025114
+    },
+    {
+      "groupId": "Infraestrutura:example-39",
+      "expected": "Infraestrutura",
+      "predicted": "Infraestrutura",
+      "requiresReview": false,
+      "latencyMs": 1223.048695999998
+    },
+    {
+      "groupId": "Infraestrutura:example-48",
+      "expected": "Infraestrutura",
+      "predicted": "Secretaria Acadêmica",
+      "requiresReview": true,
+      "latencyMs": 1013.5272000000004
+    }
+  ]
+}

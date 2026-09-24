@@ -43,3 +43,12 @@ faltam chamados reais inéditos, rotulados pelos responsáveis e representativos
 Embeddings locais: [modelo oficial no Hugging Face](https://huggingface.co/Xenova/paraphrase-multilingual-MiniLM-L12-v2).
 Revisão fixa `2c4055b12046f11709e9df2c122e59ffbdc2f900`, quantização q8.
 A primeira execução em outra máquina baixa os pesos públicos; inferência fica local.
+
+## Complemento: contrato estruturado e descrições complexas
+
+65 testes da IA e 21 testes do módulo de classificação do backend aprovados. O backend
+passa adiante os metadados auditáveis; veja CONTRATO-CLASSIFICACAO.md e o exemplo real
+em reports/structured-api-example.json. A regressão nos mesmos 26 grupos após o novo
+pré-processamento manteve 19/26 acertos (73,08%), registrada em structured-api-evaluation.json.
+Sem retreinamento. O tempo de inicialização agora ocorre antes de abrir a API; medições
+locais do relatório não são garantia de desempenho em outras máquinas.

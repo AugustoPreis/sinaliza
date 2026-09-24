@@ -1,0 +1,10 @@
+{
+  "notFound": "Recurso não encontrado.",
+  "badRequest": "Requisição inválida.",
+  "unauthorized": "Não autorizado.",
+  "forbidden": "Acesso negado.",
+  "conflict": "Conflito ao processar a requisição.",
+  "internalError": "Ocorreu um erro interno. Tente novamente mais tarde.",
+  "invalidUuid": "Identificador inválido.",
+  "tooManyRequests": "Muitas solicitações. Tente novamente em instantes."
+}

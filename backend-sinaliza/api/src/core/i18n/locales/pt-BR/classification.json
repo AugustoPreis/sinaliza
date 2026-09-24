@@ -1,0 +1,14 @@
+{
+  "errors": {
+    "noSectorsAvailable": "Não há setores cadastrados para classificar o chamado.",
+    "INVALID_CONFIGURATION": "Configuração da integração de IA inválida.",
+    "MOCK_MODEL_NOT_ALLOWED": "Modelos MOCK não são permitidos em produção.",
+    "CLASSIFICATION_DISABLED": "A classificação automática está desativada.",
+    "CLASSIFICATION_UNAVAILABLE": "O serviço de classificação está indisponível.",
+    "MODEL_SECTORS_INCOMPATIBLE": "Existem setores desconhecidos pelo modelo. É necessário atualizar o modelo.",
+    "MODEL_SOURCE_MISMATCH": "A origem do modelo é incompatível com o ambiente.",
+    "INVALID_CLASSIFICATION_SECTOR": "O modelo retornou um setor inválido.",
+    "INVALID_CLASSIFICATION_CONFIDENCE": "O modelo retornou uma pontuação inválida.",
+    "INVALID_CLASSIFICATION_DETAILS": "A IA retornou metadados de classificação inválidos."
+  }
+}

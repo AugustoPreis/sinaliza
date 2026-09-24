@@ -28,6 +28,7 @@ export interface Prediction {
   sectorId: SectorId;
   confidence: number;
   model: string;
+  processing?: { normalization: string; corrected_tokens: number; semantic_chunks: number };
   requiresReview?: boolean;
   reviewReason?: string;
   alternatives?: Array<{ sectorId: string; score: number }>;

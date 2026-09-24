@@ -1,5 +1,7 @@
+import { semanticEmbeddings } from '../semantic/embeddings.js';
+import { prepareDescription } from '../preprocessing/description.js';
 import { createServer } from 'node:http';
-import { timingSafeEqual } from 'node:crypto';
+import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { ClassificationPreviewService } from '../classification/service.js';
 import { aiRuntimeMode, assertModelDataSourceAllowed } from '../config/runtime.js';
 import { BackendSectorProvider, FileSectorProvider } from '../sectors/provider.js';
@@ -12,6 +14,8 @@ export async function createClassificationServer(env: NodeJS.ProcessEnv = proces
   if (!token || token.length < 32) throw new Error('AI_SERVICE_TOKEN deve conter pelo menos 32 caracteres.');
   let service: ClassificationPreviewService | undefined;
   let dataSource: 'MOCK' | 'REAL' | undefined;
+  let modelVersion: string | undefined;
+  let method: string | undefined;
   if (mode !== 'disabled') {
     if (!env.AI_MODEL_PATH) throw new Error('AI_MODEL_PATH é obrigatório.');
     const sectorSource = env.AI_SECTOR_SOURCE ?? 'backend';
@@ -22,7 +26,13 @@ export async function createClassificationServer(env: NodeJS.ProcessEnv = proces
     if (!['tfidf', 'minilm'].includes(type)) throw new Error('AI_MODEL_TYPE inválido: use tfidf ou minilm.');
     const artifact = type === 'minilm' ? await loadMinilmModel(env.AI_MODEL_PATH) : await loadTfidfModel(env.AI_MODEL_PATH);
     dataSource = artifact.metadata.dataSource;
+    modelVersion = artifact.metadata.modelVersion;
+    method = artifact.metadata.modelType;
     assertModelDataSourceAllowed(dataSource, mode, env);
+    if ('semantic' in artifact && artifact.semantic) {
+      await prepareDescription('inicialização');
+      await semanticEmbeddings(['inicialização']);
+    }
     const ids = artifact.metadata.sectorIds;
     const classes = artifact.classifier.classes;
     if (new Set(ids).size !== ids.length || ids.length !== classes.length || classes.some(id => !ids.includes(id))) {
@@ -61,7 +71,18 @@ export async function createClassificationServer(env: NodeJS.ProcessEnv = proces
         !('description' in body) || typeof body.description !== 'string' ||
         !body.description.trim() || body.description.length > 2000) return send(400, { code: 'INVALID_REQUEST' });
     try {
-      send(200, { ...await service.preview({ description: body.description }), dataSource });
+      const result = await service.preview({ description: body.description });
+      const requiresReview = result.requires_review ?? true;
+      send(200, { ...result, dataSource,
+        classification: {
+          schema_version: 1, request_id: randomUUID(), model: result.model, model_version: modelVersion,
+          method, data_source: dataSource, score_type: 'uncalibrated_score',
+          requires_review: requiresReview,
+          review_reason: requiresReview ? (result.review_reason ?? 'uncalibrated_model') : null,
+          alternatives: result.alternatives ?? [],
+          ...(result.processing ? { processing: result.processing } : {}),
+        },
+      });
     } catch (error) {
       const incompatible = error instanceof Error && error.message.startsWith('MODEL_SECTORS_INCOMPATIBLE:');
       send(incompatible ? 409 : 503, { code: incompatible ? 'MODEL_SECTORS_INCOMPATIBLE' : 'CLASSIFICATION_UNAVAILABLE' });

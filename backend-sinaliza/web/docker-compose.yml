@@ -1,0 +1,10 @@
+# Standalone compose for the web app only. Point VITE_API_BASE_URL (.env) at
+# wherever the api project's own docker-compose (../api) is exposing itself.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sinaliza_web
+    ports:
+      - '${WEB_HOST_PORT:-5173}:5173'

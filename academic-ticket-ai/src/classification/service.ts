@@ -7,7 +7,7 @@ export interface ClassifierService {
   classify(description: string): Promise<Prediction>;
 }
 
-export interface ClassificationPreview { sector_id: SectorId; automatic_sector: { id: SectorId; name: string }; confidence?: number; model: string; requires_review?: boolean; review_reason?: string; alternatives?: Array<{ id: string; name: string; score: number }> }
+export interface ClassificationPreview { sector_id: SectorId; automatic_sector: { id: SectorId; name: string }; confidence?: number; model: string; processing?: Prediction['processing']; requires_review?: boolean; review_reason?: string; alternatives?: Array<{ id: string; name: string; score: number }> }
 
 export class ClassificationPreviewService {
   constructor(private readonly classifier: ClassifierService, private readonly sectors: SectorProvider) {}
@@ -20,6 +20,7 @@ export class ClassificationPreviewService {
     if (!active.some((sector) => sector.id === prediction.sectorId)) throw new Error('O modelo retornou um setor que não está ativo no sistema.');
     const sector = active.find((item) => item.id === prediction.sectorId)!;
     return { sector_id: prediction.sectorId, automatic_sector: { id: sector.id, name: sector.name }, confidence: prediction.confidence, model: prediction.model,
+      ...(prediction.processing ? { processing: prediction.processing } : {}),
       ...(prediction.requiresReview === undefined ? {} : { requires_review: prediction.requiresReview, review_reason: prediction.reviewReason,
         alternatives: prediction.alternatives?.flatMap(item => {
           const match = active.find(sector => sector.id === item.sectorId);

@@ -83,6 +83,8 @@ para carregar mudanças. Dataset e modelos históricos são preservados.
 
 ## Integração e pacote
 
+Consulte [CONTRATO-CLASSIFICACAO.md](CONTRATO-CLASSIFICACAO.md) para o fluxo mobile → backend → IA, campos estruturados e tratamento de revisão.
+
 ```bash
 npm run package:ai
 ```

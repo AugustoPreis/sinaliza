@@ -1,3 +1,4 @@
+import { prepareDescription, descriptionChunks } from '../preprocessing/description.js';
 import { semanticEmbeddings, SEMANTIC_MODEL, SEMANTIC_REVISION } from '../semantic/embeddings.js';
 import { hybridRanking, reviewDecision, type HybridConfiguration } from '../semantic/hybrid.js';
 import { normalizeText } from '../preprocessing/normalize.js';
@@ -57,12 +58,21 @@ export async function trainTfidfModel(
 export async function predictWithTfidf(artifact: TfidfModelArtifact, text: string): Promise<Prediction> {
   if (!text.trim()) throw new Error('A descrição é obrigatória.');
   const vectorizer = TfidfVectorizer.fromArtifact(artifact.vectorizer);
-  const features = vectorizer.transform([await preprocess(text, artifact.spellCheck)]);
+  const prepared = artifact.semantic ? await prepareDescription(text) : undefined;
+  const features = vectorizer.transform([prepared?.text ?? await preprocess(text, artifact.spellCheck)]);
   if (artifact.semantic) {
-    const [embedding] = await semanticEmbeddings([text]);
+    const chunks = descriptionChunks(prepared!.text);
+    const embeddings = await semanticEmbeddings(chunks);
+    const embedding = Array<number>(384).fill(0);
+    for (let chunk = 0; chunk < embeddings.length; chunk++) {
+      for (let i = 0; i < 384; i++) embedding[i] = embedding[i]! + embeddings[chunk]![i]! * chunks[chunk]!.length;
+    }
+    const norm = Math.sqrt(embedding.reduce((sum, value) => sum + value * value, 0)) || 1;
+    for (let i = 0; i < embedding.length; i++) embedding[i] = embedding[i]! / norm;
     const rows = hybridRanking(features[0]!, embedding!, artifact.classifier, artifact.semantic.references, artifact.semantic.neighbors, artifact.semantic.weight);
     const reason = reviewDecision(rows, artifact.semantic);
     return { sectorId: rows[0]!.sectorId, confidence: rows[0]!.score, model: artifact.modelName,
+      processing: { normalization: 'unicode-whitespace-lowercase-v1', corrected_tokens: prepared!.correctedTokens, semantic_chunks: chunks.length },
       requiresReview: Boolean(reason), reviewReason: reason,
       alternatives: rows.slice(0, 3).map(({ sectorId, score }) => ({ sectorId, score })) };
   }

@@ -24,7 +24,6 @@ async function main(): Promise<void> {
   const session = new ManualSession();
   const sectors = artifact.metadata.sectorIds;
   const interactive = args.length === 0;
-  console.log(`Origem do treino: ${artifact.metadata.dataSource}. Pontuação não é probabilidade de acerto.`);
   const predict = async (description: string) => {
     if (!description.trim() || description.length > 2000) throw new Error('Informe de 1 a 2.000 caracteres.');
     const result = 'vectorizer' in artifact ? await predictWithTfidf(artifact, description) : await predictWithMinilm(artifact, description);
@@ -35,13 +34,10 @@ async function main(): Promise<void> {
     }
     session.addPrediction(result.sectorId, result.requiresReview);
     if (result.requiresReview) {
-      console.log(`\nPreciso de mais contexto para classificar com segurança. Sugestão provisória: ${result.sectorId}.`);
-      console.log('Descreva o que aconteceu, onde e qual serviço ou equipamento foi afetado.');
-      if (result.alternatives) console.log(`Possibilidades: ${result.alternatives.map(item => item.sectorId).join(' / ')}.`);
+      console.log(`\nPossível setor: ${result.sectorId}. Descreva melhor o problema para confirmar.`);
     } else {
-      console.log(`\nSetor sugerido: ${result.sectorId}`);
+      console.log(`\nEncaminhar para ${result.sectorId}.`);
     }
-    console.log('Para avaliar: /ok ou /corrigir <setor>. Você também pode digitar outro chamado.');
   };
   if (args.length) { await predict(args.join(' ')); return; }
   const help = () => console.log('Digite um chamado. Comandos: /setores, /ok, /corrigir <número ou nome>, /resultado, /ajuda, /sair.\nAs avaliações ficam apenas nesta sessão; não alteram o treino nem salvam suas descrições.');
@@ -49,8 +45,7 @@ async function main(): Promise<void> {
     const result = session.summary();
     console.log(`Avaliação manual: ${result.correct}/${result.evaluated} sugestões corretas${result.accuracy === null ? '' : ` (${(result.accuracy * 100).toFixed(1)}%)`}. ${result.incorrect} erros, ${result.pending} sem avaliação. ${result.requiresReview} pedidos de contexto.`);
   };
-  help();
-  if ('semantic' in artifact && artifact.semantic) console.log('O primeiro chamado pode demorar enquanto o modelo local é carregado.');
+  console.log('Sinaliza — digite um chamado. /ajuda para comandos · /sair para encerrar.');
   const terminal = createInterface({ input: process.stdin, output: process.stdout });
   terminal.setPrompt('Chamado > ');
   terminal.prompt();
@@ -70,6 +65,6 @@ async function main(): Promise<void> {
       } catch (error) { console.error(error instanceof Error ? error.message : error); }
       terminal.prompt();
     }
-  } finally { summary(); terminal.close(); }
+  } finally { if (session.summary().evaluated > 0) summary(); terminal.close(); }
 }
 main().catch((error: unknown) => { console.error(error); process.exitCode = 1; });

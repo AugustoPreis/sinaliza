@@ -1,0 +1,91 @@
+{
+  "appName": "Sinaliza",
+  "theme": {
+    "switchToDarkMode": "Modo escuro",
+    "switchToLightMode": "Modo claro"
+  },
+  "actions": {
+    "close": "Fechar",
+    "clear": "Limpar seleção",
+    "loading": "Carregando...",
+    "showPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha"
+  },
+  "datePicker": {
+    "placeholder": "Selecionar data"
+  },
+  "nav": {
+    "dashboard": "Início",
+    "sectorQueue": "Fila do setor",
+    "sectorResolved": "Resolvidos",
+    "adminSectors": "Setores e categorias",
+    "adminUsersPermissions": "Usuários e permissões",
+    "adminResearch": "Indicadores da pesquisa",
+    "groups": {
+      "general": "Geral",
+      "sector": "Setor",
+      "administration": "Administração"
+    },
+    "newTicket": "Abrir chamado"
+  },
+  "sidebar": {
+    "collapse": "Recolher"
+  },
+  "breadcrumbs": {
+    "dashboard": "Início",
+    "account": "Minha conta",
+    "sectorQueue": "Fila do setor",
+    "sectorResolved": "Resolvidos",
+    "sectorTicketDetail": "Detalhe do chamado",
+    "adminSectors": "Setores e categorias",
+    "adminUsersPermissions": "Usuários e permissões",
+    "adminResearch": "Indicadores da pesquisa",
+    "newTicket": "Abrir chamado"
+  },
+  "header": {
+    "openNavigationMenu": "Abrir menu de navegação",
+    "navigationTitle": "Menu de navegação"
+  },
+  "userMenu": {
+    "trigger": "Menu do usuário",
+    "myProfile": "Meu perfil"
+  },
+  "pages": {
+    "sectorQueue": {
+      "title": "Fila do setor",
+      "description": "Esta página está em construção."
+    },
+    "sectorResolved": {
+      "title": "Resolvidos",
+      "description": "Esta página está em construção."
+    },
+    "adminDashboard": {
+      "title": "Painel geral",
+      "description": "Esta página está em construção."
+    },
+    "adminSectors": {
+      "title": "Setores e categorias",
+      "description": "Esta página está em construção."
+    },
+    "adminUsersPermissions": {
+      "title": "Usuários e permissões",
+      "description": "Esta página está em construção."
+    },
+    "adminResearch": {
+      "title": "Indicadores da pesquisa",
+      "description": "Esta página está em construção."
+    },
+    "noAccess": {
+      "title": "Sem acesso",
+      "description": "Seu usuário ainda não tem uma tela disponível neste portal. Fale com um administrador se acredita que isso é um engano."
+    }
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Próxima",
+    "summary": "Página {{page}} de {{lastPage}} · {{total}} no total"
+  },
+  "footer": {
+    "copyright": "© {{year}} {{appName}} · v{{version}}"
+  }
+}
