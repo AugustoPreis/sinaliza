@@ -13,7 +13,8 @@ import { UserEntity } from '@modules/users/entities/user.entity';
 import { ENotificationType } from '../enums/notification-type.enum';
 
 // Like `TicketEventEntity`, an immutable historical fact (no `updatedAt`):
-// it's either created, or it never happened.
+// it's either created, or it never happened. Only `readAt` changes, when the
+// requester opens their notification history.
 @Entity('notifications')
 export class NotificationEntity {
   @PrimaryGeneratedColumn('increment')
@@ -44,4 +45,7 @@ export class NotificationEntity {
 
   @CreateDateColumn()
   createdAt!: Date;
+
+  @Column({ name: 'read_at', type: 'timestamp', nullable: true })
+  readAt!: Date | null;
 }
