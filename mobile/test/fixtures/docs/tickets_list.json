@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "tkt_123",
+      "protocol": "SIN-1042",
+      "description_summary": "O projetor da sala não está ligando",
+      "current_sector": {
+        "id": "sec_ti",
+        "name": "TI"
+      },
+      "status": "IN_PROGRESS",
+      "created_at": "2026-08-20T14:30:00Z"
+    }
+  ],
+  "page": 1,
+  "page_size": 20,
+  "total": 1
+}

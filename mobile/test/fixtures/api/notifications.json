@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "9a8b7c6d-5555-4555-8555-555555555555",
+      "ticket_id": "d4c3b2a1-1111-4111-8111-111111111111",
+      "protocol": "SIN-1042",
+      "type": "TICKET_REASSIGNED",
+      "message": "Seu chamado SIN-1042 foi redirecionado para TI.",
+      "created_at": "2026-08-20T15:10:00.000Z"
+    },
+    {
+      "id": "9a8b7c6d-6666-4666-8666-666666666666",
+      "ticket_id": "d4c3b2a1-1111-4111-8111-111111111111",
+      "protocol": "SIN-1042",
+      "type": "TICKET_STATUS_CHANGED",
+      "message": "Seu chamado SIN-1042 está em andamento.",
+      "created_at": "2026-08-20T16:00:00.000Z"
+    }
+  ],
+  "page": 1,
+  "page_size": 30,
+  "total": 2
+}

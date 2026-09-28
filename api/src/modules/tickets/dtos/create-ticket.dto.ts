@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform, Type } from 'class-transformer';
+import { plainToInstance, Transform, Type } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
 
 import { IsString, IsUUID, MaxLength } from '@shared/validators';
@@ -28,9 +28,18 @@ export class CreateTicketDTO {
     description:
       'Enviado em multipart/form-data como uma string JSON, ex.: {"building_id":"...","environment_id":"..."}',
   })
-  @Transform(({ value }: { value: unknown }) =>
-    typeof value === 'string' ? JSON.parse(value) : value,
-  )
+  // Must return a class instance: `@Type` has already run on the raw string,
+  // so a plain object here would carry no validation metadata and
+  // `whitelist` would strip every field. Invalid JSON is passed through so
+  // `@ValidateNested` rejects it with a 400 instead of a 500.
+  @Transform(({ value }: { value: unknown }) => {
+    if (typeof value !== 'string') return value;
+    try {
+      return plainToInstance(CreateTicketLocationDTO, JSON.parse(value) as object);
+    } catch {
+      return value;
+    }
+  })
   @ValidateNested()
   @Type(() => CreateTicketLocationDTO)
   location!: CreateTicketLocationDTO;

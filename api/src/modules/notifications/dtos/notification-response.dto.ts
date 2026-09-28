@@ -24,6 +24,9 @@ export class NotificationResponseDTO {
   @ApiProperty()
   created_at!: Date;
 
+  @ApiProperty({ type: Date, nullable: true, description: 'null = não lida' })
+  read_at!: Date | null;
+
   static from(entity: NotificationEntity): NotificationResponseDTO {
     const dto = new NotificationResponseDTO();
 
@@ -33,6 +36,7 @@ export class NotificationResponseDTO {
     dto.type = entity.type;
     dto.message = entity.message;
     dto.created_at = entity.createdAt;
+    dto.read_at = entity.readAt ?? null;
 
     return dto;
   }

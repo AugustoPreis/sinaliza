@@ -1,0 +1,13 @@
+{
+  "user": {
+    "uuid": "5e2a9c40-8f3b-4d7e-a1c2-9b8a7f6e5d4c",
+    "email": "admin@instituicao.edu.br",
+    "name": "Administrador",
+    "institutionalLink": null,
+    "status": "ACTIVE",
+    "roles": [
+      { "uuid": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d", "name": "ADMIN" }
+    ],
+    "permissions": ["tickets:read", "users:manage", "sectors:manage"]
+  }
+}

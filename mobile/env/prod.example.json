@@ -1,0 +1,4 @@
+{
+  "ENV": "prod",
+  "API_BASE_URL": "https://api.sinaliza.example/api/v1"
+}

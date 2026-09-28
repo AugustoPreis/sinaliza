@@ -11,7 +11,9 @@ import { DeviceTokenEntity } from './entities/device-token.entity';
 import { NotificationEntity } from './entities/notification.entity';
 import { DeviceTokensRepository } from './repositories/device-tokens.repository';
 import { NotificationsRepository } from './repositories/notifications.repository';
+import { GetUnreadNotificationsCountUseCase } from './use-cases/get-unread-notifications-count.use-case';
 import { ListNotificationsUseCase } from './use-cases/list-notifications.use-case';
+import { MarkNotificationsReadUseCase } from './use-cases/mark-notifications-read.use-case';
 import { RegisterDeviceTokenUseCase } from './use-cases/register-device-token.use-case';
 import { RemoveDeviceTokenUseCase } from './use-cases/remove-device-token.use-case';
 
@@ -29,6 +31,8 @@ import { RemoveDeviceTokenUseCase } from './use-cases/remove-device-token.use-ca
     NotificationsRepository,
     DeviceTokensRepository,
     ListNotificationsUseCase,
+    GetUnreadNotificationsCountUseCase,
+    MarkNotificationsReadUseCase,
     RegisterDeviceTokenUseCase,
     RemoveDeviceTokenUseCase,
   ],

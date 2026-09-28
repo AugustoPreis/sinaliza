@@ -1,0 +1,16 @@
+{
+  "uuid": "0b1f7a52-5c1e-4e59-9d0a-6c1f0e7d2a11",
+  "email": "maria.silva@instituicao.edu.br",
+  "name": "Maria Silva",
+  "institutionalLink": "ALUNO",
+  "status": "ACTIVE",
+  "roles": [
+    { "uuid": "7d3c1e0f-2b8a-4a61-9f0e-1c2d3e4f5a6b", "name": "REQUESTER" }
+  ],
+  "permissions": [
+    "tickets:create",
+    "tickets:read",
+    "classification:preview",
+    "notifications:read"
+  ]
+}

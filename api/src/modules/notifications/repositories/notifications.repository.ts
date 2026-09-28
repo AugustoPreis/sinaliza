@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 
 import { IPaginatedResult } from '@shared/interfaces';
 import { UuidService } from '@shared/services/uuid.service';
@@ -50,5 +50,13 @@ export class NotificationsRepository {
     });
 
     return buildPaginatedResult(data, total, page, perPage);
+  }
+
+  countUnreadForUser(userId: number): Promise<number> {
+    return this.repo.count({ where: { userId, readAt: IsNull() } });
+  }
+
+  async markAllReadForUser(userId: number): Promise<void> {
+    await this.repo.update({ userId, readAt: IsNull() }, { readAt: new Date() });
   }
 }

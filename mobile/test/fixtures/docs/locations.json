@@ -1,0 +1,18 @@
+{
+  "buildings": [
+    {
+      "id": "bld_01",
+      "name": "Bloco A",
+      "environments": [
+        {
+          "id": "env_101",
+          "name": "Sala 101"
+        },
+        {
+          "id": "env_corridor_1",
+          "name": "Corredor térreo"
+        }
+      ]
+    }
+  ]
+}
