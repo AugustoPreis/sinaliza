@@ -1,11 +1,11 @@
-export type AiRuntimeMode = 'disabled' | 'mock' | 'trained';
+export type AiRuntimeMode = 'disabled' | 'mock' | 'trained' | 'dynamic';
 
 /** Default seguro: o modelo MOCK não é ativado implicitamente em produção. */
 export function aiRuntimeMode(env: NodeJS.ProcessEnv = process.env): AiRuntimeMode {
   const value = (env.AI_MODE ?? 'disabled').toLowerCase();
   if (value === 'mock' && env.NODE_ENV === 'production') throw new Error('MOCK_MODEL_NOT_ALLOWED: mock proibido em produção.');
-  if (value === 'mock' || value === 'trained' || value === 'disabled') return value;
-  throw new Error(`AI_MODE inválido: ${value}. Use disabled, mock ou trained.`);
+  if (value === 'mock' || value === 'trained' || value === 'disabled' || value === 'dynamic') return value;
+  throw new Error(`AI_MODE inválido: ${value}. Use disabled, mock, trained ou dynamic.`);
 }
 
 export function assertModelDataSourceAllowed(dataSource: unknown, mode = aiRuntimeMode(), env: NodeJS.ProcessEnv = process.env): void {

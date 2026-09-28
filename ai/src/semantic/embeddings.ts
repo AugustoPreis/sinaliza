@@ -4,7 +4,9 @@ type Extractor = (texts: string[], options: { pooling: 'mean'; normalize: true }
 let pending: Promise<Extractor> | undefined;
 async function extractor(): Promise<Extractor> {
   pending ??= (async () => {
-    const { pipeline } = await import('@huggingface/transformers');
+    const { pipeline, env } = await import('@huggingface/transformers');
+    env.allowRemoteModels = false;
+    if (process.env.AI_EMBEDDINGS_CACHE_DIR) env.cacheDir = process.env.AI_EMBEDDINGS_CACHE_DIR;
     return await pipeline('feature-extraction', SEMANTIC_MODEL, { revision: SEMANTIC_REVISION, dtype: 'q8' }) as unknown as Extractor;
   })().catch(error => { pending = undefined; throw error; });
   return pending;

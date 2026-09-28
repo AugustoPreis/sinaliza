@@ -3,17 +3,12 @@ import { FileSectorProvider } from '../sectors/provider.js';
 import { AI_CONFIG } from '../config/ai.js';
 import { normalizeText } from '../preprocessing/normalize.js';
 
-const topicWords: Record<string, string[]> = {
-  TI: ['acesso','login','senha','internet','rede','sistema','portal','aplicativo','computador','impressora','arquivo','autenticacao','wifi','vpn','erro','instalar'],
-  'Secretaria Acadêmica': ['matricula','disciplina','historico','diploma','curso','nota','frequencia','documento','rematricula','formatura','transferencia','cadastro'],
-  Financeiro: ['boleto','mensalidade','pagamento','cobranca','parcela','bolsa','desconto','juros','fatura','pix','divida','contrato','estorno','valor','taxa'],
-  Biblioteca: ['livro','obra','acervo','emprestimo','devolucao','reserva','artigo','tese','revista','catalogo','exemplar','multa','periodico','biblioteca','sala','ebook','material'],
-};
 const stop = new Set(['nao','consigo','preciso','quero','minha','meu','uma','um','para','como','que','da','do','de','o','a','e','no','na','está','estou','com']);
 const tokens = (s: string) => new Set(normalizeText(s).split(/\s+/).filter((x) => x.length > 2 && !stop.has(x)));
 function jaccard(a: Set<string>, b: Set<string>): number { const inter = [...a].filter((x) => b.has(x)).length; return inter / Math.max(1, new Set([...a, ...b]).size); }
 
 const sectors = await new FileSectorProvider(AI_CONFIG.mockSectorConfigPath).getActiveSectors();
+const topicWords: Record<string, string[]> = Object.fromEntries(sectors.map(s => [s.id, [...new Set(s.examples.flatMap(example => [...tokens(example)]))]]));
 const perSector = sectors.map((sector) => {
   const rows = sector.examples.map((example, index) => {
     const t = tokens(example); const coverage = Object.fromEntries(Object.entries(topicWords).map(([k, words]) => [k, words.filter((w) => t.has(w)).length]));

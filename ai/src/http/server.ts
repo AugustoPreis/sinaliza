@@ -1,3 +1,5 @@
+import { readFile } from 'node:fs/promises';
+import { classifyDynamic, validCandidates, type Policy } from '../classification/dynamic.js';
 import { semanticEmbeddings } from '../semantic/embeddings.js';
 import { prepareDescription } from '../preprocessing/description.js';
 import { createServer } from 'node:http';
@@ -16,7 +18,14 @@ export async function createClassificationServer(env: NodeJS.ProcessEnv = proces
   let dataSource: 'MOCK' | 'REAL' | undefined;
   let modelVersion: string | undefined;
   let method: string | undefined;
-  if (mode !== 'disabled') {
+  let policy: Policy | undefined;
+  if (mode === 'dynamic') {
+    policy = JSON.parse(await readFile('config/dynamic-policy.json', 'utf8')) as Policy;
+    if (![policy.minimumScore, policy.minimumMargin].every(n => Number.isFinite(n) && n > 0 && n <= 1)) throw new Error('INVALID_POLICY');
+    await semanticEmbeddings(['inicialização']);
+  }
+  if (env.NODE_ENV === 'production' && !['dynamic', 'disabled'].includes(mode)) throw new Error('LEGACY_MODEL_NOT_ALLOWED');
+  if (mode !== 'disabled' && mode !== 'dynamic') {
     if (!env.AI_MODEL_PATH) throw new Error('AI_MODEL_PATH é obrigatório.');
     const sectorSource = env.AI_SECTOR_SOURCE ?? 'backend';
     if (!['backend', 'mock-file'].includes(sectorSource)) throw new Error('AI_SECTOR_SOURCE inválido.');
@@ -54,24 +63,28 @@ export async function createClassificationServer(env: NodeJS.ProcessEnv = proces
     if (request.method !== 'POST' || request.url !== '/classification/preview') return send(404, { code: 'NOT_FOUND' });
     const auth = Buffer.from(request.headers.authorization ?? '');
     if (auth.length !== expected.length || !timingSafeEqual(auth, expected)) return send(401, { code: 'UNAUTHORIZED' });
-    if (!service) return send(503, { code: 'CLASSIFICATION_DISABLED' });
+    if (!service && !policy) return send(503, { code: 'CLASSIFICATION_DISABLED' });
     let body: unknown;
     try {
       let size = 0;
       const chunks: Buffer[] = [];
       for await (const chunk of request) {
         size += Buffer.byteLength(chunk);
-        if (size > 16384) { send(413, { code: 'PAYLOAD_TOO_LARGE' }); return; }
+        if (size > (policy ? 2097152 : 16384)) { send(413, { code: 'PAYLOAD_TOO_LARGE' }); return; }
         chunks.push(Buffer.from(chunk));
       }
       body = JSON.parse(Buffer.concat(chunks).toString('utf8'));
     } catch { return send(400, { code: 'INVALID_REQUEST' }); }
     if (!body || typeof body !== 'object' || Array.isArray(body) ||
-        Object.keys(body).some(key => key !== 'description') ||
+        Object.keys(body).some(key => key !== 'description' && !(policy && key === 'candidates')) ||
         !('description' in body) || typeof body.description !== 'string' ||
         !body.description.trim() || body.description.length > 2000) return send(400, { code: 'INVALID_REQUEST' });
     try {
-      const result = await service.preview({ description: body.description });
+      if (policy) {
+        if (!('candidates' in body) || !validCandidates(body.candidates)) return send(400, { code: 'INVALID_CANDIDATES' });
+        return send(200, await classifyDynamic(body.description, body.candidates, policy));
+      }
+      const result = await service!.preview({ description: body.description });
       const requiresReview = result.requires_review ?? true;
       send(200, { ...result, dataSource,
         classification: {

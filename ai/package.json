@@ -31,7 +31,7 @@
     "check": "npm run build && npm test",
     "demo:prepare-backend": "node --import tsx src/demo/prepare-backend.ts",
     "check:all": "node scripts/check-all.mjs",
-    "predict": "node --import tsx src/classification/predict-cli.ts",
+    "predict": "node --import tsx src/classification/dynamic-cli.ts",
     "demo:http": "node --import tsx src/http/demo.ts",
     "request": "node --import tsx src/http/request.ts",
     "release:prepare": "node --import tsx src/release/prepare.ts",
@@ -40,7 +40,11 @@
     "test:acceptance": "vitest run tests/acceptance.test.ts",
     "demo:train": "node --import tsx src/pipeline/prepare-local.ts && npm run demo:prepare-backend",
     "benchmark:hybrid": "node --import tsx src/evaluation/semantic-benchmark.ts",
-    "demo:train:hybrid": "npm run benchmark:hybrid && node --import tsx src/pipeline/prepare-hybrid.ts && npm run demo:prepare-backend"
+    "demo:train:hybrid": "npm run benchmark:hybrid && node --import tsx src/pipeline/prepare-hybrid.ts && npm run demo:prepare-backend",
+    "calibrate:dynamic": "node --import tsx scripts/calibrate-dynamic.ts",
+    "evaluate:dynamic": "node --import tsx scripts/evaluate-dynamic.ts",
+    "test:dynamic": "vitest run tests/dynamic.test.ts tests/dynamic-http.integration.test.ts",
+    "predict:legacy": "node --import tsx src/classification/predict-cli.ts"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",

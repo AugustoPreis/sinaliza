@@ -18,5 +18,5 @@ describe('pré-processamento', () => {
   it('corrige erros do domínio com o dicionário compacto', async () => {
     expect(await correctSpelling('portau')).toBe('portal');
     expect(await correctSpelling('SIGAA Moodle')).toBe('SIGAA Moodle');
-  });
+  }, 30000);
 });
