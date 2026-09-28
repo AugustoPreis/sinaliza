@@ -25,7 +25,10 @@ abstract final class TicketCreatedModel {
       id: json.str('id'),
       protocol: json.str('protocol'),
       status: TicketStatus.fromApi(json.strOrNull('status')),
-      automaticSector: SectorRefModel.fromJson(json.obj('automatic_sector')),
+      automaticSector: switch (json.objOrNull('automatic_sector')) {
+        final sector? => SectorRefModel.fromJson(sector),
+        null => null,
+      },
       confirmedSector: SectorRefModel.fromJson(json.obj('confirmed_sector')),
       currentSector: SectorRefModel.fromJson(json.obj('current_sector')),
       requesterCorrected: json.boolean('requester_corrected'),
@@ -60,7 +63,10 @@ abstract final class TicketDetailModel {
         (photo) => TicketPhoto(id: photo.str('id'), url: photo.str('url')),
       ),
       status: TicketStatus.fromApi(json.strOrNull('status')),
-      automaticSector: SectorRefModel.fromJson(json.obj('automatic_sector')),
+      automaticSector: switch (json.objOrNull('automatic_sector')) {
+        final sector? => SectorRefModel.fromJson(sector),
+        null => null,
+      },
       confirmedSector: SectorRefModel.fromJson(json.obj('confirmed_sector')),
       currentSector: SectorRefModel.fromJson(json.obj('current_sector')),
       timeline: json.list('timeline', TimelineEventModel.fromJson),

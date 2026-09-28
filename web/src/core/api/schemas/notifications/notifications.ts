@@ -30,10 +30,23 @@ export const NotificationsControllerFindMineV1Response = zod.object({
   "protocol": zod.string(),
   "type": zod.enum(['TICKET_STATUS_CHANGED', 'TICKET_REASSIGNED', 'TICKET_RESOLVED']),
   "message": zod.string(),
-  "created_at": zod.iso.datetime({"offset":true})
+  "created_at": zod.iso.datetime({"offset":true}),
+  "read_at": zod.iso.datetime({"offset":true}).nullable().describe('null = não lida')
 })),
   "page": zod.number(),
   "page_size": zod.number(),
   "total": zod.number()
 })
+
+/**
+ * @summary Count of unread notifications (badge on the app tab)
+ */
+export const NotificationsControllerUnreadCountV1Response = zod.object({
+  "count": zod.number().describe('Notificações do solicitante ainda não lidas')
+})
+
+/**
+ * @summary Mark all of the requester's notifications as read
+ */
+export const NotificationsControllerMarkAllReadV1Response = zod.void()
 

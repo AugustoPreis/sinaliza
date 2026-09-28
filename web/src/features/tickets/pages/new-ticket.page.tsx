@@ -28,7 +28,8 @@ export function NewTicketPage(): ReactElement {
       getClassification().classificationControllerPreviewV1({ description: description.trim() }),
     onSuccess: (result) => {
       setSuggestion(result);
-      setConfirmed(result.automatic_sector.id);
+      setConfirmed(result.automatic_sector?.id ?? '');
+      void sectors.refetch();
     },
   });
   const create = useMutation({
@@ -38,10 +39,11 @@ export function NewTicketPage(): ReactElement {
       return getTickets().ticketsControllerCreateV1({
         description: description.trim(),
         location: JSON.stringify({ building_id: building, environment_id: environment }),
-        automatic_sector_id: suggestion.automatic_sector.id,
+        automatic_sector_id: suggestion.automatic_sector?.id ?? null,
         confirmed_sector_id: confirmed,
       });
     },
+    onError: () => { setSuggestion(undefined); setConfirmed(''); },
   });
   const busy = preview.isPending || create.isPending;
   const environments =
@@ -54,7 +56,7 @@ export function NewTicketPage(): ReactElement {
         <Stack gap={4}>
           <Heading level={1}>{t('new.success')}</Heading>
           <Text role="status">{t('new.protocol', { protocol: create.data.protocol })}</Text>
-          <Text>{t('new.suggestion', { sector: create.data.automatic_sector.name })}</Text>
+          <Text>{create.data.automatic_sector ? t('new.suggestion', { sector: create.data.automatic_sector.name }) : t('new.manualSelection')}</Text>
           <Text>{t('new.destination', { sector: create.data.current_sector.name })}</Text>
           <Button
             onClick={() => {
@@ -112,7 +114,7 @@ export function NewTicketPage(): ReactElement {
             {preview.isError && <Text role="alert">{t('new.classificationError')}</Text>}
             {suggestion && (
               <Text role="status">
-                {t('new.suggestion', { sector: suggestion.automatic_sector.name })}
+                {suggestion.automatic_sector ? t('new.suggestion', { sector: suggestion.automatic_sector.name }) : t('new.noSuggestion')}
               </Text>
             )}
             {(sectors.isError || locations.isError) && (

@@ -18,7 +18,7 @@ export const ticketsControllerCreateV1BodyDescriptionMax = 2000;
 export const TicketsControllerCreateV1Body = zod.object({
   "description": zod.string().max(ticketsControllerCreateV1BodyDescriptionMax).describe('Descrição do problema em linguagem natural'),
   "location": zod.string().describe('Enviado em multipart/form-data como uma string JSON, ex.: {"building_id":"...","environment_id":"..."}'),
-  "automatic_sector_id": zod.uuid().describe('UUID do setor sugerido pela classificação automática'),
+  "automatic_sector_id": zod.uuid().nullish().describe('UUID sugerido no preview; omitir quando não houver sugestão. Revalidado no servidor.'),
   "confirmed_sector_id": zod.uuid().describe('UUID do setor confirmado/escolhido pelo solicitante'),
   "photos": zod.array(zod.instanceof(Blob)).optional().describe('Fotos opcionais (evidência visual - nunca usadas na classificação, RB-02)')
 })
@@ -30,7 +30,7 @@ export const TicketsControllerCreateV1Response = zod.object({
   "automatic_sector": zod.object({
   "id": zod.string(),
   "name": zod.string()
-}),
+}).nullable(),
   "confirmed_sector": zod.object({
   "id": zod.string(),
   "name": zod.string()
@@ -106,7 +106,7 @@ export const TicketsControllerFindOneV1Response = zod.object({
   "automatic_sector": zod.object({
   "id": zod.string(),
   "name": zod.string()
-}),
+}).nullable(),
   "confirmed_sector": zod.object({
   "id": zod.string(),
   "name": zod.string()

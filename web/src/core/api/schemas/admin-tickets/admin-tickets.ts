@@ -51,12 +51,17 @@ export const AdminTicketsControllerFindAllV1Response = zod.object({
 /**
  * @summary Aggregate volume/resolution/by-sector panel (Tela C.1)
  */
+export const adminTicketsControllerDashboardV1QuerySearchMax = 255;
+
+
+
 export const AdminTicketsControllerDashboardV1QueryParams = zod.object({
   "sector_id": zod.uuid().optional(),
   "status": zod.array(zod.enum(['OPEN', 'FORWARDED', 'IN_PROGRESS', 'RESOLVED'])).optional(),
   "from": zod.iso.datetime({"offset":true}).optional().describe('Period start (created_at >=), e.g. 2026-08-01'),
   "to": zod.iso.datetime({"offset":true}).optional().describe('Period end (created_at <=), e.g. 2026-08-31'),
-  "building_id": zod.uuid().optional()
+  "building_id": zod.uuid().optional(),
+  "search": zod.string().max(adminTicketsControllerDashboardV1QuerySearchMax).optional().describe('Matches protocol, description or location (building/environment)')
 })
 
 export const AdminTicketsControllerDashboardV1Response = zod.object({

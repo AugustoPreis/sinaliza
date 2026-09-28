@@ -24,10 +24,10 @@ class ConfirmSectorState extends Equatable {
   });
 
   /// Setor da classificação (somente leitura).
-  final SectorRef suggestion;
+  final SectorRef? suggestion;
 
   /// "Enviar para": começa igual à sugestão.
-  final SectorRef selected;
+  final SectorRef? selected;
   final SectorsStatus sectorsStatus;
   final List<SectorRef> sectors;
   final bool isSubmitting;
@@ -39,7 +39,9 @@ class ConfirmSectorState extends Equatable {
   /// Preenchido quando o chamado foi criado.
   final TicketCreated? created;
 
-  bool get changedSuggestion => selected.id != suggestion.id;
+  bool get changedSuggestion =>
+      suggestion != null && selected != null && selected!.id != suggestion!.id;
+  bool get canSubmit => selected != null && !isSubmitting;
 
   ConfirmSectorState copyWith({
     SectorRef? selected,
@@ -104,11 +106,14 @@ class ConfirmSectorCubit extends Cubit<ConfirmSectorState> {
       final sectors = await _sectors.getSectors(forceRefresh: forceRefresh);
       if (isClosed) return;
       // A sugestão sempre aparece na lista, mesmo se o cache estiver velho.
-      final hasSuggestion = sectors.any((s) => s.id == state.suggestion.id);
+      final suggestion = state.suggestion;
+      final hasSuggestion =
+          suggestion == null || sectors.any((s) => s.id == suggestion.id);
       emit(
         state.copyWith(
+          selected: state.selected ?? (sectors.isEmpty ? null : sectors.first),
           sectorsStatus: SectorsStatus.ready,
-          sectors: hasSuggestion ? sectors : [state.suggestion, ...sectors],
+          sectors: hasSuggestion ? sectors : [suggestion, ...sectors],
         ),
       );
     } on AppFailure {
@@ -131,7 +136,10 @@ class ConfirmSectorCubit extends Cubit<ConfirmSectorState> {
     final classification = report.classification;
     final building = report.building;
     final environment = report.environment;
-    if (classification == null || building == null || environment == null) {
+    if (classification == null ||
+        building == null ||
+        environment == null ||
+        state.selected == null) {
       return null;
     }
 
@@ -140,8 +148,8 @@ class ConfirmSectorCubit extends Cubit<ConfirmSectorState> {
       buildingId: building.id,
       environmentId: environment.id,
       // RB-03: sempre o setor da classificação, mesmo se o usuário trocou.
-      automaticSectorId: classification.automaticSector.id,
-      confirmedSectorId: state.selected.id,
+      automaticSectorId: classification.automaticSector?.id,
+      confirmedSectorId: state.selected!.id,
       photos: report.photos,
     );
 

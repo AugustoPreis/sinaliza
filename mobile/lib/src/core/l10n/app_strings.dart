@@ -122,6 +122,8 @@ abstract final class AppStrings {
   // Confirmação do setor (A.4)
   static const String confirmSuggestionIntro =
       'Identificamos que este problema é do setor:';
+  static const String confirmNoSuggestion =
+      'Não houve uma sugestão segura. Escolha o setor para continuar.';
   static const String confirmSendTo = 'Enviar para';
   static const String confirmSectorChanged = 'Você alterou o setor sugerido.';
   static const String confirmSummaryTitle = 'Seu relato';

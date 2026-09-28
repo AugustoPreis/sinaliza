@@ -18,7 +18,7 @@ export const sectorTicketsControllerFindAllV1QueryPerPageMax = 100;
 
 export const sectorTicketsControllerFindAllV1QuerySearchMax = 255;
 
-export const sectorTicketsControllerFindAllV1QueryOrderDefault = `asc`;
+export const sectorTicketsControllerFindAllV1QueryOrderDefault = `desc`;
 
 export const SectorTicketsControllerFindAllV1QueryParams = zod.object({
   "page": zod.number().min(1).default(sectorTicketsControllerFindAllV1QueryPageDefault),
@@ -39,7 +39,7 @@ export const SectorTicketsControllerFindAllV1Response = zod.object({
   "description_summary": zod.string(),
   "location": zod.string(),
   "status": zod.enum(['OPEN', 'FORWARDED', 'IN_PROGRESS', 'RESOLVED']),
-  "automatic_sector_id": zod.string(),
+  "automatic_sector_id": zod.string().nullable(),
   "confirmed_sector_id": zod.string(),
   "classification_diverged": zod.boolean(),
   "created_at": zod.iso.datetime({"offset":true})

@@ -70,7 +70,8 @@ class TicketsRemoteDataSource {
             'environment_id': request.environmentId,
           }),
         ),
-        MapEntry('automatic_sector_id', request.automaticSectorId),
+        if (request.automaticSectorId != null)
+          MapEntry('automatic_sector_id', request.automaticSectorId!),
         MapEntry('confirmed_sector_id', request.confirmedSectorId),
       ]);
 

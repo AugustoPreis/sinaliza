@@ -7,7 +7,8 @@
  */
 import type {
   NotificationListResponseDTO,
-  NotificationsControllerFindMineV1Params
+  NotificationsControllerFindMineV1Params,
+  UnreadNotificationsCountResponseDTO
 } from '../sinalizaAPI.schemas';
 
 import { customInstance } from '../../http/mutator';
@@ -27,5 +28,29 @@ const notificationsControllerFindMineV1 = (
     },
       );
     }
-  return {notificationsControllerFindMineV1}};
+  /**
+ * @summary Count of unread notifications (badge on the app tab)
+ */
+const notificationsControllerUnreadCountV1 = (
+
+ ) => {
+      return customInstance<UnreadNotificationsCountResponseDTO>(
+      {url: `/api/v1/notifications/unread-count`, method: 'GET'
+    },
+      );
+    }
+  /**
+ * @summary Mark all of the requester's notifications as read
+ */
+const notificationsControllerMarkAllReadV1 = (
+
+ ) => {
+      return customInstance<void>(
+      {url: `/api/v1/notifications/read`, method: 'POST'
+    },
+      );
+    }
+  return {notificationsControllerFindMineV1,notificationsControllerUnreadCountV1,notificationsControllerMarkAllReadV1}};
 export type NotificationsControllerFindMineV1Result = NonNullable<Awaited<ReturnType<ReturnType<typeof getNotifications>['notificationsControllerFindMineV1']>>>
+export type NotificationsControllerUnreadCountV1Result = NonNullable<Awaited<ReturnType<ReturnType<typeof getNotifications>['notificationsControllerUnreadCountV1']>>>
+export type NotificationsControllerMarkAllReadV1Result = NonNullable<Awaited<ReturnType<ReturnType<typeof getNotifications>['notificationsControllerMarkAllReadV1']>>>

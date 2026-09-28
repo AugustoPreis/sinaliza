@@ -15,6 +15,9 @@ export function ResearchIndicatorsView({ indicators }: ResearchIndicatorsViewPro
   const { t } = useTranslation('admin');
 
   const summaryCards = [
+    { key: 'accepted', label: t('research.summary.accepted'), value: indicators.classification_outcomes.accepted.toString() },
+    { key: 'changed', label: t('research.summary.changed'), value: indicators.classification_outcomes.changed.toString() },
+    { key: 'manual', label: t('research.summary.manual'), value: indicators.classification_outcomes.manual_without_suggestion.toString() },
     {
       key: 'automaticAccuracy',
       label: t('research.summary.automaticAccuracy'),

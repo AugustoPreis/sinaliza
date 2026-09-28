@@ -125,7 +125,7 @@ void main() {
       final request = api.requests.single;
       expect(request.uri.path, '/api/v1/classification/preview');
       expect(request.data, {'description': 'O projetor não liga'});
-      expect(result.automaticSector.name, 'TI');
+      expect(result.automaticSector?.name, 'TI');
       expect(result.confidence, 0.87);
     });
 

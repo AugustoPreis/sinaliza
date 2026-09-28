@@ -69,7 +69,7 @@ void main() {
         final result = ClassificationResultModel.fromJson(
           fixture('$source/classification_preview'),
         );
-        expect(result.automaticSector.name, 'TI');
+        expect(result.automaticSector?.name, 'TI');
         expect(result.confidence, source == 'api' ? 0.87 : 0.91);
       });
     }
@@ -91,6 +91,15 @@ void main() {
         'automatic_sector': {'id': 's1', 'name': 'TI'},
       });
       expect(result.confidence, isNull);
+    });
+
+    test('classificação pode se abster sem setor automático', () {
+      final result = ClassificationResultModel.fromJson({
+        'automatic_sector': null,
+        'confidence': 0.12,
+      });
+      expect(result.automaticSector, isNull);
+      expect(result.confidence, 0.12);
     });
   });
 

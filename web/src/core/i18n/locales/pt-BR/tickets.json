@@ -97,6 +97,8 @@
     "incomplete": "Preencha os campos e consulte a sugestão.",
     "classificationError": "Não foi possível obter a sugestão. A IA pode estar desativada, indisponível ou incompatível com os setores. Tente novamente ou avise o responsável. Nenhum chamado foi enviado.",
     "optionsError": "Não foi possível carregar os setores ou locais. Recarregue a página.",
-    "createError": "Não foi possível confirmar o envio. Verifique sua conexão e consulte os chamados antes de tentar novamente."
+    "createError": "Não foi possível enviar. Solicite uma nova classificação, confira os dados e tente novamente.",
+    "noSuggestion": "Não há sugestão automática confiável. Selecione o setor responsável para continuar.",
+    "manualSelection": "Escolha manual, sem sugestão automática."
   }
 }

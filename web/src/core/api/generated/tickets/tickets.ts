@@ -32,7 +32,9 @@ const ticketsControllerCreateV1 = (
  ) => {const formData = new FormData();
 formData.append(`description`, createTicketDTO.description);
 formData.append(`location`, createTicketDTO.location);
-formData.append(`automatic_sector_id`, createTicketDTO.automatic_sector_id);
+if(createTicketDTO.automatic_sector_id !== undefined && createTicketDTO.automatic_sector_id !== null) {
+ formData.append(`automatic_sector_id`, createTicketDTO.automatic_sector_id);
+ }
 formData.append(`confirmed_sector_id`, createTicketDTO.confirmed_sector_id);
 if(createTicketDTO.photos !== undefined) {
  createTicketDTO.photos.forEach(value => formData.append(`photos`, value));

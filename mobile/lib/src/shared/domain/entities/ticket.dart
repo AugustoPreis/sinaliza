@@ -52,7 +52,7 @@ class TicketCreated extends Equatable {
   final String id;
   final String protocol;
   final TicketStatus status;
-  final SectorRef automaticSector;
+  final SectorRef? automaticSector;
   final SectorRef confirmedSector;
   final SectorRef currentSector;
 
@@ -134,7 +134,7 @@ class TicketDetail extends Equatable {
   final TicketLocation location;
   final List<TicketPhoto> photos;
   final TicketStatus status;
-  final SectorRef automaticSector;
+  final SectorRef? automaticSector;
   final SectorRef confirmedSector;
   final SectorRef currentSector;
 

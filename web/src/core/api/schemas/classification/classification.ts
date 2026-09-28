@@ -19,11 +19,54 @@ export const ClassificationControllerPreviewV1Body = zod.object({
   "description": zod.string().min(1).max(classificationControllerPreviewV1BodyDescriptionMax).describe('Free-text problem description (RB-02: text only, never photos)')
 })
 
+export const classificationControllerPreviewV1ResponseClassificationAlternativesItemScoreMin = 0;
+export const classificationControllerPreviewV1ResponseClassificationAlternativesItemScoreMax = 1;
+
+export const classificationControllerPreviewV1ResponseClassificationDecisionMinimumScoreMin = 0;
+export const classificationControllerPreviewV1ResponseClassificationDecisionMinimumScoreMax = 1;
+
+export const classificationControllerPreviewV1ResponseClassificationDecisionMinimumMarginMin = 0;
+export const classificationControllerPreviewV1ResponseClassificationDecisionMinimumMarginMax = 1;
+
+export const classificationControllerPreviewV1ResponseClassificationDecisionMarginMin = 0;
+export const classificationControllerPreviewV1ResponseClassificationDecisionMarginMax = 1;
+
+export const classificationControllerPreviewV1ResponseClassificationProcessingCorrectedTokensMin = 0;
+
+
+
+
 export const ClassificationControllerPreviewV1Response = zod.object({
   "automatic_sector": zod.object({
   "id": zod.string(),
   "name": zod.string()
-}),
-  "confidence": zod.number().optional()
+}).nullable(),
+  "confidence": zod.number().optional(),
+  "classification": zod.object({
+  "schema_version": zod.literal(1),
+  "request_id": zod.string(),
+  "model": zod.string(),
+  "model_version": zod.string(),
+  "method": zod.string(),
+  "data_source": zod.enum(['MOCK', 'REAL']),
+  "score_type": zod.enum(['uncalibrated_score']),
+  "requires_review": zod.boolean(),
+  "review_reason": zod.enum(['insufficient_context', 'model_disagreement', 'close_scores', 'uncalibrated_model']).nullable(),
+  "alternatives": zod.array(zod.object({
+  "id": zod.string(),
+  "name": zod.string(),
+  "score": zod.number().min(classificationControllerPreviewV1ResponseClassificationAlternativesItemScoreMin).max(classificationControllerPreviewV1ResponseClassificationAlternativesItemScoreMax)
+})),
+  "decision": zod.object({
+  "minimum_score": zod.number().min(classificationControllerPreviewV1ResponseClassificationDecisionMinimumScoreMin).max(classificationControllerPreviewV1ResponseClassificationDecisionMinimumScoreMax),
+  "minimum_margin": zod.number().min(classificationControllerPreviewV1ResponseClassificationDecisionMinimumMarginMin).max(classificationControllerPreviewV1ResponseClassificationDecisionMinimumMarginMax),
+  "margin": zod.number().min(classificationControllerPreviewV1ResponseClassificationDecisionMarginMin).max(classificationControllerPreviewV1ResponseClassificationDecisionMarginMax)
+}).optional(),
+  "processing": zod.object({
+  "normalization": zod.string(),
+  "corrected_tokens": zod.number().min(classificationControllerPreviewV1ResponseClassificationProcessingCorrectedTokensMin),
+  "semantic_chunks": zod.number().min(1)
+}).optional()
+}).optional()
 })
 

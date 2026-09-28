@@ -40,7 +40,7 @@ export function TicketDetailPage(): ReactElement {
   }
 
   const readOnly = ticket.status === TicketDetailResponseDTOStatus.RESOLVED;
-  const classificationDiverged = ticket.automatic_sector.id !== ticket.confirmed_sector.id;
+  const classificationDiverged = ticket.automatic_sector !== null && ticket.automatic_sector.id !== ticket.confirmed_sector.id;
 
   return (
     <Container>
@@ -86,7 +86,7 @@ export function TicketDetailPage(): ReactElement {
           </Text>
           <HStack gap={2} align="center" wrap>
             <Text size="sm" tone="muted">
-              {t('detail.automaticSector')}: {ticket.automatic_sector.name}
+              {t('detail.automaticSector')}: {ticket.automatic_sector?.name ?? t('new.manualSelection')}
             </Text>
             <Text size="sm" tone="muted">
               {t('detail.confirmedSector')}: {ticket.confirmed_sector.name}

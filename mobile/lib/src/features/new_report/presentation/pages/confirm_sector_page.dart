@@ -81,7 +81,13 @@ class _ConfirmSectorView extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.all(AppSpacing.lg),
                 children: [
-                  _SuggestionCard(sector: state.suggestion),
+                  if (state.suggestion != null)
+                    _SuggestionCard(sector: state.suggestion!)
+                  else
+                    const AppInlineAlert(
+                      message: AppStrings.confirmNoSuggestion,
+                      type: AppAlertType.info,
+                    ),
                   const SizedBox(height: AppSpacing.xl),
                   AppSelectField<SectorRef>(
                     label: AppStrings.confirmSendTo,
@@ -94,10 +100,7 @@ class _ConfirmSectorView extends StatelessWidget {
                         : null,
                     value: state.selected,
                     options: [
-                      for (final sector
-                          in state.sectors.isEmpty
-                              ? [state.suggestion]
-                              : state.sectors)
+                      for (final sector in state.sectors)
                         AppSelectOption(value: sector, label: sector.name),
                     ],
                     onChanged: cubit.select,
@@ -139,7 +142,7 @@ class _ConfirmSectorView extends StatelessWidget {
                         : AppStrings.confirmSubmit,
                     icon: Icons.send,
                     isLoading: submitting,
-                    onPressed: () => _submit(context),
+                    onPressed: state.canSubmit ? () => _submit(context) : null,
                   ),
                   if (submitting && state.progress != null) ...[
                     const SizedBox(height: AppSpacing.md),

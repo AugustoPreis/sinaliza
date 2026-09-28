@@ -17,7 +17,7 @@ class NewTicketRequest extends Equatable {
   final String environmentId;
 
   /// Setor devolvido pela classificação, **nunca** o escolhido (RB-03).
-  final String automaticSectorId;
+  final String? automaticSectorId;
 
   /// Setor escolhido em "Enviar para" (igual ao automático se confirmou).
   final String confirmedSectorId;

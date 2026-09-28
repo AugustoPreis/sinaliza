@@ -103,6 +103,24 @@ void main() {
     expect(form.files.map((f) => f.value.length), everyElement(1024));
   });
 
+  test('omite automatic_sector_id quando a classificação se abstém', () async {
+    await repository.createTicket(
+      const NewTicketRequest(
+        description: 'ajuda',
+        buildingId: 'b-uuid',
+        environmentId: 'e-uuid',
+        automaticSectorId: null,
+        confirmedSectorId: 'sector-chosen',
+      ),
+    );
+
+    final form = api.requests.single.data as FormData;
+    expect(
+      Map.fromEntries(form.fields).containsKey('automatic_sector_id'),
+      isFalse,
+    );
+  });
+
   test(
     'não fixa Content-Type (o Dio gera o boundary) e usa timeout maior',
     () async {

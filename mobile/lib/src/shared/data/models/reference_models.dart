@@ -37,7 +37,10 @@ abstract final class BuildingModel {
 abstract final class ClassificationResultModel {
   static ClassificationResult fromJson(Json json) {
     return ClassificationResult(
-      automaticSector: SectorRefModel.fromJson(json.obj('automatic_sector')),
+      automaticSector: switch (json.objOrNull('automatic_sector')) {
+        final sector? => SectorRefModel.fromJson(sector),
+        null => null,
+      },
       confidence: json.doubleOrNull('confidence'),
     );
   }

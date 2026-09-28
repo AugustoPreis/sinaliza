@@ -19,6 +19,12 @@ export const ResearchControllerIndicatorsV1QueryParams = zod.object({
 })
 
 export const ResearchControllerIndicatorsV1Response = zod.object({
+  "classification_outcomes": zod.object({
+  "accepted": zod.number(),
+  "changed": zod.number(),
+  "manual_without_suggestion": zod.number(),
+  "acceptance_percentage": zod.number().describe('Concordância humana entre sugestões; não acurácia independente.')
+}),
   "automatic_accuracy": zod.object({
   "total_tickets": zod.number(),
   "correct_without_any_correction": zod.number(),

@@ -197,7 +197,10 @@
       "averageTime": "Tempo médio até setor correto",
       "medianTime": "Tempo mediano até setor correto",
       "minutes_one": "{{count}} minuto",
-      "minutes_other": "{{count}} minutos"
+      "minutes_other": "{{count}} minutos",
+      "accepted": "Sugestões aceitas",
+      "changed": "Sugestões alteradas",
+      "manual": "Escolhas manuais sem sugestão"
     },
     "volume": {
       "bySector": "Volume por setor",

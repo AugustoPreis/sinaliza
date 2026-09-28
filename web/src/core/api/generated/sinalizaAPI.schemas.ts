@@ -306,9 +306,98 @@ export interface AutomaticSectorDTO {
   name: string;
 }
 
+export interface ClassificationAlternativeDTO {
+  id: string;
+  name: string;
+  /**
+     * @minimum 0
+     * @maximum 1
+     */
+  score: number;
+}
+
+export interface ClassificationDecisionDTO {
+  /**
+     * @minimum 0
+     * @maximum 1
+     */
+  minimum_score: number;
+  /**
+     * @minimum 0
+     * @maximum 1
+     */
+  minimum_margin: number;
+  /**
+     * @minimum 0
+     * @maximum 1
+     */
+  margin: number;
+}
+
+export interface ClassificationProcessingDTO {
+  normalization: string;
+  /** @minimum 0 */
+  corrected_tokens: number;
+  /** @minimum 1 */
+  semantic_chunks: number;
+}
+
+export type ClassificationDetailsDTOSchemaVersion = typeof ClassificationDetailsDTOSchemaVersion[keyof typeof ClassificationDetailsDTOSchemaVersion];
+
+
+export const ClassificationDetailsDTOSchemaVersion = {
+  NUMBER_1: 1,
+} as const;
+
+export type ClassificationDetailsDTODataSource = typeof ClassificationDetailsDTODataSource[keyof typeof ClassificationDetailsDTODataSource];
+
+
+export const ClassificationDetailsDTODataSource = {
+  MOCK: 'MOCK',
+  REAL: 'REAL',
+} as const;
+
+export type ClassificationDetailsDTOScoreType = typeof ClassificationDetailsDTOScoreType[keyof typeof ClassificationDetailsDTOScoreType];
+
+
+export const ClassificationDetailsDTOScoreType = {
+  uncalibrated_score: 'uncalibrated_score',
+} as const;
+
+/**
+ * @nullable
+ */
+export type ClassificationDetailsDTOReviewReason = typeof ClassificationDetailsDTOReviewReason[keyof typeof ClassificationDetailsDTOReviewReason] | null;
+
+
+export const ClassificationDetailsDTOReviewReason = {
+  insufficient_context: 'insufficient_context',
+  model_disagreement: 'model_disagreement',
+  close_scores: 'close_scores',
+  uncalibrated_model: 'uncalibrated_model',
+} as const;
+
+export interface ClassificationDetailsDTO {
+  schema_version: ClassificationDetailsDTOSchemaVersion;
+  request_id: string;
+  model: string;
+  model_version: string;
+  method: string;
+  data_source: ClassificationDetailsDTODataSource;
+  score_type: ClassificationDetailsDTOScoreType;
+  requires_review: boolean;
+  /** @nullable */
+  review_reason: ClassificationDetailsDTOReviewReason;
+  alternatives: ClassificationAlternativeDTO[];
+  decision?: ClassificationDecisionDTO;
+  processing?: ClassificationProcessingDTO;
+}
+
 export interface ClassificationResponseDTO {
-  automatic_sector: AutomaticSectorDTO;
+  /** @nullable */
+  automatic_sector: AutomaticSectorDTO | null;
   confidence?: number;
+  classification?: ClassificationDetailsDTO;
 }
 
 export interface CreateTicketDTO {
@@ -319,8 +408,11 @@ export interface CreateTicketDTO {
   description: string;
   /** Enviado em multipart/form-data como uma string JSON, ex.: {"building_id":"...","environment_id":"..."} */
   location: string;
-  /** UUID do setor sugerido pela classificação automática */
-  automatic_sector_id: string;
+  /**
+     * UUID sugerido no preview; omitir quando não houver sugestão. Revalidado no servidor.
+     * @nullable
+     */
+  automatic_sector_id?: string | null;
   /** UUID do setor confirmado/escolhido pelo solicitante */
   confirmed_sector_id: string;
   /** Fotos opcionais (evidência visual - nunca usadas na classificação, RB-02) */
@@ -346,7 +438,8 @@ export interface TicketResponseDTO {
   id: string;
   protocol: string;
   status: TicketResponseDTOStatus;
-  automatic_sector: SectorRefDTO;
+  /** @nullable */
+  automatic_sector: SectorRefDTO | null;
   confirmed_sector: SectorRefDTO;
   current_sector: SectorRefDTO;
   requester_corrected: boolean;
@@ -430,7 +523,8 @@ export interface TicketDetailResponseDTO {
   location: TicketLocationDTO;
   photos: TicketPhotoResponseDTO[];
   status: TicketDetailResponseDTOStatus;
-  automatic_sector: SectorRefDTO;
+  /** @nullable */
+  automatic_sector: SectorRefDTO | null;
   confirmed_sector: SectorRefDTO;
   current_sector: SectorRefDTO;
   timeline: TicketTimelineEventDTO[];
@@ -517,7 +611,8 @@ export interface SectorTicketListItemResponseDTO {
   description_summary: string;
   location: string;
   status: SectorTicketListItemResponseDTOStatus;
-  automatic_sector_id: string;
+  /** @nullable */
+  automatic_sector_id: string | null;
   confirmed_sector_id: string;
   classification_diverged: boolean;
   created_at: string;
@@ -591,6 +686,11 @@ export interface NotificationResponseDTO {
   type: NotificationResponseDTOType;
   message: string;
   created_at: string;
+  /**
+     * null = não lida
+     * @nullable
+     */
+  read_at: string | null;
 }
 
 export interface NotificationListResponseDTO {
@@ -598,6 +698,11 @@ export interface NotificationListResponseDTO {
   page: number;
   page_size: number;
   total: number;
+}
+
+export interface UnreadNotificationsCountResponseDTO {
+  /** Notificações do solicitante ainda não lidas */
+  count: number;
 }
 
 export type RegisterDeviceTokenDTOPlatform = typeof RegisterDeviceTokenDTOPlatform[keyof typeof RegisterDeviceTokenDTOPlatform];
@@ -618,6 +723,14 @@ export interface RegisterDeviceTokenDTO {
 export interface RemoveDeviceTokenDTO {
   /** @maxLength 4096 */
   token: string;
+}
+
+export interface ClassificationOutcomesDTO {
+  accepted: number;
+  changed: number;
+  manual_without_suggestion: number;
+  /** Concordância humana entre sugestões; não acurácia independente. */
+  acceptance_percentage: number;
 }
 
 export interface AutomaticAccuracyDTO {
@@ -660,6 +773,7 @@ export interface ResearchVolumeDTO {
 }
 
 export interface ResearchIndicatorsResponseDTO {
+  classification_outcomes: ClassificationOutcomesDTO;
   automatic_accuracy: AutomaticAccuracyDTO;
   corrections: CorrectionsDTO;
   time_to_correct_sector: TimeToCorrectSectorDTO;
@@ -955,6 +1069,11 @@ from?: string;
  */
 to?: string;
 building_id?: string;
+/**
+ * Matches protocol, description or location (building/environment)
+ * @maxLength 255
+ */
+search?: string;
 };
 
 export type AdminTicketsControllerDashboardV1StatusItem = typeof AdminTicketsControllerDashboardV1StatusItem[keyof typeof AdminTicketsControllerDashboardV1StatusItem];

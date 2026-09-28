@@ -48,6 +48,13 @@ extension JsonRead on Json {
     throw _invalid(key, 'objeto');
   }
 
+  Json? objOrNull(String key) {
+    final value = this[key];
+    if (value == null) return null;
+    if (value is Map) return value.cast<String, dynamic>();
+    throw _invalid(key, 'objeto ou null');
+  }
+
   /// Lista de objetos. Ausente ou `null` vira lista vazia.
   List<T> list<T>(String key, T Function(Json json) parse) {
     final value = this[key];
