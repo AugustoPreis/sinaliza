@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "id": "sec_ti",
+      "name": "TI"
+    },
+    {
+      "id": "sec_manutencao",
+      "name": "Manutenção Predial"
+    }
+  ]
+}

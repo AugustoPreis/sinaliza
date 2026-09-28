@@ -1,0 +1,46 @@
+{
+  "id": "tkt_123",
+  "protocol": "SIN-1042",
+  "description": "O projetor da sala não está ligando",
+  "location": {
+    "building": {
+      "id": "bld_01",
+      "name": "Bloco A"
+    },
+    "environment": {
+      "id": "env_101",
+      "name": "Sala 101"
+    }
+  },
+  "photos": [
+    {
+      "id": "photo_1",
+      "url": "https://arquivos.exemplo/tkt_123/photo_1"
+    }
+  ],
+  "status": "IN_PROGRESS",
+  "automatic_sector": {
+    "id": "sec_ti",
+    "name": "TI"
+  },
+  "confirmed_sector": {
+    "id": "sec_ti",
+    "name": "TI"
+  },
+  "current_sector": {
+    "id": "sec_ti",
+    "name": "TI"
+  },
+  "timeline": [
+    {
+      "type": "TICKET_OPENED",
+      "description": "Chamado aberto",
+      "created_at": "2026-08-20T14:30:00Z"
+    },
+    {
+      "type": "STATUS_CHANGED",
+      "description": "Chamado em andamento",
+      "created_at": "2026-08-20T15:05:00Z"
+    }
+  ]
+}

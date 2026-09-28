@@ -1,0 +1,19 @@
+{
+  "id": "tkt_123",
+  "protocol": "SIN-1042",
+  "status": "FORWARDED",
+  "automatic_sector": {
+    "id": "sec_ti",
+    "name": "TI"
+  },
+  "confirmed_sector": {
+    "id": "sec_ti",
+    "name": "TI"
+  },
+  "current_sector": {
+    "id": "sec_ti",
+    "name": "TI"
+  },
+  "requester_corrected": false,
+  "created_at": "2026-08-20T14:30:00Z"
+}

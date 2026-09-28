@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ícone monocromático da barra de status (Android pinta com a cor do sistema). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M18,11v5l2,2v1H4v-1l2,-2v-5c0,-3.07 1.64,-5.64 4.5,-6.32V4c0,-0.83 0.67,-1.5 1.5,-1.5s1.5,0.67 1.5,1.5v0.68C16.36,5.36 18,7.92 18,11zM12,22c1.1,0 2,-0.9 2,-2h-4c0,1.1 0.9,2 2,2z" />
+</vector>

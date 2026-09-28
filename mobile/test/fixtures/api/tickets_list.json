@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "d4c3b2a1-1111-4111-8111-111111111111",
+      "protocol": "SIN-1042",
+      "description_summary": "O projetor da sala 101 não liga. Já testamos outra tomada e outro cabo HDMI, mas a lâmpada nem acende e o equipamento não responde ao con…",
+      "current_sector": { "id": "a1b2c3d4-0000-4000-8000-000000000001", "name": "TI" },
+      "status": "IN_PROGRESS",
+      "created_at": "2026-08-20T14:30:00.000Z"
+    },
+    {
+      "id": "d4c3b2a1-2222-4222-8222-222222222222",
+      "protocol": "SIN-1043",
+      "description_summary": "Vazamento no banheiro do térreo.",
+      "current_sector": { "id": "a1b2c3d4-0000-4000-8000-000000000002", "name": "Manutenção Predial" },
+      "status": "OPEN",
+      "created_at": "2026-08-21T09:05:12.345Z"
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 5
+}

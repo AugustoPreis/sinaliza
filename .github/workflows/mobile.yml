@@ -1,0 +1,46 @@
+name: Mobile (Flutter)
+
+on:
+  pull_request:
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/mobile.yml'
+  push:
+    branches: [main, dev]
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/mobile.yml'
+
+concurrency:
+  group: mobile-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.7'
+          channel: stable
+          cache: true
+
+      - name: Dependências
+        run: flutter pub get
+
+      - name: Formatação
+        run: dart format --output=none --set-exit-if-changed lib test integration_test tool
+
+      - name: Análise estática
+        run: flutter analyze
+
+      - name: Testes (unitários e de widget)
+        # Os testes de integração (integration_test/) precisam da API local e
+        # de um emulador; rodam fora do CI (ver mobile/README.md).
+        run: flutter test --coverage

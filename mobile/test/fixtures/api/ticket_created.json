@@ -1,0 +1,10 @@
+{
+  "id": "d4c3b2a1-3333-4333-8333-333333333333",
+  "protocol": "SIN-1044",
+  "status": "FORWARDED",
+  "automatic_sector": { "id": "a1b2c3d4-0000-4000-8000-000000000001", "name": "TI" },
+  "confirmed_sector": { "id": "a1b2c3d4-0000-4000-8000-000000000002", "name": "Manutenção Predial" },
+  "current_sector": { "id": "a1b2c3d4-0000-4000-8000-000000000002", "name": "Manutenção Predial" },
+  "requester_corrected": true,
+  "created_at": "2026-08-22T11:00:00.000Z"
+}

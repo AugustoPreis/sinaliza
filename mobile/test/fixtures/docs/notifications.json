@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "id": "ntf_123",
+      "ticket_id": "tkt_123",
+      "protocol": "SIN-1042",
+      "type": "TICKET_RESOLVED",
+      "message": "Seu chamado SIN-1042 foi resolvido.",
+      "created_at": "2026-08-20T18:20:00Z"
+    }
+  ]
+}
