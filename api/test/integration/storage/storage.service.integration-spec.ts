@@ -44,8 +44,8 @@ describe('StorageService (integration)', () => {
   }, 60000);
 
   afterAll(async () => {
-    s3.destroy();
-    await stopContainers(containers);
+    s3?.destroy();
+    if (containers) await stopContainers(containers);
   });
 
   describe('onModuleInit / ensureBucketExists', () => {

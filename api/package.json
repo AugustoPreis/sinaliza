@@ -28,7 +28,9 @@
     "migration:create": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create src/core/database/migrations/$npm_config_name",
     "migration:run": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/core/database/data-source.ts",
     "migration:revert": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d src/core/database/data-source.ts",
-    "seed": "ts-node -r tsconfig-paths/register src/core/database/seeds/seed.runner.ts"
+    "seed": "ts-node -r tsconfig-paths/register src/core/database/seeds/seed.runner.ts",
+    "seed:sectors:local": "node scripts/local-seed-sectors.cjs",
+    "start:local": "TS_NODE_FILES=true TS_NODE_PROJECT=tsconfig.build.json node --env-file=.env -r ts-node/register -r tsconfig-paths/register src/main.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1104.0",

@@ -3,3 +3,8 @@ dist
 coverage
 .git
 .husky
+
+# Keep local credentials out of Docker build contexts.
+.env
+.env.*
+!.env.example

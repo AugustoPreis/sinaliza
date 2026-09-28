@@ -21,7 +21,10 @@ export async function startContainers(
     new PostgreSqlContainer('postgres:18').start(),
     new RedisContainer('redis:7-alpine').start(),
     opts.minio
-      ? new GenericContainer('minio/minio:RELEASE.2025-09-07T16-13-09Z')
+      ? new GenericContainer(
+          process.env.TEST_MINIO_IMAGE ??
+            'sinaliza-minio-local:RELEASE.2025-09-07T16-13-09Z',
+        )
           .withCommand(['server', '/data', '--console-address', ':9001'])
           .withEnvironment({
             MINIO_ROOT_USER: 'minioadmin',
