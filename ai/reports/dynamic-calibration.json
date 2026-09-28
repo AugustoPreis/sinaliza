@@ -1,0 +1,3913 @@
+{
+  "scope": "synthetic development calibration with present, missing-class, sparse-catalog and out-of-domain cases; not independent accuracy",
+  "selection": "do not weaken the established score/margin floors; then minimize false positives, maximize correct suggestions and prefer lower thresholds",
+  "decision": "candidate-scarcity-adjusted minimum score = minimumScore + minimumMargin / max(1, candidateCount - 1)^2 for catalogs with fewer than four candidates",
+  "baselinePolicy": {
+    "minimumScore": 0.25,
+    "minimumMargin": 0.2
+  },
+  "baseline": {
+    "total": 24,
+    "suggestions": 8,
+    "correctSuggestions": 6,
+    "falsePositives": 2,
+    "correctAbstentions": 8,
+    "incorrectAbstentions": 8,
+    "coverage": 0.3333333333333333,
+    "suggestionPrecision": 0.75
+  },
+  "bestGlobal": {
+    "minimumScore": 0.15,
+    "minimumMargin": 0.3,
+    "total": 24,
+    "suggestions": 6,
+    "correctSuggestions": 6,
+    "falsePositives": 0,
+    "correctAbstentions": 10,
+    "incorrectAbstentions": 8,
+    "coverage": 0.25,
+    "suggestionPrecision": 1
+  },
+  "selected": {
+    "minimumScore": 0.25,
+    "minimumMargin": 0.2,
+    "total": 24,
+    "suggestions": 5,
+    "correctSuggestions": 5,
+    "falsePositives": 0,
+    "correctAbstentions": 10,
+    "incorrectAbstentions": 9,
+    "coverage": 0.20833333333333334,
+    "suggestionPrecision": 1
+  },
+  "rows": [
+    {
+      "description": "O projetor não exibe a imagem do computador pelo HDMI",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000001",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.1601042691361928
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.0011701549632971526
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Esqueci minha senha de acesso e preciso redefinir",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000001",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.16486695005693264
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.12210635523544794
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.09110934448889205
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.015693543989434986
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Paguei o boleto mas a mensalidade continua atrasada",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000002",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.25949336127793987
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.2361732290921204
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.09789090301960932
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.06887362733244433
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.054900521776327746
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Minha cobrança veio em duplicidade neste mês",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000002",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.2785409144992032
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.2668008954360104
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.18078370334634208
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.10556677786937994
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.05739637993688613
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Quero renovar o empréstimo dos livros que peguei",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000003",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.7672444308327061
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.21290443305193982
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.2120013163708545
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.1136166701807772
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.09072829787459831
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.05876840100230142
+        }
+      ]
+    },
+    {
+      "description": "O catálogo não mostra o livro que preciso reservar",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000003",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.32776022563341484
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.2049499414405607
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Preciso emitir meu histórico escolar atualizado",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000004",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.6739114065948438
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.34790105657369147
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.1785565902007851
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.1652944458387713
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.14069635598393293
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.10587626815414017
+        }
+      ]
+    },
+    {
+      "description": "A declaração de matrícula veio com meu nome errado",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000004",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.3599001373374668
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.23045373692090249
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.16754690910201828
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.132999413179774
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "A tomada da sala queimou e está sem energia elétrica",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000005",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.3882171091306576
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.02346221025450794
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.016008615468549266
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.005161330850472772
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Há vazamento de água no teto do corredor",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000005",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.32985285020721655
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.16415181940626383
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.15965393085476415
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.1148594800975434
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.04467879058565381
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.034288048189419496
+        }
+      ]
+    },
+    {
+      "description": "Sou funcionário e preciso solicitar minhas férias",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000006",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.6515783201165659
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.32101453251862094
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.2660711333052281
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.18703296822292279
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.16217428338583018
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.14184794115942162
+        }
+      ]
+    },
+    {
+      "description": "Meu contracheque veio com erro na folha de pagamento",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000006",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.41700531177774225
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.29173006563003284
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.2132753441408026
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.18284471428780025
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "O computador do laboratório não liga e preciso de suporte",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.08771083576012768
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.0780190271495363
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.006155694785762216
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Meu boleto da mensalidade venceu e preciso emitir a segunda via",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.19020798059701793
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.18744968331739345
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.18464374418626103
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.06290703019126646
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Preciso renovar o empréstimo de um livro da biblioteca",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.2716517265887662
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.18961654713782922
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.14943297220345425
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.09422263664080445
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.053402130140617135
+        }
+      ]
+    },
+    {
+      "description": "Preciso corrigir minha matrícula e emitir o histórico escolar",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.3331847380869046
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.2542819127902139
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.24403139499237092
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.09154016580762486
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.042199568990734564
+        }
+      ]
+    },
+    {
+      "description": "Preciso conferir meu contracheque e a folha de pagamento",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000007",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.43425416148253837
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.03374768310416524
+        }
+      ]
+    },
+    {
+      "description": "Preciso analisar interferometria quântica e fótons emaranhados",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000008",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.7893150413631973
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Meu boleto da mensalidade venceu e preciso emitir a segunda via",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.3039080278954043
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.06132903892796091
+        }
+      ]
+    },
+    {
+      "description": "O computador do laboratório não liga e preciso de suporte",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.00940602192851537
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Preciso corrigir minha matrícula e emitir o histórico escolar",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.29589671216628
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.04221319893796328
+        }
+      ]
+    },
+    {
+      "description": "Preciso renovar o empréstimo de um livro da biblioteca",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.10095437586915137
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.05982177051980026
+        }
+      ]
+    },
+    {
+      "description": "Quero saber qual a melhor receita de bolo",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "out-of-domain",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.03017952872666648
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "description": "Quem ganhou a partida de futebol ontem à noite",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "out-of-domain",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.044642922156632514
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.020043880624642713
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.01581688623282936
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ]
+    }
+  ],
+  "globalPolicies": [
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 7,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 6,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.875
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 7,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 6,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.875
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 7,
+      "falsePositives": 1,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 7,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.875
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 6,
+      "falsePositives": 1,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 8,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 0.8571428571428571
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 6,
+      "falsePositives": 1,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 8,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 0.8571428571428571
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 6,
+      "falsePositives": 1,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 8,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 0.8571428571428571
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 6,
+      "falsePositives": 1,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 8,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 0.8571428571428571
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 5,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 0.8333333333333334
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 5,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 0.8333333333333334
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 11,
+      "correctSuggestions": 9,
+      "falsePositives": 2,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 4,
+      "coverage": 0.4583333333333333,
+      "suggestionPrecision": 0.8181818181818182
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 10,
+      "correctSuggestions": 8,
+      "falsePositives": 2,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 6,
+      "coverage": 0.4166666666666667,
+      "suggestionPrecision": 0.8
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 9,
+      "correctSuggestions": 7,
+      "falsePositives": 2,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 7,
+      "coverage": 0.375,
+      "suggestionPrecision": 0.7777777777777778
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 9,
+      "correctSuggestions": 7,
+      "falsePositives": 2,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 7,
+      "coverage": 0.375,
+      "suggestionPrecision": 0.7777777777777778
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 6,
+      "falsePositives": 2,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 8,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.75
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 6,
+      "falsePositives": 2,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 8,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.75
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 6,
+      "falsePositives": 2,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 8,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.75
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 13,
+      "correctSuggestions": 10,
+      "falsePositives": 3,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 3,
+      "coverage": 0.5416666666666666,
+      "suggestionPrecision": 0.7692307692307693
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 12,
+      "correctSuggestions": 9,
+      "falsePositives": 3,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5,
+      "suggestionPrecision": 0.75
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 12,
+      "correctSuggestions": 9,
+      "falsePositives": 3,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5,
+      "suggestionPrecision": 0.75
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 12,
+      "correctSuggestions": 9,
+      "falsePositives": 3,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5,
+      "suggestionPrecision": 0.75
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 15,
+      "correctSuggestions": 10,
+      "falsePositives": 5,
+      "correctAbstentions": 6,
+      "incorrectAbstentions": 3,
+      "coverage": 0.625,
+      "suggestionPrecision": 0.6666666666666666
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 14,
+      "correctSuggestions": 9,
+      "falsePositives": 5,
+      "correctAbstentions": 6,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5833333333333334,
+      "suggestionPrecision": 0.6428571428571429
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 14,
+      "correctSuggestions": 9,
+      "falsePositives": 5,
+      "correctAbstentions": 6,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5833333333333334,
+      "suggestionPrecision": 0.6428571428571429
+    }
+  ],
+  "policies": [
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 15,
+      "correctSuggestions": 10,
+      "falsePositives": 5,
+      "correctAbstentions": 6,
+      "incorrectAbstentions": 3,
+      "coverage": 0.625,
+      "suggestionPrecision": 0.6666666666666666
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 13,
+      "correctSuggestions": 10,
+      "falsePositives": 3,
+      "correctAbstentions": 8,
+      "incorrectAbstentions": 3,
+      "coverage": 0.5416666666666666,
+      "suggestionPrecision": 0.7692307692307693
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 9,
+      "correctSuggestions": 8,
+      "falsePositives": 1,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 6,
+      "coverage": 0.375,
+      "suggestionPrecision": 0.8888888888888888
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.15,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 14,
+      "correctSuggestions": 9,
+      "falsePositives": 5,
+      "correctAbstentions": 6,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5833333333333334,
+      "suggestionPrecision": 0.6428571428571429
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 11,
+      "correctSuggestions": 9,
+      "falsePositives": 2,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 4,
+      "coverage": 0.4583333333333333,
+      "suggestionPrecision": 0.8181818181818182
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 7,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 7,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.2,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 13,
+      "correctSuggestions": 9,
+      "falsePositives": 4,
+      "correctAbstentions": 7,
+      "incorrectAbstentions": 4,
+      "coverage": 0.5416666666666666,
+      "suggestionPrecision": 0.6923076923076923
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 10,
+      "correctSuggestions": 9,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 4,
+      "coverage": 0.4166666666666667,
+      "suggestionPrecision": 0.9
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 7,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 7,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.25,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 11,
+      "correctSuggestions": 9,
+      "falsePositives": 2,
+      "correctAbstentions": 9,
+      "incorrectAbstentions": 4,
+      "coverage": 0.4583333333333333,
+      "suggestionPrecision": 0.8181818181818182
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 10,
+      "correctSuggestions": 9,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 4,
+      "coverage": 0.4166666666666667,
+      "suggestionPrecision": 0.9
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 6,
+      "correctSuggestions": 6,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 8,
+      "coverage": 0.25,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.3,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 8,
+      "correctSuggestions": 7,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 6,
+      "coverage": 0.3333333333333333,
+      "suggestionPrecision": 0.875
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 7,
+      "correctSuggestions": 6,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 7,
+      "coverage": 0.2916666666666667,
+      "suggestionPrecision": 0.8571428571428571
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 5,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.35,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 4,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 0.8
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 5,
+      "correctSuggestions": 4,
+      "falsePositives": 1,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 9,
+      "coverage": 0.20833333333333334,
+      "suggestionPrecision": 0.8
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 2,
+      "correctSuggestions": 2,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 12,
+      "coverage": 0.08333333333333333,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.4,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.45,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.5,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.55,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.05,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.1,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.15,
+      "total": 24,
+      "suggestions": 4,
+      "correctSuggestions": 4,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 10,
+      "coverage": 0.16666666666666666,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.2,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.25,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.3,
+      "total": 24,
+      "suggestions": 3,
+      "correctSuggestions": 3,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 11,
+      "coverage": 0.125,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.35,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    },
+    {
+      "minimumScore": 0.6,
+      "minimumMargin": 0.4,
+      "total": 24,
+      "suggestions": 1,
+      "correctSuggestions": 1,
+      "falsePositives": 0,
+      "correctAbstentions": 10,
+      "incorrectAbstentions": 13,
+      "coverage": 0.041666666666666664,
+      "suggestionPrecision": 1
+    }
+  ]
+}

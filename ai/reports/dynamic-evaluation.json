@@ -1,0 +1,2105 @@
+{
+  "scope": "synthetic holdout with present, missing-class, sparse-catalog and out-of-domain cases; not independent real-world accuracy",
+  "policy": {
+    "minimumScore": 0.25,
+    "minimumMargin": 0.2
+  },
+  "before": {
+    "total": 18,
+    "suggestions": 8,
+    "correctSuggestions": 6,
+    "falsePositives": 2,
+    "correctAbstentions": 8,
+    "incorrectAbstentions": 2,
+    "coverage": 0.4444444444444444,
+    "suggestionPrecision": 0.75
+  },
+  "after": {
+    "total": 18,
+    "suggestions": 6,
+    "correctSuggestions": 6,
+    "falsePositives": 0,
+    "correctAbstentions": 10,
+    "incorrectAbstentions": 2,
+    "coverage": 0.3333333333333333,
+    "suggestionPrecision": 1
+  },
+  "rows": [
+    {
+      "description": "Meu projetor não mostra a tela do notebook mesmo com o cabo conectado",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000001",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.2559555618608288
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.04770480671455539
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": "20000000-0000-4000-8000-000000000001",
+        "automatic_sector": {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico"
+        },
+        "confidence": 0.2559555618608288,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "f26bf503-2cd5-4bbb-b585-fb7b0e0b3c1a",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": false,
+          "review_reason": null,
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000001",
+              "name": "Suporte tecnológico",
+              "score": 0.2559555618608288
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.04770480671455539
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.2082507551462734
+          }
+        }
+      }
+    },
+    {
+      "description": "Fiz o pix da mensalidade ontem mas ainda consta uma dívida no portal",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000002",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.39031949434651514
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.3666254987900503
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.27502777237870163
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.2477652807632381
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.09561404967293449
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.39031949434651514,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "8ecb81c3-63e3-482f-a9fe-3777cdbb19de",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "close_scores",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.39031949434651514
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.3666254987900503
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.27502777237870163
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.023693995556464842
+          }
+        }
+      }
+    },
+    {
+      "description": "Devolvi os livros antes do prazo mas meu empréstimo continua aberto",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000003",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.6290576028274159
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.24367598520923636
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.1625334932148527
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.07226186138721148
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.003102369315670989
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": "20000000-0000-4000-8000-000000000003",
+        "automatic_sector": {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos"
+        },
+        "confidence": 0.6290576028274159,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "bb5bb6bb-a9a2-4303-be72-df35d9c0b9a1",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": false,
+          "review_reason": null,
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.6290576028274159
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.24367598520923636
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000004",
+              "name": "Registros acadêmicos",
+              "score": 0.1625334932148527
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.38538161761817946
+          }
+        }
+      }
+    },
+    {
+      "description": "Meu sobrenome está errado na declaração que preciso entregar no estágio",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000004",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.3644689284846196
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.18109684518804667
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.13436397852369844
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.10204524187301463
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.017477473480166893
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.3644689284846196,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "47edf27d-76fb-40b4-a757-85eb59ff3a76",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "close_scores",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000004",
+              "name": "Registros acadêmicos",
+              "score": 0.3644689284846196
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.18109684518804667
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.13436397852369844
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.18337208329657292
+          }
+        }
+      }
+    },
+    {
+      "description": "O ar condicionado está pingando água e molhando as mesas da sala",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000005",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.40876493303889516
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.16313560693601944
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.14831238513657138
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.13124246878907966
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.1213027060094119
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": "20000000-0000-4000-8000-000000000005",
+        "automatic_sector": {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial"
+        },
+        "confidence": 0.40876493303889516,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "537ac667-71d8-44a8-a198-d401c2df2742",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": false,
+          "review_reason": null,
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000005",
+              "name": "Conservação predial",
+              "score": 0.40876493303889516
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.16313560693601944
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.14831238513657138
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.24562932610287572
+          }
+        }
+      }
+    },
+    {
+      "description": "Como funcionário quero conferir o saldo de dias de férias",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000006",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.6396781285435996
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.3604474514532906
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.1974833570038442
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.18558008640036783
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.16536122681327026
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.15995362449931483
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": "20000000-0000-4000-8000-000000000006",
+        "automatic_sector": {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas"
+        },
+        "confidence": 0.6396781285435996,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "29e6f3a6-ffce-45b0-b398-2f594718576e",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": false,
+          "review_reason": null,
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.6396781285435996
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.3604474514532906
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000004",
+              "name": "Registros acadêmicos",
+              "score": 0.1974833570038442
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.279230677090309
+          }
+        }
+      }
+    },
+    {
+      "description": "A rede wifi caiu e nenhum computador consegue acessar a internet",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.08020425829969378
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.0480275137149273
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.02845888595961218
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.08020425829969378,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "b8e85fd7-b407-47dc-87a3-5af78eb175a7",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000005",
+              "name": "Conservação predial",
+              "score": 0.08020425829969378
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.0480275137149273
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.02845888595961218
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.032176744584766485
+          }
+        }
+      }
+    },
+    {
+      "description": "O desconto da bolsa não apareceu no boleto deste mês",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.1695724784951035
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.07634808926817335
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.1695724784951035,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "184cd4f8-fc60-443e-9de9-13af45b7fc64",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.1695724784951035
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.07634808926817335
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000001",
+              "name": "Suporte tecnológico",
+              "score": 0
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.09322438922693016
+          }
+        }
+      }
+    },
+    {
+      "description": "Quero reservar uma obra que está emprestada na biblioteca",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.36332289976934135
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.3498712950689866
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.24419935421337408
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.22092764745044044
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.1028378862325439
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.36332289976934135,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "32dbe0c7-6dc9-42f8-9b14-cf60a5c00067",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "close_scores",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000004",
+              "name": "Registros acadêmicos",
+              "score": 0.36332289976934135
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000001",
+              "name": "Suporte tecnológico",
+              "score": 0.3498712950689866
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.24419935421337408
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.013451604700354725
+          }
+        }
+      }
+    },
+    {
+      "description": "Quero solicitar o trancamento da minha disciplina",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.2742091981856299
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.2665995392748807
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.2576156247274418
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.24991752253954252
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.1264774155212243
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.2742091981856299,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "1a88b863-3226-437f-baeb-90414a340b44",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "close_scores",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.2742091981856299
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.2665995392748807
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000005",
+              "name": "Conservação predial",
+              "score": 0.2576156247274418
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.007609658910749162
+          }
+        }
+      }
+    },
+    {
+      "description": "Como funcionário quero solicitar minhas férias",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000007",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.5713385925453575
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": "20000000-0000-4000-8000-000000000007",
+        "automatic_sector": {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos"
+        },
+        "confidence": 0.5713385925453575,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "5351a59b-2990-49e4-9a32-0ea3421c4f4c",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": false,
+          "review_reason": null,
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000007",
+              "name": "Homologação local - Recursos Humanos",
+              "score": 0.5713385925453575
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000008",
+              "name": "Homologação local - Astronomia Quântica",
+              "score": 0
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.45,
+            "minimum_margin": 0.2,
+            "margin": 0.5713385925453575
+          }
+        }
+      }
+    },
+    {
+      "description": "O observatório pesquisa óptica quântica astronômica",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": "20000000-0000-4000-8000-000000000008",
+      "scenario": "class-present",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.8385875712633422
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": "20000000-0000-4000-8000-000000000008",
+        "automatic_sector": {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica"
+        },
+        "confidence": 0.8385875712633422,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "24c408bb-f443-4df7-afd5-048c0686080f",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": false,
+          "review_reason": null,
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000008",
+              "name": "Homologação local - Astronomia Quântica",
+              "score": 0.8385875712633422
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000007",
+              "name": "Homologação local - Recursos Humanos",
+              "score": 0
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.45,
+            "minimum_margin": 0.2,
+            "margin": 0.8385875712633422
+          }
+        }
+      }
+    },
+    {
+      "description": "Paguei a mensalidade mas a cobrança continua em aberto",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.42125070390613456
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.03438709975354214
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.42125070390613456,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "89727eb4-a730-43d4-8602-e5fe5d93beb8",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000007",
+              "name": "Homologação local - Recursos Humanos",
+              "score": 0.42125070390613456
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000008",
+              "name": "Homologação local - Astronomia Quântica",
+              "score": 0.03438709975354214
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.45,
+            "minimum_margin": 0.2,
+            "margin": 0.3868636041525924
+          }
+        }
+      }
+    },
+    {
+      "description": "Minha senha do portal acadêmico está bloqueada",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.1641415539253294
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.10441886215055575
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.1641415539253294,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "b2046c5f-fa07-48f8-98d4-05d3a13100a6",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000007",
+              "name": "Homologação local - Recursos Humanos",
+              "score": 0.1641415539253294
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000008",
+              "name": "Homologação local - Astronomia Quântica",
+              "score": 0.10441886215055575
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.45,
+            "minimum_margin": 0.2,
+            "margin": 0.05972269177477364
+          }
+        }
+      }
+    },
+    {
+      "description": "Minha declaração de matrícula veio com o nome errado",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.2886068122878318
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.09153007807414366
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.2886068122878318,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "1730b8a1-dfba-497b-a3d2-bbaaefaf6012",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000007",
+              "name": "Homologação local - Recursos Humanos",
+              "score": 0.2886068122878318
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000008",
+              "name": "Homologação local - Astronomia Quântica",
+              "score": 0.09153007807414366
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.45,
+            "minimum_margin": 0.2,
+            "margin": 0.19707673421368815
+          }
+        }
+      }
+    },
+    {
+      "description": "Quero reservar uma obra no acervo",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "categories": [
+            "férias de funcionários",
+            "folha de pagamento",
+            "contracheque"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "categories": [
+            "interferometria quântica",
+            "fótons emaranhados",
+            "óptica quântica astronômica"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "class-missing",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000007",
+          "name": "Homologação local - Recursos Humanos",
+          "score": 0.381601730626464
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000008",
+          "name": "Homologação local - Astronomia Quântica",
+          "score": 0.027894169296032438
+        }
+      ],
+      "beforeSuggested": true,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.381601730626464,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "c779cf61-d23e-434a-a2cb-65f6db274956",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000007",
+              "name": "Homologação local - Recursos Humanos",
+              "score": 0.381601730626464
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000008",
+              "name": "Homologação local - Astronomia Quântica",
+              "score": 0.027894169296032438
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.45,
+            "minimum_margin": 0.2,
+            "margin": 0.3537075613304316
+          }
+        }
+      }
+    },
+    {
+      "description": "Preciso regularizar um problema que apareceu ontem",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "out-of-domain",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.14702042061612014
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.08939838634889857
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.07645299868329712
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.0738647650737075
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.07284561561906042
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.05354580889123771
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.14702042061612014,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "8d22f8e0-cbbb-468f-88ca-4edb5b117d34",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000005",
+              "name": "Conservação predial",
+              "score": 0.14702042061612014
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000006",
+              "name": "Gestão de pessoas",
+              "score": 0.08939838634889857
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000002",
+              "name": "Serviços financeiros",
+              "score": 0.07645299868329712
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.05762203426722157
+          }
+        }
+      }
+    },
+    {
+      "description": "Qual é o planeta mais distante do sol",
+      "candidates": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "categories": [
+            "computador",
+            "projetor",
+            "rede",
+            "senha",
+            "software"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "categories": [
+            "mensalidade",
+            "boleto",
+            "pagamento",
+            "cobrança"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "categories": [
+            "livros",
+            "renovação de empréstimo",
+            "biblioteca"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "categories": [
+            "matrícula",
+            "histórico escolar",
+            "diploma",
+            "declaração"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "categories": [
+            "tomada",
+            "energia elétrica",
+            "vazamento",
+            "ar condicionado"
+          ]
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "categories": [
+            "férias de funcionário",
+            "folha de pagamento",
+            "contratação",
+            "contracheque"
+          ]
+        }
+      ],
+      "expected": null,
+      "scenario": "out-of-domain",
+      "ranked": [
+        {
+          "id": "20000000-0000-4000-8000-000000000001",
+          "name": "Suporte tecnológico",
+          "score": 0.16117534229060823
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000005",
+          "name": "Conservação predial",
+          "score": 0.11231890416502903
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000003",
+          "name": "Acervo e empréstimos",
+          "score": 0.059648354444075555
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000002",
+          "name": "Serviços financeiros",
+          "score": 0.05120071635459824
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000004",
+          "name": "Registros acadêmicos",
+          "score": 0.044940032993772375
+        },
+        {
+          "id": "20000000-0000-4000-8000-000000000006",
+          "name": "Gestão de pessoas",
+          "score": 0.015779915069596542
+        }
+      ],
+      "beforeSuggested": false,
+      "result": {
+        "sector_id": null,
+        "automatic_sector": null,
+        "confidence": 0.16117534229060823,
+        "dataSource": "REAL",
+        "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+        "classification": {
+          "schema_version": 1,
+          "request_id": "006d803a-9a3b-40ef-9806-c668ba70b9e0",
+          "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+          "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+          "method": "dynamic-semantic-cosine-v1",
+          "data_source": "REAL",
+          "score_type": "uncalibrated_score",
+          "requires_review": true,
+          "review_reason": "insufficient_context",
+          "alternatives": [
+            {
+              "id": "20000000-0000-4000-8000-000000000001",
+              "name": "Suporte tecnológico",
+              "score": 0.16117534229060823
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000005",
+              "name": "Conservação predial",
+              "score": 0.11231890416502903
+            },
+            {
+              "id": "20000000-0000-4000-8000-000000000003",
+              "name": "Acervo e empréstimos",
+              "score": 0.059648354444075555
+            }
+          ],
+          "decision": {
+            "minimum_score": 0.25,
+            "minimum_margin": 0.2,
+            "margin": 0.0488564381255792
+          }
+        }
+      }
+    }
+  ]
+}

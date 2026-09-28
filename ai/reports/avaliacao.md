@@ -1,3 +1,5 @@
+> Histórico do classificador supervisionado/híbrido anterior. Para a estratégia dinâmica atual, consulte `dynamic-calibration.json`, `dynamic-evaluation.json` e `../docs/classification-architecture.md`.
+
 # Qualidade e funcionamento — 24/09/2026
 
 ## Resultado

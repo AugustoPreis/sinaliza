@@ -11,12 +11,14 @@ const aiOnly = process.argv.includes('--ai-only');
 const packageName = aiOnly ? 'sinaliza-ia' : 'sinaliza-grupo';
 const stage = await mkdtemp(join(tmpdir(), 'sinaliza-entrega-'));
 const root = join(stage, packageName);
-const latest = JSON.parse(await readFile(join(ai, 'models/latest.json'), 'utf8'));
+let latest;
+try { latest = JSON.parse(await readFile(join(ai, 'models/latest.json'), 'utf8')); }
+catch (error) { if (error.code !== 'ENOENT') throw error; }
 try {
   // Explicit allowlists: no private data, env files, dependencies or caches.
-  const aiPaths = ['src', 'tests', 'scripts', 'config/sectors.mock.json', 'config/backend-demo-sector-map.json', 'data/mock',
-    'models/latest.json', latest.modelPath, 'models/demo/tfidf.json', 'models/demo/backend-tfidf.json', latest.reportPath,
-    'reports/avaliacao.md', 'reports/structured-api-example.json', 'reports/structured-api-evaluation.json',
+  const aiPaths = ['src', 'tests', 'scripts', 'config/dynamic-policy.json', 'config/sectors.mock.json', 'config/backend-demo-sector-map.json', 'data/mock',
+    ...(latest ? ['models/latest.json', latest.modelPath, latest.reportPath] : []),
+    'reports/avaliacao.md', 'reports/dynamic-calibration.json', 'reports/dynamic-evaluation.json', 'reports/structured-api-example.json', 'reports/structured-api-evaluation.json',
     'package.json', 'package-lock.json', 'tsconfig.json', 'vitest.config.ts',
     'README.md', 'docs', '.env.example', '.gitignore', '.nvmrc', '.node-version', '.npmrc'];
   try { await access(join(ai, 'models/release/manifest.json')); aiPaths.push('models/release'); }
@@ -36,7 +38,7 @@ try {
       } });
     }
   }
-  await writeFile(join(root, 'LEIA-ME.txt'), 'Abra ai/README.md. Demonstração MOCK, sem garantia de 100% de acerto.\n');
+  await writeFile(join(root, 'LEIA-ME.txt'), 'Abra ai/README.md. Classificação dinâmica local; provisione os pesos do encoder antes de iniciar. Relatórios históricos MOCK não representam a qualidade da estratégia atual.\n');
   const hashes = [];
   async function inventory(dir, relative = '') {
     for (const entry of (await readdir(dir, { withFileTypes: true })).sort((a,b) => a.name.localeCompare(b.name))) {

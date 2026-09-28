@@ -1,39 +1,21 @@
-# Testar chamados na mão
+# Testes manuais
 
-Abra um terminal na pasta `ai` e execute:
+Use o backend, frontend e IA configurados conforme o README, com migration aplicada em banco de teste e pesos locais provisionados. Os setores devem ser cadastrados pelo administrador com nome e categorias descritivos.
 
-```bash
-npm run predict
-```
+1. Cadastre um setor novo, por exemplo com atribuições de férias de funcionários. Consulte uma descrição correspondente; confira UUID e nome no preview. Renomeie/altere suas categorias e faça nova consulta. Não há retreinamento nem alteração de código.
+2. Envie uma descrição vaga: "Preciso de ajuda com uma coisa". Confira `automatic_sector: null`, selecione qualquer setor válido, preencha local e envie. Confira automático nulo, confirmado preenchido e ausência do evento de classificação automática no ticket.
+3. Consulte uma descrição específica de setor com score/margem suficientes. Confirme a sugestão; depois crie outro chamado alterando o setor confirmado. Verifique separadamente sugestões aceitas, alteradas e escolhas manuais nos indicadores.
+4. No banco de teste, modifique a descrição/UUID automático do payload antes do POST. Se a reclassificação atual não corresponder, o backend deve rejeitar com 409 sem gravar o ticket.
+5. Cadastre dois setores com descrições equivalentes e consulte esse assunto: deve ocorrer abstenção por margem, não seleção alfabética.
 
-Digite uma descrição de cada vez, com suas próprias palavras. O modelo sugere um setor;
-quando encontra pouca evidência ou resultados próximos, pede mais contexto e mostra
-uma sugestão provisória. As pontuações não são probabilidades de acerto.
+Para terminal autenticado, configure `BACKEND_API_URL` e `BACKEND_SESSION_COOKIE` (cookies `access_token` e `XSRF-TOKEN`) e rode `npm run predict` em `ai/`. Esse comando usa o catálogo real via backend. Não cole múltiplas linhas como um único chamado; use uma linha por descrição. Não compartilhe nem versione cookies.
 
-- `/setores`: mostra os nomes e números válidos.
-- `/ok`: marca a última sugestão como correta.
-- `/corrigir Infraestrutura`: informa o setor correto para a última sugestão.
-- `/corrigir 5`: faz o mesmo pelo número exibido em `/setores`.
-- `/resultado`: mostra acertos, erros e descrições ainda não avaliadas.
-- `/sair`: encerra e mostra o resultado da sessão.
+Um setor participar dos candidatos não garante que será sugerido: score, margem e qualidade das categorias controlam a decisão. Registre sugestões erradas e abstenções; não conte só exemplos que acertaram. Os testes sintéticos não substituem chamados reais rotulados.
 
-Você pode corrigir uma avaliação anterior da última sugestão sem contá-la duas vezes.
-Pedidos de contexto não são contados como acertos. Se avaliar uma sugestão provisória,
-a contagem considera se ela estava correta, inclusive quando houver pedido de contexto.
-As avaliações ficam somente na memória da sessão e não alteram o treinamento.
+## Estado validado
 
-Para uma descrição isolada:
+O fluxo foi validado com PostgreSQL, Redis, API, IA e Web locais. A migration nullable foi aplicada em PostgreSQL real, preservou os dados existentes e permitiu persistir `automatic_sector` nulo. Os testes de integração e E2E foram executados com o runtime de contêiner disponível.
 
-```bash
-npm run predict -- "A tomada da sala parou de funcionar"
-```
+A homologação Web autenticada cobriu sugestão aceita, correção manual, abstenção, validações do formulário, proteção contra duplicidade, criação, persistência, listagem e detalhes. O cliente Web foi regenerado pelo procedimento Orval do projeto e revisado contra o OpenAPI atual. Consulte os resultados técnicos e as limitações em [arquitetura](classification-architecture.md).
 
-A primeira classificação pode demorar para carregar o modelo multilíngue local. Em uma
-máquina nova, há download público dos pesos; depois eles ficam em cache. O texto do chamado
-é processado na máquina, sem envio a uma API de IA.
-
-Para medir qualidade real, use relatos inéditos cujo setor correto você já saiba e distribua
-os testes entre os cinco setores. Não use somente exemplos que o sistema já acertou.
-Frases vagas precisam de complemento: "preciso de ajuda" não identifica um setor.
-
-Consulte `../reports/avaliacao.md` para os resultados medidos e suas limitações.
+Antes do frontend, configure `VITE_API_BASE_URL` e `VITE_APP_NAME` conforme `web/.env.example`. Os testes manuais continuam relevantes sempre que contratos, política, catálogo ou fluxo de criação forem alterados.

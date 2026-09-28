@@ -1,147 +1,64 @@
-# Contrato de classificação: mobile → backend → IA
+# Contrato da classificação dinâmica
 
-O mobile envia apenas a descrição ao backend. O backend autentica o usuário, chama a IA
-com o token de serviço e valida o setor retornado contra o banco. O terminal é só uma
-interface de teste; frases como “Encaminhar para TI” não fazem parte do contrato HTTP.
+## Cliente → backend
 
-## Requisição
-
-Mobile → backend: `POST /api/v1/classification/preview` (prefixo padrão do backend).
-Backend → IA: `POST /classification/preview`, com `Authorization: Bearer <token-do-serviço>`.
+`POST /api/v1/classification/preview`, com autenticação e proteção CSRF já existentes:
 
 ```json
-{"description":"o projetorr da sala nao mostra a imagem do notebook pelo cabo HDMI"}
+{"description":"Descrição do problema"}
 ```
 
-A descrição deve conter de 1 a 2.000 caracteres. Não são aceitos foto, setor escolhido
-ou instruções de classificação adicionais no corpo da requisição à IA.
-
-## Resposta
-
-A IA retorna JSON. Exemplo ilustrativo com ID oficial; valores de modelo e pontuação
-variam por execução. Uma resposta realmente capturada está em
-`../reports/structured-api-example.json` (catálogo MOCK, IDs de demonstração).
+O backend consulta `SectorsRepository.findAll()` a cada chamada. O cliente não escolhe os candidatos.
+Resposta no envelope padrão `success/data/timestamp`:
 
 ```json
 {
-  "sector_id": "uuid-oficial-do-setor",
-  "automatic_sector": {"id":"uuid-oficial-do-setor","name":"TI"},
-  "confidence": 0.42,
-  "model": "tfidf-multilingual-minilm-hybrid",
-  "dataSource": "MOCK",
-  "classification": {
-    "schema_version": 1,
-    "request_id": "e62c477d-1b11-4b4d-898d-1b18c7721e80",
-    "model": "tfidf-multilingual-minilm-hybrid",
-    "model_version": "versao-do-artefato",
-    "method": "tfidf-semantic",
-    "data_source": "MOCK",
-    "score_type": "uncalibrated_score",
-    "requires_review": true,
-    "review_reason": "close_scores",
-    "alternatives": [{"id":"uuid-oficial-do-setor","name":"TI","score":0.42}],
-    "processing": {
-      "normalization": "unicode-whitespace-lowercase-v1",
-      "corrected_tokens": 1,
-      "semantic_chunks": 1
+  "success": true,
+  "data": {
+    "automatic_sector": null,
+    "confidence": 0.12,
+    "classification": {
+      "schema_version": 1,
+      "request_id": "uuid-da-execucao",
+      "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+      "model_version": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+      "method": "dynamic-semantic-cosine-v1",
+      "data_source": "REAL",
+      "score_type": "uncalibrated_score",
+      "requires_review": true,
+      "review_reason": "insufficient_context",
+      "alternatives": [],
+      "decision": {"minimum_score": 0.25, "minimum_margin": 0.20, "margin": 0.03}
     }
-  }
+  },
+  "timestamp": "data-da-resposta"
 }
 ```
 
-O backend devolve `automatic_sector`, `confidence` e `classification` dentro do envelope
-padrão `{ "success": true, "data": {...}, "timestamp": "..." }`. Campos legados extras
-na resposta da IA não precisam ser consumidos pelo mobile.
-Os DTOs de Swagger do backend descrevem os campos de `classification` e seus tipos.
-Nomes das alternativas e do setor principal vêm do banco; não são copiados cegamente da IA.
+Exemplo ilustrativo. Com evidência suficiente, `automatic_sector` é `{id: UUID, name: nome oficial}`. `confidence` é similaridade cosseno truncada a [0,1], não probabilidade. `REAL` identifica candidatos fornecidos pelo cadastro real; não significa treino supervisionado em chamados reais. `insufficient_context` cobre texto curto ou score insuficiente; `close_scores` indica margem insuficiente.
 
-## Como o mobile deve interpretar
+## Backend → IA
 
-- `data.automatic_sector.id` é o ID para apresentar como sugestão, não um nome a ser comparado.
-- `data.classification.requires_review=true`: pedir confirmação do setor ou mais detalhes.
-  A sugestão continua disponível; não tratá-la como encaminhamento seguro automático.
-- `requires_review=false`: a heurística não sinalizou dúvida. Ainda não é garantia de acerto.
-- `confidence` e os `score` das alternativas são pontuações não calibradas. Não exibir “42% de chance”.
-- `review_reason`: `insufficient_context`, `model_disagreement`, `close_scores` ou `uncalibrated_model`.
-  Sem revisão, o motivo é `null`.
-- `request_id`, `model`, `model_version`, `method` e `data_source` identificam a decisão para diagnóstico.
-  Não são uma explicação causal inventada nem texto de raciocínio interno.
-- `processing` informa operações realmente executadas: normalização, quantidade de tokens corrigidos
-  e blocos processados pelo encoder. Pode faltar em modelos antigos.
-- `classification` pode faltar em serviços legados: o consumidor não deve interpretar sua ausência como certeza.
+`POST /classification/preview`, autenticado com `Authorization: Bearer AI_SERVICE_TOKEN`:
 
-A prévia não cria chamado e não substitui o fluxo já existente de confirmação do setor.
-
-## Textos complexos e erros
-
-A inferência híbrida normaliza Unicode, caixa e espaços e usa correção ortográfica conservadora.
-Corrige apenas sugestões inequívocas permitidas pelo vocabulário; não remove negações, siglas
-como HDMI/PIX nem valores. Não promete corrigir toda palavra desconhecida.
-Descrições longas são divididas em blocos de até 400 caracteres, incorporando também o fim
-do texto ao embedding. O ramo lexical usa o texto inteiro dentro do limite de 2.000 caracteres.
-O serviço prepara encoder e corretor antes de começar a aceitar requisições.
-
-Testes sintéticos pela API cobrem: projetor com erro de digitação, mensalidade com letra duplicada,
-Biblioteca e Secretaria sem acentos, ar-condicionado e relato longo com o defeito do projetor no fim.
-O modelo continua de classe única: relatos vagos, contraditórios, com dois problemas ou fora dos
-cinco setores podem exigir revisão. Passar esses exemplos não prova precisão geral de 100%.
-
-## Erros e configuração
-
-- IA: 400 descrição/corpo inválido; 401 token; 409 setores incompatíveis; 413 corpo excessivo;
-  503 serviço desativado ou indisponível.
-- Backend: rejeita origem inesperada, setor desconhecido e pontuações/metadados inválidos.
-  O código `INVALID_CLASSIFICATION_DETAILS` é devolvido com HTTP 502; não ocorre fallback silencioso.
-- Tokens de serviço ficam só no backend. O mobile usa a autenticação normal do Sinaliza.
-- O modelo atual continua MOCK; as proteções que impedem seu uso como modelo REAL permanecem.
-- O timeout padrão do backend foi ajustado para 15 segundos (`AI_TIMEOUT_MS`), pois uma chamada local medida levou 4,3 segundos. Ajuste à máquina; medições locais estão em
-  `../reports/structured-api-evaluation.json`. São medições de desenvolvimento, não garantia de SLA.
-
-## Verificar
-
-Na IA: `npm run check:all` (65 testes passaram nesta revisão).
-No backend: `npm run build` e `npm test -- --runInBand src/modules/classification`
-(21 testes passaram, incluindo HTTP → estratégia → caso de uso → DTO).
-
-Os testes usam serviços locais e repositório de setores simulado. Não são homologação do
-mobile real, da autenticação em produção ou do banco PostgreSQL.
-
-## Configuração dos serviços
-
-
-Backend (`api/.env`, não versionar credenciais):
-
-```dotenv
-AI_MODE=disabled
-AI_SERVICE_URL=http://127.0.0.1:3001
-AI_SERVICE_TOKEN=<segredo compartilhado com pelo menos 32 caracteres>
-AI_TIMEOUT_MS=15000
+```json
+{"description":"Descrição do problema","candidates":[{"id":"40000000-0000-4000-8000-000000000001","name":"Nome cadastrado","categories":["Categoria cadastrada"]}]}
 ```
 
-Serviço IA (variáveis do processo; o comando não carrega `.env` automaticamente):
+A IA retorna `sector_id` (UUID ou null), `automatic_sector`, `confidence`, `dataSource`, `model` e `classification`. O backend valida origem, UUIDs e metadados; nomes apresentados vêm do banco. A IA não consulta mais a lista pública de setores nem mantém JWT de usuário nesse fluxo.
 
-```dotenv
-AI_MODE=disabled
-AI_HOST=127.0.0.1
-AI_PORT=3001
-AI_SERVICE_TOKEN=<mesmo segredo do backend>
-AI_MODEL_PATH=/caminho/absoluto/modelo.json
-BACKEND_API_URL=http://127.0.0.1:3000/api/v1
-BACKEND_API_TOKEN=<JWT válido do backend>
-BACKEND_TIMEOUT_MS=3000
-```
+Limites: descrição de 1 a 2.000 caracteres, até 500 candidatos, 100 categorias por candidato e 255 caracteres por categoria/nome; corpo interno até 2 MiB. Descrição e textos dos setores são divididos em blocos de até 400 caracteres antes do encoder para reduzir truncamento. Esse limite é por caracteres, não por tokens; entradas atípicas ainda precisam de avaliação. Pesos do encoder ficam em memória, sem cache de catálogo. Catálogos acima desses limites exigem revisão operacional; não são silenciosamente truncados.
 
-Use o valor do cookie `access_token` obtido no login existente como `BACKEND_API_TOKEN`; o provider o envia no header Cookie. O token `AI_SERVICE_TOKEN` continua sendo enviado como Bearer exclusivamente na chamada backend → IA. Ele precisa continuar válido;
-expiração ou revogação interrompe a classificação. Não há renovação automática nem
-novo mecanismo de conta de serviço nesta entrega. Nunca use o segredo da IA como JWT.
-Entre hosts, configure HTTPS e acesso privado aos serviços. Em contêineres, configure
-`AI_HOST=0.0.0.0` e URLs que resolvam entre os contêineres.
+## Criação do chamado
 
-Execute `npm run build && npm run start:service` na IA e inicie o backend normalmente.
-`AI_MODE=disabled` retorna 503 sem carregar modelo ou consultar setores na IA.
-Para ativar com dados reais, configure **ambos** os processos com `AI_MODE=trained`
-e um artefato com `metadata.dataSource=REAL`, cujos IDs correspondam aos UUIDs reais.
-Não basta renomear o metadata de um modelo MOCK.
-`AI_MODE=mock` serve apenas para desenvolvimento isolado com IDs compatíveis;
-`NODE_ENV=production` proíbe esse modo. Não existe tradução de nomes MOCK para UUIDs reais.
+`POST /api/v1/tickets` continua multipart. `confirmed_sector_id` é obrigatório. `automatic_sector_id` é opcional/nulo; em multipart, omita quando não houver sugestão (não envie a string "null").
 
+Antes de persistir ou enviar fotos, o backend reclassifica a descrição usando o catálogo atual. Se o UUID enviado divergir do resultado (inclusive null vs UUID), responde 409 `STALE_CLASSIFICATION`: o cliente deve refazer preview e confirmação. O backend não confia no campo enviado pelo navegador. Isso acrescenta uma inferência e evita token/tabela adicionais. Se descrição/catálogo mudarem, vale a decisão atual do servidor.
+
+Sem sugestão: automático nulo, confirmado e atual apontam para o setor escolhido; `requester_corrected=false`, sem evento AUTO_CLASSIFIED. O evento de confirmação com origem nula representa escolha manual. Reencaminhamentos preservam o automático e o confirmado originais.
+
+## Falhas e configuração
+
+Entrada inválida: 400. Sem setores: 422. Falha técnica/serviço desligado: 503; não vira abstenção. Inconsistência do resultado interno: 502. IA interna exige Bearer; ausente/inválido: 401. Corpo interno acima do limite: 413. O backend normaliza falhas internas não válidas como indisponibilidade.
+
+Ambos os processos: `AI_MODE=dynamic` e segredo igual `AI_SERVICE_TOKEN` (mínimo 32 caracteres). Backend: `AI_SERVICE_URL`, `AI_TIMEOUT_MS=15000`. IA: `AI_HOST=127.0.0.1`, `AI_PORT=3001`, opcional `AI_EMBEDDINGS_CACHE_DIR`. O default é desativado. Não existem chamadas de inferência a provedores externos; pesos precisam existir localmente.
