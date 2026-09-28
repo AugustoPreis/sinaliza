@@ -1,7 +1,8 @@
-import { ClassificationDetails } from '../strategies/classification-details';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
+
+import { IClassificationDetails } from '../strategies/classification-details';
 
 export class AutomaticSectorDTO {
   @ApiProperty()
@@ -36,7 +37,13 @@ export class ClassificationProcessingDTO {
   semantic_chunks!: number;
 }
 
-export class ClassificationDetailsDTO implements ClassificationDetails {
+export class ClassificationDecisionDTO {
+  @ApiProperty({ minimum: 0, maximum: 1 }) minimum_score!: number;
+  @ApiProperty({ minimum: 0, maximum: 1 }) minimum_margin!: number;
+  @ApiProperty({ minimum: 0, maximum: 1 }) margin!: number;
+}
+
+export class ClassificationDetailsDTO implements IClassificationDetails {
   @ApiProperty({ enum: [1] })
   schema_version!: 1;
 
@@ -71,13 +78,16 @@ export class ClassificationDetailsDTO implements ClassificationDetails {
   @ApiProperty({ type: [ClassificationAlternativeDTO] })
   alternatives!: ClassificationAlternativeDTO[];
 
+  @ApiPropertyOptional({ type: ClassificationDecisionDTO })
+  decision?: ClassificationDecisionDTO;
+
   @ApiPropertyOptional({ type: ClassificationProcessingDTO })
   processing?: ClassificationProcessingDTO;
 }
 
 export class ClassificationResponseDTO {
-  @ApiProperty({ type: AutomaticSectorDTO })
-  automatic_sector!: AutomaticSectorDTO;
+  @ApiProperty({ type: AutomaticSectorDTO, nullable: true })
+  automatic_sector!: AutomaticSectorDTO | null;
 
   @ApiPropertyOptional()
   confidence?: number;
@@ -86,13 +96,13 @@ export class ClassificationResponseDTO {
   classification?: ClassificationDetailsDTO;
 
   static from(
-    sector: SectorEntity,
+    sector: SectorEntity | null,
     confidence?: number,
-    classification?: ClassificationDetails,
+    classification?: IClassificationDetails,
   ): ClassificationResponseDTO {
     const dto = new ClassificationResponseDTO();
 
-    dto.automatic_sector = AutomaticSectorDTO.from(sector);
+    dto.automatic_sector = sector ? AutomaticSectorDTO.from(sector) : null;
     dto.confidence = confidence;
     if (classification) dto.classification = classification;
 

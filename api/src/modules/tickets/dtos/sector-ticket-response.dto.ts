@@ -26,8 +26,8 @@ export class SectorTicketListItemResponseDTO {
   @ApiProperty({ enum: ETicketStatus })
   status!: ETicketStatus;
 
-  @ApiProperty()
-  automatic_sector_id!: string;
+  @ApiProperty({ type: String, nullable: true })
+  automatic_sector_id!: string | null;
 
   @ApiProperty()
   confirmed_sector_id!: string;
@@ -46,11 +46,11 @@ export class SectorTicketListItemResponseDTO {
     dto.description_summary = summarize(ticket.description);
     dto.location = `${ticket.building.name} / ${ticket.environment.name}`;
     dto.status = ticket.status;
-    dto.automatic_sector_id = ticket.automaticSector.uuid;
+    dto.automatic_sector_id = ticket.automaticSector?.uuid ?? null;
     dto.confirmed_sector_id = ticket.confirmedSector.uuid;
     // True whenever the requester's final decision departed from the
     // automatic suggestion (RB-05/RB-06 research signal).
-    dto.classification_diverged = ticket.automaticSectorId !== ticket.confirmedSectorId;
+    dto.classification_diverged = ticket.automaticSectorId !== null && ticket.automaticSectorId !== ticket.confirmedSectorId;
     dto.created_at = ticket.createdAt;
 
     return dto;

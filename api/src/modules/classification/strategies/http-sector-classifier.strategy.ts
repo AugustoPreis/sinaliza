@@ -1,4 +1,3 @@
-import { parseClassificationDetails } from './classification-details';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
@@ -6,6 +5,7 @@ import { AppException } from '@shared/exceptions';
 
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 
+import { parseClassificationDetails } from './classification-details';
 import { IClassificationResult, ISectorClassifierStrategy } from './sector-classifier.strategy';
 
 @Injectable()
@@ -20,13 +20,13 @@ export class HttpSectorClassifierStrategy implements ISectorClassifierStrategy {
     this.url = config.get<string>('AI_SERVICE_URL', '');
     this.token = config.get<string>('AI_SERVICE_TOKEN', '');
     this.timeout = Number(config.get('AI_TIMEOUT_MS', 15000));
-    if (!['disabled', 'mock', 'trained'].includes(this.mode))
+    if (!['disabled', 'mock', 'trained', 'dynamic'].includes(this.mode))
       throw AppException.from(
         'classification.errors.INVALID_CONFIGURATION',
         HttpStatus.INTERNAL_SERVER_ERROR,
         { code: 'INVALID_CONFIGURATION' },
       );
-    if (config.get('NODE_ENV') === 'production' && this.mode === 'mock')
+    if (config.get('NODE_ENV') === 'production' && !['disabled', 'dynamic'].includes(this.mode))
       throw AppException.from(
         'classification.errors.MOCK_MODEL_NOT_ALLOWED',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -74,7 +74,7 @@ export class HttpSectorClassifierStrategy implements ISectorClassifierStrategy {
       response = await fetch(`${this.url.replace(/\/$/, '')}/classification/preview`, {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${this.token}` },
-        body: JSON.stringify({ description }),
+        body: JSON.stringify({ description, ...(this.mode === 'dynamic' ? { candidates: sectors.map(s => ({ id: s.uuid, name: s.name, categories: s.categories ?? [] })) } : {}) }),
         signal: AbortSignal.timeout(this.timeout),
         redirect: 'error',
       });
@@ -105,14 +105,14 @@ export class HttpSectorClassifierStrategy implements ISectorClassifierStrategy {
         HttpStatus.SERVICE_UNAVAILABLE,
         { code: 'CLASSIFICATION_UNAVAILABLE' },
       );
-    if (!result || result.dataSource !== (this.mode === 'trained' ? 'REAL' : 'MOCK'))
+    if (!result || result.dataSource !== (this.mode === 'mock' ? 'MOCK' : 'REAL'))
       throw AppException.from(
         'classification.errors.MODEL_SOURCE_MISMATCH',
         HttpStatus.BAD_GATEWAY,
         { code: 'MODEL_SOURCE_MISMATCH' },
       );
-    const sector = sectors.find((item) => item.uuid === result.sector_id);
-    if (!sector)
+    const sector = result.sector_id === null ? null : sectors.find((item) => item.uuid === result.sector_id);
+    if (sector === undefined || (sector === null && this.mode !== 'dynamic'))
       throw AppException.from(
         'classification.errors.INVALID_CLASSIFICATION_SECTOR',
         HttpStatus.BAD_GATEWAY,
@@ -136,6 +136,10 @@ export class HttpSectorClassifierStrategy implements ISectorClassifierStrategy {
         sectors,
         result.dataSource,
       );
+      if (this.mode === 'dynamic' && (!classification || typeof result.confidence !== 'number' ||
+        classification.method !== 'dynamic-semantic-cosine-v1' ||
+        (sector === null) !== classification.requires_review ||
+        (sector && classification.alternatives[0]?.id !== sector.uuid))) throw AppException.from('classification.errors.INVALID_CLASSIFICATION_DETAILS', HttpStatus.BAD_GATEWAY, { code: 'INVALID_CLASSIFICATION_DETAILS' });
       return {
         sector,
         confidence: result.confidence,

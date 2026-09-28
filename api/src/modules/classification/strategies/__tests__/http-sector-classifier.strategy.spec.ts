@@ -113,7 +113,7 @@ it('defaults to disabled and blocks production mock', async () => {
   ).toThrow();
 });
 
-const details = () => ({
+const details = (): Record<string, unknown> => ({
   schema_version: 1,
   request_id: 'e62c477d-1b11-4b4d-898d-1b18c7721e80',
   model: 'tfidf-multilingual-minilm-hybrid',
@@ -170,4 +170,20 @@ it.each([
   await expect(
     new HttpSectorClassifierStrategy(config()).classify('test', [sector]),
   ).rejects.toMatchObject({ code: 'INVALID_CLASSIFICATION_DETAILS' });
+});
+
+it('sends current UUID/name/categories in dynamic mode and accepts explicit abstention', async () => {
+  const dynamicSector = { ...sector, categories: ['férias'] };
+  payload = { sector_id: null, dataSource: 'REAL', confidence: 0.1,
+    classification: { ...details(), method: 'dynamic-semantic-cosine-v1', requires_review: true, review_reason: 'insufficient_context', alternatives: [] } };
+  const classifier = new HttpSectorClassifierStrategy(config({ AI_MODE: 'dynamic' }));
+  expect((await classifier.classify('não sei o que fazer', [dynamicSector])).sector).toBeNull();
+  expect(received).toEqual({ description: 'não sei o que fazer', candidates: [{ id: sector.uuid, name: sector.name, categories: ['férias'] }] });
+  dynamicSector.categories = ['contratação'];
+  await classifier.classify('não sei o que fazer', [dynamicSector]);
+  expect(received).toMatchObject({ candidates: [{ categories: ['contratação'] }] });
+});
+it('rejects dynamic null response lacking an explicit review decision', async () => {
+  payload = { sector_id: null, dataSource: 'REAL', confidence: 0.1 };
+  await expect(new HttpSectorClassifierStrategy(config({ AI_MODE: 'dynamic' })).classify('teste de entrada',[sector])).rejects.toMatchObject({ code: 'INVALID_CLASSIFICATION_DETAILS' });
 });

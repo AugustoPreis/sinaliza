@@ -5,6 +5,7 @@ import { StorageModule } from '@core/storage/storage.module';
 
 import { SharedModule } from '@shared/shared.module';
 
+import { ClassificationModule } from '@modules/classification/classification.module';
 import { LocationsModule } from '@modules/locations/locations.module';
 import { NotificationsModule } from '@modules/notifications/notifications.module';
 import { SectorsModule } from '@modules/sectors/sectors.module';
@@ -30,6 +31,7 @@ import { UpdateTicketStatusUseCase } from './use-cases/update-ticket-status.use-
 @Module({
   imports: [
     SharedModule,
+    ClassificationModule,
     StorageModule,
     SectorsModule,
     LocationsModule,

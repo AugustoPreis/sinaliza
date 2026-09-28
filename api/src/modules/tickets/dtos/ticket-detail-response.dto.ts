@@ -87,8 +87,8 @@ export class TicketDetailResponseDTO {
   @ApiProperty({ enum: ETicketStatus })
   status!: ETicketStatus;
 
-  @ApiProperty({ type: SectorRefDTO })
-  automatic_sector!: SectorRefDTO;
+  @ApiProperty({ type: SectorRefDTO, nullable: true })
+  automatic_sector!: SectorRefDTO | null;
 
   @ApiProperty({ type: SectorRefDTO })
   confirmed_sector!: SectorRefDTO;
@@ -123,7 +123,7 @@ export class TicketDetailResponseDTO {
       url: resolvePhotoUrl(photo.storageKey),
     }));
     dto.status = ticket.status;
-    dto.automatic_sector = SectorRefDTO.from(ticket.automaticSector);
+    dto.automatic_sector = ticket.automaticSector ? SectorRefDTO.from(ticket.automaticSector) : null;
     dto.confirmed_sector = SectorRefDTO.from(ticket.confirmedSector);
     dto.current_sector = SectorRefDTO.from(ticket.currentSector);
     dto.timeline = (ticket.events ?? [])
@@ -148,7 +148,9 @@ function describeEvent(event: TicketEventEntity): string {
     case ETicketEventType.AUTO_CLASSIFIED:
       return `Classificado automaticamente para ${event.toSector?.name ?? 'setor desconhecido'}.`;
     case ETicketEventType.REQUESTER_CONFIRMED_SECTOR:
-      return `Solicitante confirmou o setor ${event.toSector?.name ?? 'sugerido'}.`;
+      return event.fromSectorId === null
+        ? `Solicitante escolheu manualmente o setor ${event.toSector?.name ?? 'desconhecido'}, sem sugestão automática.`
+        : `Solicitante confirmou o setor ${event.toSector?.name ?? 'sugerido'}.`;
     case ETicketEventType.REQUESTER_CHANGED_SECTOR:
       return `Solicitante alterou o setor sugerido para ${event.toSector?.name ?? 'outro setor'}.`;
     case ETicketEventType.STATUS_CHANGED:

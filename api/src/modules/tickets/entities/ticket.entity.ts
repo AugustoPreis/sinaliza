@@ -44,12 +44,12 @@ export class TicketEntity extends BaseEntity {
   @JoinColumn({ name: 'environment_id' })
   environment!: EnvironmentEntity;
 
-  @Column({ name: 'automatic_sector_id', type: 'bigint' })
-  automaticSectorId!: number;
+  @Column({ name: 'automatic_sector_id', type: 'bigint', nullable: true })
+  automaticSectorId!: number | null;
 
-  @ManyToOne(() => SectorEntity)
+  @ManyToOne(() => SectorEntity, { nullable: true })
   @JoinColumn({ name: 'automatic_sector_id' })
-  automaticSector!: SectorEntity;
+  automaticSector!: SectorEntity | null;
 
   @Column({ name: 'confirmed_sector_id', type: 'bigint' })
   confirmedSectorId!: number;

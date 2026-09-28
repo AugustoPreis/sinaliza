@@ -17,8 +17,8 @@ export class TicketResponseDTO {
   @ApiProperty({ enum: ETicketStatus })
   status!: ETicketStatus;
 
-  @ApiProperty({ type: SectorRefDTO })
-  automatic_sector!: SectorRefDTO;
+  @ApiProperty({ type: SectorRefDTO, nullable: true })
+  automatic_sector!: SectorRefDTO | null;
 
   @ApiProperty({ type: SectorRefDTO })
   confirmed_sector!: SectorRefDTO;
@@ -34,7 +34,7 @@ export class TicketResponseDTO {
 
   static from(
     ticket: TicketEntity,
-    automaticSector: SectorEntity,
+    automaticSector: SectorEntity | null,
     confirmedSector: SectorEntity,
     currentSector: SectorEntity,
   ): TicketResponseDTO {
@@ -43,7 +43,7 @@ export class TicketResponseDTO {
     dto.id = ticket.uuid;
     dto.protocol = ticket.protocol;
     dto.status = ticket.status;
-    dto.automatic_sector = SectorRefDTO.from(automaticSector);
+    dto.automatic_sector = automaticSector ? SectorRefDTO.from(automaticSector) : null;
     dto.confirmed_sector = SectorRefDTO.from(confirmedSector);
     dto.current_sector = SectorRefDTO.from(currentSector);
     dto.requester_corrected = ticket.requesterCorrected;

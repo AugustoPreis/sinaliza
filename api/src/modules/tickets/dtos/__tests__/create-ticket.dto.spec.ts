@@ -14,7 +14,7 @@ const BUILDING = '01a0e45b-43f1-760d-8726-90dda3516511';
 const ENVIRONMENT = '01a0e45b-43f6-7581-8026-7836bf093c67';
 const SECTOR = '10000000-0000-4000-8000-000000000005';
 
-const validate = (location: string) =>
+const validate = (location: string): Promise<CreateTicketDTO> =>
   pipe.transform(
     {
       description: 'Lâmpada queimada',

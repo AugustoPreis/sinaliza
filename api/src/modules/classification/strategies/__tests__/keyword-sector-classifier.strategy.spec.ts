@@ -27,21 +27,21 @@ describe('KeywordSectorClassifierStrategy', () => {
     expect(result.sector).toBe(manutencao);
   });
 
-  it('falls back to the alphabetically first sector when nothing matches', async () => {
+  it('abstains when nothing matches', async () => {
     const result = await strategy.classify('assunto totalmente aleatorio sem relacao', [
       manutencao,
       ti,
     ]);
 
-    expect(result.sector).toBe(manutencao);
+    expect(result.sector).toBeNull();
     expect(result.confidence).toBe(0);
   });
 
-  it('breaks ties alphabetically by sector name', async () => {
+  it('abstains on ties', async () => {
     const audiovisual = { name: 'Audiovisual', categories: ['projetor'] } as SectorEntity;
 
     const result = await strategy.classify('o projetor quebrou', [ti, audiovisual]);
 
-    expect(result.sector).toBe(audiovisual);
+    expect(result.sector).toBeNull();
   });
 });

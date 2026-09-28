@@ -6,6 +6,7 @@ import { ROLE_REQUESTER } from '@shared/constants';
 import { AppException } from '@shared/exceptions';
 import { UuidService } from '@shared/services/uuid.service';
 
+import { PreviewClassificationUseCase } from '@modules/classification/use-cases/preview-classification.use-case';
 import { BuildingEntity } from '@modules/locations/entities/building.entity';
 import { EnvironmentEntity } from '@modules/locations/entities/environment.entity';
 import { LocationsRepository } from '@modules/locations/repositories/locations.repository';
@@ -31,6 +32,7 @@ export class CreateTicketUseCase {
     private readonly usersRepository: UsersRepository,
     private readonly storageService: StorageService,
     private readonly uuidService: UuidService,
+    private readonly classification: PreviewClassificationUseCase,
   ) {}
 
   async execute(
@@ -45,7 +47,11 @@ export class CreateTicketUseCase {
     }
 
     const requesterId = requester.id;
-    const automaticSector = await this.requireSector(dto.automatic_sector_id);
+    const preview = await this.classification.execute({ description: dto.description });
+    if ((dto.automatic_sector_id ?? null) !== (preview.automatic_sector?.id ?? null)) {
+      throw AppException.from('classification.errors.STALE_CLASSIFICATION', HttpStatus.CONFLICT, { code: 'STALE_CLASSIFICATION' });
+    }
+    const automaticSector = preview.automatic_sector ? await this.requireSector(preview.automatic_sector.id) : null;
     const confirmedSector = await this.requireSector(dto.confirmed_sector_id);
     const { building, environment } = await this.requireLocation(dto.location);
 
@@ -55,7 +61,7 @@ export class CreateTicketUseCase {
 
     // RB-03/RB-04: `automaticSectorId`/`confirmedSectorId` are set once,
     // here, and never overwritten afterwards by anything in this codebase.
-    const requesterCorrected = automaticSector.id !== confirmedSector.id;
+    const requesterCorrected = automaticSector !== null && automaticSector.id !== confirmedSector.id;
 
     const ticketData: Partial<TicketEntity> = {
       uuid: ticketUuid,
@@ -64,7 +70,7 @@ export class CreateTicketUseCase {
       description: dto.description,
       buildingId: building.id,
       environmentId: environment.id,
-      automaticSectorId: automaticSector.id,
+      automaticSectorId: automaticSector?.id ?? null,
       confirmedSectorId: confirmedSector.id,
       currentSectorId: confirmedSector.id,
       resolvedBySectorId: null,
@@ -86,7 +92,7 @@ export class CreateTicketUseCase {
 
     const events = this.buildInitialEvents(
       requesterId,
-      automaticSector.id,
+      automaticSector?.id ?? null,
       confirmedSector.id,
       requesterCorrected,
     );
@@ -102,11 +108,11 @@ export class CreateTicketUseCase {
 
   private buildInitialEvents(
     requesterId: number,
-    automaticSectorId: number,
+    automaticSectorId: number | null,
     confirmedSectorId: number,
     requesterCorrected: boolean,
   ): Array<Partial<TicketEventEntity>> {
-    return [
+    const events: Array<Partial<TicketEventEntity>> = [
       {
         uuid: this.uuidService.generate(),
         type: ETicketEventType.TICKET_OPENED,
@@ -131,6 +137,7 @@ export class CreateTicketUseCase {
         toSectorId: confirmedSectorId,
       },
     ];
+    return automaticSectorId === null ? events.filter(e => e.type !== ETicketEventType.AUTO_CLASSIFIED) : events;
   }
 
   private async uploadPhotos(ticketUuid: string, photos: Express.Multer.File[]): Promise<string[]> {

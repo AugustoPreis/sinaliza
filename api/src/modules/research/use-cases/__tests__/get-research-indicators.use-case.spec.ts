@@ -35,6 +35,8 @@ describe('GetResearchIndicatorsUseCase', () => {
 
   const data: IResearchIndicatorsData = {
     totalTickets: 200,
+    manualSelections: 0,
+    acceptedSuggestions: 178,
     correctWithoutAnyCorrection: 162,
     correctionsByRequester: 22,
     correctionsBySector: 16,
@@ -178,4 +180,11 @@ describe('GetResearchIndicatorsUseCase', () => {
       i18nKey: 'locations.errors.buildingNotFound',
     });
   });
+  it('separates accepted, changed and manual cases, excluding manual cases from suggestion rates', async () => {
+    researchRepository.getIndicatorsData.mockResolvedValue({ ...data, totalTickets: 10, manualSelections: 4, acceptedSuggestions: 4, correctionsByRequester: 2, correctWithoutAnyCorrection: 3 });
+    const result = await useCase.execute(query);
+    expect(result.classification_outcomes).toEqual({ accepted: 4, changed: 2, manual_without_suggestion: 4, acceptance_percentage: 66.7 });
+    expect(result.automatic_accuracy.percentage).toBe(50);
+  });
+
 });

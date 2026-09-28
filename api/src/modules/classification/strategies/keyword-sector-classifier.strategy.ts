@@ -23,28 +23,16 @@ export class KeywordSectorClassifierStrategy implements ISectorClassifierStrateg
 
     const bestScore = Math.max(...scored.map((entry) => entry.score));
 
-    // No category matched any token at all: fall back to the first sector in
-    // alphabetical order by name. Deterministic and doesn't require a
-    // dedicated "fallback sector" flag on `SectorEntity` - every sector is an
-    // equally valid target when the description gives no signal.
-    if (bestScore <= 0) {
-      return Promise.resolve({ sector: this.fallbackSector(sectors), confidence: 0 });
-    }
-
-    // Tie between two or more sectors with the same overlap count: same
-    // deterministic rule, applied only to the tied candidates.
+    if (bestScore <= 0 || !scored.length) return Promise.resolve({ sector: null, confidence: 0 });
     const tied = scored.filter((entry) => entry.score === bestScore);
-    const [chosen] = tied.sort((a, b) => a.sector.name.localeCompare(b.sector.name));
+    if (tied.length !== 1) return Promise.resolve({ sector: null, confidence: 0 });
+    const [chosen] = tied;
 
     const confidence = descriptionTokens.length
       ? Math.min(chosen.score / descriptionTokens.length, 1)
       : 0;
 
     return Promise.resolve({ sector: chosen.sector, confidence });
-  }
-
-  private fallbackSector(sectors: SectorEntity[]): SectorEntity {
-    return [...sectors].sort((a, b) => a.name.localeCompare(b.name))[0];
   }
 
   private countOverlap(descriptionTokens: string[], categories: string[]): number {

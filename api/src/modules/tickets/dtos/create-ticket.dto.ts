@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { plainToInstance, Transform, Type } from 'class-transformer';
-import { ValidateNested } from 'class-validator';
+import { IsOptional, ValidateNested } from 'class-validator';
 
 import { IsString, IsUUID, MaxLength } from '@shared/validators';
 
@@ -44,9 +44,10 @@ export class CreateTicketDTO {
   @Type(() => CreateTicketLocationDTO)
   location!: CreateTicketLocationDTO;
 
-  @ApiProperty({ description: 'UUID do setor sugerido pela classificação automática' })
+  @ApiProperty({ description: 'UUID sugerido no preview; omitir quando não houver sugestão. Revalidado no servidor.', nullable: true, required: false })
+  @IsOptional()
   @IsUUID()
-  automatic_sector_id!: string;
+  automatic_sector_id?: string | null;
 
   @ApiProperty({ description: 'UUID do setor confirmado/escolhido pelo solicitante' })
   @IsUUID()

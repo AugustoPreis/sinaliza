@@ -20,6 +20,6 @@ import { PreviewClassificationUseCase } from './use-cases/preview-classification
     PreviewClassificationUseCase,
     { provide: SECTOR_CLASSIFIER_STRATEGY, useClass: HttpSectorClassifierStrategy },
   ],
-  exports: [SECTOR_CLASSIFIER_STRATEGY],
+  exports: [SECTOR_CLASSIFIER_STRATEGY, PreviewClassificationUseCase],
 })
 export class ClassificationModule {}

@@ -69,11 +69,18 @@ export class GetResearchIndicatorsUseCase {
 
     const dto = new ResearchIndicatorsResponseDTO();
 
+    const suggested = data.totalTickets - data.manualSelections;
+    dto.classification_outcomes = {
+      accepted: data.acceptedSuggestions,
+      changed: data.correctionsByRequester,
+      manual_without_suggestion: data.manualSelections,
+      acceptance_percentage: suggested ? round1(data.acceptedSuggestions / suggested * 100) : 0,
+    };
     dto.automatic_accuracy = {
       total_tickets: data.totalTickets,
       correct_without_any_correction: data.correctWithoutAnyCorrection,
-      percentage: data.totalTickets
-        ? round1((data.correctWithoutAnyCorrection / data.totalTickets) * 100)
+      percentage: suggested
+        ? round1((data.correctWithoutAnyCorrection / suggested) * 100)
         : 0,
     };
 

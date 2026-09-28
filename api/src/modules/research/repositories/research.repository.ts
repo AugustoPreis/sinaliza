@@ -28,6 +28,8 @@ export interface IResearchCountRow {
 
 export interface IResearchIndicatorsData {
   totalTickets: number;
+  acceptedSuggestions: number;
+  manualSelections: number;
   // `automaticSectorId == resolvedBySectorId`, which is NULL for unresolved
   // tickets, so those never match - no extra "status = RESOLVED" filter needed.
   correctWithoutAnyCorrection: number;
@@ -77,6 +79,8 @@ export class ResearchRepository {
 
     const totalTickets = await baseQb().getCount();
 
+    const manualSelections = await baseQb().andWhere('ticket.automaticSectorId IS NULL').getCount();
+    const acceptedSuggestions = await baseQb().andWhere('ticket.automaticSectorId = ticket.confirmedSectorId').getCount();
     const correctWithoutAnyCorrection = await baseQb()
       .andWhere('ticket.automaticSectorId = ticket.resolvedBySectorId')
       .andWhere('ticket.requesterCorrected = false')
@@ -109,6 +113,7 @@ export class ResearchRepository {
       .getRawMany<{ key: string; count: string }>();
 
     const byAutomaticSectorRows = await baseQb()
+      .andWhere('ticket.automaticSectorId IS NOT NULL')
       .select('ticket.automaticSectorId', 'key')
       .addSelect('COUNT(*)', 'count')
       .groupBy('ticket.automaticSectorId')
@@ -122,6 +127,8 @@ export class ResearchRepository {
 
     return {
       totalTickets,
+      acceptedSuggestions,
+      manualSelections,
       correctWithoutAnyCorrection,
       correctionsByRequester,
       correctionsBySector: Number(correctionsBySectorRow?.count ?? 0),

@@ -1,6 +1,10 @@
+import { HttpStatus } from '@nestjs/common';
+
+import { AppException } from '@shared/exceptions';
+
 import { SectorEntity } from '@modules/sectors/entities/sector.entity';
 
-export interface ClassificationDetails {
+export interface IClassificationDetails {
   schema_version: 1;
   request_id: string;
   model: string;
@@ -11,6 +15,7 @@ export interface ClassificationDetails {
   requires_review: boolean;
   review_reason: string | null;
   alternatives: Array<{ id: string; name: string; score: number }>;
+  decision?: { minimum_score: number; minimum_margin: number; margin: number };
   processing?: { normalization: string; corrected_tokens: number; semantic_chunks: number };
 }
 
@@ -18,7 +23,7 @@ export function parseClassificationDetails(
   value: unknown,
   sectors: SectorEntity[],
   source: unknown,
-): ClassificationDetails | undefined {
+): IClassificationDetails | undefined {
   if (value === undefined) return undefined; // Compatibilidade com serviços anteriores ao contrato v1.
   const record = (v: unknown): v is Record<string, unknown> =>
     typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -48,7 +53,7 @@ export function parseClassificationDetails(
     !Array.isArray(value.alternatives) ||
     value.alternatives.length > sectors.length
   ) {
-    throw new Error('INVALID_CLASSIFICATION_DETAILS');
+    throw AppException.from('classification.errors.INVALID_CLASSIFICATION_DETAILS', HttpStatus.BAD_GATEWAY, { code: 'INVALID_CLASSIFICATION_DETAILS' });
   }
   const seen = new Set<string>();
   const alternatives = value.alternatives.map((item: unknown) => {
@@ -61,13 +66,13 @@ export function parseClassificationDetails(
       item.score > 1 ||
       seen.has(item.id)
     )
-      throw new Error('INVALID_CLASSIFICATION_DETAILS');
+      throw AppException.from('classification.errors.INVALID_CLASSIFICATION_DETAILS', HttpStatus.BAD_GATEWAY, { code: 'INVALID_CLASSIFICATION_DETAILS' });
     const sector = sectors.find((sector) => sector.uuid === item.id);
-    if (!sector) throw new Error('INVALID_CLASSIFICATION_DETAILS');
+    if (!sector) throw AppException.from('classification.errors.INVALID_CLASSIFICATION_DETAILS', HttpStatus.BAD_GATEWAY, { code: 'INVALID_CLASSIFICATION_DETAILS' });
     seen.add(item.id);
     return { id: sector.uuid, name: sector.name, score: item.score };
   });
-  let processing: ClassificationDetails['processing'];
+  let processing: IClassificationDetails['processing'];
   if (value.processing !== undefined) {
     const item = value.processing;
     if (
@@ -77,12 +82,18 @@ export function parseClassificationDetails(
       !integer(item.semantic_chunks) ||
       item.semantic_chunks < 1
     )
-      throw new Error('INVALID_CLASSIFICATION_DETAILS');
+      throw AppException.from('classification.errors.INVALID_CLASSIFICATION_DETAILS', HttpStatus.BAD_GATEWAY, { code: 'INVALID_CLASSIFICATION_DETAILS' });
     processing = {
       normalization: item.normalization,
       corrected_tokens: item.corrected_tokens,
       semantic_chunks: item.semantic_chunks,
     };
+  }
+  let decision: IClassificationDetails['decision'];
+  if (value.decision !== undefined) {
+    const d = value.decision;
+    if (!record(d) || ![d.minimum_score, d.minimum_margin, d.margin].every(n => typeof n === 'number' && Number.isFinite(n) && n >= 0 && n <= 1)) throw AppException.from('classification.errors.INVALID_CLASSIFICATION_DETAILS', HttpStatus.BAD_GATEWAY, { code: 'INVALID_CLASSIFICATION_DETAILS' });
+    decision = { minimum_score: d.minimum_score as number, minimum_margin: d.minimum_margin as number, margin: d.margin as number };
   }
   return {
     schema_version: 1,
@@ -96,5 +107,6 @@ export function parseClassificationDetails(
     review_reason: value.review_reason as string | null,
     alternatives,
     ...(processing ? { processing } : {}),
+    ...(decision ? { decision } : {}),
   };
 }

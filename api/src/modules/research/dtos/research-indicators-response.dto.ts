@@ -71,7 +71,17 @@ export class ResearchVolumeDTO {
 // Built by `GetResearchIndicatorsUseCase` from `IResearchIndicatorsData` plus
 // resolved sector/building name maps - see that use-case for the math
 // (percentage/average/median) and the "what is a ticket's category" decision.
+export class ClassificationOutcomesDTO {
+  @ApiProperty() accepted!: number;
+  @ApiProperty() changed!: number;
+  @ApiProperty() manual_without_suggestion!: number;
+  @ApiProperty({ description: 'Concordância humana entre sugestões; não acurácia independente.' }) acceptance_percentage!: number;
+}
+
 export class ResearchIndicatorsResponseDTO {
+  @ApiProperty({ type: ClassificationOutcomesDTO })
+  classification_outcomes!: ClassificationOutcomesDTO;
+
   @ApiProperty({ type: AutomaticAccuracyDTO })
   automatic_accuracy!: AutomaticAccuracyDTO;
 

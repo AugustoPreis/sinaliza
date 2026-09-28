@@ -2,6 +2,7 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { StorageService } from '@core/storage/storage.service';
 
+import { PreviewClassificationUseCase } from '@modules/classification/use-cases/preview-classification.use-case';
 import { LocationsRepository } from '@modules/locations/repositories/locations.repository';
 import { SectorsRepository } from '@modules/sectors/repositories/sectors.repository';
 import { UsersRepository } from '@modules/users/repositories/users.repository';
@@ -14,6 +15,7 @@ import { TicketsRepository } from '../../repositories/tickets.repository';
 import { CreateTicketUseCase } from '../create-ticket.use-case';
 
 describe('CreateTicketUseCase', () => {
+  const classification = mockDeep<PreviewClassificationUseCase>();
   const ticketsRepository = mockDeep<TicketsRepository>();
   const sectorsRepository = mockDeep<SectorsRepository>();
   const locationsRepository = mockDeep<LocationsRepository>();
@@ -27,6 +29,7 @@ describe('CreateTicketUseCase', () => {
     usersRepository,
     storageService,
     { generate: () => 'generated-uuid' },
+    classification,
   );
 
   const dto: CreateTicketDTO = {
@@ -38,6 +41,7 @@ describe('CreateTicketUseCase', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    classification.execute.mockResolvedValue({ automatic_sector: { id: 'sec-ti', name: 'TI' } });
 
     usersRepository.findByUuid.mockResolvedValue({ id: 1, uuid: 'usr-1' } as never);
     sectorsRepository.findByUuid.mockImplementation((uuid) =>
@@ -134,4 +138,29 @@ describe('CreateTicketUseCase', () => {
       i18nKey: 'users.errors.notFound',
     });
   });
+  it('creates a manual ticket without fabricating an automatic classification', async () => {
+    classification.execute.mockResolvedValue({ automatic_sector: null, confidence: 0.1 });
+    const result = await useCase.execute('usr-1', { ...dto, automatic_sector_id: null });
+    const [ticket, , events] = ticketsRepository.createWithInitialEvents.mock.calls[0];
+    expect(ticket.automaticSectorId).toBeNull();
+    expect(ticket.requesterCorrected).toBe(false);
+    expect(ticket.confirmedSectorId).toBe(10);
+    expect(events.some(event => event.type === ETicketEventType.AUTO_CLASSIFIED)).toBe(false);
+    expect(result.automatic_sector).toBeNull();
+  });
+  it('rejects a forged automatic sector before persisting or uploading', async () => {
+    await expect(useCase.execute('usr-1', { ...dto, automatic_sector_id: 'forged' })).rejects.toMatchObject({ code: 'STALE_CLASSIFICATION' });
+    expect(ticketsRepository.createWithInitialEvents).not.toHaveBeenCalled();
+    expect(storageService.upload).not.toHaveBeenCalled();
+    expect(classification.execute).toHaveBeenCalledWith({ description: dto.description });
+  });
+  it('rejects suppressing a real suggestion by sending null', async () => {
+    await expect(useCase.execute('usr-1', { ...dto, automatic_sector_id: null })).rejects.toMatchObject({ code: 'STALE_CLASSIFICATION' });
+  });
+  it('does not turn service unavailability into manual abstention', async () => {
+    classification.execute.mockRejectedValue(new Error('offline'));
+    await expect(useCase.execute('usr-1', dto)).rejects.toThrow('offline');
+    expect(ticketsRepository.createWithInitialEvents).not.toHaveBeenCalled();
+  });
+
 });

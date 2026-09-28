@@ -162,7 +162,7 @@ export class TicketsRepository {
 
     if (sectorIdSet.has(ticket.currentSectorId)) return true;
     if (sectorIdSet.has(ticket.confirmedSectorId)) return true;
-    if (sectorIdSet.has(ticket.automaticSectorId)) return true;
+    if (ticket.automaticSectorId !== null && sectorIdSet.has(ticket.automaticSectorId)) return true;
 
     return (ticket.events ?? []).some(
       (event) => event.toSectorId !== null && sectorIdSet.has(event.toSectorId),

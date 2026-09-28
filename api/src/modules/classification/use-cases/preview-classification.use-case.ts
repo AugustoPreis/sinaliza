@@ -20,6 +20,9 @@ export class PreviewClassificationUseCase {
   ) {}
 
   async execute(dto: PreviewClassificationDTO): Promise<ClassificationResponseDTO> {
+    if (typeof dto.description !== 'string' || !dto.description.trim() || dto.description.length > 2000) {
+      throw AppException.from('classification.errors.INVALID_DESCRIPTION', HttpStatus.BAD_REQUEST);
+    }
     const sectors = await this.sectorsRepository.findAll();
 
     if (!sectors.length) {
